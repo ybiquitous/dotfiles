@@ -1,11 +1,19 @@
 #!/bin/sh
 
-rm -rf masafumi-k
-git clone https://github.com/ybiquitous/masafumi-k.git
-cd masafumi-k
-rm -rf `find -name .git*`
-for v in `ls HOME/.*` ; do
-  cp -rv $v $HOME
+if [ -z $1 ] ; then
+  echo "Usage: $0 target_dir"
+  exit 1;
+fi
+
+
+work_dir=/tmp/masafumi-k_`date +%s`
+rm -rf $work_dir
+mkdir -p $work_dir
+git clone https://github.com/ybiquitous/masafumi-k.git $work_dir
+for v in `ls -a $work_dir/HOME/` ; do
+  if [ $v = '.' -o $v = '..' ] ; then
+    continue
+  fi
+  cp -rfv $work_dir/HOME/$v $1/
 done
-cd ..
-rm -rf masafumi-k
+rm -rf $work_dir
