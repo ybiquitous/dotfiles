@@ -13,14 +13,17 @@ apt-get $arg clean
 apt-get $arg autoremove
 apt-get $arg autoclean
 
-# tool
-list='manpages-ja nkf lv tree zsh rar unrar ntp lynx xml2'
-
-# system
-list=$list' sysv-rc-conf acct'
+# shell
+list=$list' zsh zsh-doc'
 
 # emacs
 list=$list' emacs anthy-el js2-mode html-helper-mode'
+
+# tool
+list=$list' manpages-ja nkf lv tree rar unrar ntp lynx'
+
+# system
+list=$list' sysv-rc-conf acct'
 
 # python
 list=$list' ipython python3'
