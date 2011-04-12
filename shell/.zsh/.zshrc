@@ -85,7 +85,7 @@ bindkey "\e[Z" reverse-menu-complete
 
 ## Command history configuration
 #
-HISTFILE=${ZDOTDIR}/.zsh_history
+HISTFILE=${HOME}/${ZDOTDIR}/.zsh_history
 HISTSIZE=50000
 SAVEHIST=50000
 setopt hist_ignore_dups     # ignore duplication command history list
@@ -94,7 +94,7 @@ setopt share_history        # share command history data
 
 ## Completion configuration
 #
-fpath=(${ZDOTDIR}/functions/Completion ${fpath})
+fpath=(${HOME}/${ZDOTDIR}/functions/Completion ${fpath})
 autoload -U compinit
 compinit
 
@@ -177,7 +177,7 @@ esac
 
 ## load user .zshrc configuration file
 #
-[ -f ${ZDOTDIR}/.zshrc.mine ] && source ${ZDOTDIR}/.zshrc.mine
+[ -f ${HOME}/${ZDOTDIR}/.zshrc.mine ] && source ${HOME}/${ZDOTDIR}/.zshrc.mine
 
 
 # alias
