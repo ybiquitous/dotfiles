@@ -13,6 +13,7 @@ target=(
   .zsh/.zshrc
   .emacs
   .xmodmap
+  .gitconfig
 )
 
 for v in ${target[@]} ; do
