@@ -1,0 +1,16 @@
+alias ls='ls -aF --color=auto'
+alias ll='ls -l'
+alias cp='cp -iv'
+alias rm='rm -iv'
+alias mv='mv -iv'
+alias df='df -h'
+alias du='du -h'
+alias su='su -l'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias tree='tree -a'
+
+###
+alias e='emacs'
+alias en='emacs -nw'
+alias iperl='perl -d -e 1'
