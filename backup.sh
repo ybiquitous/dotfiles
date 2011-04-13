@@ -12,10 +12,12 @@ target=(
   .zshenv
   .zsh/.zshrc
   .emacs
+  .emacs.d/site-lisp/
+  .emacs.d/auto-install/
   .xmodmap
   .gitconfig
 )
 
 for v in ${target[@]} ; do
-  cp -v $HOME/$v ./HOME/$v
+  cp -rv $HOME/$v ./HOME/$v
 done
