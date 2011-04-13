@@ -6,7 +6,7 @@
  '(auto-save-default nil)
  '(blink-cursor-mode nil)
  '(column-number-mode t)
- '(default-frame-alist (quote ((cursor-color . "green") (menu-bar-lines . 1) (right-fringe) (left-fringe) (background-color . "black") (foreground-color . "white") (width . 100) (height . 50) (top . 200) (left . 200) (font . "8x13") (tool-bar-lines . 0))))
+ '(default-frame-alist (quote ((cursor-color . "green") (menu-bar-lines . 1) (tool-bar-lines . 0) (right-fringe) (left-fringe) (background-color . "black") (foreground-color . "white") (width . 100) (height . 50) (top . 200) (left . 200) (font . "8x13") (vertical-scroll-bars . right))))
  '(global-font-lock-mode t nil (font-lock))
  '(global-whitespace-mode nil)
  '(inhibit-startup-screen t)
