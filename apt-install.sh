@@ -17,7 +17,7 @@ apt-get $arg autoclean
 list=$list' zsh zsh-doc'
 
 # emacs
-list=$list' emacs anthy-el js2-mode html-helper-mode'
+list=$list' emacs anthy-el js2-mode html-helper-mode yaml-mode'
 
 # tool
 list=$list' manpages-ja nkf lv tree rar unrar ntp lynx'
