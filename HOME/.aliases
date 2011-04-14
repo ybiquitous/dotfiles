@@ -8,7 +8,6 @@ alias du='du -h'
 alias su='su -l'
 alias ..='cd ..'
 alias ...='cd ../..'
-alias tree='tree -a'
 
 ###
 alias e='emacs'
