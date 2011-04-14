@@ -25,6 +25,11 @@ for v in `ls -a $work_dir/HOME/` ; do
     continue
   fi
   cp -riv $work_dir/HOME/$v $dst_dir/
+  if test -d $dst_dir/$v ; then
+    chmod -v 700 $dst_dir/$v
+  elif test -f $dst_dir/$v ; then
+    chmod -v 644 $dst_dir/$v
+  fi
 done
 rm -rf $work_dir
 
