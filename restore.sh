@@ -5,6 +5,12 @@ if [ -z $1 ] ; then
   exit 1;
 fi
 
+dst_dir=$1
+if test ! -e $dst_dir ; then
+  echo "Not found $dst_dir"
+  exit 1
+fi
+
 work_dir=/tmp/restore`date +%s`
 if test -e $work_dir ; then
   echo "Already exists $work_dir"
@@ -18,7 +24,7 @@ for v in `ls -a $work_dir/HOME/` ; do
   if [ $v = '.' -o $v = '..' ] ; then
     continue
   fi
-  cp -rfv $work_dir/HOME/$v $1/
+  cp -riv $work_dir/HOME/$v $dst_dir/
 done
 rm -rf $work_dir
 
