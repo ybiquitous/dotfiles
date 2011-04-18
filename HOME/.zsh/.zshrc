@@ -179,6 +179,9 @@ esac
 #
 [ -f ${HOME}/${ZDOTDIR}/.zshrc.mine ] && source ${HOME}/${ZDOTDIR}/.zshrc.mine
 
+# stop Ctrl-D to exit
+setopt ignoreeof
+
 
 # alias
 source ${HOME}/.aliases
