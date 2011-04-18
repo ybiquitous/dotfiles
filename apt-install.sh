@@ -35,7 +35,7 @@ list=$list' openjdk-6-jdk openjdk-6-doc openjdk-6-source'
 list=$list' tidy'
 
 # git
-list=$list' git-core git-doc git-svn git-cvs'
+list=$list' git-core git-doc git-svn git-cvs curl patch'
 
 # cvs
 list=$list' cvs'
