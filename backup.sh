@@ -25,3 +25,4 @@ $cmd $src_dir/.emacs.d/site-lisp/*.el ./$dst_dir/.emacs.d/site-lisp/
 $cmd $src_dir/.emacs.d/auto-install/*.el ./$dst_dir/.emacs.d/auto-install
 $cmd $src_dir/.xmodmap ./$dst_dir/
 $cmd $src_dir/.gitconfig ./$dst_dir/
+$cmd $src_dir/.irbrc ./$dst_dir/
