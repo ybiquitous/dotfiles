@@ -1,1 +1,1 @@
-export ZDOTDIR='.zsh'
+export ZDOTDIR=$HOME/.zsh
