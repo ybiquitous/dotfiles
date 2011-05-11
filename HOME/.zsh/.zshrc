@@ -184,7 +184,11 @@ setopt ignoreeof
 
 
 # alias
-source ${HOME}/.aliases
+if [ -f ~/.aliases ] ; then
+  . ~/.aliases
+fi
 
 # env
-source ${HOME}/.env_vars
+if [ -f ~/.env_vars ] ; then
+  . ~/.env_vars
+fi
