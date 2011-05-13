@@ -81,3 +81,7 @@
           (lambda()
             (require 'perl-completion)
             (perl-completion-mode t)))
+
+;; haml & sass
+(require 'haml-mode)
+(require 'sass-mode)
