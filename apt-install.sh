@@ -49,4 +49,7 @@ list=$list' subversion'
 # astyle
 list=$list' astyle'
 
+# paco
+list=$list' paco'
+
 apt-get $arg install $list
