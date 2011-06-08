@@ -72,8 +72,8 @@
     (untabify (region-beginning) (region-end))))
 
 ;; js2-mode
-(autoload 'js2-mode "js2" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+;;(autoload 'js2-mode "js2" nil t)
+;;(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 ;; perl
 (defalias 'perl-mode 'cperl-mode)
@@ -83,5 +83,9 @@
             (perl-completion-mode t)))
 
 ;; haml & sass
-(require 'haml-mode)
-(require 'sass-mode)
+;;(require 'haml-mode)
+;;(require 'sass-mode)
+
+;; scala
+;;(add-to-list 'load-path "~/scala/misc/scala-tool-support/emacs/")
+;;(require 'scala-mode-auto)

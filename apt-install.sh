@@ -46,5 +46,7 @@ list=$list' subversion'
 # clamav
 #list=$list' clamav'
 
-apt-get $arg install $list
+# astyle
+list=$list' astyle'
 
+apt-get $arg install $list
