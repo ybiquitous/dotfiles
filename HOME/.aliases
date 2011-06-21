@@ -1,5 +1,5 @@
-alias ls='ls -aF --color=auto'
 alias ll='ls -l'
+alias la='ls -la'
 alias cp='cp -i'
 alias rm='rm -i'
 alias mv='mv -i'

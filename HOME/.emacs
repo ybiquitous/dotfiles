@@ -89,3 +89,6 @@
 ;; scala
 ;;(add-to-list 'load-path "~/scala/misc/scala-tool-support/emacs/")
 ;;(require 'scala-mode-auto)
+
+;; mustache
+;;(require 'mustache-mode)
