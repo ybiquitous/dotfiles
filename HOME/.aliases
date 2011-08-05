@@ -9,6 +9,7 @@ alias su='su -l'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias grep='grep --color=auto'
+alias h='history'
 
 ###
 alias e='emacs'
