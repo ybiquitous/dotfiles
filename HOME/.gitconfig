@@ -7,3 +7,7 @@
 	co = checkout
 	br = branch
 	di = diff
+[color]
+	diff = auto
+[color "diff"]
+	meta = blue bold

@@ -20,7 +20,7 @@ list=$list' zsh zsh-doc'
 list=$list' emacs anthy-el js2-mode html-helper-mode yaml-mode'
 
 # tool
-list=$list' manpages-ja nkf lv tree rar unrar ntp lynx curl'
+list=$list' manpages-ja nkf lv tree rar unrar ntp lynx curl colordiff'
 
 # system
 list=$list' sysv-rc-conf acct'

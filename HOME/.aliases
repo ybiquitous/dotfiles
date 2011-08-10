@@ -10,6 +10,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias grep='grep --color=auto'
 alias h='history'
+alias diff='colordiff -u'
 
 ###
 alias e='emacs'
