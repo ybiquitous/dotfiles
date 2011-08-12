@@ -94,7 +94,7 @@
 ;;(require 'mustache-mode)
 
 ;; PATH
-(setenv "PATH" (concat (getenv "PATH") ":~/scala/bin"))
+(setenv "PATH" (concat (getenv "PATH") ":$HOME/scala/bin"))
 (setq exec-path (append exec-path '("~/scala/bin")))
 
 ;; Eshell Alias
