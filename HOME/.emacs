@@ -92,3 +92,28 @@
 
 ;; mustache
 ;;(require 'mustache-mode)
+
+;; PATH
+(setenv "PATH" (concat (getenv "PATH") ":~/scala/bin"))
+(setq exec-path (append exec-path '("~/scala/bin")))
+
+;; Eshell Alias
+(eval-after-load "em-alias" '(progn
+  (eshell/alias "ll" "ls -l")
+  (eshell/alias "la" "ls -la")
+  (eshell/alias "cp" "cp -i")
+  (eshell/alias "rm" "rm -i")
+  (eshell/alias "mv" "mv -i")
+  (eshell/alias "df" "df -h")
+  (eshell/alias "du" "du -h")
+  (eshell/alias "su" "su -l")
+  (eshell/alias ".." "cd ..")
+  (eshell/alias "..." "cd ../..")
+  (eshell/alias "grep" "grep --color=auto")
+  (eshell/alias "h" "history")
+  (eshell/alias "diff" "colordiff -u")
+  (eshell/alias "e" "emacs")
+  (eshell/alias "en" "emacs -nw")
+  (eshell/alias "iperl" "perl -de 1")
+  (eshell/alias "sedperl" "perl -pe")
+))

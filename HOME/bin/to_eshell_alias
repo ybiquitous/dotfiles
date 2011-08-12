@@ -1,0 +1,16 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+my $alias_file = "$ENV{HOME}/.aliases";
+open my $fh, '<', $alias_file or die "$!: $alias_file";
+
+print "(eval-after-load \"em-alias\" '(progn\n";
+while (<$fh>) {
+  next unless /^alias/;
+  s/^alias (.+)='(.+)'/  (eshell\/alias "$1" "$2")/;
+  print;
+}
+print "))\n";
+
+close $fh;
