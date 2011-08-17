@@ -194,3 +194,5 @@ if [ -f ~/.exports ] ; then
 fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+[[ $EMACS = t ]] && unsetopt zle

@@ -6,9 +6,10 @@
  '(auto-save-default nil)
  '(blink-cursor-mode nil)
  '(column-number-mode t)
- '(default-frame-alist (quote ((cursor-color . "green") (menu-bar-lines . 1) (tool-bar-lines . 0) (right-fringe) (left-fringe) (background-color . "black") (foreground-color . "white") (width . 100) (height . 50) (top . 200) (left . 200) (font . "8x13") (vertical-scroll-bars . right))))
+ '(default-frame-alist (quote ((width . 40) (height . 30) (top . 200) (left . 200))))
  '(global-font-lock-mode t nil (font-lock))
  '(global-whitespace-mode nil)
+ '(indent-tabs-mode nil)
  '(inhibit-splash-screen t)
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
@@ -28,7 +29,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Takao¥´¥·¥Ã¥¯")))))
 
 ;; key setting
 (global-set-key "\C-h" 'delete-backward-char)
@@ -49,6 +50,10 @@
 (setq auto-install-directory "~/.emacs.d/auto-install/")
 (add-to-list 'load-path "~/.emacs.d/auto-install/")
 (auto-install-compatibility-setup)
+
+;; anything.el
+(defvar org-directory "")
+(require 'anything-startup)
 
 ;; japanese environment
 ;;(setq current-language-environment 'Japanese)
@@ -81,17 +86,20 @@
           (lambda()
             (require 'perl-completion)
             (perl-completion-mode t)))
+(defun perl-eval (beg end)
+  "Run selected region as Perl code"
+  (interactive "r")
+  (shell-command-on-region beg end "perl"))
+(global-set-key "\M-\C-p" 'perl-eval)
 
-;; haml & sass
+;; haml & sass & mustache
 ;;(require 'haml-mode)
 ;;(require 'sass-mode)
+;;(require 'mustache-mode)
 
 ;; scala
-;;(add-to-list 'load-path "~/scala/misc/scala-tool-support/emacs/")
-;;(require 'scala-mode-auto)
-
-;; mustache
-;;(require 'mustache-mode)
+(add-to-list 'load-path "~/scala/misc/scala-tool-support/emacs/")
+(require 'scala-mode-auto)
 
 ;; PATH
 (setenv "PATH" (concat (getenv "PATH") ":$HOME/scala/bin"))
