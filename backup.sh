@@ -29,5 +29,6 @@ $cmd $src_dir/.gitconfig ./$dst_dir/
 $cmd $src_dir/.irbrc ./$dst_dir/
 $cmd $src_dir/.lv ./$dst_dir/
 $cmd $src_dir/bin/beep ./$dst_dir/bin/
+$cmd $src_dir/bin/term ./$dst_dir/bin/
 $cmd $src_dir/bin/termlog ./$dst_dir/bin/
 $cmd $src_dir/bin/to_eshell_alias ./$dst_dir/bin/

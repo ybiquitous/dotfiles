@@ -1,0 +1,2 @@
+#!/bin/sh
+gnome-terminal --geometry=80x40+200+200
