@@ -12,6 +12,7 @@ alias grep='grep --color=auto'
 alias h='history'
 alias diff='colordiff -u'
 alias q='exit'
+alias g='grep'
 
 ###
 alias e='emacs'
