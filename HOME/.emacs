@@ -13,6 +13,7 @@
  '(inhibit-splash-screen t)
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
+ '(line-spacing nil)
  '(make-backup-files nil)
  '(scroll-bar-mode (quote right))
  '(show-paren-mode t)
@@ -29,7 +30,11 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Takao¥´¥·¥Ã¥¯")))))
+ '(default ((t (:background "black" :foreground "white")))))
+
+;; default bold
+(add-hook 'term-setup-hook (lambda() (buffer-face-set 'bold)))
+(add-hook 'find-file-hook  (lambda() (buffer-face-set 'bold)))
 
 ;; key setting
 (global-set-key "\C-h" 'delete-backward-char)
