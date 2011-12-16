@@ -6,11 +6,10 @@
  '(auto-save-default nil)
  '(blink-cursor-mode nil)
  '(column-number-mode t)
- '(default-frame-alist (quote ((width . 40) (height . 30) (top . 200) (left . 200))))
+ '(default-frame-alist (quote ((menu-bar-lines . 1) (width . 50) (height . 40) (top . 200) (left . 200) (tool-bar-lines . 0))))
  '(global-font-lock-mode t nil (font-lock))
  '(global-whitespace-mode nil)
  '(indent-tabs-mode nil)
- '(inhibit-splash-screen t)
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
  '(line-spacing nil)
@@ -30,11 +29,11 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:background "black" :foreground "white")))))
+ '(default ((t (:background "black" :foreground "white" :height 128)))))
 
 ;; default bold
-(add-hook 'term-setup-hook (lambda() (buffer-face-set 'bold)))
-(add-hook 'find-file-hook  (lambda() (buffer-face-set 'bold)))
+;;(add-hook 'term-setup-hook (lambda() (buffer-face-set 'bold)))
+;;(add-hook 'find-file-hook  (lambda() (buffer-face-set 'bold)))
 
 ;; key setting
 (global-set-key "\C-h" 'delete-backward-char)
@@ -42,10 +41,6 @@
 (global-set-key "\C-x\M-s" 'replace-string)
 (global-set-key "\C-x\M-u" 'untabify)
 (global-set-key "\C-x\M-c" 'customize-variable)
-
-;; ???
-(put 'downcase-region 'disabled nil)
-(put 'upcase-region 'disabled nil)
 
 ;; site-lisp
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
@@ -57,8 +52,8 @@
 (auto-install-compatibility-setup)
 
 ;; anything.el
-(defvar org-directory "")
-(require 'anything-startup)
+;;(defvar org-directory "")
+;;(require 'anything-startup)
 
 ;; japanese environment
 ;;(setq current-language-environment 'Japanese)
@@ -81,9 +76,19 @@
     (mark-whole-buffer)
     (untabify (region-beginning) (region-end))))
 
+;; truncate lines ON/OFF
+(defun toggle-truncate-lines ()
+  "Toggle truncate-lines variable."
+  (interactive)
+  (if truncate-lines
+      (setq truncate-lines nil)
+    (setq truncate-lines t))
+  (recenter))
+(global-set-key "\C-c\C-l" 'toggle-truncate-lines)
+
 ;; js2-mode
-;;(autoload 'js2-mode "js2" nil t)
-;;(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(autoload 'js2-mode "js2" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 ;; perl
 (defalias 'perl-mode 'cperl-mode)
@@ -96,6 +101,18 @@
   (interactive "r")
   (shell-command-on-region beg end "perl"))
 (global-set-key "\M-\C-p" 'perl-eval)
+(defun perltidy-region ()
+  "Run perltidy on the current region."
+  (interactive)
+  (save-excursion
+    (shell-command-on-region (point) (mark) "perltidy -q -i=2" nil t)))
+(defun perltidy-defun ()
+  "Run perltidy on the current defun."
+  (interactive)
+  (save-excursion (mark-defun)
+  (perltidy-region)))
+(global-set-key "\C-ct" 'perltidy-region)
+;;(require 'perlcritic)
 
 ;; haml & sass & mustache
 ;;(require 'haml-mode)
@@ -107,8 +124,8 @@
 (require 'scala-mode-auto)
 
 ;; PATH
-(setenv "PATH" (concat (getenv "PATH") ":$HOME/scala/bin"))
-(setq exec-path (append exec-path '("~/scala/bin")))
+(setenv "PATH" (concat (getenv "PATH") ":$HOME/scala/bin:$HOME/maven/bin"))
+(setq exec-path (append (list "~/scala/bin" "~/maven/bin") exec-path))
 
 ;; Eshell Alias
 (eval-after-load "em-alias" '(progn
@@ -130,3 +147,8 @@
   (eshell/alias "iperl" "perl -de 1")
   (eshell/alias "sedperl" "perl -pe")
 ))
+
+;; Zen-Coding
+(require 'zencoding-mode)
+(add-hook 'sgml-mode-hook 'zencoding-mode)
+(setq zencoding-indentation 2)
