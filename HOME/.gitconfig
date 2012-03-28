@@ -1,5 +1,5 @@
 [user]
-	name = koba
+	name = Masafumi Koba
 	email = 10koba01@gmail.com
 [alias]
 	st = status
@@ -7,7 +7,10 @@
 	co = checkout
 	br = branch
 	di = diff
-[color]
-	diff = auto
-[color "diff"]
-	meta = blue bold
+[github]
+	user = ybiquitous
+	token = c10aa4d340230cbb510969ad260e5e56
+#[color]
+#	diff = auto
+#[color "diff"]
+#	meta = blue bold
