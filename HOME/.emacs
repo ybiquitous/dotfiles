@@ -6,7 +6,7 @@
  '(auto-save-default nil)
  '(blink-cursor-mode nil)
  '(column-number-mode t)
- '(default-frame-alist (quote ((menu-bar-lines . 1) (width . 50) (height . 40) (top . 200) (left . 200) (tool-bar-lines . 0))))
+ '(default-frame-alist (quote ((menu-bar-lines . 1) (width . 40) (height . 30) (tool-bar-lines . 0))))
  '(global-font-lock-mode t nil (font-lock))
  '(global-whitespace-mode nil)
  '(indent-tabs-mode nil)
@@ -29,7 +29,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:background "black" :foreground "white" :height 128)))))
+ '(default ((t (:background "black" :foreground "white")))))
 
 ;; default bold
 ;;(add-hook 'term-setup-hook (lambda() (buffer-face-set 'bold)))
@@ -152,3 +152,11 @@
 (require 'zencoding-mode)
 (add-hook 'sgml-mode-hook 'zencoding-mode)
 (setq zencoding-indentation 2)
+
+;; ruby
+(add-to-list 'load-path "~/.emacs.d/site-lisp/ruby/")
+(autoload 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
+(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+(add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
+(require 'ruby-electric)
+(add-hook 'ruby-mode-hook 'ruby-electric-mode)

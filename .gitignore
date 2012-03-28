@@ -1,0 +1,3 @@
+HOME/.emacs.d/auto-save-list
+HOME/.emacs.d/**/*.elc
+HOME/.emacs.d/**/**/*.elc
