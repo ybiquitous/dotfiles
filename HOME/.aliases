@@ -13,7 +13,3 @@ alias h='history'
 alias diff='diff -u'
 alias q='exit'
 alias g='grep'
-
-###
-alias e='emacs'
-alias en='emacs -nw'
