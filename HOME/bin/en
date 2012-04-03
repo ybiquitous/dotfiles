@@ -1,1 +1,1 @@
-emacs --no-window-system
+emacs --no-window-system $*
