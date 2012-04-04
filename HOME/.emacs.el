@@ -32,3 +32,31 @@
 (global-set-key "\C-x\M-s" 'replace-string)
 (global-set-key "\C-x\M-u" 'untabify)
 (global-set-key "\C-x\M-c" 'customize-variable)
+
+;; trim whitespace
+(defun trim-buffer ()
+  "Delete excess white space."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (re-search-forward "[ \t]+$" nil t)
+      (replace-match "" nil nil))
+    (goto-char (point-max))
+    (delete-blank-lines)
+    (mark-whole-buffer)
+    (untabify (region-beginning) (region-end))))
+(global-set-key "\C-xt" 'trim-buffer)
+
+;; truncate lines ON/OFF
+(defun toggle-truncate-lines ()
+  "Toggle truncate-lines variable."
+  (interactive)
+  (if truncate-lines
+      (setq truncate-lines nil)
+    (setq truncate-lines t))
+  (recenter))
+(global-set-key "\C-c\C-l" 'toggle-truncate-lines)
+
+;; scala
+(add-to-list 'load-path "~/scala/misc/scala-tool-support/emacs/")
+(require 'scala-mode-auto)
