@@ -7,7 +7,7 @@ import scala.io.Source
 
 val debug = System.getProperty("debug", "false").toBoolean
 
-val target = """(".*[^\p{ASCII}]+.*")""".r
+val target = """(["'].*[^\p{ASCII}]+.*["'])""".r
 val comment = """^\s*(\*|//)""".r
 val files = args map { new File(_) } filter { _.isFile }
 var printFile = false
