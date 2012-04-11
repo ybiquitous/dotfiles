@@ -60,3 +60,6 @@
 ;; scala
 (add-to-list 'load-path "~/scala/misc/scala-tool-support/emacs/")
 (require 'scala-mode-auto)
+
+;; markdown
+(setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
