@@ -14,42 +14,45 @@ apt-get $arg autoremove
 apt-get $arg autoclean
 
 # shell
-list=$list' zsh zsh-doc'
+list="$list zsh zsh-doc"
 
 # emacs
-list=$list' emacs anthy-el js2-mode html-helper-mode yaml-mode emacs-goodies-el'
+list="$list emacs anthy-el js2-mode html-helper-mode yaml-mode emacs-goodies-el"
 
 # tool
-list=$list' nkf lv tree rar unrar ntp lynx curl colordiff build-essential'
+list="$list nkf lv tree rar unrar ntp lynx curl colordiff build-essential"
 
 # system
-list=$list' sysv-rc-conf acct'
+list="$list sysv-rc-conf acct"
 
 # python
-list=$list' ipython python3'
+list="$list ipython python3"
 
 # java
-list=$list' openjdk-6-jdk openjdk-6-doc openjdk-6-source'
+list="$list openjdk-6-jdk openjdk-6-doc openjdk-6-source"
 
 # html
-list=$list' tidy'
+list="$list tidy"
 
 # git
-list=$list' git-core git-doc git-svn git-cvs curl patch'
+list="$list git-core git-doc git-svn git-cvs curl patch"
 
 # cvs
-list=$list' cvs'
+list="$list cvs"
 
 # subversion
-list=$list' subversion'
+list="$list subversion"
 
 # clamav
-#list=$list' clamav'
+#list="$list clamav"
 
 # astyle
-list=$list' astyle'
+list="$list astyle"
 
 # paco
-list=$list' paco'
+list="$list paco"
+
+# markdown
+list="$list markdown"
 
 apt-get $arg install $list
