@@ -55,4 +55,7 @@ list="$list paco"
 # markdown
 list="$list markdown"
 
+# mozc
+list="$list ibus-mozc"
+
 apt-get $arg install $list
