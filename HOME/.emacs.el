@@ -58,7 +58,7 @@
 (global-set-key "\C-c\C-l" 'toggle-truncate-lines)
 
 ;; scala
-(add-to-list 'load-path "~/scala/misc/scala-tool-support/emacs/")
+(add-to-list 'load-path "/opt/scala/scala-mode")
 (require 'scala-mode-auto)
 
 ;; markdown

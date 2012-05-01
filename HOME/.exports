@@ -1,10 +1,8 @@
-export JAVA_HOME=/usr/lib/jvm/default-java
-export JAVA_OPTS='-server -Xmx512m -XX:MaxPermSize=64m'
-export M2_HOME=$HOME/maven
-export MAVEN_OPTS='-server -ea -Xmx768m -Xms128m'
-export SCALA_HOME=$HOME/scala
-export ANDROID_HOME=$HOME/android-sdk-linux_x86
-export ANT_HOME=$HOME/ant
-export APPENGINE_SDK_HOME=$HOME/appengine-java-sdk-1.6.0
-export PATH=$HOME/bin:$APPENGINE_SDK_HOME/bin:$ANT_HOME/bin:$M2_HOME/bin:$SCALA_HOME/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$PATH
+#export JAVA_HOME=/usr/lib/jvm/default-java
+export JAVA_HOME=$HOME/java/latest
+export JAVA_OPTS='-server -Xmx512m -XX:MaxPermSize=128m'
+export MAVEN_OPTS='-server -ea -Xmx512m -Xms128m -XX:MaxPermSize=128m'
+export PATH=$HOME/bin:$PATH
 export EDITOR='emacs -nw'
+export PERL_CPANM_OPT='-l ~/perl --mirror http://cpan.cpantesters.org'
+export PERL5LIB=~/perl/lib/perl5
