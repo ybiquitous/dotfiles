@@ -28,5 +28,5 @@ tar xfz $DISTFILE
 
 #---------
 ln -s $DISTDIR latest
-latest/bin/mvn -v
+latest/bin/mvn -version
 #---------
