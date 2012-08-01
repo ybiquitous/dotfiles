@@ -184,13 +184,9 @@ setopt ignoreeof
 
 
 # alias
-if [ -f ~/.aliases ] ; then
-  . ~/.aliases
-fi
+[ -f ~/.aliases ] && source ~/.aliases
 
 # env
-if [ -f ~/.exports ] ; then
-  . ~/.exports
-fi
+[ -f ~/.exports ] && source ~/.exports
 
 [[ $EMACS = t ]] && unsetopt zle
