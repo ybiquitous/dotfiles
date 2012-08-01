@@ -1,1 +1,1 @@
-en --quick $*
+emacs --no-window-system --quick $*
