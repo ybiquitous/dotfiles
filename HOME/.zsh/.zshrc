@@ -85,7 +85,7 @@ bindkey "\e[Z" reverse-menu-complete
 
 ## Command history configuration
 #
-HISTFILE=${ZDOTDIR}/.zsh_history
+HISTFILE=${HOME}/.zsh_history
 HISTSIZE=50000
 SAVEHIST=50000
 setopt hist_ignore_dups     # ignore duplication command history list

@@ -57,9 +57,31 @@
   (recenter))
 (global-set-key "\C-c\C-l" 'toggle-truncate-lines)
 
-;; scala
-(add-to-list 'load-path "/opt/scala/scala-mode")
-(require 'scala-mode-auto)
-
 ;; markdown
-(setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
+(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+
+;; javascript
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
+;; perl
+(defalias 'perl-mode 'cperl-mode)
+(add-hook 'cperl-mode-hook
+          (lambda()
+            (require 'perl-completion)
+            (perl-completion-mode t)))
+(defun perl-eval (beg end)
+  "Run selected region as Perl code"
+  (interactive "r")
+  (shell-command-on-region beg end "perl"))
+(global-set-key "\M-\C-p" 'perl-eval)
+(defun perltidy-region ()
+  "Run perltidy on the current region."
+  (interactive)
+  (save-excursion
+    (shell-command-on-region (point) (mark) "perltidy -q -i=2" nil t)))
+(defun perltidy-defun ()
+  "Run perltidy on the current defun."
+  (interactive)
+  (save-excursion (mark-defun)
+  (perltidy-region)))
+(global-set-key "\C-ct" 'perltidy-region)
