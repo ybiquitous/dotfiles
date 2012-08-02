@@ -1,1 +1,1 @@
-emacs --geometry=40x30+600+60 $*
+emacs --geometry=60x25 $*
