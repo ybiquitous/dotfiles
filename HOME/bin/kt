@@ -1,1 +1,1 @@
-kterm -bg black -fg white -sl 256
+kterm -bg black -fg white -sl 256 $*
