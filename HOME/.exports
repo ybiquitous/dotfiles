@@ -4,5 +4,9 @@ export JAVA_OPTS='-server -Xmx512m -XX:MaxPermSize=128m'
 export MAVEN_OPTS='-server -ea -Xmx512m -Xms128m -XX:MaxPermSize=128m'
 export PATH=$HOME/bin:$PATH
 export EDITOR='emacs -nw'
-export PERL_CPANM_OPT='-l ~/perl --mirror http://cpan.cpantesters.org'
-export PERL5LIB=~/perl/lib/perl5
+
+# perl
+PBDIR=~/perl5/perlbrew
+[ -f $PBDIR/etc/bashrc ] && source $PBDIR/etc/bashrc
+[ -f $PBDIR/etc/perlbrew-completion.bash ] && source $PBDIR/etc/perlbrew-completion.bash
+export PERL_CPANM_OPT="--prompt --reinstall --mirror http://ftp.jaist.ac.jp/pub/CPAN/"
