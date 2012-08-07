@@ -27,11 +27,11 @@
  '(default ((t (:background "black" :foreground "white")))))
 
 ;; key setting
-(global-set-key "\C-h"     'delete-backward-char)
-(global-set-key "\C-x\M-r" 'replace-regexp)
-(global-set-key "\C-x\M-s" 'replace-string)
-(global-set-key "\C-x\M-u" 'untabify)
-(global-set-key "\C-x\M-c" 'customize-variable)
+(global-set-key (kbd "C-h")     'delete-backward-char)
+(global-set-key (kbd "C-x M-r") 'replace-regexp)
+(global-set-key (kbd "C-x M-s") 'replace-string)
+(global-set-key (kbd "C-x M-u") 'untabify)
+(global-set-key (kbd "C-x M-c") 'customize-variable)
 
 ;; trim whitespace
 (defun trim-buffer ()
@@ -45,7 +45,7 @@
     (delete-blank-lines)
     (mark-whole-buffer)
     (untabify (region-beginning) (region-end))))
-(global-set-key "\C-xt" 'trim-buffer)
+(global-set-key (kbd "C-x t") 'trim-buffer)
 
 ;; truncate lines ON/OFF
 (defun toggle-truncate-lines ()
@@ -55,15 +55,15 @@
       (setq truncate-lines nil)
     (setq truncate-lines t))
   (recenter))
-(global-set-key "\C-c\C-l" 'toggle-truncate-lines)
+(global-set-key (kbd "C-c C-l") 'toggle-truncate-lines)
 
 ;; auto-install
 (add-to-list 'load-path "~/.emacs.d/auto-install")
 (require 'auto-install)
-(auto-install-update-emacswiki-package-name t)
+;;(auto-install-update-emacswiki-package-name t)
 
 ;; anything
-(require 'anything-startup)
+;;(require 'anything-startup)
 
 ;; markdown
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
@@ -74,6 +74,11 @@
 (setq js2-basic-offset 2)
 
 ;; perl
+(defun perl-eval (beg end)
+  "Run selected region as Perl code"
+  (interactive "r")
+  (shell-command-on-region beg end "perl"))
+
 (defalias 'perl-mode 'cperl-mode)
 (add-hook 'cperl-mode-hook
           (lambda()
@@ -84,20 +89,6 @@
             (perl-completion-mode t)
             (flymake-mode t)
             (add-to-list 'ac-sources 'ac-source-perl-completion)
-            (define-key plcmp-mode-map (kbd "M-C-p") 'plcmp-cmd-eval-on-region)))
-(defun perl-eval (beg end)
-  "Run selected region as Perl code"
-  (interactive "r")
-  (shell-command-on-region beg end "perl"))
-;;(global-set-key "\M-\C-p" 'perl-eval)
-(defun perltidy-region ()
-  "Run perltidy on the current region."
-  (interactive)
-  (save-excursion
-    (shell-command-on-region (point) (mark) "perltidy -q -i=2" nil t)))
-(defun perltidy-defun ()
-  "Run perltidy on the current defun."
-  (interactive)
-  (save-excursion (mark-defun)
-  (perltidy-region)))
-(global-set-key "\C-ct" 'perltidy-region)
+;;            (define-key plcmp-mode-map (kbd "M-C-p") 'plcmp-cmd-eval-on-region)
+            (define-key plcmp-mode-map (kbd "M-C-p") 'perl-eval)
+            ))
