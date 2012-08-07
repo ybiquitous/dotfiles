@@ -182,11 +182,6 @@ esac
 # stop Ctrl-D to exit
 setopt ignoreeof
 
-
-# alias
 [ -f ~/.aliases ] && source ~/.aliases
-
-# env
-[ -f ~/.exports ] && source ~/.exports
 
 [[ $EMACS = t ]] && unsetopt zle

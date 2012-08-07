@@ -8,5 +8,5 @@ export EDITOR='emacs -nw'
 # perl
 PBDIR=~/perl5/perlbrew
 [ -f $PBDIR/etc/bashrc ] && source $PBDIR/etc/bashrc
-[ -f $PBDIR/etc/perlbrew-completion.bash ] && source $PBDIR/etc/perlbrew-completion.bash
+#[ -f $PBDIR/etc/perlbrew-completion.bash ] && source $PBDIR/etc/perlbrew-completion.bash
 export PERL_CPANM_OPT="--prompt --reinstall --mirror http://ftp.jaist.ac.jp/pub/CPAN/"
