@@ -67,7 +67,6 @@
 ;; anything
 (require 'anything-config)
 
-
 ;; markdown
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 
@@ -80,13 +79,19 @@
 (defalias 'perl-mode 'cperl-mode)
 (add-hook 'cperl-mode-hook
           (lambda()
+            (setq indent-tabs-mode nil)
+            (setq tab-width nil)
+            (require 'auto-complete)
             (require 'perl-completion)
-            (perl-completion-mode t)))
+            (perl-completion-mode t)
+            (flymake-mode t)
+            (add-to-list 'ac-sources 'ac-source-perl-completion)
+            (define-key plcmp-mode-map (kbd "M-C-p") 'plcmp-cmd-eval-on-region)))
 (defun perl-eval (beg end)
   "Run selected region as Perl code"
   (interactive "r")
   (shell-command-on-region beg end "perl"))
-(global-set-key "\M-\C-p" 'perl-eval)
+;;(global-set-key "\M-\C-p" 'perl-eval)
 (defun perltidy-region ()
   "Run perltidy on the current region."
   (interactive)
