@@ -57,6 +57,17 @@
   (recenter))
 (global-set-key "\C-c\C-l" 'toggle-truncate-lines)
 
+;; load-path
+(add-to-list 'load-path "~/.emacs.d/site-lisp")
+(add-to-list 'load-path "~/.emacs.d/auto-install")
+
+;; auto-install
+(require 'auto-install)
+
+;; anything
+(require 'anything-config)
+
+
 ;; markdown
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 
