@@ -26,6 +26,8 @@
   ;; If there is more than one, they won't work right.
  '(default ((t (:background "black" :foreground "white")))))
 
+(prefer-coding-system 'utf-8-unix)
+
 ;; key setting
 (global-set-key (kbd "C-h")     'delete-backward-char)
 (global-set-key (kbd "C-x M-r") 'replace-regexp)
