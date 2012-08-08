@@ -182,6 +182,8 @@ esac
 # stop Ctrl-D to exit
 setopt ignoreeof
 
-[ -f ~/.aliases ] && source ~/.aliases
+[ -f $HOME/.aliases ] && source $HOME/.aliases
+
+[ -f $PERLBREW_ROOT/etc/perlbrew-completion.bash ] && source $PERLBREW_ROOT/etc/perlbrew-completion.bash
 
 [[ $EMACS = t ]] && unsetopt zle
