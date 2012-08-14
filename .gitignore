@@ -2,3 +2,4 @@ HOME/.emacs.d/auto-save-list
 HOME/.emacs.d/**/*.elc
 HOME/.emacs.d/**/**/*.elc
 HOME/.zsh/.zcompdump
+HOME/.zsh/Completion

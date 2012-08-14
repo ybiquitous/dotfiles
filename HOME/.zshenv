@@ -1,2 +1,2 @@
 export ZDOTDIR=$HOME/.zsh
-[ -f ~/.exports ] && source ~/.exports
+[ -f $HOME/.exports ] && source $HOME/.exports

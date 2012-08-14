@@ -182,8 +182,10 @@ esac
 # stop Ctrl-D to exit
 setopt ignoreeof
 
+[[ $EMACS = t ]] && unsetopt zle
+
 [ -f $HOME/.aliases ] && source $HOME/.aliases
 
 [ -f $PERLBREW_ROOT/etc/perlbrew-completion.bash ] && source $PERLBREW_ROOT/etc/perlbrew-completion.bash
 
-[[ $EMACS = t ]] && unsetopt zle
+fpath=(${ZDOTDIR}/Completion $fpath)
