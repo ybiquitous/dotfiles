@@ -80,6 +80,7 @@
   "Run selected region as Perl code"
   (interactive "r")
   (shell-command-on-region beg end "perl"))
+(global-set-key (kbd "M-C-p") 'perl-eval)
 
 (defalias 'perl-mode 'cperl-mode)
 (add-hook 'cperl-mode-hook
@@ -92,5 +93,4 @@
             (flymake-mode t)
             (add-to-list 'ac-sources 'ac-source-perl-completion)
 ;;            (define-key plcmp-mode-map (kbd "M-C-p") 'plcmp-cmd-eval-on-region)
-            (define-key plcmp-mode-map (kbd "M-C-p") 'perl-eval)
             ))
