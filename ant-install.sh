@@ -1,12 +1,14 @@
 #!/bin/sh
 
-VERSION=1.8.3
+[ -z "$1" ] && echo "usage: $0 <version>" && exit 1
+
+VERSION="$1"
 DISTFILE=apache-ant-${VERSION}-bin.tar.gz
 DISTDIR=apache-ant-${VERSION}
 
 #---------
 cd /opt
-mkdir ant
+mkdir -p ant
 if [ $? -ne 0 ] ; then
   exit 1
 fi
@@ -27,6 +29,7 @@ tar xfz $DISTFILE
 #---------
 
 #---------
+rm -f latest
 ln -s $DISTDIR latest
 latest/bin/ant -version
 #---------
