@@ -75,6 +75,9 @@
 (add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
 (setq js2-basic-offset 2)
 
+;; coffeescript
+(require 'coffee-mode)
+
 ;; perl
 (defun perl-eval (beg end)
   "Run selected region as Perl code"
