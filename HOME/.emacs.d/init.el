@@ -57,7 +57,7 @@
       (setq truncate-lines nil)
     (setq truncate-lines t))
   (recenter))
-(global-set-key (kbd "C-c C-l") 'toggle-truncate-lines)
+(global-set-key (kbd "C-c l") 'toggle-truncate-lines)
 
 ;; auto-install
 (add-to-list 'load-path "~/.emacs.d/auto-install")
