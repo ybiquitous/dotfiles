@@ -1,5 +1,5 @@
-!keycode 102 = Alt_L Meta_L
-!keycode  64 = Muhenkan NoSymbol
+keycode 102 = Alt_L
+keycode  64 = Muhenkan
 
 !
 ! Swap Caps_Lock and Control_L
