@@ -23,6 +23,10 @@ for target in $SRCDIR/bin/* ; do
 done
 
 # byte compile emacs-lisp
-cd $SRCDIR/.emacs.d/
-emacs -L auto-install/ -batch -f batch-byte-compile init.el
-emacs -L auto-install/ -batch -f batch-byte-compile auto-install/*.el
+read -p "Byte Compile *.el? [Y/n] " answer
+case "$answer" in
+    "n"|"N") exit ;;
+    *)
+        emacs -L $SRCDIR/.emacs.d/auto-install/ -batch -f batch-byte-compile `find $SRCDIR/.emacs.d/ -name "*.el" -type f`
+        ;;
+esac

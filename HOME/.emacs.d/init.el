@@ -34,30 +34,7 @@
 (global-set-key (kbd "C-x M-s") 'replace-string)
 (global-set-key (kbd "C-x M-u") 'untabify)
 (global-set-key (kbd "C-x M-c") 'customize-variable)
-
-;; trim whitespace
-(defun trim-buffer ()
-  "Delete excess white space."
-  (interactive)
-  (save-excursion
-    (goto-char (point-min))
-    (while (re-search-forward "[ \t]+$" nil t)
-      (replace-match "" nil nil))
-    (goto-char (point-max))
-    (delete-blank-lines)
-    (mark-whole-buffer)
-    (untabify (region-beginning) (region-end))))
-(global-set-key (kbd "C-x t") 'trim-buffer)
-
-;; truncate lines ON/OFF
-(defun toggle-truncate-lines ()
-  "Toggle truncate-lines variable."
-  (interactive)
-  (if truncate-lines
-      (setq truncate-lines nil)
-    (setq truncate-lines t))
-  (recenter))
-(global-set-key (kbd "C-c l") 'toggle-truncate-lines)
+(global-set-key (kbd "C-c l")   'toggle-truncate-lines)
 
 ;; auto-install
 (add-to-list 'load-path "~/.emacs.d/auto-install")
