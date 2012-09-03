@@ -51,7 +51,7 @@
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
-(setq js2-basic-offset 2)
+(custom-set-variables '(js2-basic-offset 2))
 
 ;; coffeescript
 (require 'coffee-mode)
@@ -75,3 +75,13 @@
             (add-to-list 'ac-sources 'ac-source-perl-completion)
 ;;            (define-key plcmp-mode-map (kbd "M-C-p") 'plcmp-cmd-eval-on-region)
             ))
+
+;; yasnippet
+(add-to-list 'load-path "~/.emacs.d/yasnippet")
+(require 'yasnippet)
+(custom-set-variables '(yas-snippet-dirs '("~/.emacs.d/yasnippet/snippets")))
+(yas-global-mode 1)
+
+;; scala
+(add-to-list 'load-path "~/.emacs.d/scala-mode")
+(require 'scala-mode-auto)

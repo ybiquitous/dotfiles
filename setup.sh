@@ -27,6 +27,14 @@ read -p "Byte Compile *.el? [Y/n] " answer
 case "$answer" in
     "n"|"N") exit ;;
     *)
-        emacs -L $SRCDIR/.emacs.d/auto-install/ -batch -f batch-byte-compile `find $SRCDIR/.emacs.d/ -name "*.el" -type f`
+        dirs=`find $SRCDIR/.emacs.d/ -maxdepth 1 -type d`
+        load_paths=''
+        for d in $dirs ; do
+            load_paths="${load_paths} -L ${d} "
+        done
+        for d in $dirs ; do
+            rm -f $d/*.elc
+            emacs $load_paths -batch -f batch-byte-compile `find $d -name '*.el'` || exit 1
+        done
         ;;
 esac
