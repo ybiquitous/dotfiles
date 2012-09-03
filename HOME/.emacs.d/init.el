@@ -70,7 +70,7 @@
             (setq tab-width nil)
             (require 'auto-complete)
             (require 'perl-completion)
-            (perl-completion-mode t)
+            (perl-completion-mode)
             (flymake-mode t)
             (add-to-list 'ac-sources 'ac-source-perl-completion)
 ;;            (define-key plcmp-mode-map (kbd "M-C-p") 'plcmp-cmd-eval-on-region)
