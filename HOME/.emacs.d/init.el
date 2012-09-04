@@ -11,6 +11,7 @@
  '(initial-scratch-message nil)
  '(line-number-mode t)
  '(make-backup-files nil)
+ '(nxml-slash-auto-complete-flag t)
  '(scroll-bar-mode (quote right))
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
@@ -24,9 +25,11 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:background "black" :foreground "white")))))
+ '(default ((t (:background "black" :foreground "white" :height 110)))))
 
 (prefer-coding-system 'utf-8-unix)
+
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; key setting
 (global-set-key (kbd "C-h")     'delete-backward-char)
