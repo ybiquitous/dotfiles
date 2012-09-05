@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/syntax/!svn/ver/521/trunk/relaxng/tests
+END
+prepare-wf2-suite
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/syntax/!svn/ver/145/trunk/relaxng/tests/prepare-wf2-suite
+END
+driver.xhtml5core
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/syntax/!svn/ver/36/trunk/relaxng/tests/driver.xhtml5core
+END
+driver.html5core
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/syntax/!svn/ver/36/trunk/relaxng/tests/driver.html5core
+END
+id.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/syntax/!svn/ver/80/trunk/relaxng/tests/id.rnc
+END

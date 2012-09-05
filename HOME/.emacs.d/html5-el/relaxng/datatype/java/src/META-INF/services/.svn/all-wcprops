@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/syntax/!svn/ver/91/trunk/relaxng/datatype/java/src/META-INF/services
+END
+org.relaxng.datatype.DatatypeLibraryFactory
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/syntax/!svn/ver/91/trunk/relaxng/datatype/java/src/META-INF/services/org.relaxng.datatype.DatatypeLibraryFactory
+END

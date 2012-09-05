@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/syntax/!svn/ver/520/trunk/relaxng/tests/media-queries
+END
+foo.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/syntax/!svn/ver/225/trunk/relaxng/tests/media-queries/foo.txt
+END
+generate.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/syntax/!svn/ver/230/trunk/relaxng/tests/media-queries/generate.py
+END

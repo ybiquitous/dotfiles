@@ -1,0 +1,16 @@
+K 10
+svn:ignore
+V 226
+xhtml5full-xhtml-aria.rnc
+html5full.rnc
+xhtml5core.rnc
+xhtml5full-xhtml.rnc
+html5full-aria-rdfa.rnc
+html5core.rnc
+legacy.rnc
+xhtml5full-html.rnc
+xhtml5full-xhtml-aria-rdfa.rnc
+html5full-aria.rnc
+xhtml5core-plus-web-forms2.rnc
+
+END

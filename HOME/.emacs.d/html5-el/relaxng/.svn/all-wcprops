@@ -1,0 +1,173 @@
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/syntax/!svn/ver/578/trunk/relaxng
+END
+assertions.sch
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/syntax/!svn/ver/578/trunk/relaxng/assertions.sch
+END
+meta.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/syntax/!svn/ver/539/trunk/relaxng/meta.rnc
+END
+applications.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/syntax/!svn/ver/524/trunk/relaxng/applications.rnc
+END
+core-scripting.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/syntax/!svn/ver/578/trunk/relaxng/core-scripting.rnc
+END
+common.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/syntax/!svn/ver/575/trunk/relaxng/common.rnc
+END
+html5.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/syntax/!svn/ver/423/trunk/relaxng/html5.rnc
+END
+block.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/syntax/!svn/ver/572/trunk/relaxng/block.rnc
+END
+.htaccess
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/syntax/!svn/ver/35/trunk/relaxng/.htaccess
+END
+revision.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/syntax/!svn/ver/574/trunk/relaxng/revision.rnc
+END
+form-datatypes.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/syntax/!svn/ver/370/trunk/relaxng/form-datatypes.rnc
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/syntax/!svn/ver/260/trunk/relaxng/LICENSE
+END
+web-forms-scripting.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/syntax/!svn/ver/370/trunk/relaxng/web-forms-scripting.rnc
+END
+web-forms.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/syntax/!svn/ver/554/trunk/relaxng/web-forms.rnc
+END
+microdata.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/syntax/!svn/ver/495/trunk/relaxng/microdata.rnc
+END
+html5exclusions.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/syntax/!svn/ver/259/trunk/relaxng/html5exclusions.rnc
+END
+structural.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/syntax/!svn/ver/505/trunk/relaxng/structural.rnc
+END
+data.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/syntax/!svn/ver/523/trunk/relaxng/data.rnc
+END
+tables.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/syntax/!svn/ver/553/trunk/relaxng/tables.rnc
+END
+aria.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/syntax/!svn/ver/505/trunk/relaxng/aria.rnc
+END
+embed.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/syntax/!svn/ver/544/trunk/relaxng/embed.rnc
+END
+media.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/syntax/!svn/ver/555/trunk/relaxng/media.rnc
+END
+ruby.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/syntax/!svn/ver/439/trunk/relaxng/ruby.rnc
+END
+sectional.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/syntax/!svn/ver/429/trunk/relaxng/sectional.rnc
+END
+xhtml5.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/syntax/!svn/ver/423/trunk/relaxng/xhtml5.rnc
+END
+phrase.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/syntax/!svn/ver/569/trunk/relaxng/phrase.rnc
+END
+warnings.sch
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/syntax/!svn/ver/528/trunk/relaxng/warnings.sch
+END
+web-forms2-scripting.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/syntax/!svn/ver/370/trunk/relaxng/web-forms2-scripting.rnc
+END
+web-forms2.rnc
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/syntax/!svn/ver/544/trunk/relaxng/web-forms2.rnc
+END

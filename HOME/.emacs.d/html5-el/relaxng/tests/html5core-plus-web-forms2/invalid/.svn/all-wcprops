@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/syntax/!svn/ver/187/trunk/relaxng/tests/html5core-plus-web-forms2/invalid
+END
+.cvsignore
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/syntax/!svn/ver/81/trunk/relaxng/tests/html5core-plus-web-forms2/invalid/.cvsignore
+END
+001.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/syntax/!svn/ver/93/trunk/relaxng/tests/html5core-plus-web-forms2/invalid/001.html
+END
+002.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/syntax/!svn/ver/93/trunk/relaxng/tests/html5core-plus-web-forms2/invalid/002.html
+END

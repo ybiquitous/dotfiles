@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/syntax/!svn/ver/139/trunk/relaxng/tests/tables/invalid
+END
+001.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/syntax/!svn/ver/139/trunk/relaxng/tests/tables/invalid/001.xhtml
+END
+002.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/syntax/!svn/ver/139/trunk/relaxng/tests/tables/invalid/002.xhtml
+END
+003.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/syntax/!svn/ver/139/trunk/relaxng/tests/tables/invalid/003.xhtml
+END
+004.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/syntax/!svn/ver/139/trunk/relaxng/tests/tables/invalid/004.xhtml
+END
+005.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/syntax/!svn/ver/139/trunk/relaxng/tests/tables/invalid/005.xhtml
+END
