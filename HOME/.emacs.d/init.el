@@ -26,6 +26,8 @@
   ;; If there is more than one, they won't work right.
  '(default ((t (:background "black" :foreground "white" :height 110)))))
 
+(set-frame-parameter nil 'alpha 80)
+
 (prefer-coding-system 'utf-8-unix)
 
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -37,6 +39,7 @@
 (global-set-key (kbd "C-x M-u") 'untabify)
 (global-set-key (kbd "C-x M-c") 'customize-variable)
 (global-set-key (kbd "C-c l")   'toggle-truncate-lines)
+(global-set-key (kbd "C-c C-v") 'browse-url-of-buffer)
 
 ;; auto-install
 (add-to-list 'load-path "~/.emacs.d/auto-install")
@@ -88,16 +91,27 @@
 
 ;; nxml
 (add-to-list 'auto-mode-alist '("\\.[x]?html$" . nxml-mode))
+(add-to-list 'load-path "~/.emacs.d/html5-el")
 (add-hook 'nxml-mode-hook
           (lambda ()
             (custom-set-variables
              '(nxml-slash-auto-complete-flag t)
              '(nxml-auto-insert-xml-declaration-flag t)
-             '(nxml-default-buffer-file-coding-system (quote utf-8-dos))
+             '(nxml-default-buffer-file-coding-system (quote utf-8-dos)))
 
-             (add-to-list 'load-path "~/.emacs.d/html5-el")
-             (eval-after-load "rng-loc"
-               '(add-to-list 'rng-schema-locating-files "~/.emacs.d/html5-el/schemas.xml"))
-             (require 'whattf-dt)
+            (eval-after-load "rng-loc"
+              '(add-to-list 'rng-schema-locating-files "~/.emacs.d/html5-el/schemas.xml"))
+            (require 'whattf-dt)
+            ))
 
-             )))
+;; mozrepl
+(autoload 'moz-minor-mode "moz" nil t)
+(defun auto-reload-firefox-on-after-save-hook ()
+  (moz-minor-mode t)
+  (add-hook 'after-save-hook
+            '(lambda ()
+               (interactive)
+               (comint-send-string (inferior-moz-process) "BrowserReload();"))
+            'append 'local)) ; buffer-local
+(add-hook 'js2-mode-hook 'auto-reload-firefox-on-after-save-hook)
+(add-hook 'nxml-mode-hook 'auto-reload-firefox-on-after-save-hook)

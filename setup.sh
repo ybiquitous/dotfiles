@@ -38,6 +38,6 @@ case "$answer" in
         done
         emacs $load_paths -batch -f batch-byte-compile $SRCDIR/.emacs.d/init.el || exit 1
 
-        which svn && svn up $SRCDIR/.emacs.d/html5-el/relaxng
+        # which svn && svn up $SRCDIR/.emacs.d/html5-el/relaxng
         ;;
 esac
