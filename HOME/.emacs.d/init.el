@@ -39,7 +39,7 @@
 (global-set-key (kbd "C-x M-u") 'untabify)
 (global-set-key (kbd "C-x M-c") 'customize-variable)
 (global-set-key (kbd "C-c l")   'toggle-truncate-lines)
-(global-set-key (kbd "C-c C-v") 'browse-url-of-buffer)
+(global-set-key (kbd "C-x M-v") 'browse-url-of-buffer)
 
 ;; auto-install
 (add-to-list 'load-path "~/.emacs.d/auto-install")
