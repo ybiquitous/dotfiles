@@ -17,7 +17,7 @@ apt-get $arg autoclean
 list="$list zsh zsh-doc"
 
 # emacs
-list="$list emacs anthy-el html-helper-mode yaml-mode emacs-goodies-el"
+list="$list emacs anthy-el yaml-mode emacs-goodies-el"
 
 # tool
 list="$list nkf lv tree rar unrar ntp lynx curl colordiff build-essential"
