@@ -11,7 +11,7 @@
  '(initial-scratch-message nil)
  '(line-number-mode t)
  '(make-backup-files nil)
- '(scroll-bar-mode (quote right))
+ '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(size-indication-mode nil)
@@ -62,23 +62,18 @@
 (require 'coffee-mode)
 
 ;; perl
-(defun perl-eval (beg end)
-  "Run selected region as Perl code"
-  (interactive "r")
-  (shell-command-on-region beg end "perl"))
-(global-set-key (kbd "M-C-p") 'perl-eval)
-
 (defalias 'perl-mode 'cperl-mode)
 (add-hook 'cperl-mode-hook
           (lambda()
-            (setq indent-tabs-mode nil)
-            (setq tab-width nil)
-            (require 'auto-complete)
+            (cperl-toggle-electric)
             (require 'perl-completion)
-            (perl-completion-mode)
+            (perl-completion-mode t)
             (flymake-mode t)
-            (add-to-list 'ac-sources 'ac-source-perl-completion)
-;;            (define-key plcmp-mode-map (kbd "M-C-p") 'plcmp-cmd-eval-on-region)
+            ))
+(add-hook 'perl-completion-mode-hook
+          (lambda ()
+            (defun plcmp-get-perl-command () "perl")
+            (define-key plcmp-mode-map (kbd "C-c e") 'plcmp-cmd-eval-on-region)
             ))
 
 ;; yasnippet

@@ -27,7 +27,7 @@ read -p "Byte Compile *.el? [Y/n] " answer
 case "$answer" in
     "n"|"N") exit ;;
     *)
-        dirs=`find $SRCDIR/.emacs.d/ -maxdepth 1 -type d | sort -r`
+        dirs=`find $SRCDIR/.emacs.d/ -mindepth 1 -maxdepth 1 -type d | sort -r`
         load_paths=''
         for d in $dirs ; do
             load_paths="${load_paths} -L ${d} "
@@ -36,6 +36,7 @@ case "$answer" in
             rm -f $d/*.elc
             emacs $load_paths -batch -f batch-byte-compile `find $d -name '*.el' | sort -r` || exit 1
         done
+        emacs $load_paths -batch -f batch-byte-compile $SRCDIR/.emacs.d/init.el || exit 1
 
         which svn && svn up $SRCDIR/.emacs.d/html5-el/relaxng
         ;;
