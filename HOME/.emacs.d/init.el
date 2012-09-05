@@ -11,7 +11,6 @@
  '(initial-scratch-message nil)
  '(line-number-mode t)
  '(make-backup-files nil)
- '(nxml-slash-auto-complete-flag t)
  '(scroll-bar-mode (quote right))
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
@@ -54,7 +53,10 @@
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
-(custom-set-variables '(js2-basic-offset 2))
+(add-hook 'js2-mode-hook
+          (lambda ()
+            (custom-set-variables '(js2-basic-offset 2))
+            ))
 
 ;; coffeescript
 (require 'coffee-mode)
@@ -88,3 +90,13 @@
 ;; scala
 (add-to-list 'load-path "~/.emacs.d/scala-mode")
 (require 'scala-mode-auto)
+
+;; nxml
+(add-to-list 'auto-mode-alist '("\\.html$" . nxml-mode))
+(add-hook 'nxml-mode-hook
+          (lambda ()
+            (custom-set-variables
+             '(nxml-slash-auto-complete-flag t)
+             '(nxml-auto-insert-xml-declaration-flag t)
+             '(nxml-default-buffer-file-coding-system (quote utf-8-dos))
+             )))
