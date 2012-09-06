@@ -106,12 +106,12 @@
 
 ;; mozrepl
 (autoload 'moz-minor-mode "moz" nil t)
-(defun auto-reload-firefox-on-after-save-hook ()
-  (moz-minor-mode t)
-  (add-hook 'after-save-hook
-            '(lambda ()
-               (interactive)
-               (comint-send-string (inferior-moz-process) "BrowserReload();"))
-            'append 'local)) ; buffer-local
-(add-hook 'js2-mode-hook 'auto-reload-firefox-on-after-save-hook)
-(add-hook 'nxml-mode-hook 'auto-reload-firefox-on-after-save-hook)
+(add-hook 'moz-minor-mode-hook
+          (lambda ()
+            (browse-url-of-buffer)
+            (add-hook 'after-save-hook
+                      '(lambda ()
+                         (interactive)
+                         (comint-send-string (inferior-moz-process) "BrowserReload();"))
+                      'append 'local)) ; buffer-local
+          )

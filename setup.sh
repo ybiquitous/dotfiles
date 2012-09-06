@@ -23,9 +23,10 @@ for target in $SRCDIR/bin/* ; do
 done
 
 # byte compile emacs-lisp
+echo ""
 read -p "Byte Compile *.el? [Y/n] " answer
 case "$answer" in
-    "n"|"N") exit ;;
+    "n"|"N") ;;
     *)
         dirs=`find $SRCDIR/.emacs.d/ -mindepth 1 -maxdepth 1 -type d | sort -r`
         load_paths=''
@@ -37,7 +38,14 @@ case "$answer" in
             emacs $load_paths -batch -f batch-byte-compile `find $d -name '*.el' | sort -r` || exit 1
         done
         emacs $load_paths -batch -f batch-byte-compile $SRCDIR/.emacs.d/init.el || exit 1
+        ;;
+esac
 
+echo ""
+read -p "Update relaxng? [y/N] " answer
+case "$answer" in
+    "y"|"Y")
         $SRCDIR/.emacs.d/html5-el/update-relaxng.sh > /dev/null
         ;;
+    *) ;;
 esac
