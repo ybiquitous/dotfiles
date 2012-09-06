@@ -94,6 +94,7 @@
 
 ;; nxml
 (add-to-list 'auto-mode-alist '("\\.[x]?html$" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.jsp[x]?$"  . nxml-mode))
 (add-to-list 'load-path "~/.emacs.d/html5-el")
 (add-hook 'nxml-mode-hook
           (lambda ()
@@ -111,10 +112,9 @@
 (autoload 'moz-minor-mode "moz" nil t)
 (add-hook 'moz-minor-mode-hook
           (lambda ()
-            (browse-url-of-buffer)
             (add-hook 'after-save-hook
                       '(lambda ()
                          (interactive)
                          (comint-send-string (inferior-moz-process) "BrowserReload();"))
-                      'append 'local)) ; buffer-local
-          )
+                      'append 'local) ; buffer-local
+            ))
