@@ -34,7 +34,7 @@ if [ ! -e $ENSIME_DIST ] ; then
     case "$answer" in
         "y"|"Y")
             file=${ENSIME_DIST}.tar.gz
-            wget http://cloud.github.com/downloads/aemoncannon/ensime/$file
+            curl -O http://cloud.github.com/downloads/aemoncannon/ensime/$file
             tar xfz $file
             rm -f $ENSIME_ROOT
             ln -s $ENSIME_DIST ensime
@@ -52,7 +52,7 @@ case "$answer" in
     "n"|"N") ;;
     *)
         # set compile command
-        dirs=`find -L $EMACS_DIR/ -mindepth 1 -maxdepth 1 -type d | sort -r`
+        dirs=`find $EMACS_DIR/ -mindepth 1 -maxdepth 1 -type d | sort -r`
         load_paths=''
         for dir in $dirs ; do
             load_paths="$load_paths -L $dir "
@@ -64,15 +64,15 @@ case "$answer" in
         elisp_compile="emacs $load_paths -batch -f batch-byte-compile"
 
         # execute compile
-        find -L $EMACS_DIR/ -name '*.elc' -type f | xargs rm -rf
+        find $EMACS_DIR/ -name '*.elc' -type f | xargs rm -rf
         for dir in $dirs ; do
-            $elisp_compile `find -L $dir/ -name '*.el' | sort -r` || exit 1
+            $elisp_compile `find $dir/ -name '*.el' | sort -r` || exit 1
         done
         $elisp_compile $EMACS_DIR/*.el || exit 1
 
         echo ""
-        echo "*.el  files => `find -L $EMACS_DIR/ -name '*.el'  -type f | wc -l`"
-        echo "*.elc files => `find -L $EMACS_DIR/ -name '*.elc' -type f | wc -l`"
+        echo "*.el  files => `find $EMACS_DIR/ -name '*.el'  -type f | wc -l`"
+        echo "*.elc files => `find $EMACS_DIR/ -name '*.elc' -type f | wc -l`"
         ;;
 esac
 
