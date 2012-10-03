@@ -1,3 +1,6 @@
+# common
+export HISTFILE=$HOME/.history
+export HISTSIZE=50000
 export PATH=$HOME/bin:$PATH
 export EDITOR='emacs -nw'
 
@@ -5,7 +8,7 @@ export EDITOR='emacs -nw'
 export JAVA_HOME=/usr/lib/jvm/default-java
 export JAVA_OPTS='-server -Xmx512m -XX:MaxPermSize=128m'
 export MAVEN_OPTS='-server -ea -Xmx512m -Xms128m -XX:MaxPermSize=128m -Djava.awt.headless=true'
-export PATH=/opt/ant/latest/bin:/opt/maven3/latest/bin:$PATH
+export PATH=/opt/ant/latest/bin:/opt/maven3/latest/bin:$JAVA_HOME/bin:$PATH
 
 # perl
 [ -f $HOME/perl5/perlbrew/etc/bashrc ] && source $HOME/perl5/perlbrew/etc/bashrc
