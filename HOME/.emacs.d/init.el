@@ -12,7 +12,9 @@
  '(initial-scratch-message nil)
  '(line-number-mode t)
  '(make-backup-files nil)
- '(scroll-bar-mode nil)
+ '(read-buffer-completion-ignore-case t)
+ '(read-file-name-completion-ignore-case t)
+ '(scroll-bar-mode 'right)
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(size-indication-mode nil)
@@ -129,3 +131,6 @@
             (local-set-key (kbd "M-p") 'comint-previous-matching-input-from-input)
             (local-set-key (kbd "M-n") 'comint-next-matching-input-from-input)
             ))
+
+;; json
+(require 'json-reformat)
