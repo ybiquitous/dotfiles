@@ -35,6 +35,8 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(add-to-list 'load-path "~/.emacs.d/extras")
+
 ;; key setting
 (global-set-key (kbd "C-h")     'delete-backward-char)
 (global-set-key (kbd "C-x M-r") 'replace-regexp)
@@ -44,13 +46,11 @@
 (global-set-key (kbd "C-c l")   'toggle-truncate-lines)
 (global-set-key (kbd "C-x M-v") 'browse-url-of-buffer)
 
-;; auto-install
-(add-to-list 'load-path "~/.emacs.d/auto-install")
-(require 'auto-install)
-;;(auto-install-update-emacswiki-package-name t)
-
-;; anything
-;;(require 'anything-startup)
+;; package
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(package-initialize)
 
 ;; markdown
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
@@ -72,28 +72,15 @@
 (add-hook 'cperl-mode-hook
           (lambda()
             (cperl-toggle-electric)
-            (require 'perl-completion)
-            (perl-completion-mode t)
             (flymake-mode t)
-            ))
-(add-hook 'perl-completion-mode-hook
-          (lambda ()
-            (defun plcmp-get-perl-command () "perl")
-            (define-key plcmp-mode-map (kbd "C-c e") 'plcmp-cmd-eval-on-region)
             ))
 
 ;; yasnippet
-(add-to-list 'load-path "~/.emacs.d/yasnippet")
 (require 'yasnippet)
-(custom-set-variables '(yas-snippet-dirs '("~/.emacs.d/yasnippet/snippets")))
 (yas-global-mode 1)
 
 ;; scala
-(add-to-list 'load-path "~/.emacs.d/scala-mode")
-(require 'scala-mode-auto)
-;;(add-to-list 'load-path "~/ensime/elisp")
-;;(require 'ensime)
-;;(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+(require 'scala-mode2)
 
 ;; nxml
 (add-to-list 'auto-mode-alist '("\\.[x]?html$" . nxml-mode))
