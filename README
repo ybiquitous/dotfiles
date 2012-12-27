@@ -1,1 +1,7 @@
 Use 'mklink' as Administrator on Windows, instead 'ln -s'.
+
+Emacs byte compile command
+--------------------------
+
+  C-u 0 M-x byte-recompile-directory
+
