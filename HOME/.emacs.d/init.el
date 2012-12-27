@@ -29,7 +29,7 @@
   ;; If there is more than one, they won't work right.
  '(default ((t (:background "black" :foreground "white" :height 110)))))
 
-(set-frame-parameter nil 'alpha 80)
+;;(set-frame-parameter nil 'alpha 80)
 
 (prefer-coding-system 'utf-8-unix)
 
@@ -91,9 +91,9 @@
 ;; scala
 (add-to-list 'load-path "~/.emacs.d/scala-mode")
 (require 'scala-mode-auto)
-(add-to-list 'load-path "~/ensime/elisp")
-(require 'ensime)
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+;;(add-to-list 'load-path "~/ensime/elisp")
+;;(require 'ensime)
+;;(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 ;; nxml
 (add-to-list 'auto-mode-alist '("\\.[x]?html$" . nxml-mode))
