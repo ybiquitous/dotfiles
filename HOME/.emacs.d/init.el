@@ -75,6 +75,10 @@
             (flymake-mode t)
             ))
 
+;; auto-complete
+(require 'auto-complete-config)
+(ac-config-default)
+
 ;; yasnippet
 (require 'yasnippet)
 (yas-global-mode 1)
