@@ -65,6 +65,9 @@
 
 ;; json
 (add-hook 'js-mode-hook 'flymake-json-maybe-load)
+(defun json-reformat (beg end)
+  (interactive "r")
+  (shell-command-on-region beg end "jsonlint" nil t))
 
 ;; css
 (add-hook 'css-mode-hook 'flymake-css-load)
