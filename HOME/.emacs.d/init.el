@@ -58,14 +58,16 @@
 ;; javascript
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
 (add-hook 'js2-mode-hook
           (lambda ()
             (custom-set-variables '(js2-basic-offset 2))
             ))
 
-;; coffeescript
-(require 'coffee-mode)
+;; json
+(add-hook 'js-mode-hook 'flymake-json-maybe-load)
+
+;; css
+(add-hook 'css-mode-hook 'flymake-css-load)
 
 ;; perl
 (defalias 'perl-mode 'cperl-mode)
@@ -122,6 +124,3 @@
             (local-set-key (kbd "M-p") 'comint-previous-matching-input-from-input)
             (local-set-key (kbd "M-n") 'comint-next-matching-input-from-input)
             ))
-
-;; json
-(require 'json-reformat)

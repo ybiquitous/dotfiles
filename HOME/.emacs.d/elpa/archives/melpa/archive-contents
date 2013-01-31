@@ -1952,7 +1952,7 @@
 		   (0 1)))
 		 "Move the region in 4 directions, in a way similar to Eclipse's [source: github]" single])
  (es-lib .
-	 [(20130130 616)
+	 [(20130131 622)
 	  nil "A collection of emacs utilities [source: github]" tar])
  (es-edit-color-stamp .
 		      [(20130125 1651)
@@ -1989,7 +1989,7 @@
 	   [(20121003 221)
 	    nil "assign files to projects, programatically [source: github]" tar])
  (epc .
-      [(20130122 2030)
+      [(20130130 2128)
        ((concurrent
 	 (0 3 1))
 	(ctable

@@ -4,3 +4,4 @@ HOME/.emacs.d/**/*.elc
 HOME/.emacs.d/**/**/*.elc
 HOME/.zsh/.zcompdump
 HOME/.zsh/Completion
+HOME/.emacs.d/ac-comphist.dat

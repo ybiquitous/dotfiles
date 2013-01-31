@@ -4,8 +4,9 @@
 
 
 ;;;### (autoloads (flymake-json-maybe-load flymake-json-load) "flymake-json"
-;;;;;;  "flymake-json.el" (20745 63681))
-;;; Generated autoloads from flymake-json.el
+;;;;;;  "../../../../../.emacs.d/elpa/flymake-json-20130117.1659/flymake-json.el"
+;;;;;;  "e3d2422f82aca6a832a42c2446d2e259")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/flymake-json-20130117.1659/flymake-json.el
 
 (autoload 'flymake-json-load "flymake-json" "\
 Configure flymake mode to check the current buffer's javascript syntax.
@@ -19,7 +20,9 @@ Call `flymake-json-load' if this file appears to be json.
 
 ;;;***
 
-;;;### (autoloads nil nil ("flymake-json-pkg.el") (20745 63681 299784))
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/flymake-json-20130117.1659/flymake-json-pkg.el"
+;;;;;;  "../../../../../.emacs.d/elpa/flymake-json-20130117.1659/flymake-json.el")
+;;;;;;  (20746 7942 456632))
 
 ;;;***
 
