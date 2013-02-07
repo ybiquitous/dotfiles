@@ -56,7 +56,11 @@
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 
 ;; javascript
-(add-hook 'js-mode-hook 'flymake-jslint-load)
+(add-hook 'js-mode-hook
+          (lambda()
+            (flymake-jslint-load)
+            (custom-set-variables '(flymake-jslint-args nil))
+            ))
 
 ;; json
 ;;(add-hook 'js-mode-hook 'flymake-json-maybe-load)
