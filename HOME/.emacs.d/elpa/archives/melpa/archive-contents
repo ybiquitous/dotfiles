@@ -1335,7 +1335,7 @@
 	  [(20121228 1947)
 	   nil "Execute menu items as commands, with completion. [source: wiki]" single])
  (kwin .
-       [(20130206 1732)
+       [(20130207 31)
 	nil "communcate with the KWin window manager [source: github]" single])
  (kv .
      [(20130202 1543)
@@ -1508,7 +1508,7 @@
 		[(20130204 1653)
 		 nil "Major mode API client for status.net open microblogging [source: github]" tar])
  (icicles .
-	  [(20130205 4)
+	  [(20130207 555)
 	   nil "Minibuffer input completion and cycling. [source: wiki]" tar])
  (ibuffer-vc .
 	     [(20121217 826)
@@ -2217,7 +2217,7 @@
    [(20120306 1807)
     nil "Simple asynchronous functions for emacs lisp [source: github]" single])
  (dash .
-       [(20130129 1530)
+       [(20130207 605)
 	nil "A modern list library for Emacs [source: github]" single])
  (dart-mode .
 	    [(20121218 1449)
