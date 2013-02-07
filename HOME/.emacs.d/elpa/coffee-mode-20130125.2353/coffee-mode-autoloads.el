@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads (coffee-mode) "coffee-mode" "coffee-mode.el" (20699
-;;;;;;  62369))
+;;;### (autoloads (coffee-mode) "coffee-mode" "coffee-mode.el" (20755
+;;;;;;  10482))
 ;;; Generated autoloads from coffee-mode.el
 
 (autoload 'coffee-mode "coffee-mode" "\
@@ -12,15 +12,15 @@ Major mode for editing CoffeeScript.
 
 \(fn)" t nil)
 
-(add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
+(add-to-list 'auto-mode-alist '("\\.coffee\\'" . coffee-mode))
 
-(add-to-list 'auto-mode-alist '("\\.iced$" . coffee-mode))
+(add-to-list 'auto-mode-alist '("\\.iced\\'" . coffee-mode))
 
-(add-to-list 'auto-mode-alist '("Cakefile" . coffee-mode))
+(add-to-list 'auto-mode-alist '("Cakefile\\'" . coffee-mode))
 
 ;;;***
 
-;;;### (autoloads nil nil ("coffee-mode-pkg.el") (20699 62369 277079))
+;;;### (autoloads nil nil ("coffee-mode-pkg.el") (20755 10482 743244))
 
 ;;;***
 

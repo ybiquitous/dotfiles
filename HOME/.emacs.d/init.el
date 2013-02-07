@@ -56,15 +56,10 @@
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 
 ;; javascript
-(autoload 'js2-mode "js2-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-(add-hook 'js2-mode-hook
-          (lambda ()
-            (custom-set-variables '(js2-basic-offset 2))
-            ))
+(add-hook 'js-mode-hook 'flymake-jslint-load)
 
 ;; json
-(add-hook 'js-mode-hook 'flymake-json-maybe-load)
+;;(add-hook 'js-mode-hook 'flymake-json-maybe-load)
 (defun json-reformat (beg end)
   (interactive "r")
   (shell-command-on-region beg end "jsonlint" nil t))
@@ -76,7 +71,6 @@
 (defalias 'perl-mode 'cperl-mode)
 (add-hook 'cperl-mode-hook
           (lambda()
-            (cperl-toggle-electric)
             (flymake-mode t)
             ))
 
@@ -85,15 +79,18 @@
 (ac-config-default)
 
 ;; yasnippet
-(require 'yasnippet)
-(yas-global-mode 1)
+(yas-global-mode t)
 
 ;; scala
 (require 'scala-mode2)
 
+;; html
+(require 'flymake-html)
+(add-hook 'html-mode-hook 'flymake-html-load)
+
 ;; nxml
-(add-to-list 'auto-mode-alist '("\\.[x]?html$" . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.jsp[x]?$"  . nxml-mode))
+;;(add-to-list 'auto-mode-alist '("\\.[x]?html$" . nxml-mode))
+;;(add-to-list 'auto-mode-alist '("\\.jsp[x]?$"  . nxml-mode))
 (add-to-list 'load-path "~/.emacs.d/html5-el")
 (add-hook 'nxml-mode-hook
           (lambda ()

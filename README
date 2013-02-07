@@ -5,3 +5,8 @@ Emacs byte compile command
 
   C-u 0 M-x byte-recompile-directory
 
+In Auto Complete Mode, Enable js-mode
+-------------------------------------
+
+  > cd path/to/auto-complete/dict
+  > ln -s javascript-mode js-mode
