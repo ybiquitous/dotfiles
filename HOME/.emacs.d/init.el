@@ -44,7 +44,6 @@
 (global-set-key (kbd "C-x M-u") 'untabify)
 (global-set-key (kbd "C-x M-c") 'customize-variable)
 (global-set-key (kbd "C-c l")   'toggle-truncate-lines)
-(global-set-key (kbd "C-x M-v") 'browse-url-of-buffer)
 
 ;; package
 (require 'package)
@@ -90,31 +89,13 @@
 (require 'flymake-html)
 (add-hook 'html-mode-hook 'flymake-html-load)
 
-;; nxml
-;;(add-to-list 'auto-mode-alist '("\\.[x]?html$" . nxml-mode))
-;;(add-to-list 'auto-mode-alist '("\\.jsp[x]?$"  . nxml-mode))
-(add-to-list 'load-path "~/.emacs.d/html5-el")
+;; xml
 (add-hook 'nxml-mode-hook
           (lambda ()
             (custom-set-variables
              '(nxml-slash-auto-complete-flag t)
              '(nxml-auto-insert-xml-declaration-flag t)
              '(nxml-default-buffer-file-coding-system (quote utf-8-dos)))
-
-            (eval-after-load "rng-loc"
-              '(add-to-list 'rng-schema-locating-files "~/.emacs.d/html5-el/schemas.xml"))
-            (require 'whattf-dt)
-            ))
-
-;; mozrepl
-(autoload 'moz-minor-mode "moz" nil t)
-(add-hook 'moz-minor-mode-hook
-          (lambda ()
-            (add-hook 'after-save-hook
-                      '(lambda ()
-                         (interactive)
-                         (comint-send-string (inferior-moz-process) "BrowserReload();"))
-                      'append 'local) ; buffer-local
             ))
 
 ;; shell
