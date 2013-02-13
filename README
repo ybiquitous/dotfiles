@@ -10,3 +10,11 @@ In Auto Complete Mode, Enable js-mode
 
   > cd path/to/auto-complete/dict
   > ln -s javascript-mode js-mode
+
+JDK font setting On Linux
+-------------------------
+
+  > cd $JAVA_HOME/jre/lib/fonts/
+  > sudo mkdir fallback
+  > cd fallback
+  > sudo ln -s /usr/share/fonts/truetype/****.ttf .
