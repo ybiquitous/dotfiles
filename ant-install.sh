@@ -3,9 +3,11 @@
 [ -z "$1" ] && echo "usage: $0 <version>" && exit 1
 
 VERSION="$1"
-DISTFILE=apache-ant-${VERSION}-bin.tar.gz
-DISTDIR=apache-ant-${VERSION}
-MIRROR=http://ftp.meisei-u.ac.jp/mirror/apache/dist
+NAME=apache-ant-$VERSION
+FILE=$NAME-bin.tar.gz
+URL=http://www.apache.org/dist/ant/binaries
+CHKSUM='md5sum -c --quiet'
+CURL='curl -O -#'
 
 #---------
 cd /opt
@@ -17,26 +19,29 @@ cd ant
 #---------
 
 #---------
-curl -O $MIRROR/ant/binaries/$DISTFILE
-echo "`curl -s http://www.apache.org/dist/ant/binaries/$DISTFILE.md5` *$DISTFILE" | md5sum -c
+$CURL $URL/$FILE
+echo "`curl -s $URL/$FILE.md5` *$FILE" | $CHKSUM
 if [ $? -ne 0 ] ; then
   echo "download error"
   exit 1;
 fi
-tar xfz $DISTFILE
-rm -f $DISTFILE
+tar xfz $FILE
+rm -f $FILE
 #---------
 
 #---------
 rm -f latest
-ln -s $DISTDIR latest
-latest/bin/ant -version
+ln -s $NAME latest
 #---------
 
 #---------
-version=2.1.3
-file=maven-ant-tasks-$version.jar
+VERSION=2.1.3
+FILE=maven-ant-tasks-$VERSION.jar
+URL=http://www.apache.org/dist/maven/ant-tasks/$VERSION/binaries
 cd latest/lib
-curl -O $MIRROR/maven/ant-tasks/$version/binaries/$file
-echo "`curl -s http://www.apache.org/dist/maven/ant-tasks/$version/binaries/$file.md5` *$file" | md5sum -c
+$CURL $URL/$FILE
+echo "`curl -s $URL/$FILE.md5` *$FILE" | $CHKSUM
 #---------
+
+echo ""
+../bin/ant -version
