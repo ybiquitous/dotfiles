@@ -6,25 +6,21 @@ VERSION="$1"
 NAME=apache-ant-$VERSION
 FILE=$NAME-bin.tar.gz
 URL=http://www.apache.org/dist/ant/binaries
-CHKSUM='md5sum -c --quiet'
-CURL='curl -O -#'
+
+. `readlink -e lib.sh`
 
 #---------
-cd /opt
-mkdir -p ant
-if [ $? -ne 0 ] ; then
+INSTALL_DIR=/opt/ant
+if [ -d $INSTALL_DIR ] ; then
+  echo "already exists: $INSTALL_DIR"
   exit 1
 fi
-cd ant
+mkdir -p $INSTALL_DIR
+cd $INSTALL_DIR
 #---------
 
 #---------
-$CURL $URL/$FILE
-echo "`curl -s $URL/$FILE.md5` *$FILE" | $CHKSUM
-if [ $? -ne 0 ] ; then
-  echo "download error"
-  exit 1;
-fi
+download $URL $FILE
 tar xfz $FILE
 rm -f $FILE
 #---------
@@ -35,12 +31,18 @@ ln -s $NAME latest
 #---------
 
 #---------
+cd latest/lib
 VERSION=2.1.3
 FILE=maven-ant-tasks-$VERSION.jar
 URL=http://www.apache.org/dist/maven/ant-tasks/$VERSION/binaries
-cd latest/lib
-$CURL $URL/$FILE
-echo "`curl -s $URL/$FILE.md5` *$FILE" | $CHKSUM
+download $URL $FILE
+#---------
+
+#---------
+VERSION=2.3.0
+FILE=ivy-$VERSION.jar
+URL=http://repo1.maven.org/maven2/org/apache/ivy/ivy/$VERSION/
+download $URL $FILE
 #---------
 
 echo ""
