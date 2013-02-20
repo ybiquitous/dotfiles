@@ -6,31 +6,14 @@ VERSION="$1"
 NAME=apache-maven-$VERSION
 FILE=$NAME-bin.tar.gz
 URL=http://www.apache.org/dist/maven/maven-3/$VERSION/binaries
-CHKSUM='md5sum -c --quiet'
-CURL='curl -O -#'
 
-#---------
-cd /opt
-mkdir -p maven3
-if [ $? -ne 0 ] ; then
-  exit 1
-fi
-cd maven3
-#---------
+. `readlink -e lib.sh`
 
-#---------
-$CURL $URL/$FILE
-echo "`curl -s $URL/$FILE.md5` *$FILE" | $CHKSUM
-if [ $? -ne 0 ] ; then
-  echo "download error"
-  exit 1;
-fi
+make_install_dir /opt/maven3
+download $URL $FILE
 tar xfz $FILE
 rm -f $FILE
-#---------
-
-#---------
-echo ""
 ln -s $NAME latest
+
+echo ""
 latest/bin/mvn -version
-#---------

@@ -9,26 +9,11 @@ URL=http://www.apache.org/dist/ant/binaries
 
 . `readlink -e lib.sh`
 
-#---------
-INSTALL_DIR=/opt/ant
-if [ -d $INSTALL_DIR ] ; then
-  echo "already exists: $INSTALL_DIR"
-  exit 1
-fi
-mkdir -p $INSTALL_DIR
-cd $INSTALL_DIR
-#---------
-
-#---------
+make_install_dir /opt/ant
 download $URL $FILE
 tar xfz $FILE
 rm -f $FILE
-#---------
-
-#---------
-rm -f latest
 ln -s $NAME latest
-#---------
 
 #---------
 cd latest/lib
