@@ -34,3 +34,20 @@ make_install_dir () {
     cd $dir
     echo "[create] $dir"
 }
+
+confirm () {
+    if [ $# -ne 1 ] ; then
+        echo "usage: confirm <message>"
+        exit 1
+    fi
+    msg="$1"
+
+    while true ; do
+        read -p "$msg [y/n]: " answer
+        case $answer in
+            [Yy]* ) return 0 ;;
+            [Nn]* ) return 1 ;;
+            * ) echo "Please answer yes or no." ;;
+        esac
+    done
+}

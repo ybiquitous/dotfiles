@@ -17,18 +17,23 @@ ln -s $NAME latest
 
 #---------
 cd latest/lib
-VERSION=2.1.3
-FILE=maven-ant-tasks-$VERSION.jar
-URL=http://www.apache.org/dist/maven/ant-tasks/$VERSION/binaries
-download $URL $FILE
+confirm "Install Maven Ant Task?"
+if [ $? -eq 0 ] ; then
+    VERSION=2.1.3
+    FILE=maven-ant-tasks-$VERSION.jar
+    URL=http://www.apache.org/dist/maven/ant-tasks/$VERSION/binaries
+    download $URL $FILE
+fi
 #---------
 
 #---------
-VERSION=2.3.0
-FILE=ivy-$VERSION.jar
-URL=http://repo1.maven.org/maven2/org/apache/ivy/ivy/$VERSION/
-download $URL $FILE
+confirm "Install Ivy?"
+if [ $? -eq 0 ] ; then
+    VERSION=2.3.0
+    FILE=ivy-$VERSION.jar
+    URL=http://repo1.maven.org/maven2/org/apache/ivy/ivy/$VERSION
+    download $URL $FILE
+fi
 #---------
 
-echo ""
 ../bin/ant -version
