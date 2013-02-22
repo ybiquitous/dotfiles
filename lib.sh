@@ -10,7 +10,7 @@ download () {
 
     echo "[download] $url/$file"
     curl -O -# $url/$file
-    echo "`curl -s $url/$file.md5` *$file" | md5sum -c --quiet
+    echo "`curl -s $url/$file.md5 | awk '{ print $1 }'` *$file" | md5sum -c --quiet
     if [ $? -ne 0 ] ; then
         echo "[FAILED DOWNLOAD] $url/$file"
         rm -f $file
@@ -25,14 +25,11 @@ make_install_dir () {
         exit 1
     fi
     dir="$1"
-    if [ -d $dir ] ; then
-        echo "[ALREADY EXISTS] $dir"
-        exit 1
+    if [ ! -d $dir ] ; then
+        mkdir -p $dir
+        echo "[create] $dir"
     fi
-
-    mkdir -p $dir
     cd $dir
-    echo "[create] $dir"
 }
 
 confirm () {
