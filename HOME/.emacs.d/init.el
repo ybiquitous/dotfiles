@@ -107,3 +107,10 @@
             (local-set-key (kbd "M-p") 'comint-previous-matching-input-from-input)
             (local-set-key (kbd "M-n") 'comint-next-matching-input-from-input)
             ))
+
+;; vc-mode bug hack
+;; See http://www.lares.dti.ne.jp/~foozy/fujiguruma/scm/cvs-emacs.html
+(defadvice vc-before-save
+  (around examine-vc-make-backup-files activate)
+  "examine `vc-make-backup-files' (in vc-hooks.el) at first"
+  (and vc-make-backup-files ad-do-it))
