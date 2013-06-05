@@ -29,6 +29,9 @@
   ;; If there is more than one, they won't work right.
  '(default ((t (:background "black" :foreground "white" :height 110)))))
 
+(eval-after-load "dired-aux"
+  '(add-to-list 'dired-compress-file-suffixes '("\\.zip\\'" ".zip" "unzip")))
+
 ;;(set-frame-parameter nil 'alpha 80)
 
 (prefer-coding-system 'utf-8-unix)
