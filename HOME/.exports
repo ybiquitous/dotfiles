@@ -1,7 +1,6 @@
 # common
 export HISTFILE=$HOME/.history
 export HISTSIZE=50000
-export PATH=$HOME/bin:$PATH
 export EDITOR='emacs -nw'
 
 # java
@@ -18,3 +17,6 @@ export PERL_CPANM_OPT="--prompt --reinstall --mirror http://ftp.jaist.ac.jp/pub/
 
 # scala
 export PATH=/opt/scala/latest/bin:$PATH
+
+# path
+export PATH=$HOME/bin:$PATH
