@@ -1,7 +1,6 @@
 #!/bin/sh
 
-if [ $1 = '--run' ]
-then
+if [ "$1" = "--run" ]; then
   arg='-y'
 else
   arg='-s'
@@ -57,5 +56,8 @@ list="$list markdown"
 
 # mozc
 list="$list ibus-mozc"
+
+# axel
+list="$list axel"
 
 apt-get $arg install $list
