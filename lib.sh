@@ -9,7 +9,7 @@ download () {
     file="$2"
 
     echo "[download] $url/$file"
-    curl -O -# $url/$file
+    axel $url/$file
     echo "`curl -s $url/$file.md5 | awk '{ print $1 }'` *$file" | md5sum -c --quiet
     if [ $? -ne 0 ] ; then
         echo "[FAILED DOWNLOAD] $url/$file"
