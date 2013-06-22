@@ -1,4 +1,12 @@
-Use 'mklink' as Administrator on Windows, instead 'ln -s'.
+For Windows
+-----------
+
+  Use 'mklink' as Administrator on Windows, instead 'ln -s'.
+
+Update Home Directoriy names
+----------------------------
+
+  > LANG=C xdg-user-dirs-gtk-update
 
 Emacs byte compile command
 --------------------------
