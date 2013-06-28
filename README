@@ -26,3 +26,11 @@ JDK font setting On Linux
   > sudo mkdir fallback
   > cd fallback
   > sudo ln -s /usr/share/fonts/truetype/****.ttf .
+
+Install 'jsonlint', 'jslint' command
+------------------------------------
+
+  > sudo add-apt-repository ppa:chris-lea/node.js
+  > sudo apt-get update
+  > sudo apt-get install nodejs
+  > sudo npm -g install jsonlint jslint
