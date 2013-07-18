@@ -17,6 +17,7 @@ make_install_dir $INSTALL_DIR
 download $URL $FILE
 tar xfz $FILE
 rm -f $FILE
+rm -f latest
 ln -s $NAME latest
 
 #---------
