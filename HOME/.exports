@@ -5,7 +5,8 @@ export EDITOR='emacs -nw'
 
 # java
 #export JAVA_HOME=/usr/lib/jvm/default-java
-export JAVA_HOME=/opt/java6/latest
+#export JAVA_HOME=/opt/java6/latest
+export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64
 export JAVA_OPTS='-server -Xmx512m -XX:MaxPermSize=128m'
 export MAVEN_OPTS='-server -ea -Xmx512m -Xms128m -XX:MaxPermSize=128m -Djava.awt.headless=true'
 export ANT_OPTS="$MAVEN_OPTS"
