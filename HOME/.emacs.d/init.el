@@ -43,10 +43,7 @@
 
 ;; key setting
 (global-set-key (kbd "C-h")     'delete-backward-char)
-(global-set-key (kbd "C-x M-r") 'replace-regexp)
-(global-set-key (kbd "C-x M-s") 'replace-string)
-(global-set-key (kbd "C-x M-u") 'untabify)
-(global-set-key (kbd "C-x M-c") 'customize-variable)
+(global-set-key (kbd "C-?")     'help-command)
 (global-set-key (kbd "C-c l")   'toggle-truncate-lines)
 
 ;; package
