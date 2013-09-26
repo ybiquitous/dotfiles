@@ -58,10 +58,14 @@
 ;; javascript
 (add-hook 'js-mode-hook
           (lambda()
+            (custom-set-variables '(js-indent-level 2))
 ;;            (flymake-jslint-load)
 ;;            (custom-set-variables '(flymake-jslint-args nil))
             (flymake-jshint-load)
-            (custom-set-variables '(js-indent-level 2))
+
+            ;; override 'indent-region' key
+            (require 'js-beautify)
+            (local-set-key (kbd "C-M-\\") 'js-beautify)
             ))
 
 ;; json
