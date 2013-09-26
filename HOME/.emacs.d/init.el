@@ -58,8 +58,10 @@
 ;; javascript
 (add-hook 'js-mode-hook
           (lambda()
-            (flymake-jslint-load)
-            (custom-set-variables '(flymake-jslint-args nil))
+;;            (flymake-jslint-load)
+;;            (custom-set-variables '(flymake-jslint-args nil))
+            (flymake-jshint-load)
+            (custom-set-variables '(js-indent-level 2))
             ))
 
 ;; json
