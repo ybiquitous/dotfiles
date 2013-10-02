@@ -94,11 +94,13 @@
 
 ;; html
 (require 'flymake-html)
-(add-hook 'html-mode-hook 'flymake-html-load)
+;;(add-hook 'html-mode-hook 'flymake-html-load)
 
 ;; web
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+(add-hook 'web-mode-hook 'flymake-html-load)
 
 ;; xml
 (add-hook 'nxml-mode-hook
