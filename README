@@ -13,6 +13,13 @@ Emacs byte compile command
 
   C-u 0 M-x byte-recompile-directory
 
+Emacs Upgrade All Packages
+--------------------------
+
+  M-x package-list-packages
+  M-x package-menu-mark-upgrades
+  Type 'x'
+
 In Auto Complete Mode, Enable js-mode
 -------------------------------------
 
