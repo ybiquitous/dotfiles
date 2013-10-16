@@ -3,13 +3,13 @@ For Windows
 
     Use 'mklink' as Administrator on Windows, instead 'ln -s'.
 
-Update Home Directoriy names
-----------------------------
+Update home directory names
+---------------------------
 
     LANG=C xdg-user-dirs-gtk-update
 
-Emacs byte compile command
---------------------------
+Emacs byte recompile all
+------------------------
 
     C-u 0 M-x byte-recompile-directory
 
@@ -20,13 +20,13 @@ Emacs Upgrade All Packages
     M-x package-menu-mark-upgrades
     Type 'x'
 
-In Auto Complete Mode, Enable js-mode
--------------------------------------
+Enable js-mode in Auto Complete Mode
+------------------------------------
 
     cd path/to/auto-complete/dict
     ln -s javascript-mode js-mode
 
-JDK font setting On Linux
+JDK font setting on Linux
 -------------------------
 
     cd $JAVA_HOME/jre/lib/fonts/
@@ -34,8 +34,8 @@ JDK font setting On Linux
     cd fallback
     sudo ln -s /usr/share/fonts/truetype/****.ttf .
 
-Install 'jsonlint', 'jslint' command
-------------------------------------
+Install: jsonlint, jslint
+---------------------------------
 
     sudo add-apt-repository ppa:chris-lea/node.js
     sudo apt-get update
