@@ -21,3 +21,9 @@ rm -f latest
 ln -s $NAME latest
 
 ./latest/bin/scala -version
+
+mkdir -p $HOME/man/man1
+cd $HOME/man/man1
+for manfile in `find $INSTALL_DIR/latest/man/man1 -type f`; do
+    ln -fs $manfile .
+done
