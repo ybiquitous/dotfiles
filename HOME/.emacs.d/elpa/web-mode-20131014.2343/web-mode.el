@@ -1,8 +1,8 @@
-;;; web-mode.el --- major mode for editing html templates -*- coding: utf-8 -*-
+;;; web-mode.el --- major mode for editing html templates
 
 ;; Copyright 2011-2013 François-Xavier Bois
 
-;; Version: 7.0.25
+;; Version: 7.0.32
 ;; Author: François-Xavier Bois <fxbois AT Google Mail Service>
 ;; Maintainer: François-Xavier Bois
 ;; Created: July 2011
@@ -35,8 +35,8 @@
 
 ;; Code goes here
 
+;;todo : web-mode-cleanup : ("downcase-tags" "double-quote-attributes")
 ;;todo : auto-pairs deviennent spécifiques à un engine
-;;todo : reduction des css rules div { ... }
 ;;todo : passer les content-types en symboles
 ;;todo : tester shortcut A -> pour pomme
 ;;todo : commentaire d'une ligne ruby ou d'une ligne asp
@@ -47,7 +47,7 @@
   "Major mode for editing web templates:
    HTML files embedding parts (CSS/JavaScript)
    and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)."
-  :version "7.0.25"
+  :version "7.0.32"
   :group 'languages)
 
 (defgroup web-mode-faces nil
@@ -468,10 +468,10 @@ Must be used in conjunction with web-mode-enable-block-face."
 (defvar web-mode-expand-previous-state ""
   "Last mark state.")
 
-(defvar web-mode-tag-regexp "<\\(/?[[:alpha:]][[:alnum:]]*\\)"
+(defvar web-mode-tag-regexp "<\\(/?[[:alpha:]][[:alnum:]-]*\\)"
   "Regular expression for HTML/XML tag.")
 
-(defvar web-mode-start-tag-regexp "<\\([[:alpha:]][[:alnum:]]*\\)"
+(defvar web-mode-start-tag-regexp "<\\([[:alpha:]][[:alnum:]-]*\\)"
   "Regular expression for HTML/XML start tag.")
 
 (defvar web-mode-whitespaces-regexp
@@ -1218,7 +1218,7 @@ Must be used in conjunction with web-mode-enable-block-face."
    '("\\<\\(function\\)[ ]*("
      (1 'web-mode-keyword-face)
      ("\\([[:alnum:]_]+\\)\\([ ]*=[^,)]*\\)?[,)]" nil nil (1 'web-mode-variable-name-face)))
-   '("\\([[:alnum:]]+\\):" 1 'web-mode-variable-name-face)
+   '("\\([[:alnum:]_]+\\):" 1 'web-mode-variable-name-face)
    '("/[^/]+/" 0 'web-mode-string-face)
    ))
 
@@ -1386,12 +1386,14 @@ Must be used in conjunction with web-mode-enable-block-face."
     (define-key map [menu-bar wm blk blk-prev] '(menu-item "Previous" web-mode-block-previous))
     (define-key map [menu-bar wm blk blk-end] '(menu-item "End" web-mode-block-beginning))
     (define-key map [menu-bar wm blk blk-beg] '(menu-item "Beginning" web-mode-block-beginning))
+
     (define-key map [menu-bar wm tag tag-sel] '(menu-item "Select" web-mode-tag-select))
     (define-key map [menu-bar wm tag tag-match] '(menu-item "Match" web-mode-tag-match))
     (define-key map [menu-bar wm tag tag-next] '(menu-item "Next" web-mode-tag-next))
     (define-key map [menu-bar wm tag tag-prev] '(menu-item "Previous" web-mode-tag-previous))
     (define-key map [menu-bar wm tag tag-end] '(menu-item "End" web-mode-tag-beginning))
     (define-key map [menu-bar wm tag tag-beg] '(menu-item "Beginning" web-mode-tag-beginning))
+
     (define-key map [menu-bar wm elt elt-in] '(menu-item "Inner Content" web-mode-element-content-select))
     (define-key map [menu-bar wm elt elt-parent] '(menu-item "Parent" web-mode-element-parent))
     (define-key map [menu-bar wm elt elt-sel] '(menu-item "Select" web-mode-element-select))
@@ -1405,6 +1407,8 @@ Must be used in conjunction with web-mode-enable-block-face."
     (define-key map [menu-bar wm elt elt-prev] '(menu-item "Previous" web-mode-element-previous))
     (define-key map [menu-bar wm elt elt-end] '(menu-item "End" web-mode-element-end))
     (define-key map [menu-bar wm elt elt-beg] '(menu-item "Beginning" web-mode-element-beginning))
+    (define-key map [menu-bar wm elt elt-van] '(menu-item "Vanish" web-mode-element-vanish))
+
     (define-key map [menu-bar wm err] '(menu-item "Show error(s)" web-mode-errors-show))
     (define-key map [menu-bar wm fold] '(menu-item "Fold/Unfold" web-mode-fold-or-unfold))
     (define-key map [menu-bar wm indent] '(menu-item "Indent buffer" web-mode-buffer-indent))
@@ -1451,6 +1455,7 @@ Must be used in conjunction with web-mode-enable-block-face."
     (define-key map (kbd "C-c C-e s") 'web-mode-element-select)
     (define-key map (kbd "C-c C-e t") 'web-mode-element-traverse)
     (define-key map (kbd "C-c C-e u") 'web-mode-element-parent)
+    (define-key map (kbd "C-c C-e v") 'web-mode-element-vanish)
 
     (define-key map (kbd "C-c C-t b") 'web-mode-tag-beginning)
     (define-key map (kbd "C-c C-t e") 'web-mode-tag-end)
@@ -1493,6 +1498,7 @@ Must be used in conjunction with web-mode-enable-block-face."
   "Major mode for editing web templates."
 
   (make-local-variable 'after-change-functions)
+  (make-local-variable 'fill-paragraph-function)
   (make-local-variable 'font-lock-fontify-buffer-function)
   (make-local-variable 'font-lock-keywords)
   (make-local-variable 'font-lock-multiline)
@@ -2515,7 +2521,7 @@ Must be used in conjunction with web-mode-enable-block-face."
       ;; <\\(!--\\|!doctype\\|/?[[:alnum:]]+[:_]?[[:alnum:]]*\\|\?xml\\)
       ;; <\\(/?[[:alnum:]]+\\|!--\\|!doctype\\|\?xml\\)
       ;; <[[:alpha:]/!?]
-      (while (web-mode-rsf-client "<\\(/?[[:alnum:]]+\\|!--\\|!doctype\\|\?xml\\)" end t)
+      (while (web-mode-rsf-client "<\\(/?[[:alpha:]][[:alnum:]-]*\\|!--\\|!doctype\\|\?xml\\)" end t)
         (setq tag-name (downcase (match-string 1))
               tag-beg (match-beginning 0)
               tag-end nil
@@ -3092,7 +3098,8 @@ Must be used in conjunction with web-mode-enable-block-face."
       )
      ((looking-at-p "@[(}]")
       (forward-char)
-      (goto-char (web-mode-closing-paren-position (point) (line-end-position)))
+;;      (goto-char (web-mode-closing-paren-position (point) (line-end-position)))
+      (goto-char (web-mode-closing-paren-position (point)))
       )
      (t
       (forward-char)
@@ -3767,7 +3774,8 @@ Must be used in conjunction with web-mode-enable-block-face."
 
          ((and (string= language "php")
                (or (string-match-p "^else$" prev-line)
-                   (string-match-p "^if[ ]*(.+)$" prev-line)))
+                   (string-match-p "^if[ ]*(.+)$" prev-line))
+               (not (string-match-p "^{" line)))
           (setq offset (+ prev-indentation web-mode-code-indent-offset))
           )
 
@@ -4039,7 +4047,7 @@ Must be used in conjunction with web-mode-enable-block-face."
               pos (point))
         )
       );while
-    (message "indent-origin=%S" pos)
+;;    (message "indent-origin=%S" pos)
     pos
     ))
 
@@ -4630,6 +4638,47 @@ Must be used in conjunction with web-mode-enable-block-face."
       );if
     ))
 
+(defun web-mode-element-vanish ()
+  "Vanish the current HTML element. The content of the element is kept."
+  (interactive)
+  (let (type (pos (point)) start-b start-e end-b end-e)
+    (setq type (get-text-property pos 'tag-type))
+    (when type
+      (cond
+       ((member type '(void))
+        (web-mode-element-kill)
+        (set-mark (point))
+        (web-mode-tag-match)
+        (web-mode-tag-end)
+        (exchange-point-and-mark))
+       ((member type '(start))
+        (setq start-b (web-mode-tag-beginning-position)
+              start-e (web-mode-tag-end-position))
+        (when (web-mode-tag-match)
+          (setq end-b (web-mode-tag-beginning-position)
+                end-e (web-mode-tag-end-position)))
+        )
+       (t
+        (setq end-b (web-mode-tag-beginning-position)
+              end-e (web-mode-tag-end-position))
+        (when (web-mode-tag-match)
+          (setq start-b (web-mode-tag-beginning-position)
+                start-e (web-mode-tag-end-position)))
+        );t
+       );cond
+      (when (and start-b end-b)
+        (goto-char end-b)
+        (delete-region end-b (1+ end-e))
+        (delete-blank-lines)
+        (goto-char start-b)
+        (delete-region start-b (1+ start-e))
+        (delete-blank-lines)
+        (web-mode-buffer-indent)
+        )
+;;        (message "start %S %S - end %S %S" start-b start-e end-b end-e))
+      );when
+    ))
+
 (defun web-mode-element-kill ()
   "Kill the current HTML element."
   (interactive)
@@ -4777,13 +4826,12 @@ Must be used in conjunction with web-mode-enable-block-face."
   (= (web-mode-line-number (web-mode-block-beginning-position pos))
      (web-mode-line-number (web-mode-block-end-position pos))))
 
-(defun web-mode-comment-or-uncomment (&optional pos)
+(defun web-mode-comment-or-uncomment ()
   "Comment or uncomment line(s), block or region at POS."
   (interactive)
   (save-excursion
-    (unless pos (setq pos (if mark-active (region-beginning) (point))))
-    (goto-char pos)
-    (skip-chars-forward "[:space:]" (line-end-position))
+    (unless mark-active
+      (skip-chars-forward "[:space:]" (line-end-position)))
     (if (web-mode-is-comment)
 	(web-mode-uncomment (point))
       (web-mode-comment (point))))
@@ -4850,8 +4898,11 @@ Must be used in conjunction with web-mode-enable-block-face."
         (setq language (plist-get ctx :language))
 
         (if mark-active
-            (setq beg (region-beginning)
-                  end (region-end))
+            (progn
+              (setq beg (region-beginning)
+                    end (region-end))
+;;              (message "beg=%S end=%S" beg end)
+              )
           (if (string= language "html")
               (progn
                 (back-to-indentation)
@@ -4869,7 +4920,7 @@ Must be used in conjunction with web-mode-enable-block-face."
         (if (eq (char-before end) ?\n)
             (setq end (1- end)))
 
-        ;;     (message "language=%S beg=%S end=%S" language beg end)
+;;        (message "language=%S beg=%S end=%S" language beg end)
         (setq sel (web-mode-trim (buffer-substring-no-properties beg end)))
         ;;      (message "[language=%s] sel=%s" language sel)
         (delete-region beg end)
@@ -5300,7 +5351,6 @@ Must be used in conjunction with web-mode-enable-block-face."
      );cond
 
     ))
-
 
 (defun web-mode-match-php-block ()
   "Fetch PHP block."
@@ -7106,6 +7156,11 @@ Must be used in conjunction with web-mode-enable-block-face."
     ))
 
 (provide 'web-mode)
+
+;; Local Variables:
+;; coding: utf-8
+;; indent-tabs-mode: nil
+;; End:
 
 ;;; web-mode.el ends here
 

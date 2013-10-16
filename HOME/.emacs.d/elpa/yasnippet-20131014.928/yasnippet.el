@@ -51,8 +51,8 @@
 ;;       `yas-extra-modes'
 ;;
 ;;           A local variable that you can set in a hook to override
-;;           snippet-lookup based on major mode.  It is a symbol (or
-;;           list of symbols) that correspond to subdirectories of
+;;           snippet-lookup based on major mode.  It is a list of
+;;           symbols that correspond to subdirectories of
 ;;           `yas-snippet-dirs' and is used for deciding which
 ;;           snippets to consider for the active buffer.
 ;;
@@ -658,9 +658,7 @@ snippet itself contains a condition that returns the symbol
   "The keymap used when `yas-minor-mode' is active.")
 
 (defvar yas-extra-modes nil
-  "If non-nil, also lookup snippets for this/these modes.
-
-Can be a symbol or a list of symbols.
+  "A list of modes for which to also lookup snippets.
 
 This variable probably makes more sense as buffer-local, so
 ensure your use `make-local-variable' when you set it.")
@@ -816,8 +814,6 @@ Honour `yas-dont-activate', which see."
 
 (defvar yas--font-lock-keywords
   (append '(("^#.*$" . font-lock-comment-face))
-          lisp-font-lock-keywords
-          lisp-font-lock-keywords-1
           lisp-font-lock-keywords-2
           '(("$\\([0-9]+\\)"
              (0 font-lock-keyword-face)
@@ -825,8 +821,8 @@ Honour `yas-dont-activate', which see."
             ("${\\([0-9]+\\):?"
              (0 font-lock-keyword-face)
              (1 font-lock-warning-face t))
-            ("${" font-lock-keyword-face)
-            ("$[0-9]+?" font-lock-preprocessor-face)
+            ("${" . font-lock-keyword-face)
+            ("$[0-9]+?" . font-lock-preprocessor-face)
             ("\\(\\$(\\)" 1 font-lock-preprocessor-face)
             ("}"
              (0 font-lock-keyword-face)))))
@@ -2205,7 +2201,7 @@ If expansion fails, execute the previous binding for this key"
   (interactive)
   (setq yas--condition-cache-timestamp (current-time))
   (let* ((vec (subseq (this-command-keys-vector) (if current-prefix-arg
-                                                     universal-argument-num-events
+                                                     (length (this-command-keys))
                                                    0)))
          (templates (mapcan #'(lambda (table)
                                 (yas--fetch table vec))
@@ -3513,22 +3509,20 @@ considered when expanding the snippet."
            ;;    plain text will get recorded at the end.
            ;;
            ;;    stacked expansion: also shoosh the overlay modification hooks
-           (save-restriction
-             (narrow-to-region start start)
-             (let ((buffer-undo-list t))
-               ;; snippet creation might evaluate users elisp, which
-               ;; might generate errors, so we have to be ready to catch
-               ;; them mostly to make the undo information
-               ;;
-               (setq yas--start-column (save-restriction (widen) (current-column)))
-               (yas--inhibit-overlay-hooks
-                 (setq snippet
-                       (if expand-env
-                           (eval `(let* ,expand-env
-                                    (insert content)
-                                    (yas--snippet-create (point-min))))
-                         (insert content)
-                         (yas--snippet-create (point-min)))))))
+           (let ((buffer-undo-list t))
+             ;; snippet creation might evaluate users elisp, which
+             ;; might generate errors, so we have to be ready to catch
+             ;; them mostly to make the undo information
+             ;;
+             (setq yas--start-column (current-column))
+             (yas--inhibit-overlay-hooks
+               (setq snippet
+                     (if expand-env
+                         (eval `(let* ,expand-env
+                                  (insert content)
+                                  (yas--snippet-create start (point))))
+                       (insert content)
+                       (yas--snippet-create start (point))))))
 
            ;; stacked-expansion: This checks for stacked expansion, save the
            ;; `yas--previous-active-field' and advance its boundary.
@@ -3606,25 +3600,27 @@ After revival, push the `yas--take-care-of-redo' in the
       (push `(apply yas--take-care-of-redo ,beg ,end ,snippet)
             buffer-undo-list))))
 
-(defun yas--snippet-create (begin)
-  "Create a snippet from a template inserted at BEGIN.
+(defun yas--snippet-create (begin end)
+  "Create a snippet from a template inserted at BEGIN to END.
 
 Returns the newly created snippet."
-  (let ((snippet (yas--make-snippet)))
-    (goto-char begin)
-    (yas--snippet-parse-create snippet)
+  (save-restriction
+    (narrow-to-region begin end)
+    (let ((snippet (yas--make-snippet)))
+      (goto-char begin)
+      (yas--snippet-parse-create snippet)
 
-    ;; Sort and link each field
-    (yas--snippet-sort-fields snippet)
+      ;; Sort and link each field
+      (yas--snippet-sort-fields snippet)
 
-    ;; Create keymap overlay for snippet
-    (setf (yas--snippet-control-overlay snippet)
-          (yas--make-control-overlay snippet (point-min) (point-max)))
+      ;; Create keymap overlay for snippet
+      (setf (yas--snippet-control-overlay snippet)
+            (yas--make-control-overlay snippet (point-min) (point-max)))
 
-    ;; Move to end
-    (goto-char (point-max))
+      ;; Move to end
+      (goto-char (point-max))
 
-    snippet))
+      snippet)))
 
 
 ;;; Apropos adjacencies and "fom's":
