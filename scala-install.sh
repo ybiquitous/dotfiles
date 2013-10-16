@@ -9,14 +9,15 @@ VERSION="$1"
 INSTALL_DIR="$2"
 NAME=scala-$VERSION
 FILE=$NAME.tgz
-URL=http://www.scala-lang.org/downloads/distrib/files
+URL=http://scala-lang.org/files/archive
 
 . `readlink -e lib.sh`
 
 make_install_dir $INSTALL_DIR
-download $URL $FILE
+axel $URL/$FILE
 tar xfz $FILE
 rm -f $FILE
+rm -f latest
 ln -s $NAME latest
 
 ./latest/bin/scala -version
