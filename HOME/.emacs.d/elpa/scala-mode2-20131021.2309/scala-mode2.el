@@ -11,6 +11,7 @@
 (require 'scala-mode2-indent)
 (require 'scala-mode2-fontlock)
 (require 'scala-mode2-map)
+(require 'scala-mode2-sbt)
 
 ;; Tested only for emacs 24
 (unless (<= 24 emacs-major-version)
@@ -62,7 +63,8 @@ When started, runs `scala-mode-hook'.
    'comment-multi-line
    'forward-sexp-function
    'indent-line-function
-   'indent-tabs-mode)
+   'indent-tabs-mode
+   'join-line)
 
   (add-hook 'syntax-propertize-extend-region-functions
             'scala-syntax:propertize-extend-region)
@@ -93,6 +95,7 @@ When started, runs `scala-mode-hook'.
         forward-sexp-function           'scala-mode:forward-sexp-function
         indent-line-function            'scala-indent:indent-line
         indent-tabs-mode                nil
+        join-line                       'scala-indent:join-line
         )
   (use-local-map scala-mode-map)
   ;; add indent functionality to some characters
