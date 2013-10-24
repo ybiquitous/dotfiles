@@ -129,3 +129,7 @@
   (around examine-vc-make-backup-files activate)
   "examine `vc-make-backup-files' (in vc-hooks.el) at first"
   (and vc-make-backup-files ad-do-it))
+
+;; https://github.com/k1LoW/emacs-drill-instructor/wiki
+(require 'drill-instructor)
+(setq drill-instructor-global t)
