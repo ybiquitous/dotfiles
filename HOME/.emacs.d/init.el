@@ -12,6 +12,7 @@
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
+ '(kill-whole-line t)
  '(line-number-mode t)
  '(make-backup-files nil)
  '(read-buffer-completion-ignore-case t)
