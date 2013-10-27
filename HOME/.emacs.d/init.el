@@ -57,17 +57,11 @@
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
-;; markdown
-(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
-
 ;; javascript
 (add-hook 'js-mode-hook
           (lambda()
             (custom-set-variables '(js-indent-level 2))
-;;            (flymake-jslint-load)
-;;            (custom-set-variables '(flymake-jslint-args nil))
             (flymake-jshint-load)
-
             ;; override 'indent-region' key
             (require 'js-beautify)
             (local-set-key (kbd "C-M-\\") 'js-beautify)
