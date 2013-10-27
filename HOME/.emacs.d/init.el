@@ -91,6 +91,10 @@
 
 ;; yasnippet
 (yas-global-mode t)
+(require 'dropdown-list)
+(setq yas-prompt-functions '(yas-dropdown-prompt
+                             yas-ido-prompt
+                             yas-completing-prompt))
 
 ;; scala
 (require 'scala-mode2)
