@@ -17,7 +17,7 @@
  '(make-backup-files nil)
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
- '(scroll-bar-mode (quote right))
+ '(scroll-bar-mode 'right)
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(size-indication-mode nil)
@@ -68,7 +68,6 @@
             ))
 
 ;; json
-(add-to-list 'auto-mode-alist '("\\.json$" . json-mode))
 (add-hook 'json-mode-hook 'flymake-json-maybe-load)
 
 ;; css
@@ -102,17 +101,11 @@
       (signal 'quit "user quit!"))))
 (custom-set-variables '(yas-prompt-functions '(my-yas-prompt)))
 
-;; scala
-(require 'scala-mode2)
-
-;; html
-(require 'flymake-html)
-;;(add-hook 'html-mode-hook 'flymake-html-load)
-
 ;; web
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+(require 'flymake-html)
 (add-hook 'web-mode-hook 'flymake-html-load)
 
 ;; xml
@@ -121,7 +114,7 @@
             (custom-set-variables
              '(nxml-slash-auto-complete-flag t)
              '(nxml-auto-insert-xml-declaration-flag t)
-             '(nxml-default-buffer-file-coding-system (quote utf-8-dos)))
+             '(nxml-default-buffer-file-coding-system 'utf-8-dos))
             ))
 
 ;; shell
