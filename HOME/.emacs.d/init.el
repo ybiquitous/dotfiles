@@ -47,7 +47,9 @@
 (global-set-key (kbd "C-h")     'delete-backward-char)
 (global-set-key (kbd "M-h")     'backward-kill-word)
 (global-set-key (kbd "C-?")     'help-command)
+(global-set-key (kbd "C-!")     'linum-mode)
 (global-set-key (kbd "C-c l")   'toggle-truncate-lines)
+(global-set-key (kbd "C-x M-f") 'helm-mini)
 
 ;; package
 (require 'package)
