@@ -137,3 +137,8 @@
 ;; https://github.com/k1LoW/emacs-drill-instructor/wiki
 (require 'drill-instructor)
 (setq drill-instructor-global t)
+
+;; emmet(zen-coding)
+(add-hook 'html-mode-hook 'emmet-mode)
+(add-hook 'css-mode-hook  'emmet-mode)
+(add-hook 'web-mode-hook  'emmet-mode)
