@@ -14,3 +14,5 @@
 #	diff = auto
 #[color "diff"]
 #	meta = blue bold
+[core]
+	pager = 
