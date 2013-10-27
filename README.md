@@ -16,8 +16,8 @@ Emacs byte recompile all
 Emacs Upgrade All Packages
 --------------------------
 
-    M-x package-list-packages
-    M-x package-menu-mark-upgrades
+    M-x list-packages
+    Type 'U'
     Type 'x'
 
 Enable js-mode in Auto Complete Mode
