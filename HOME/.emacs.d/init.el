@@ -73,7 +73,11 @@
 (add-hook 'css-mode-hook 'flymake-css-load)
 
 ;; scala
-(add-hook 'scala-mode-hook 'flymake-scala-load)
+(add-hook 'scala-mode-hook
+          (lambda()
+            (custom-set-variables '(flymake-scala-compiler "fsc"))
+            (flymake-scala-load)
+            ))
 
 ;; perl
 (defalias 'perl-mode 'cperl-mode)
