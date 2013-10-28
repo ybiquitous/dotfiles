@@ -12,7 +12,6 @@
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
- '(kill-whole-line t)
  '(line-number-mode t)
  '(make-backup-files nil)
  '(read-buffer-completion-ignore-case t)
@@ -53,8 +52,8 @@
 
 ;; package
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
 ;; javascript
@@ -72,6 +71,10 @@
 
 ;; css
 (add-hook 'css-mode-hook 'flymake-css-load)
+
+;; scala
+(require 'flymake-scala)
+(add-hook 'scala-mode-hook 'flymake-scala-load)
 
 ;; perl
 (defalias 'perl-mode 'cperl-mode)
