@@ -3,7 +3,7 @@
 ;; Copyright (C) 2013 ybiquitous
 ;;
 ;; Author: ybiquitous <10koba01 [at] gmail.com>
-;; URL: https://github.com/
+;; URL: https://github.com/ybiquitous/flymake-scala/
 ;; Version: 20131028
 ;; Package-Requires: ((flymake-easy "0.1"))
 ;; Keywords: flymake scala

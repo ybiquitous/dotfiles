@@ -3,9 +3,9 @@
 ;;; Code:
 
 
-;;;### (autoloads (flymake-scala-load) "flymake-scala" "flymake-scala.el"
-;;;;;;  (21101 49019 151384 44000))
-;;; Generated autoloads from flymake-scala.el
+;;;### (autoloads (flymake-scala-load) "flymake-scala" "../../../../../.emacs.d/elpa/flymake-scala-20131028/flymake-scala.el"
+;;;;;;  "d728a4692738ed4adc9058c7cbe9e085")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/flymake-scala-20131028/flymake-scala.el
 
 (autoload 'flymake-scala-load "flymake-scala" "\
 Configure flymake mode to check scala syntax.
@@ -14,8 +14,9 @@ Configure flymake mode to check scala syntax.
 
 ;;;***
 
-;;;### (autoloads nil nil ("flymake-scala-pkg.el") (21101 49019 240507
-;;;;;;  590000))
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/flymake-scala-20131028/flymake-scala-pkg.el"
+;;;;;;  "../../../../../.emacs.d/elpa/flymake-scala-20131028/flymake-scala.el")
+;;;;;;  (21101 51114 513191 631000))
 
 ;;;***
 
