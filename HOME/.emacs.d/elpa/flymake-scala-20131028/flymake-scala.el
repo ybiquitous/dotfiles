@@ -4,7 +4,7 @@
 ;;
 ;; Author: ybiquitous <10koba01 [at] gmail.com>
 ;; URL: https://github.com/
-;; Version: DEV
+;; Version: 20131028
 ;; Package-Requires: ((flymake-easy "0.1"))
 ;; Keywords: flymake scala
 ;;

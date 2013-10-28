@@ -73,7 +73,6 @@
 (add-hook 'css-mode-hook 'flymake-css-load)
 
 ;; scala
-(require 'flymake-scala)
 (add-hook 'scala-mode-hook 'flymake-scala-load)
 
 ;; perl
