@@ -48,7 +48,8 @@
 (global-set-key (kbd "C-?")     'help-command)
 (global-set-key (kbd "C-!")     'linum-mode)
 (global-set-key (kbd "C-c l")   'toggle-truncate-lines)
-(global-set-key (kbd "C-x M-f") 'helm-mini)
+(global-set-key (kbd "C-c h")   'helm-mode)
+(global-set-key (kbd "C-c C-v") 'browse-url-of-buffer)
 
 ;; package
 (require 'package)
