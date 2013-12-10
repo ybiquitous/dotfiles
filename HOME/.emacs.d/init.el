@@ -87,6 +87,9 @@
             (flymake-mode t)
             ))
 
+;; ruby
+(add-hook 'ruby-mode-hook 'flymake-ruby-load)
+
 ;; auto-complete
 (require 'auto-complete-config)
 (ac-config-default)
