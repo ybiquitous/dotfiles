@@ -1,0 +1,23 @@
+#!/bin/sh
+
+version=$1
+case "$version" in
+    "6" | "7")
+        export JAVA_HOME=/usr/lib/jvm/java-${version}-openjdk-amd64
+        ;;
+    "sun6")
+        export JAVA_HOME=$HOME/java/jdk1.6
+        ;;
+    "sun7")
+        export JAVA_HOME=$HOME/java/jdk1.7
+        ;;
+    *)
+        cmd=$(basename $0)
+        echo "Usage:   source[.] $cmd <6|7|sun6|sun7>"
+        exit
+        ;;
+esac
+
+PATH=${PATH#$JAVA_HOME/bin:}
+export PATH="$JAVA_HOME/bin:$PATH"
+java -version
