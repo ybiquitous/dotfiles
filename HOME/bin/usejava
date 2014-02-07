@@ -11,9 +11,12 @@ case "$version" in
     "sun7")
         export JAVA_HOME=$HOME/java/jdk1.7
         ;;
+    "sun8")
+        export JAVA_HOME=$HOME/java/jdk1.8
+        ;;
     *)
         cmd=$(basename $0)
-        echo "Usage:   source[.] $cmd <6|7|sun6|sun7>"
+        echo "Usage:   source[.] $cmd < [6-7] or sun[6-8] >"
         exit
         ;;
 esac

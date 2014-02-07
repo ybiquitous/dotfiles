@@ -187,3 +187,5 @@ setopt ignoreeof
 [ -f $PERLBREW_ROOT/etc/perlbrew-completion.bash ] && source $PERLBREW_ROOT/etc/perlbrew-completion.bash
 
 fpath=(${ZDOTDIR}/Completion $fpath)
+
+eval "$(rbenv init -)"
