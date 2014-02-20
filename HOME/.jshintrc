@@ -1,0 +1,16 @@
+{
+  "indent"   : 4,
+  "unused"   : true,
+  "undef"    : false,
+  "trailing" : true,
+  "bitwise"  : true,
+  "freeze"   : true,
+  "latedef"  : false,
+  "onevar"   : true,
+  "es3"      : true,
+  "browser"  : true,
+  "devel"    : true,
+  "debug"    : true,
+  "jquery"   : true,
+  "maxerr"   : 1000
+}
