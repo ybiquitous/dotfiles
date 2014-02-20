@@ -23,13 +23,13 @@ Emacs Upgrade All Packages
 Enable js-mode in Auto Complete Mode
 ------------------------------------
 
-    cd path/to/auto-complete/dict
+    cd HOME/.emacs.d/elpa/auto-complete-*/dict
     ln -s javascript-mode js-mode
 
 Add yasnippet of web-mode
 ------------------------------------
 
-    cd <yasnippet_dir>/snippets
+    cd HOME/.emacs.d/elpa/yasnippet-*/snippets
     mkdir web-mode
     cd web-mode
     (echo "html-mode"; echo "css-mode"; echo "js-mode") > .yas-parents
