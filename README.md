@@ -42,10 +42,10 @@ JDK font setting on Linux
     cd fallback
     sudo ln -s /usr/share/fonts/truetype/****.ttf .
 
-Install: jsonlint, jslint
+Install npm
 ---------------------------------
 
     sudo add-apt-repository ppa:chris-lea/node.js
     sudo apt-get update
     sudo apt-get install nodejs
-    sudo npm -g install jsonlint jslint
+    sudo npm -g install jsonlint jslint jshint
