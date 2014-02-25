@@ -3,7 +3,7 @@
 
 ;; Copyright 2011-2014 François-Xavier Bois
 
-;; Version: 8.0.13
+;; Version: 8.0.16
 ;; Author: François-Xavier Bois <fxbois AT Google Mail Service>
 ;; Maintainer: François-Xavier Bois
 ;; Created: July 2011
@@ -36,6 +36,7 @@
 
 ;; Code goes here
 
+;;better switch / case indentation
 ;;new lexer/highlighter : web-mode.el is now compatible with minor modes relying on font-locking
 ;;compatibility with  *.js.erb (javascript content type), *.css.erb (css content type)
 ;;engine compatibility : web2py (python), mako (python), mason (perl)
@@ -48,7 +49,6 @@
 ;;       essayer de réduire la zone à scanner / repeindre
 ;;       phphint
 ;;       colorer : <a href=" >
-;;       bug issue169.js.erb
 
 ;;todo : Stickiness of Text Properties
 ;;todo : web-mode-engine-real-name
@@ -60,7 +60,7 @@
 ;;todo : commentaire d'une ligne ruby ou d'une ligne asp
 ;;todo : créer tag-token pour différentier de part-token : tag-token=attr,comment ???
 
-(defconst web-mode-version "8.0.13"
+(defconst web-mode-version "8.0.16"
   "Web Mode version.")
 
 (defgroup web-mode nil
@@ -1227,17 +1227,15 @@ Must be used in conjunction with web-mode-enable-block-face."
     (regexp-opt
      '("and" "as" "autoescape" "block" "blocktrans" "break"
        "cache" "call" "comment" "context" "continue" "csrf_token" "cycle"
-       "debug" "do"
-       "embed" "empty" "else" "elseif" "elsif" "elif"
+       "debug" "do" "embed" "empty" "else" "elseif" "elsif" "elif"
        "endautoescape" "endblock" "endblocktrans" "endcomment"
        "endcache" "endcall" "endembed" "endfilter" "endfor" "endif"
        "endifchanged" "endifequal" "endifnotequal" "endmacro" "endrandom" "endraw"
        "endsandbox" "endset" "endspaceless" "endtrans" "endverbatim" "endwith"
        "extends" "filter" "firstof" "flush" "for" "from"
        "if" "ifchanged" "ifequal" "ifnotequal" "ignore" "import"
-       "in" "include" "is"
-       "load" "macro" "missing" "none" "not" "now" "or" "pluralize"
-       "random" "raw" "regroup" "trans"
+       "in" "include" "is" "load" "macro" "missing" "none" "not" "now" "or"
+       "pluralize" "random" "raw" "regroup" "trans"
        "sandbox" "set" "spaceless" "ssi" "static" "templatetag" "trans"
        "use" "url" "var" "verbatim" "widthratio" "with"
 
@@ -1287,10 +1285,7 @@ Must be used in conjunction with web-mode-enable-block-face."
 
 (defvar web-mode-javascript-constants
   (regexp-opt
-   '("false" "null" "undefined"
-     "Infinity" "NaN"
-     "true" "arguments" "this"
-     ))
+   '("false" "null" "undefined" "Infinity" "NaN" "true" "arguments" "this"))
   "JavaScript constants.")
 
 (defvar web-mode-razor-keywords
@@ -2298,6 +2293,7 @@ Must be used in conjunction with web-mode-enable-block-face."
       ;;     (message "regexp=%S" web-mode-block-regexp)
       (while (and (< i 1200)
                   (> reg-end (point))
+                   web-mode-block-regexp
                   (re-search-forward web-mode-block-regexp reg-end t))
 
         (setq i (1+ i)
@@ -2733,7 +2729,6 @@ Must be used in conjunction with web-mode-enable-block-face."
       (looking-at delim-open)
       (setq delim-open (match-string-no-properties 0))
       (goto-char reg-end)
-;;      (message "delim-close=%S" delim-close)
       (looking-back delim-close reg-beg t)
       (setq delim-close (match-string-no-properties 0))
       ))
@@ -3100,6 +3095,47 @@ Must be used in conjunction with web-mode-enable-block-face."
 
     ))
 
+(defun web-mode-set-php-controls (reg-beg reg-end)
+  "web-mode-set-php-controls"
+  (goto-char reg-beg)
+  (let (match controls
+        (continue t)
+        (regexp "endif\\|endforeach\\|endfor\\|endwhile\\|else\\|elsif\\|if\\|foreach\\|for\\|while"))
+    (while continue
+      (if (not (web-mode-rsf regexp reg-end))
+          (setq continue nil)
+        (setq match (match-string-no-properties 0))
+        (cond
+         ((and (>= (length match) 4)
+               (string= match "else")
+               (looking-at-p "[ ]*:"))
+          (setq controls (append controls (list (cons 'inside "if"))))
+          )
+         ((and (>= (length match) 3)
+               (string= (substring match 0 3) "end"))
+          (setq controls (append controls (list (cons 'close (substring match 3)))))
+          )
+         ((and (progn (skip-chars-forward "[ ]") t)
+               (eq (char-after) ?\()
+               (web-mode-closing-paren reg-end)
+               (looking-at-p ")[ ]*:"))
+          (setq controls (append controls (list (cons 'open match))))
+          )
+         ) ; cond
+        ) ;if
+      ) ;while
+    (when (and controls (> (length controls) 1))
+      (setq controls (web-mode-block-controls-clean controls)))
+    controls))
+
+(defun web-mode-block-controls-clean (controls)
+  "clean block controls"
+  (when (and (eq (car (car controls)) 'open)
+             (member (cons 'close (cdr (car controls))) controls))
+    (setq controls nil)
+    )
+  controls)
+
 (defun web-mode-block-controls-set (reg-beg reg-end)
   "Set block properties"
   (save-excursion
@@ -3114,14 +3150,15 @@ Must be used in conjunction with web-mode-enable-block-face."
        ;; ((open . "if") (close . "if"))
        ;; -> nil
        ((string= web-mode-engine "php")
+        ;; (when (web-mode-block-starts-with "end\\(if\\|foreach\\|for\\|while\\)[ ]*;" reg-beg)
+        ;;   (setq controls (append controls (list (cons 'close (match-string-no-properties 1))))))
+        ;; (when (web-mode-block-ends-with "\\(else[ ]*:\\|elseif[^)]+)[ ]*:\\)" reg-beg)
+        ;;   (setq controls (append controls (list (cons 'inside "if")))))
+        ;; (when (web-mode-block-starts-with "\\(if\\|foreach\\|for\\|while\\)[^)]+)[ ]*:" reg-beg)
+        ;;   (setq controls (append controls (list (cons 'open (match-string-no-properties 1))))))
+        (setq controls (web-mode-set-php-controls reg-beg reg-end))
         (when (web-mode-block-starts-with "}" reg-beg)
           (setq controls (append controls (list (cons 'close "{")))))
-        (when (web-mode-block-starts-with "end\\(if\\|foreach\\|for\\|while\\)[ ]*;" reg-beg)
-          (setq controls (append controls (list (cons 'close (match-string-no-properties 1))))))
-        (when (web-mode-block-ends-with "\\(else\\|elseif\\)[ ]*:" reg-beg)
-          (setq controls (append controls (list (cons 'inside "if")))))
-        (when (web-mode-block-starts-with "\\(if\\|foreach\\|for\\|while\\)[^)]+)[ ]*:" reg-beg)
-          (setq controls (append controls (list (cons 'open (match-string-no-properties 1))))))
         (when (web-mode-block-ends-with "{" reg-beg)
           (setq controls (append controls (list (cons 'open "{")))))
         ) ; php
@@ -5614,6 +5651,7 @@ Must be used in conjunction with web-mode-enable-block-face."
           (setq offset (web-mode-bracket-indentation pos
                                                      block-column
                                                      indent-offset
+                                                     language
                                                      block-beg))
           ) ;t
 
@@ -5623,6 +5661,7 @@ Must be used in conjunction with web-mode-enable-block-face."
         (setq offset (web-mode-bracket-indentation pos
                                                    block-column
                                                    indent-offset
+                                                   "css"
                                                    block-beg))
         ) ;case style
 
@@ -5857,7 +5896,7 @@ Must be used in conjunction with web-mode-enable-block-face."
   (interactive)
   (unless limit (setq limit nil))
   (let (h out prev-line prev-indentation ctx)
-    (setq ctx (web-mode-count-opened-brackets pos limit))
+    (setq ctx (web-mode-count-opened-brackets pos "ruby" limit))
     (if (cddr ctx)
         (progn
 ;;          (message "ctx=%S" (car (cdr ctx)))
@@ -5987,7 +6026,7 @@ Must be used in conjunction with web-mode-enable-block-face."
       (cons line (current-indentation))
       )))
 
-(defun web-mode-bracket-indentation (pos initial-column language-offset &optional limit)
+(defun web-mode-bracket-indentation (pos initial-column language-offset language &optional limit)
   "Calc indent column."
   (interactive)
   (unless limit (setq limit nil))
@@ -6014,7 +6053,7 @@ Must be used in conjunction with web-mode-enable-block-face."
 ;;      (message "ic=%S point=%S limit=%S" initial-column (point) limit)
       (goto-char pos)
 
-      (setq block-info (web-mode-count-opened-brackets pos limit))
+      (setq block-info (web-mode-count-opened-brackets pos language limit))
 ;;      (message "bi=%S" block-info)
       (setq col initial-column)
       (if (cddr block-info)
@@ -6035,12 +6074,19 @@ Must be used in conjunction with web-mode-enable-block-face."
   (save-excursion
     (goto-char pos)
     (let ((continue t) pair controls control type (counter 0))
-      (when (get-text-property pos 'part-side)
-        (setq limit (web-mode-part-beginning-position pos)))
+      (when (null limit)
+        (cond
+         ((get-text-property pos 'part-side)
+          (setq limit (web-mode-part-beginning-position pos)))
+         ((get-text-property pos 'block-side)
+          (setq limit (web-mode-block-beginning-position pos)))
+         ) ;cond
+        ) ;when
       (while continue
         (cond
+         ((bobp)
+          (setq continue nil))
          ((not (web-mode-block-previous))
-;;          (message "ici%S" (point))
           (setq continue nil)
           )
          ((null (get-text-property (point) 'block-controls))
@@ -6048,7 +6094,6 @@ Must be used in conjunction with web-mode-enable-block-face."
          (t
           (setq controls (get-text-property (point) 'block-controls))
           (setq pair (car controls))
-;;          (message "%S-%S (%S) type=%S control=%S" type control (point) (car pair) (cdr pair))
           (cond
            ((eq (car pair) 'open)
             (setq counter (1+ counter)))
@@ -6064,7 +6109,7 @@ Must be used in conjunction with web-mode-enable-block-face."
       )))
 
 ;; return (opened-blocks . (col-num . arg-inline))
-(defun web-mode-count-opened-brackets (pos &optional limit)
+(defun web-mode-count-opened-brackets (pos language &optional limit)
   "Count opened brackets at POS."
   (interactive)
   (unless limit (setq limit nil))
@@ -6072,23 +6117,28 @@ Must be used in conjunction with web-mode-enable-block-face."
     (goto-char pos)
     (let ((continue t)
           (match "")
-          (case-found nil)
-          (case-count 0)
+;;          (case-num 0)
+;;          (is-breaked nil)
+;;          (case-found nil)
+;;          (case-count 0)
+          (switch-level 0)
           (queues (make-hash-table :test 'equal))
           (opened-blocks 0)
           (col-num 0)
-          (regexp "[\]\[}{)(]\\|[ ;\t]\\(break[ ;]\\|case[ :]\\|default[ :]\\)")
+;;          (regexp "[\]\[}{)(]\\|[ ;\t]\\(switch[ ]\\|break[ ;]\\|case[ :]\\|default[ :]\\)")
+          (regexp "[\]\[}{)(]\\|[ ;\t]\\(switch[ ]\\)")
           (num-opened 0)
-          close-char n queue arg-inline arg-inline-checked char lines tmp)
+          close-char n queue arg-inline arg-inline-checked char lines reg-end)
 
       (while (and continue (re-search-backward regexp limit t))
 ;;        (message "%S: %c" (point) (char-after))
         (unless (web-mode-is-comment-or-string)
           (setq match (match-string-no-properties 0))
+;;          (message "match=%S" match)
           (when (> (length match) 1)
 ;;            (message "match=%S" (match-string-no-properties 0))
             (skip-chars-forward "[ \t]")
-            (setq match (replace-regexp-in-string "\\`[ ;\t]*" "" (replace-regexp-in-string "[ :;]*\\'" "" match)))
+            (setq match (replace-regexp-in-string "\\`[ ;\t]*" "" (replace-regexp-in-string "[ ]*\\'" "" match)))
             )
           (setq char (aref match 0))
 ;;          (message "match:%S" match)
@@ -6126,20 +6176,16 @@ Must be used in conjunction with web-mode-enable-block-face."
 
             (when (and (= num-opened 1) (null arg-inline-checked))
               (setq arg-inline-checked t)
-;;              (when (not (member (char-after (1+ (point))) '(?\n ?\r ?\{)))
               (when (not (web-mode-is-void-after (1+ (point)))) ;(not (looking-at-p ".[ ]*$"))
-;;                (message "not void after %S" (1+ (point)))
                 (setq arg-inline t
-;;                      continue nil
                       col-num (1+ (current-column)))
                 (when (looking-at ".[ ]+")
                   (setq col-num (+ col-num (1- (length (match-string-no-properties 0)))))
                   )
-                ) ;when
-;;              (message "pt=%S" (point))
+                )
               )
 
-            ) ;case
+            ) ;case (?\{ ?\( ?\[)
 
            ((member char '(?\} ?\) ?\]))
             (setq queue (gethash char queues nil))
@@ -6148,14 +6194,74 @@ Must be used in conjunction with web-mode-enable-block-face."
             ;;            (message "%c queue=%S" char queue)
             )
 
-           ((member match '("case" "default"))
-            (setq case-found t
-                  case-count (1+ case-count))
+           ((string= match "switch")
+;;            (setq case-num 0)
+;;            (setq is-breaked nil)
+            ;;            (message "switch=%S" (match-end 1))
+            (let (tmp)
+              (when (null reg-end)
+                (cond
+                 ((member language '("css" "javascript"))
+                  (setq reg-end (web-mode-part-end-position pos))
+                  )
+                 (t
+                  (setq reg-end (web-mode-block-end-position pos))
+                  )
+                 )
+                ) ;when
+;;              (message "reg-end=%S" reg-end)
+              (setq tmp (web-mode-bracket-block-end-position (point) reg-end))
+              (when (and tmp (< pos tmp))
+;;                (message "bol(%S) is inside switch(%S)" pos (point))
+                (setq switch-level (1+ switch-level))
+                )
+              )
             )
 
-           ((string= match "break")
-            (setq case-count (1- case-count))
-            )
+;;            ((member match '("case" "default"))
+;;             ;;            (if (null is-breaked)
+;;             ;;                (setq is-breaked nil
+;;             ;;                      case-count (1- case-count)
+;;             ;;)
+;;             ;;                (setq is-breaked nil
+;;             ;;                      case-count (1- case-count))
+;; ;;            (when (null is-breaked)
+;; ;;              (setq is-breaked t
+;;                     ;;                    case-found t
+;; ;;                    case-count (1- case-count)
+;; ;;                    )
+;; ;;              ;;              ) ;if
+;;             ;;  )
+
+;; ;;            (when is-breaked
+
+;;             (setq case-num (1+ case-num))
+
+;;             (when (and (= case-num 1) (not is-breaked))
+;; ;;              (message "faked break = %S" (point))
+;;               (setq case-count (1- case-count))
+;;               )
+
+;; ;;            (setq is-breaked nil)
+
+;;             (setq case-count (1+ case-count))
+;;             ;;              )
+;; ;;            (message "%S: pt%S %S" match (point) is-breaked)
+
+;;             (cond
+;;              ((not (looking-back "\\(break[ ]*;\\|{\\)[ \t\n]*" limit t))
+;; ;;              (message "pas de break")
+;;               (setq case-count (1- case-count))
+;;               )
+;;              ) ;cond
+
+;;             )
+
+;;            ((string= match "break")
+;;             (setq is-breaked t
+;;                   case-count (1- case-count))
+;; ;;            (message "%S: pt%S %S" match (point) is-breaked)
+;;             )
 
            ) ;cond
 
@@ -6178,31 +6284,57 @@ Must be used in conjunction with web-mode-enable-block-face."
          queues)
 ;;        (message "lines=%S case-found=%S case-count=%S" lines case-found case-count)
         (setq opened-blocks (length lines))
-        (when (and case-found (> case-count 0))
-          (goto-char pos)
-          (back-to-indentation)
-;;          (message "%S" (point))
-;;          (when (not (looking-at-p "case\\|}"))
-;;            (setq opened-blocks (1+ opened-blocks))
-          (setq opened-blocks (+ opened-blocks case-count))
-;;            )
+
+;;         (when (and case-found (> case-count 0))
+;;           (goto-char pos)
+;;           (back-to-indentation)
+;; ;;          (message "%S" (point))
+;; ;;          (when (not (looking-at-p "case\\|}"))
+;; ;;            (setq opened-blocks (1+ opened-blocks))
+;;           (setq opened-blocks (+ opened-blocks case-count))
+;; ;;            )
+;;           ) ;when case-count
+
+;;        (setq opened-blocks (+ opened-blocks case-count))
+
+        (goto-char pos)
+        (when (and (> switch-level 0)
+                   (not (looking-at-p "\\(case[ ]\\|default[ :]\\)")))
+          (setq opened-blocks (+ opened-blocks switch-level))
           )
+
+        (when (member language '("css" "javascript"))
+          ;;                 (setq tmp (web-mode-count-opened-blocks pos))
+          ;;                   )
+          ;;        (setq opened-blocks (+ opened-blocks tmp))
+          (setq opened-blocks (+ opened-blocks (web-mode-count-opened-blocks pos)))
+          )
+
         ) ;unless
 
 ;;      (message "opened-blocks(%S) col-num(%S) arg-inline(%S)" opened-blocks col-num arg-inline)
 
-      ;; todo : si css ou js on ajouter les opened-blocks à opened-blocks
-
 ;;      (message "pos=%S ob=%S" pos (web-mode-count-opened-blocks pos))
-
-      (when (and (not arg-inline)
-                 (setq tmp (web-mode-count-opened-blocks pos)))
-        (setq opened-blocks (+ opened-blocks tmp))
-        )
 
       (cons opened-blocks (cons col-num arg-inline))
 
       )))
+
+(defun web-mode-bracket-block-end-position (pos limit)
+  "web-mode-blk-end-pos"
+  (save-excursion
+    (goto-char pos)
+    (setq pos nil)
+;;    (message "limit=%S pos=%S" limit (point))
+    (when (web-mode-sf "{" limit)
+      (backward-char)
+;;      (message "pos=%S" (point))
+      (when (web-mode-closing-paren limit)
+        (setq pos (point))
+        )
+      )
+    )
+  pos)
 
 (defun web-mode-is-void-after (pos)
   "Only spaces or comment after pos"
@@ -6370,9 +6502,7 @@ Must be used in conjunction with web-mode-enable-block-face."
       (exchange-point-and-mark)
       (setq web-mode-expand-previous-state "html-attr"))
 
-     ((and mark-active
-           (eq ?\< (char-after)))
-
+     ((and mark-active (eq ?\< (char-after)))
       (web-mode-element-parent)
       (if (= reg-beg (region-beginning))
           (mark-whole-buffer)
@@ -7997,6 +8127,16 @@ Must be used in conjunction with web-mode-enable-block-face."
         ) ;while
       pos)))
 
+(defun web-mode-closing-paren (limit)
+  "web-mode-closing-paren"
+  (let (pos)
+    (setq pos (web-mode-closing-paren-position (point) limit))
+    (if (or (null pos) (> pos limit))
+        nil
+      (goto-char pos)
+      t)
+    ))
+
 (defun web-mode-closing-paren-position (&optional pos limit)
   "Fetch closing paren."
   (save-excursion
@@ -8014,9 +8154,10 @@ Must be used in conjunction with web-mode-enable-block-face."
           regexp)
       (setq paren (string (char-after)))
       (setq regexp (cdr (assoc paren pairs)))
-      (if (null regexp) (setq continue nil))
-      (setq block-side (and (get-text-property pos 'block-side)
-                            (not (string= web-mode-engine "razor"))))
+      (if (null regexp)
+          (setq continue nil)
+        (setq block-side (and (get-text-property pos 'block-side)
+                              (not (string= web-mode-engine "razor")))))
       (while (and continue (re-search-forward regexp limit t))
         (unless (or (web-mode-is-comment-or-string)
                     (and block-side (not (get-text-property (point) 'block-side))))
@@ -8030,7 +8171,7 @@ Must be used in conjunction with web-mode-enable-block-face."
             )
           ;;        (message "pt=%S char=%S n=%S" (point) (string (char-before)) n)
           )
-        )
+        ) ;while
       ;;      (message "n=%S pt=%S" n pt)
       pt
       )))

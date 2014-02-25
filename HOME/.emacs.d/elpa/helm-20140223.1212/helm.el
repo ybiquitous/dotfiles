@@ -1792,6 +1792,7 @@ Argument SAVE-OR-RESTORE is one of save or restore."
      ;; one, position will be lost.
      (set-window-start (selected-window) (cdr helm-current-position) t))))
 
+
 (defun helm-frame-or-window-configuration (save-or-restore)
   "Save or restore last frame or window configuration.
 Possible value of SAVE-OR-RESTORE are 'save and 'restore.
@@ -1806,18 +1807,12 @@ window or frame configuration is saved/restored according to values of
       (restore (funcall (car helm-save-configuration-functions)
                         helm-last-frame-or-window-configuration)
                ;; Restore frame focus.
-               (let ((frame
-                      (and (listp helm-last-frame-or-window-configuration)
-                           (cl-caadr helm-last-frame-or-window-configuration))))
-                 ;; If `helm-save-configuration-functions' are window functions
-                 ;; frame should be nil, use current frame.
-                 (unless (framep frame)
-                   ;; This is needed for minibuffer own-frame config
-                   ;; when recursive minibuffers are in use.
-                   ;; e.g M-: + helm-minibuffer-history.
-                   (setq frame (if (minibufferp helm-current-buffer)
-                                   (selected-frame)
-                                   (last-nonminibuffer-frame))))
+               ;; This is needed for minibuffer own-frame config
+               ;; when recursive minibuffers are in use.
+               ;; e.g M-: + helm-minibuffer-history.
+               (let ((frame (if (minibufferp helm-current-buffer)
+                                (selected-frame)
+                                (last-nonminibuffer-frame))))
                  (select-frame-set-input-focus frame))))))
 
 (defun helm-split-window-default-fn (window)
@@ -3416,6 +3411,7 @@ to a list of forms.\n\n")
         (or (search-forward candidate-or-regexp nil t)
             (re-search-forward candidate-or-regexp nil t)
             (goto-char start))))
+    (forward-line 0) ; Avoid scrolling right on long lines.
     (helm-mark-current-line)))
 
 ;;;###autoload
