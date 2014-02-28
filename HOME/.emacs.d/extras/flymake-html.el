@@ -10,7 +10,7 @@
   '(("line \\([0-9]+\\) column \\([0-9]+\\) - \\(Warning\\|Error\\): \\(.*\\)" nil 1 2 4)))
 
 (defun flymake-html-command (filename)
-  (list "tidy" filename))
+  (list "tidy" "-utf8" filename))
 
 (defun flymake-html-load ()
   (interactive)
