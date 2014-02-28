@@ -48,4 +48,4 @@ Install npm
     sudo add-apt-repository ppa:chris-lea/node.js
     sudo apt-get update
     sudo apt-get install nodejs
-    sudo npm -g install jsonlint jslint jshint js-beautify
+    sudo npm -g install jsonlint jslint jshint js-beautify csslint
