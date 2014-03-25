@@ -1,24 +1,25 @@
-#!/bin/sh
+#!/bin/bash
 
-version=$1
-case "$version" in
-    "6" | "7")
-        export JAVA_HOME=/usr/lib/jvm/java-${version}-openjdk-amd64
-        ;;
-    "sun6")
-        export JAVA_HOME=$HOME/java/jdk1.6
-        ;;
-    "sun7")
-        export JAVA_HOME=$HOME/java/jdk1.7
-        ;;
-    "sun8")
-        export JAVA_HOME=$HOME/java/jdk1.8
-        ;;
-    *)
-        cmd=$(basename $0)
-        echo "Usage:   source[.] $cmd < [6-7] or sun[6-8] >"
-        exit
-        ;;
+PS3="Which version? "
+select version in "OpenJDK 6" "OpenJDK 7" "Oracle JDK 6" "Oracle JDK 7" "Oracle JDK 8"; do
+    if [ -z "$version" ]; then
+        continue
+    else
+        break
+    fi
+done
+
+case $REPLY in
+    1)
+        export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64 ;;
+    2)
+        export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64 ;;
+    3)
+        export JAVA_HOME=$HOME/java/jdk1.6 ;;
+    4)
+        export JAVA_HOME=$HOME/java/jdk1.7 ;;
+    5)
+        export JAVA_HOME=$HOME/java/jdk1.8 ;;
 esac
 
 PATH=${PATH#$JAVA_HOME/bin:}
