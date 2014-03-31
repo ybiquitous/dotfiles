@@ -5,7 +5,7 @@ select version in "OpenJDK 6" "OpenJDK 7" "Oracle JDK 6" "Oracle JDK 7" "Oracle 
     if [ -z "$version" ]; then
         continue
     else
-        echo Setting \"$version\" ...
+        echo Switchhing \"$version\" ...
         echo
         break
     fi
