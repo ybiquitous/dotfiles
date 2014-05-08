@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (flymake-scala-load) "flymake-scala" "../../../../../.emacs.d/elpa/flymake-scala-20131028/flymake-scala.el"
-;;;;;;  "d728a4692738ed4adc9058c7cbe9e085")
+;;;;;;  "a9c639f741fbe7745a0b2dcad5bd1010")
 ;;; Generated autoloads from ../../../../../.emacs.d/elpa/flymake-scala-20131028/flymake-scala.el
 
 (autoload 'flymake-scala-load "flymake-scala" "\
@@ -16,7 +16,7 @@ Configure flymake mode to check scala syntax.
 
 ;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/flymake-scala-20131028/flymake-scala-pkg.el"
 ;;;;;;  "../../../../../.emacs.d/elpa/flymake-scala-20131028/flymake-scala.el")
-;;;;;;  (21101 51114 513191 631000))
+;;;;;;  (21355 18062 629356 374000))
 
 ;;;***
 

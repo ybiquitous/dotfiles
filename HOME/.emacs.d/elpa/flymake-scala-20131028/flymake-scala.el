@@ -32,11 +32,17 @@
   :group 'flymake-scala
   :type 'string)
 
+(defcustom flymake-scala-compile-classpath "-classpath ."
+  "Scala Compile Classpath"
+  :group 'flymake-scala
+  :type 'string)
+
 (defun flymake-scala-command (filename)
   "Construct a command which can compile scala source."
   (append
    (list flymake-scala-compiler)
    (split-string flymake-scala-compile-options " ")
+   (split-string flymake-scala-compile-classpath " ")
    (list filename)))
 
 ;;;###autoload
