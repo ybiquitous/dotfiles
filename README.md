@@ -38,9 +38,9 @@ JDK font setting on Linux
 -------------------------
 
     cd $JAVA_HOME/jre/lib/fonts/
-    sudo mkdir fallback
+    mkdir fallback
     cd fallback
-    sudo ln -s /usr/share/fonts/truetype/****.ttf .
+    ln -s /usr/share/fonts/truetype/****.ttf .
 
 Install npm
 ---------------------------------
