@@ -1,1 +1,0 @@
-scala ~/bin/chk_nonascii_dir/chk_nonascii.jar $*
