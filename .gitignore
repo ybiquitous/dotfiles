@@ -6,5 +6,6 @@ HOME/.emacs.d/ac-comphist.dat
 HOME/.emacs.d/elpa/archives
 HOME/.emacs.d/elpa/*.txt
 HOME/.emacs.d/tramp
+HOME/.emacs.d/eshell/history
 HOME/.zsh/.zcompdump
 HOME/.zsh/Completion
