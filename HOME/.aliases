@@ -1,3 +1,4 @@
+alias ls='ls -F'
 alias ll='ls -l'
 alias la='ls -la'
 alias rm='/bin/rm -i'
