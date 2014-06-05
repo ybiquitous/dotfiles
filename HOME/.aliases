@@ -1,6 +1,5 @@
-alias ls='ls -F'
-alias ll='ls -l'
-alias la='ls -la'
+alias ll='ls -lF'
+alias la='ls -laF'
 alias rm='/bin/rm -i'
 alias mv='mv -i'
 alias df='df -h'
