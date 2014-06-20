@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (json-mode-beautify json-mode-show-path json-mode)
-;;;;;;  "json-mode" "json-mode.el" (21384 14956 754829 986000))
+;;;;;;  "json-mode" "json-mode.el" (21411 37740 448246 983000))
 ;;; Generated autoloads from json-mode.el
 
 (autoload 'json-mode "json-mode" "\
@@ -26,8 +26,8 @@ Beautify / pretty-print the active region (or the entire buffer if no active reg
 
 ;;;***
 
-;;;### (autoloads nil nil ("json-mode-pkg.el") (21384 14956 773602
-;;;;;;  352000))
+;;;### (autoloads nil nil ("json-mode-pkg.el") (21411 37740 477171
+;;;;;;  862000))
 
 ;;;***
 

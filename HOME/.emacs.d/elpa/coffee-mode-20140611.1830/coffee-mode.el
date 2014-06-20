@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2010 Chris Wanstrath
 
-;; Version: 20140524.2002
+;; Version: 20140611.1830
 ;; X-Original-Version: 0.5.2
 ;; Keywords: CoffeeScript major mode
 ;; Author: Chris Wanstrath <chris@ozmm.org>
@@ -698,8 +698,9 @@ output in a compilation buffer."
     ;; Last line was a comment so this one should probably be,
     ;; too. Makes it easy to write multi-line comments (like the one I'm
     ;; writing right now).
-    (when (coffee-previous-line-is-single-line-comment)
-      (insert "# "))))
+    (unless (and auto-fill-function comment-auto-fill-only-comments)
+      (when (coffee-previous-line-is-single-line-comment)
+        (insert "# ")))))
 
 (defun coffee-dedent-line-backspace (arg)
   "Unindent to increment of `coffee-tab-width' with ARG==1 when
