@@ -65,6 +65,7 @@
             ;; override 'indent-region' key
             (require 'js-beautify)
             (local-set-key (kbd "C-M-\\") 'js-beautify)
+            (linum-mode t)
             ))
 
 ;; json
@@ -152,3 +153,6 @@
 (add-hook 'html-mode-hook 'emmet-mode)
 (add-hook 'css-mode-hook  'emmet-mode)
 (add-hook 'web-mode-hook  'emmet-mode)
+(add-hook 'emmet-mode-hook (lambda ()
+                             (custom-set-variables '(emmet-indentation 2))
+                             ))
