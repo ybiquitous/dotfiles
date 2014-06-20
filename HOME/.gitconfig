@@ -6,13 +6,9 @@
 	ci = commit
 	co = checkout
 	br = branch
-	di = diff --color=auto --word-diff
+	di = diff --color=auto
 [github]
 	user = ybiquitous
 	token = c10aa4d340230cbb510969ad260e5e56
-#[color]
-#	diff = auto
-#[color "diff"]
-#	meta = blue bold
 [core]
-	pager = 
+	pager =

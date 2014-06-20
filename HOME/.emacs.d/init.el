@@ -48,7 +48,6 @@
 (global-set-key (kbd "C-?")     'help-command)
 (global-set-key (kbd "C-!")     'linum-mode)
 (global-set-key (kbd "C-c l")   'toggle-truncate-lines)
-(global-set-key (kbd "C-c h")   'helm-mode)
 (global-set-key (kbd "C-c C-v") 'browse-url-of-buffer)
 
 ;; package
@@ -74,11 +73,18 @@
 ;; css
 (add-hook 'css-mode-hook 'flymake-css-load)
 
+;; java
+(add-hook 'java-mode-hook
+          (lambda()
+            (linum-mode t)
+            ))
+
 ;; scala
 (add-hook 'scala-mode-hook
           (lambda()
             (custom-set-variables '(flymake-scala-compiler "fsc"))
             (flymake-scala-load)
+            (linum-mode t)
             ))
 
 ;; perl
@@ -97,27 +103,13 @@
 
 ;; yasnippet
 (yas-global-mode t)
-(defun my-yas-prompt (prompt choices &optional display-fn)
-  (let* ((names (loop for choice in choices
-                      collect (or (and display-fn (funcall display-fn choice))
-                                  choice)))
-         (selected (helm-other-buffer
-                    `(((name . ,(format "%s" prompt))
-                       (candidates . names)
-                       (action . (("Insert snippet" . (lambda (arg) arg))))))
-                    "*helm yas/prompt*")))
-    (if selected
-        (let ((n (position selected names :test 'equal)))
-          (nth n choices))
-      (signal 'quit "user quit!"))))
-(custom-set-variables '(yas-prompt-functions '(my-yas-prompt)))
 
 ;; web
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 (require 'flymake-html)
-(add-hook 'web-mode-hook 'flymake-html-load)
+;;(add-hook 'web-mode-hook 'flymake-html-load)
 
 ;; xml
 (add-hook 'nxml-mode-hook
