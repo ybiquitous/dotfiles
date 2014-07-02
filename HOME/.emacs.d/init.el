@@ -71,7 +71,11 @@
 (add-hook 'json-mode-hook 'flymake-json-maybe-load)
 
 ;; css
-(add-hook 'css-mode-hook 'flymake-css-load)
+(add-hook 'css-mode-hook
+          (lambda()
+            (custom-set-variables '(css-indent-offset 2))
+            (flymake-css-load)
+            ))
 
 ;; java
 (add-hook 'java-mode-hook
