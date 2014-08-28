@@ -14,6 +14,9 @@ export PATH=$JAVA_HOME/bin:$PATH
 [ -f $HOME/perl5/perlbrew/etc/bashrc ] && source $HOME/perl5/perlbrew/etc/bashrc
 export PERL_CPANM_OPT="--prompt --reinstall --mirror http://ftp.jaist.ac.jp/pub/CPAN/"
 
+# git
+export PATH=/usr/share/doc/git/contrib/diff-highlight:$PATH
+
 # general
 export PATH=$HOME/bin:$PATH
-export MANPATH=$HOME/man:
+export MANPATH=$HOME/man:$MANPATH

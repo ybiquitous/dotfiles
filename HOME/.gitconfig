@@ -6,9 +6,15 @@
 	ci = commit
 	co = checkout
 	br = branch
-	di = diff --color=auto
+	di = diff
 [github]
 	user = ybiquitous
 	token = c10aa4d340230cbb510969ad260e5e56
 [core]
 	pager =
+[color]
+	ui = auto
+[pager]
+	diff = diff-highlight
+	show = diff-highlight
+	log = diff-highlight
