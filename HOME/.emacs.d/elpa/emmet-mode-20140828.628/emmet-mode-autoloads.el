@@ -3,9 +3,9 @@
 ;;; Code:
 
 
-;;;### (autoloads (emmet-prev-edit-point emmet-next-edit-point emmet-preview
-;;;;;;  emmet-expand-yas emmet-mode emmet-expand-line) "emmet-mode"
-;;;;;;  "emmet-mode.el" (21502 32676 558321 623000))
+;;;### (autoloads (emmet-prev-edit-point emmet-next-edit-point emmet-wrap-with-markup
+;;;;;;  emmet-preview emmet-expand-yas emmet-mode emmet-expand-line)
+;;;;;;  "emmet-mode" "emmet-mode.el" (21518 20845 473377 9000))
 ;;; Generated autoloads from emmet-mode.el
 
 (autoload 'emmet-expand-line "emmet-mode" "\
@@ -54,6 +54,11 @@ accept it or skip it.
 
 \(fn BEG END)" t nil)
 
+(autoload 'emmet-wrap-with-markup "emmet-mode" "\
+Wrap region with markup.
+
+\(fn WRAP-WITH)" t nil)
+
 (autoload 'emmet-next-edit-point "emmet-mode" "\
 
 
@@ -66,8 +71,8 @@ accept it or skip it.
 
 ;;;***
 
-;;;### (autoloads nil nil ("emmet-mode-pkg.el") (21502 32676 576502
-;;;;;;  501000))
+;;;### (autoloads nil nil ("emmet-mode-pkg.el") (21518 20845 502925
+;;;;;;  621000))
 
 ;;;***
 
