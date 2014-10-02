@@ -134,6 +134,13 @@
             (local-set-key (kbd "M-n") 'comint-next-matching-input-from-input)
             ))
 
+;; shell script
+(add-hook 'sh-mode-hook
+          (lambda ()
+            (setq sh-basic-offset 2)
+            (setq sh-indentation 2)
+            ))
+
 ;; vc-mode bug hack
 ;; See http://www.lares.dti.ne.jp/~foozy/fujiguruma/scm/cvs-emacs.html
 (defadvice vc-before-save
@@ -149,6 +156,7 @@
 (add-hook 'html-mode-hook 'emmet-mode)
 (add-hook 'css-mode-hook  'emmet-mode)
 (add-hook 'web-mode-hook  'emmet-mode)
-(add-hook 'emmet-mode-hook (lambda ()
-                             (custom-set-variables '(emmet-indentation 2))
-                             ))
+(add-hook 'emmet-mode-hook
+          (lambda ()
+            (custom-set-variables '(emmet-indentation 2))
+            ))
