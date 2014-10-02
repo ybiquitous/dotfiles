@@ -16,7 +16,8 @@
  '(make-backup-files nil)
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
- '(scroll-bar-mode 'right)
+ '(scroll-bar-mode (quote right))
+ '(sh-basic-offset 2)
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(size-indication-mode nil)
@@ -132,13 +133,6 @@
             (comint-read-input-ring t)
             (local-set-key (kbd "M-p") 'comint-previous-matching-input-from-input)
             (local-set-key (kbd "M-n") 'comint-next-matching-input-from-input)
-            ))
-
-;; shell script
-(add-hook 'sh-mode-hook
-          (lambda ()
-            (setq sh-basic-offset 2)
-            (setq sh-indentation 2)
             ))
 
 ;; vc-mode bug hack
