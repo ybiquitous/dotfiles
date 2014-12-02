@@ -17,11 +17,10 @@
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(scroll-bar-mode (quote right))
- '(sh-basic-offset 2)
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(size-indication-mode nil)
- '(tab-width 4)
+ '(tab-width 2)
  '(tool-bar-mode nil)
  '(transient-mark-mode t)
  '(x-select-enable-clipboard t))
@@ -57,15 +56,22 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
+;; shellscript
+(add-hook 'sh-mode-hook
+          (lambda()
+            (custom-set-variables '(sh-basic-offset tab-width))
+            (linum-mode t)
+            ))
+
 ;; javascript
 (add-hook 'js-mode-hook
           (lambda()
-            (custom-set-variables '(js-indent-level 2))
+            (custom-set-variables '(js-indent-level tab-width))
             (flymake-jshint-load)
+            (linum-mode t)
             ;; override 'indent-region' key
             (require 'js-beautify)
             (local-set-key (kbd "C-M-\\") 'js-beautify)
-            (linum-mode t)
             ))
 
 ;; json
@@ -74,8 +80,9 @@
 ;; css
 (add-hook 'css-mode-hook
           (lambda()
-            (custom-set-variables '(css-indent-offset 2))
+            (custom-set-variables '(css-indent-offset tab-width))
             (flymake-css-load)
+            (linum-mode t)
             ))
 
 ;; java
@@ -113,8 +120,16 @@
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-(require 'flymake-html)
-;;(add-hook 'web-mode-hook 'flymake-html-load)
+;;(require 'flymake-html)
+(add-hook 'web-mode-hook
+          (lambda ()
+            (custom-set-variables
+             '(web-mode-markup-indent-offset tab-width)
+             '(web-mode-code-indent-offset tab-width)
+             '(web-mode-css-indent-offset tab-width)
+             '(web-mode-sql-indent-offset tab-width))
+            (linum-mode t)
+            ))
 
 ;; xml
 (add-hook 'nxml-mode-hook
@@ -123,6 +138,7 @@
              '(nxml-slash-auto-complete-flag t)
              '(nxml-auto-insert-xml-declaration-flag t)
              '(nxml-default-buffer-file-coding-system 'utf-8-dos))
+            (linum-mode t)
             ))
 
 ;; shell
@@ -152,5 +168,5 @@
 (add-hook 'web-mode-hook  'emmet-mode)
 (add-hook 'emmet-mode-hook
           (lambda ()
-            (custom-set-variables '(emmet-indentation 2))
+            (custom-set-variables '(emmet-indentation tab-width))
             ))

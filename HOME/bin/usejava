@@ -2,26 +2,26 @@
 
 PS3="Which version? "
 select version in "OpenJDK 6" "OpenJDK 7" "Oracle JDK 6" "Oracle JDK 7" "Oracle JDK 8"; do
-    if [ -z "$version" ]; then
-        continue
-    else
-        echo Switchhing \"$version\" ...
-        echo
-        break
-    fi
+  if [ -z "$version" ]; then
+    continue
+  else
+    echo Switchhing \"$version\" ...
+    echo
+    break
+  fi
 done
 
 case $REPLY in
-    1)
-        export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64 ;;
-    2)
-        export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64 ;;
-    3)
-        export JAVA_HOME=$HOME/java/jdk1.6 ;;
-    4)
-        export JAVA_HOME=$HOME/java/jdk1.7 ;;
-    5)
-        export JAVA_HOME=$HOME/java/jdk1.8 ;;
+  1)
+    export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64 ;;
+  2)
+    export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64 ;;
+  3)
+    export JAVA_HOME=$HOME/java/jdk1.6 ;;
+  4)
+    export JAVA_HOME=$HOME/java/jdk1.7 ;;
+  5)
+    export JAVA_HOME=$HOME/java/jdk1.8 ;;
 esac
 
 PATH=${PATH#$JAVA_HOME/bin:}
