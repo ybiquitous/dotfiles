@@ -20,12 +20,6 @@ Emacs Upgrade All Packages
     Type 'U'
     Type 'x'
 
-Enable js-mode in Auto Complete Mode
-------------------------------------
-
-    cd HOME/.emacs.d/elpa/auto-complete-*/dict
-    ln -s javascript-mode js-mode
-
 Add yasnippet of web-mode
 ------------------------------------
 
