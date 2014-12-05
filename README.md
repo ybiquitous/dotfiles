@@ -1,7 +1,7 @@
 For Windows
 -----------
 
-    Use 'mklink' as Administrator on Windows, instead 'ln -s'.
+  Use 'mklink' as Administrator on Windows, instead 'ln -s'.
 
 Update home directory names
 ---------------------------
