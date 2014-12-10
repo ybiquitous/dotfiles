@@ -69,6 +69,10 @@
             (custom-set-variables '(js-indent-level tab-width))
             (flymake-jshint-load)
             (linum-mode t)
+            (electric-indent-mode t)
+            (c-set-offset 'case-label '+)
+            (local-set-key (kbd "C-c C-b") 'web-beautify-js)
+            (local-set-key (kbd "C-c C-d") 'js-doc-insert-function-doc)
             ))
 
 ;; json
