@@ -69,9 +69,6 @@
             (custom-set-variables '(js-indent-level tab-width))
             (flymake-jshint-load)
             (linum-mode t)
-            ;; override 'indent-region' key
-            (require 'js-beautify)
-            (local-set-key (kbd "C-M-\\") 'js-beautify)
             ))
 
 ;; json
