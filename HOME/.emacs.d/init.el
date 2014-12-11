@@ -5,25 +5,38 @@
  ;; If there is more than one, they won't work right.
  '(auto-save-default nil)
  '(blink-cursor-mode nil)
+ '(css-indent-offset tab-width)
  '(column-number-mode t)
  '(electric-pair-mode t)
+ '(emmet-indentation tab-width)
+ '(flymake-scala-compiler "fsc")
  '(global-font-lock-mode t)
  '(global-hl-line-mode t)
+ '(global-linum-mode t)
  '(global-whitespace-mode t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
+ '(js-indent-level tab-width)
  '(line-number-mode t)
  '(make-backup-files nil)
+ '(nxml-slash-auto-complete-flag t)
+ '(nxml-auto-insert-xml-declaration-flag t)
+ '(nxml-default-buffer-file-coding-system 'utf-8)
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(scroll-bar-mode (quote right))
+ '(sh-basic-offset tab-width)
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(size-indication-mode nil)
  '(tab-width 2)
  '(tool-bar-mode nil)
  '(transient-mark-mode t)
+ '(web-mode-markup-indent-offset tab-width)
+ '(web-mode-code-indent-offset tab-width)
+ '(web-mode-css-indent-offset tab-width)
+ '(web-mode-sql-indent-offset tab-width)
  '(whitespace-action (quote (auto-cleanup)))
  '(whitespace-display-mappings (quote ((space-mark 12288 [9633]) (tab-mark 9 [187 9] [92 9]))))
  '(whitespace-space-regexp "\\(\\u3000+\\)")
@@ -50,7 +63,6 @@
 (global-set-key (kbd "C-h")     'delete-backward-char)
 (global-set-key (kbd "M-h")     'backward-kill-word)
 (global-set-key (kbd "C-?")     'help-command)
-(global-set-key (kbd "C-!")     'linum-mode)
 (global-set-key (kbd "C-c l")   'toggle-truncate-lines)
 (global-set-key (kbd "C-c C-v") 'browse-url-of-buffer)
 
@@ -60,19 +72,10 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
-;; shellscript
-(add-hook 'sh-mode-hook
-          (lambda()
-            (setq sh-basic-offset tab-width)
-            (linum-mode t)
-            ))
-
 ;; javascript
 (add-hook 'js-mode-hook
           (lambda()
-            (setq js-indent-level tab-width)
             (flymake-jshint-load)
-            (linum-mode t)
             (electric-indent-mode t)
             (c-set-offset 'case-label '+)
             (local-set-key (kbd "C-c C-b") 'web-beautify-js)
@@ -80,28 +83,21 @@
             ))
 
 ;; json
-(add-hook 'json-mode-hook 'flymake-json-maybe-load)
+(add-hook 'json-mode-hook
+          (lambda()
+            (flymake-json-maybe-load)
+            ))
 
 ;; css
 (add-hook 'css-mode-hook
           (lambda()
-            (setq css-indent-offset tab-width)
             (flymake-css-load)
-            (linum-mode t)
-            ))
-
-;; java
-(add-hook 'java-mode-hook
-          (lambda()
-            (linum-mode t)
             ))
 
 ;; scala
 (add-hook 'scala-mode-hook
           (lambda()
-            (setq flymake-scala-compiler "fsc")
             (flymake-scala-load)
-            (linum-mode t)
             ))
 
 ;; perl
@@ -126,23 +122,6 @@
 (add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 ;;(require 'flymake-html)
-(add-hook 'web-mode-hook
-          (lambda ()
-            (setq web-mode-markup-indent-offset tab-width)
-            (setq web-mode-code-indent-offset tab-width)
-            (setq web-mode-css-indent-offset tab-width)
-            (setq web-mode-sql-indent-offset tab-width)
-            (linum-mode t)
-            ))
-
-;; xml
-(add-hook 'nxml-mode-hook
-          (lambda ()
-            (setq nxml-slash-auto-complete-flag t)
-            (setq nxml-auto-insert-xml-declaration-flag t)
-            (setq nxml-default-buffer-file-coding-system 'utf-8-dos)
-            (linum-mode t)
-            ))
 
 ;; shell
 (add-hook 'shell-mode-hook
@@ -162,14 +141,10 @@
   (and vc-make-backup-files ad-do-it))
 
 ;; https://github.com/k1LoW/emacs-drill-instructor/wiki
-(require 'drill-instructor)
+;;(require 'drill-instructor)
 ;;(setq drill-instructor-global t)
 
 ;; emmet(zen-coding)
 (add-hook 'html-mode-hook 'emmet-mode)
 (add-hook 'css-mode-hook  'emmet-mode)
 (add-hook 'web-mode-hook  'emmet-mode)
-(add-hook 'emmet-mode-hook
-          (lambda ()
-            (setq emmet-indentation tab-width)
-            ))
