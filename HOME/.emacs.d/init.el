@@ -9,6 +9,7 @@
  '(electric-pair-mode t)
  '(global-font-lock-mode t)
  '(global-hl-line-mode t)
+ '(global-whitespace-mode t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
@@ -23,6 +24,9 @@
  '(tab-width 2)
  '(tool-bar-mode nil)
  '(transient-mark-mode t)
+ '(whitespace-action (quote (auto-cleanup)))
+ '(whitespace-display-mappings (quote ((space-mark 12288 [9633]) (tab-mark 9 [187 9] [92 9]))))
+ '(whitespace-space-regexp "\\(\\u3000+\\)")
  '(x-select-enable-clipboard t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
