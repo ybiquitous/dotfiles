@@ -59,14 +59,14 @@
 ;; shellscript
 (add-hook 'sh-mode-hook
           (lambda()
-            (custom-set-variables '(sh-basic-offset tab-width))
+            (setq sh-basic-offset tab-width)
             (linum-mode t)
             ))
 
 ;; javascript
 (add-hook 'js-mode-hook
           (lambda()
-            (custom-set-variables '(js-indent-level tab-width))
+            (setq js-indent-level tab-width)
             (flymake-jshint-load)
             (linum-mode t)
             (electric-indent-mode t)
@@ -81,7 +81,7 @@
 ;; css
 (add-hook 'css-mode-hook
           (lambda()
-            (custom-set-variables '(css-indent-offset tab-width))
+            (setq css-indent-offset tab-width)
             (flymake-css-load)
             (linum-mode t)
             ))
@@ -95,7 +95,7 @@
 ;; scala
 (add-hook 'scala-mode-hook
           (lambda()
-            (custom-set-variables '(flymake-scala-compiler "fsc"))
+            (setq flymake-scala-compiler "fsc")
             (flymake-scala-load)
             (linum-mode t)
             ))
@@ -124,21 +124,19 @@
 ;;(require 'flymake-html)
 (add-hook 'web-mode-hook
           (lambda ()
-            (custom-set-variables
-             '(web-mode-markup-indent-offset tab-width)
-             '(web-mode-code-indent-offset tab-width)
-             '(web-mode-css-indent-offset tab-width)
-             '(web-mode-sql-indent-offset tab-width))
+            (setq web-mode-markup-indent-offset tab-width)
+            (setq web-mode-code-indent-offset tab-width)
+            (setq web-mode-css-indent-offset tab-width)
+            (setq web-mode-sql-indent-offset tab-width)
             (linum-mode t)
             ))
 
 ;; xml
 (add-hook 'nxml-mode-hook
           (lambda ()
-            (custom-set-variables
-             '(nxml-slash-auto-complete-flag t)
-             '(nxml-auto-insert-xml-declaration-flag t)
-             '(nxml-default-buffer-file-coding-system 'utf-8-dos))
+            (setq nxml-slash-auto-complete-flag t)
+            (setq nxml-auto-insert-xml-declaration-flag t)
+            (setq nxml-default-buffer-file-coding-system 'utf-8-dos)
             (linum-mode t)
             ))
 
@@ -169,5 +167,5 @@
 (add-hook 'web-mode-hook  'emmet-mode)
 (add-hook 'emmet-mode-hook
           (lambda ()
-            (custom-set-variables '(emmet-indentation tab-width))
+            (setq emmet-indentation tab-width)
             ))
