@@ -85,7 +85,7 @@
 ;; json
 (add-hook 'json-mode-hook
           (lambda()
-            (flymake-json-maybe-load)
+            (flymake-json-load)
             ))
 
 ;; css
