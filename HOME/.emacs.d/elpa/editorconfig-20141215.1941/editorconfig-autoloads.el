@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (edconf-find-file-hook) "editorconfig" "editorconfig.el"
-;;;;;;  (21547 28426 433364 594000))
+;;;;;;  (21648 1515 221118 469000))
 ;;; Generated autoloads from editorconfig.el
 
 (autoload 'edconf-find-file-hook "editorconfig" "\
@@ -16,8 +16,8 @@
 
 ;;;***
 
-;;;### (autoloads nil nil ("editorconfig-pkg.el") (21547 28426 456675
-;;;;;;  375000))
+;;;### (autoloads nil nil ("editorconfig-pkg.el") (21648 1515 313634
+;;;;;;  173000))
 
 ;;;***
 
