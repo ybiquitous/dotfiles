@@ -37,6 +37,8 @@
  '(web-mode-code-indent-offset tab-width)
  '(web-mode-css-indent-offset tab-width)
  '(web-mode-sql-indent-offset tab-width)
+ '(web-mode-script-padding tab-width)
+ '(web-mode-style-padding tab-width)
  '(whitespace-action (quote (auto-cleanup)))
  '(whitespace-display-mappings (quote ((space-mark 12288 [9633]) (tab-mark 9 [187 9] [92 9]))))
  '(whitespace-space-regexp "\\(\\u3000+\\)")
