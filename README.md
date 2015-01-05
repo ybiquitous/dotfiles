@@ -35,7 +35,7 @@
     $ sudo add-apt-repository ppa:chris-lea/node.js
     $ sudo apt-get update
     $ sudo apt-get install nodejs
-    $ sudo npm -g install jsonlint jslint jshint js-beautify csslint markdown
+    $ sudo npm -g install jsonlint jshint csslint js-beautify markdown
 
 # Eclipse keybind (based on Emacs)
 
@@ -43,4 +43,3 @@
   - Maximize Active View or Editor: __Alt+M__
   - Open Search Dialog: __Alt+H__
   - Toggle Split Editor (Horizontal): __Ctrl+}__
-
