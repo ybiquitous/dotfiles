@@ -9,7 +9,6 @@
  '(css-indent-offset tab-width)
  '(electric-pair-mode t)
  '(emmet-indentation tab-width)
- '(flymake-scala-compiler "fsc")
  '(global-font-lock-mode t)
  '(global-hl-line-mode t)
  '(global-linum-mode t)
@@ -74,43 +73,20 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
+;; flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 ;; javascript
 (add-hook 'js-mode-hook
           (lambda()
-            (flymake-jshint-load)
             (electric-indent-mode t)
             (c-set-offset 'case-label '+)
             (local-set-key (kbd "C-c C-b") 'web-beautify-js)
             (local-set-key (kbd "C-c C-d") 'js-doc-insert-function-doc)
             ))
 
-;; json
-(add-hook 'json-mode-hook
-          (lambda()
-            (flymake-json-load)
-            ))
-
-;; css
-(add-hook 'css-mode-hook
-          (lambda()
-            (flymake-css-load)
-            ))
-
-;; scala
-(add-hook 'scala-mode-hook
-          (lambda()
-            (flymake-scala-load)
-            ))
-
 ;; perl
 (defalias 'perl-mode 'cperl-mode)
-(add-hook 'cperl-mode-hook
-          (lambda()
-            (flymake-mode t)
-            ))
-
-;; ruby
-(add-hook 'ruby-mode-hook 'flymake-ruby-load)
 
 ;; auto-complete
 (require 'auto-complete-config)
@@ -123,7 +99,6 @@
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.jsp$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html$" . web-mode))
-;;(require 'flymake-html)
 
 ;; shell
 (add-hook 'shell-mode-hook
