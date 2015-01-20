@@ -1,7 +1,7 @@
 # common
 export HISTFILE=$HOME/.history
 export HISTSIZE=50000
-export EDITOR='emacs -nw'
+export EDITOR='emacs'
 
 # java
 export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
