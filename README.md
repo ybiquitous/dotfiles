@@ -35,7 +35,7 @@
     $ sudo add-apt-repository ppa:chris-lea/node.js
     $ sudo apt-get update
     $ sudo apt-get install nodejs
-    $ sudo npm -g install jsonlint jshint csslint js-beautify markdown
+    $ sudo npm install -g jsonlint jshint csslint js-beautify markdown jscs jscs-jsdoc
 
 # Eclipse keybind (based on Emacs)
 
