@@ -1,12 +1,11 @@
 HOME/.emacs.d/auto-save-list
-HOME/.emacs.d/*.elc
 HOME/.emacs.d/**/*.elc
-HOME/.emacs.d/**/**/*.elc
 HOME/.emacs.d/ac-comphist.dat
 HOME/.emacs.d/elpa/archives
 HOME/.emacs.d/elpa/*.txt
 HOME/.emacs.d/tramp
 HOME/.emacs.d/eshell/history
+HOME/.emacs.d/project-explorer-cache
+HOME/.emacs.d/init-env.el
 HOME/.zsh/.zcompdump
 HOME/.zsh/Completion
-HOME/.emacs.d/project-explorer-cache

@@ -49,6 +49,8 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:background "black" :foreground "white" :height 110)))))
 
+(load-file "~/.emacs.d/init-env.elc")
+
 (eval-after-load "dired-aux"
   '(add-to-list 'dired-compress-file-suffixes '("\\.zip\\'" ".zip" "unzip")))
 
