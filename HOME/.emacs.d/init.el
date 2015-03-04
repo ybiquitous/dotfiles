@@ -49,18 +49,16 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:background "black" :foreground "white")))))
 
-(load-file "~/.emacs.d/init-env.elc")
+;; init-*
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/inits"))
+(require 'init-env)
 
 (eval-after-load "dired-aux"
   '(add-to-list 'dired-compress-file-suffixes '("\\.zip\\'" ".zip" "unzip")))
 
-;;(set-frame-parameter nil 'alpha 80)
-
 (prefer-coding-system 'utf-8-unix)
 
 (fset 'yes-or-no-p 'y-or-n-p)
-
-(add-to-list 'load-path "~/.emacs.d/extras")
 
 ;; key bindings
 (global-set-key (kbd "C-h")     'delete-backward-char)
@@ -134,11 +132,9 @@ See URL `http://jscs.info/'."
   "examine `vc-make-backup-files' (in vc-hooks.el) at first"
   (and vc-make-backup-files ad-do-it))
 
-;; https://github.com/k1LoW/emacs-drill-instructor/wiki
-;;(require 'drill-instructor)
-;;(setq drill-instructor-global t)
-
 ;; emmet(zen-coding)
 (add-hook 'html-mode-hook 'emmet-mode)
 (add-hook 'css-mode-hook  'emmet-mode)
 (add-hook 'web-mode-hook  'emmet-mode)
+
+;;; init.el ends here
