@@ -49,10 +49,6 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:background "black" :foreground "white")))))
 
-;; init-*
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/inits"))
-(require 'init-env)
-
 (eval-after-load "dired-aux"
   '(add-to-list 'dired-compress-file-suffixes '("\\.zip\\'" ".zip" "unzip")))
 
@@ -73,45 +69,22 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
-;; flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
-(flycheck-def-config-file-var flycheck-jscsrc javascript-jscs ".jscsrc"
-  :safe #'stringp)
-(flycheck-define-checker javascript-jscs
-  "A JavaScript style checker using JSCS.
-
-See URL `http://jscs.info/'."
-  :command ("jscs"
-            "--reporter"
-            "checkstyle"
-            (config-file "--config" flycheck-jscsrc)
-            source)
-  :error-parser flycheck-parse-checkstyle
-  :modes (js-mode js2-mode js3-mode)
-  :next-checkers (javascript-jshint))
-(add-to-list 'flycheck-checkers 'javascript-jscs)
-
-;; javascript
-(add-hook 'js-mode-hook
-          (lambda()
-            (electric-indent-mode t)
-            (c-set-offset 'case-label '+)
-            (local-set-key (kbd "C-c C-b") 'web-beautify-js)
-            (local-set-key (kbd "C-c C-d") 'js-doc-insert-function-doc)
-            ))
+;; inits
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/inits"))
+(require 'init-env)
+(require 'init-java)
+(require 'init-javascript)
 
 ;; perl
 (defalias 'perl-mode 'cperl-mode)
 
 ;; auto-complete
-(require 'auto-complete-config)
 (ac-config-default)
 
 ;; yasnippet
 (yas-global-mode t)
 
 ;; web
-(require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.jsp$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html$" . web-mode))
 
