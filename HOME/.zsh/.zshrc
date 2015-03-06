@@ -184,8 +184,4 @@ setopt ignoreeof
 
 [ -f $HOME/.aliases ] && source $HOME/.aliases
 
-[ -f $PERLBREW_ROOT/etc/perlbrew-completion.bash ] && source $PERLBREW_ROOT/etc/perlbrew-completion.bash
-
-fpath=(${ZDOTDIR}/Completion $fpath)
-
-type rbenv 2>&1 >/dev/null && eval "$(rbenv init -)"
+fpath=(${ZDOTDIR}/zsh-completions/src $fpath)
