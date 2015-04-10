@@ -69,6 +69,9 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
+;; flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 ;; inits
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/inits"))
 (require 'init-env)
