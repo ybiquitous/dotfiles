@@ -77,6 +77,7 @@
 (require 'init-env)
 (require 'init-java)
 (require 'init-javascript)
+(require 'init-markdown)
 
 ;; perl
 (defalias 'perl-mode 'cperl-mode)

@@ -46,7 +46,7 @@ $ ln -s /usr/share/fonts/truetype/****.ttf .
 $ sudo add-apt-repository ppa:chris-lea/node.js
 $ sudo apt-get update
 $ sudo apt-get install nodejs
-$ sudo npm install -g jsonlint jshint csslint js-beautify markdown jscs jscs-jsdoc
+$ sudo npm install -g jsonlint jshint csslint js-beautify jscs jscs-jsdoc marked
 ```
 
 # Eclipse keybind (based on Emacs)
