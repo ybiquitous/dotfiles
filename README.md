@@ -40,13 +40,12 @@ $ cd fallback
 $ ln -s /usr/share/fonts/truetype/****.ttf .
 ```
 
-# Install npm on Ubuntu
+# Install Node.js and npm commands
+
+See https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
 
 ```sh
-$ sudo add-apt-repository ppa:chris-lea/node.js
-$ sudo apt-get update
-$ sudo apt-get install nodejs
-$ sudo npm install -g jsonlint jshint csslint js-beautify jscs jscs-jsdoc marked
+$ npm install -g jsonlint jshint csslint js-beautify jscs jscs-jsdoc marked
 ```
 
 # Eclipse keybind (based on Emacs)
