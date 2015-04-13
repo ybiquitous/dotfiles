@@ -7,4 +7,3 @@
 (add-to-list 'auto-mode-alist '("\\.markdown$" . gfm-mode))
 
 (provide 'init-markdown)
-;;; init-markdown.el ends here

@@ -15,21 +15,25 @@
 ;;   :next-checkers (javascript-jshint))
 ;; (add-to-list 'flycheck-checkers 'javascript-jscs)
 
-(defcustom jscs-format-enabled t
+(defcustom jscs-format-enable t
   "*Turn on/off JSCS formatting"
-  :type 'boolean)
+  :type 'boolean
+  :group 'jscs)
+
+(defcustom jscs-preset nil
+  "*JSCS preset config"
+  :type 'string
+  :group 'jscs)
 
 (defun jscs-format ()
-  (interactive)
   (if jscs-format-enabled
       (progn
-        (shell-command (concat "jscs --fix " buffer-file-name) "*JSCS*")
+        (shell-command
+         (format "jscs %s --fix %s" (if jscs-preset (concat "--preset " jscs-preset) "") buffer-file-name)
+         "*JSCS*")
         (revert-buffer t t)
-        )
-    )
-  )
+        )))
 
-;; hook
 (add-hook 'js-mode-hook
           (lambda()
             (electric-indent-mode t)
@@ -39,4 +43,3 @@
             ))
 
 (provide 'init-javascript)
-;;; init-javascript.el ends here
