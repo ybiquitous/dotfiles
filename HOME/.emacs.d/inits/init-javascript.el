@@ -15,7 +15,7 @@
 ;;   :next-checkers (javascript-jshint))
 ;; (add-to-list 'flycheck-checkers 'javascript-jscs)
 
-(defcustom jscs-format-enable t
+(defcustom jscs-format-enabled t
   "*Turn on/off JSCS formatting"
   :type 'boolean
   :group 'jscs)
