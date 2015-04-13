@@ -25,5 +25,4 @@ alias cvs-di='cvs -qn diff -u'
 alias cvs-bk="find . -name '.#*'"
 alias cvs-bk-clean="cvs-bk | xargs rm -rfv"
 alias cvs-revert='cvs update -C'
-alias markdown='md2html'
 alias ant='ant -logger org.apache.tools.ant.listener.AnsiColorLogger'
