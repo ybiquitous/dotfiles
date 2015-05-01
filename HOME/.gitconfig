@@ -1,17 +1,19 @@
 [alias]
-  st = status
-  ci = commit
-  co = checkout
-  br = branch
-  di = diff
-[github]
-  user = ybiquitous
-  token = c10aa4d340230cbb510969ad260e5e56
+	st = status
+	ci = commit
+	co = checkout
+	br = branch
+	di = diff
 [color]
-  ui = auto
-[pager]
-  diff = diff-highlight | less
-  show = diff-highlight | less
-  log = diff-highlight | less
+	ui = auto
 [core]
-  editor = emacs
+	editor = emacs
+[push]
+	default = simple
+[pager]
+	diff = diff-highlight | less
+	show = diff-highlight | less
+	log = diff-highlight | less
+[github]
+	user = ybiquitous
+	token = c10aa4d340230cbb510969ad260e5e56
