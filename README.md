@@ -11,7 +11,7 @@ $ LANG=C xdg-user-dirs-gtk-update
 # Emacs byte recompile all
 
 ```
-C-u 0 M-x byte-recompile-directory
+(byte-recompile-directory "~/.emacs.d/" 0 t)
 ```
 
 # Emacs Upgrade All Packages

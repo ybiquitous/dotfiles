@@ -1,3 +1,5 @@
+(require 'flycheck)
+
 ;; flycheck-jscs
 (flycheck-def-config-file-var flycheck-jscsrc javascript-jscs ".jscsrc"
   :safe #'stringp)
