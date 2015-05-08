@@ -4,6 +4,7 @@
 	co = checkout
 	br = branch
 	di = diff
+	pl = pull
 [color]
 	ui = auto
 [core]
