@@ -27,11 +27,19 @@ See URL `http://jscs.info/'."
   :type 'string
   :group 'jscs)
 
+(defun jscs-format-enable () (interactive)
+  (custom-set-variables '(jscs-format-enabled t)))
+
+(defun jscs-format-disable () (interactive)
+  (custom-set-variables '(jscs-format-enabled nil)))
+
 (defun jscs-format ()
   (if jscs-format-enabled
       (progn
         (shell-command
-         (format "jscs %s --fix %s" (if jscs-preset (concat "--preset " jscs-preset) "") buffer-file-name)
+         (format "jscs %s --fix %s"
+                 (if jscs-preset (concat "--preset " jscs-preset) "")
+                 buffer-file-name)
          "*JSCS*")
         (revert-buffer t t)
         )))
