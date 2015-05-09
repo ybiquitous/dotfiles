@@ -4,7 +4,7 @@
 
 ;; Author: EditorConfig Team <editorconfig@googlegroups.com>
 ;; Version: 0.4
-;; Package-Version: 20150430.1504
+;; Package-Version: 20150507.1431
 ;; URL: http://github.com/editorconfig/editorconfig-emacs#readme
 
 ;; See
@@ -188,6 +188,8 @@ NOTE: Only the **buffer local** value of VARIABLE will be set."
         ((equal style "tab")
          (setq indent-tabs-mode t)))
   (when size
+    (when (featurep 'evil)
+      (setq-local evil-shift-width size))
     (let ((parent major-mode)
           entry)
       ;; Find the closet parent mode of `major-mode' in
@@ -292,7 +294,7 @@ NOTE: Only the **buffer local** value of VARIABLE will be set."
 ;;;###autoload
 (add-hook 'find-file-hook 'edconf-find-file-hook)
 
-(add-to-list 'auto-mode-alist '("\\.editorconfig" . conf-unix-mode))
+(add-to-list 'auto-mode-alist '("/\\.editorconfig$" . conf-unix-mode))
 
 (provide 'editorconfig)
 

@@ -3,8 +3,8 @@
 
 ;; Copyright 2011-2015 François-Xavier Bois
 
-;; Version: 11.1.01
-;; Package-Version: 20150503.931
+;; Version: 11.1.02
+;; Package-Version: 20150507.455
 ;; Author: François-Xavier Bois <fxbois AT Google Mail Service>
 ;; Maintainer: François-Xavier Bois
 ;; Created: July 2011
@@ -27,7 +27,7 @@
 
 ;;---- CONSTS ------------------------------------------------------------------
 
-(defconst web-mode-version "11.1.01"
+(defconst web-mode-version "11.1.02"
   "Web Mode version.")
 
 ;;---- GROUPS ------------------------------------------------------------------
@@ -672,7 +672,7 @@ Must be used in conjunction with web-mode-enable-block-face."
     ("clip"        . ())
     ("closure"     . ("soy"))
     ("ctemplate"   . ("mustache" "handlebars" "hapax" "ngtemplate" "ember"
-                      "kite" "meteor" "blaze"))
+                      "kite" "meteor" "blaze" "ractive"))
     ("django"      . ("dtl" "twig" "swig" "jinja" "jinja2" "erlydtl" "liquid"
                       "clabango" "selmer" "nunjucks"))
     ("dust"        . ("dustjs"))
