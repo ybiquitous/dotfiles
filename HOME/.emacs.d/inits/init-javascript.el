@@ -37,7 +37,7 @@ See URL `http://jscs.info/'."
   (if jscs-format-enabled
       (progn
         (shell-command
-         (format "jscs %s --fix %s"
+         (format "jscs --fix --reporter inline %s %s"
                  (if jscs-preset (concat "--preset " jscs-preset) "")
                  buffer-file-name)
          "*JSCS*")
