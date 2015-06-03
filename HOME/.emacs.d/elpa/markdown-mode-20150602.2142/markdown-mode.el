@@ -1,6 +1,6 @@
 ;;; markdown-mode.el --- Emacs Major mode for Markdown-formatted text files
 
-;; Copyright (C) 2007-2014 Jason R. Blevins <jrblevin@sdf.org>
+;; Copyright (C) 2007-2015 Jason R. Blevins <jrblevin@sdf.org>
 ;; Copyright (C) 2007, 2009 Edward O'Connor <ted@oconnor.cx>
 ;; Copyright (C) 2007 Conal Elliott <conal@conal.net>
 ;; Copyright (C) 2008 Greg Bognar <greg_bognar@hms.harvard.edu>
@@ -22,12 +22,14 @@
 ;; Copyright (C) 2012 Zhenlei Jia <zhenlei.jia@gmail.com>
 ;; Copyright (C) 2012 Peter Jones <pjones@pmade.com>
 ;; Copyright (C) 2013 Matus Goljer <dota.keys@gmail.com>
+;; Copyright (C) 2015 Google, Inc. (Contributor: Samuel Freilich <sfreilich@google.com>)
+;; Copyright (C) 2015 Antonis Kanouras <antonis@metadosis.gr>
 
 ;; Author: Jason R. Blevins <jrblevin@sdf.org>
 ;; Maintainer: Jason R. Blevins <jrblevin@sdf.org>
 ;; Created: May 24, 2007
-;; Version: 20150121.1229
-;; X-Original-Version: 2.0
+;; Version: 2.0
+;; Package-Version: 20150602.2142
 ;; Keywords: Markdown, GitHub Flavored Markdown, itex
 ;; URL: http://jblevins.org/projects/markdown-mode/
 
@@ -63,11 +65,11 @@
 ;;    * [Release notes][]
 ;;
 ;;  [markdown-mode.el]: http://jblevins.org/projects/markdown-mode/markdown-mode.el
-;;  [screenshot]: http://jblevins.org/projects/markdown-mode/screenshots/20130131-002.png
-;;  [release notes]: http://jblevins.org/projects/markdown-mode/rev-2-0
+;;  [Screenshot]: http://jblevins.org/projects/markdown-mode/screenshots/20130131-002.png
+;;  [Release notes]: http://jblevins.org/projects/markdown-mode/rev-2-0
 ;;
 ;; [^theme]: The theme used in the screenshot is
-;;   [color-theme-twilight](https://github.com/crafterm/twilight-emacs).
+;;     [color-theme-twilight](https://github.com/crafterm/twilight-emacs).
 ;;
 ;; markdown-mode is also available in several package managers, including:
 ;;
@@ -215,7 +217,7 @@
 ;;     line is not blank, they use the text on the current line.
 ;;     Finally, the setext commands will prompt for heading text if
 ;;     there is no active region and the current line is blank.
-;;     
+;;
 ;;     `C-c C-t h` inserts a heading with automatically chosen type and
 ;;     level (both determined by the previous heading).  `C-c C-t H`
 ;;     behaves similarly, but uses setext (underlined) headings when
@@ -457,9 +459,9 @@
 ;;     Markdown previewer which is capable of opening Markdown source files
 ;;     directly (default: `nil').  This command will be called
 ;;     with a single argument, the filename of the current buffer.
-;;     A representative program is the Mac app [Marked][], a
-;;     live-updating MultiMarkdown previewer which has a command line
-;;     utility at `/usr/local/bin/mark`.
+;;     A representative program is the Mac app [Marked 2][], a
+;;     live-updating Markdown previewer which can be [called from a
+;;     simple shell script](http://jblevins.org/log/marked-2-command).
 ;;
 ;;   * `markdown-hr-strings' - list of strings to use when inserting
 ;;     horizontal rules.  Different strings will not be distinguished
@@ -552,7 +554,7 @@
 ;; or by using the "Markdown Faces" link at the bottom of the mode
 ;; customization screen.
 ;;
-;; [Marked]: https://itunes.apple.com/us/app/marked/id448925439?ls=1&mt=12&partnerId=30&siteID=GpHp3Acs1Yo
+;; [Marked 2]: https://itunes.apple.com/us/app/marked-2/id890031187?mt=12&uo=4&at=11l5Vs&ct=mm
 
 ;;; Extensions:
 
@@ -609,13 +611,18 @@
 ;; the code block.  You will be prompted for the name of the language,
 ;; but may press enter to continue without naming a language.
 ;;
+;; Similarly, strike through text is supoorted in GFM mode and can be
+;; inserted (and toggled) using `C-c C-s d`. Following the mnemonics
+;; for the other style keybindings, the letter `d` coincides with the
+;; HTML tag `<del>`.
+;;
 ;; For a more complete GitHub Flavored Markdown experience, consider
 ;; adding README.md to your `auto-mode-alist':
 ;;
 ;;     (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 ;;
 ;; For GFM preview can be powered by setting `markdown-command' to
-;; use [Docter][].  This may also be configured to work with [Marked][]
+;; use [Docter][].  This may also be configured to work with [Marked 2][]
 ;; for `markdown-open-command'.
 ;;
 ;; [GFM]: http://github.github.com/github-flavored-markdown/
@@ -698,6 +705,7 @@
 ;;   * Gunnar Franke <Gunnar.Franke@gmx.de> for a completion bug report.
 ;;   * David Glasser <glasser@meteor.com> for a `paragraph-separate' fix.
 ;;   * Daniel Brotsky <dev@brotsky.com> for better auto-fill defaults.
+;;   * Samuel Freilich <sfreilich@google.com> for improved list item filling.
 
 ;;; Bugs:
 
@@ -922,6 +930,9 @@ and `iso-latin-1'.  Use `list-coding-systems' for more choices."
 (defvar markdown-bold-face 'markdown-bold-face
   "Face name to use for bold text.")
 
+(defvar markdown-strike-through-face 'markdown-strike-through-face
+  "Face name to use for strike-through text.")
+
 (defvar markdown-header-delimiter-face 'markdown-header-delimiter-face
   "Face name to use as a base for header delimiters.")
 
@@ -1010,6 +1021,11 @@ and `iso-latin-1'.  Use `list-coding-systems' for more choices."
 (defface markdown-bold-face
   '((t (:inherit font-lock-variable-name-face :weight bold)))
   "Face for bold text."
+  :group 'markdown-faces)
+
+(defface markdown-strike-through-face
+  '((t (:inherit font-lock-variable-name-face :strike-through t)))
+  "Face for strike-through text."
   :group 'markdown-faces)
 
 (defface markdown-header-rule-face
@@ -1248,6 +1264,15 @@ Group 2 matches the entire expression, including delimiters.
 Groups 3 and 5 matches the opening and closing delimiters.
 Group 4 matches the text inside the delimiters.")
 
+(defconst markdown-regex-strike-through
+  "\\(^\\|[^\\]\\)\\(\\(~~\\)\\([^ \n\t\\]\\|[^ \n\t]\\(?:.\\|\n[^\n]\\)*?[^\\ ]\\)\\(~~\\)\\)"
+  "Regular expression for matching strike-through text.
+Group 1 matches the character before the opening tilde, if any,
+ensuring that it is not a backslash escape.
+Group 2 matches the entire expression, including delimiters.
+Groups 3 and 5 matches the opening and closing delimiters.
+Group 4 matches the text inside the delimiters.")
+
 (defconst markdown-regex-gfm-italic
   "\\(^\\|\\s-\\)\\(\\([*_]\\)\\([^ \\]\\3\\|[^ ]\\(.\\|\n[^\n]\\)*?[^\\ ]\\3\\)\\)"
   "Regular expression for matching italic text in GitHub Flavored Markdown.
@@ -1398,6 +1423,10 @@ extension support.")
   "[[:alnum:]-]"
   "Regular expression maching any character that is allowed in a footnote identifier.")
 
+(defconst markdown-regex-footnote-definition
+  (concat "^\\[\\(\\^" markdown-footnote-chars "*?\\)\\]:\\(?:[ \t]+\\|$\\)")
+  "Regular expression matching a footnote definition, capturing the label.")
+
 
 ;;; Compatibility =============================================================
 
@@ -1457,9 +1486,11 @@ If we are at the last line, then consider the next line to be blank."
 (defun markdown-prev-line-indent-p ()
   "Return t if the previous line is indented and nil otherwise."
   (save-excursion
-    (forward-line -1)
-    (goto-char (line-beginning-position))
-    (if (re-search-forward "^\\s " (line-end-position) t) t)))
+    (if (= (line-beginning-position) (point-min))
+        nil
+      (forward-line -1)
+      (goto-char (line-beginning-position))
+      (if (re-search-forward "^\\s " (line-end-position) t) t))))
 
 (defun markdown-cur-line-indent ()
   "Return the number of leading whitespace characters in the current line."
@@ -1470,16 +1501,22 @@ If we are at the last line, then consider the next line to be blank."
       (current-column))))
 
 (defun markdown-prev-line-indent ()
-  "Return the number of leading whitespace characters in the previous line."
+  "Return the number of leading whitespace characters in the previous line.
+Return 0 if the current line is the first line in the buffer."
   (save-excursion
-    (forward-line -1)
-    (markdown-cur-line-indent)))
+    (if (= (line-beginning-position) (point-min))
+        0
+      (forward-line -1)
+      (markdown-cur-line-indent))))
 
 (defun markdown-next-line-indent ()
-  "Return the number of leading whitespace characters in the next line."
+  "Return the number of leading whitespace characters in the next line.
+Return 0 if line is the last line in the buffer."
   (save-excursion
-    (forward-line 1)
-    (markdown-cur-line-indent)))
+    (if (= (line-end-position) (point-max))
+        0
+      (forward-line 1)
+      (markdown-cur-line-indent))))
 
 (defun markdown-cur-non-list-indent ()
   "Return beginning position of list item text (not including the list marker).
@@ -2124,6 +2161,25 @@ insert italic delimiters and place the cursor in between them."
           (markdown-unwrap-thing-at-point nil 2 4)
         (markdown-wrap-or-insert delim delim 'word nil nil)))))
 
+(defun markdown-insert-strike-through ()
+  "Insert markup to make a region or word strike-through.
+If there is an active region, make the region strike-through.  If the point
+is at a non-bold word, make the word strike-through.  If the point is at a
+strike-through word or phrase, remove the strike-through markup.  Otherwise,
+simply insert bold delimiters and place the cursor in between them."
+  (interactive)
+  (let ((delim "~~"))
+    (if (markdown-use-region-p)
+        ;; Active region
+        (let ((bounds (markdown-unwrap-things-in-region
+                       (region-beginning) (region-end)
+                       markdown-regex-strike-through 2 4)))
+          (markdown-wrap-or-insert delim delim nil (car bounds) (cdr bounds)))
+      ;; Strike-through markup removal, strike-through word at point, or empty markup insertion
+      (if (thing-at-point-looking-at markdown-regex-strike-through)
+          (markdown-unwrap-thing-at-point nil 2 4)
+        (markdown-wrap-or-insert delim delim 'word nil nil)))))
+
 (defun markdown-insert-code ()
   "Insert markup to make a region or word an inline code fragment.
 If there is an active region, make the region an inline code
@@ -2583,23 +2639,37 @@ The footnote text is killed (and added to the kill ring), the
 footnote marker is deleted.  Point has to be either at the
 footnote marker or in the footnote text."
   (interactive)
-  (let (return-pos)
-    (when (markdown-footnote-text-positions) ; if we're in a footnote text
-      (markdown-footnote-return) ; we first move to the marker
-      (setq return-pos 'text)) ; and remember our return position
-    (let ((marker (markdown-footnote-delete-marker)))
-      (unless marker
-        (error "Not at a footnote"))
-      (let ((text-pos (markdown-footnote-find-text (car marker))))
-        (unless text-pos
-          (error "No text for footnote `%s'" (car marker)))
-        (goto-char text-pos)
-        (let ((pos (markdown-footnote-kill-text)))
-          (setq return-pos
-                (if (and pos (eq return-pos 'text))
-                    pos
-                  (cadr marker))))))
-    (goto-char return-pos)))
+  (let ((marker-pos nil)
+        (skip-deleting-marker nil)
+        (starting-footnote-text-positions
+         (markdown-footnote-text-positions)))
+    (when starting-footnote-text-positions
+      ;; We're starting in footnote text, so mark our return position and jump
+      ;; to the marker if possible.
+      (let ((marker-pos (markdown-footnote-find-marker
+                         (first starting-footnote-text-positions))))
+            (if marker-pos
+                (goto-char (1- marker-pos))
+              ;; If there isn't a marker, we still want to kill the text.
+              (setq skip-deleting-marker t))))
+    ;; Either we didn't start in the text, or we started in the text and jumped
+    ;; to the marker. We want to assume we're at the marker now and error if
+    ;; we're not.
+    (unless skip-deleting-marker
+      (let ((marker (markdown-footnote-delete-marker)))
+        (unless marker
+          (error "Not at a footnote"))
+        ;; Even if we knew the text position before, it changed when we deleted
+        ;; the label.
+        (setq marker-pos (second marker))
+        (let ((new-text-pos (markdown-footnote-find-text (first marker))))
+          (unless new-text-pos
+            (error "No text for footnote `%s'" (first marker)))
+          (goto-char new-text-pos))))
+    (let ((pos (markdown-footnote-kill-text)))
+      (goto-char (if starting-footnote-text-positions
+                     pos
+                   marker-pos)))))
 
 (defun markdown-footnote-delete-marker ()
   "Delete a footnote marker at point.
@@ -2624,7 +2694,8 @@ number)."
         (string-match (concat "\\[\\" (first fn) "\\]:[[:space:]]*\\(\\(.*\n?\\)*\\)") text)
         (kill-new (match-string 1 text))
         (when (and (markdown-cur-line-blank-p)
-                   (markdown-prev-line-blank-p))
+                   (markdown-prev-line-blank-p)
+                   (not (bobp)))
           (delete-region (1- (point)) (point)))
         (second fn)))))
 
@@ -2696,19 +2767,32 @@ of the footnote id.  The end position is directly after the
 newline that ends the footnote.  If point is not in a footnote,
 NIL is returned instead."
   (save-excursion
-    (let ((fn (progn
-                (backward-paragraph)
-                ;; if we're in a multiparagraph footnote, we need to back up further
-                (while (>= (markdown-next-line-indent) 4)
-                  (backward-paragraph))
-                (forward-line)
-                (if (looking-at (concat "^\\[\\(\\^" markdown-footnote-chars "*?\\)\\]:"))
-                    (list (match-string 1) (point))))))
-      (when fn
-        (while (progn
-                 (forward-paragraph)
-                 (>= (markdown-next-line-indent) 4)))
-        (append fn (list (point)))))))
+    (let (result)
+      (move-beginning-of-line 1)
+      ;; Try to find the label. If we haven't found the label and we're at a blank
+      ;; or indented line, back up if possible.
+      (while (and
+              (not (and (looking-at markdown-regex-footnote-definition)
+                        (setq result (list (match-string 1) (point)))))
+              (and (not (bobp))
+                   (or (markdown-cur-line-blank-p)
+                       (>= (markdown-cur-line-indent) 4))))
+        (forward-line -1))
+      (when result
+        ; Advance if there is a next line that is either blank or indented.
+        ; (Need to check if we're on the last line, because
+        ; markdown-next-line-blank-p returns true for last line in buffer.)
+        (while (and (/= (line-end-position) (point-max))
+                    (or (markdown-next-line-blank-p)
+                        (>= (markdown-next-line-indent) 4)))
+          (forward-line))
+        ; Move back while the current line is blank.
+        (while (markdown-cur-line-blank-p)
+          (forward-line -1))
+        ; Advance to capture this line and a single trailing newline (if there
+        ; is one).
+        (forward-line)
+        (append result (list (point)))))))
 
 
 ;;; Element Removal ===========================================================
@@ -2766,6 +2850,10 @@ text to kill ring), and list items."
       (delete-region (match-beginning 2) (match-end 2)))
      ;; Italics
      ((thing-at-point-looking-at markdown-regex-italic)
+      (kill-new (match-string 4))
+      (delete-region (match-beginning 2) (match-end 2)))
+     ;; Strike-through
+     ((thing-at-point-looking-at markdown-regex-strike-through)
       (kill-new (match-string 4))
       (delete-region (match-beginning 2) (match-end 2)))
      ;; Footnote marker (add footnote text to kill ring)
@@ -3242,6 +3330,7 @@ Assumes match data is available for `markdown-regex-italic'."
   (let ((map (make-sparse-keymap)))
     (set-keymap-parent map markdown-mode-map)
     (define-key map (kbd "C-c C-s P") 'markdown-insert-gfm-code-block)
+    (define-key map (kbd "C-c C-s d") 'markdown-insert-strike-through)
     map)
   "Keymap for `gfm-mode'.
 See also `markdown-mode-map'.")
@@ -3279,6 +3368,7 @@ See also `markdown-mode-map'.")
     "---"
     ["Bold" markdown-insert-bold]
     ["Italic" markdown-insert-italic]
+    ["Strike-through" markdown-insert-strike-through]
     ["Blockquote" markdown-insert-blockquote]
     ["Preformatted" markdown-insert-pre]
     ["Code" markdown-insert-code]
@@ -4522,10 +4612,16 @@ This is an exact copy of `line-number-at-pos' for use in emacs21."
       (forward-line 0)
       (1+ (count-lines start (point))))))
 
-(defun markdown-nobreak-p ()
-  "Return nil if it is acceptable to break the current line at the point."
-  ;; inside in square brackets (e.g., link anchor text)
+(defun markdown-inside-link-text-p ()
+  "Return nil if not currently within link anchor text."
   (looking-back "\\[[^]]*"))
+
+(defun markdown-line-is-reference-definition-p ()
+  "Return whether the current line is a (non-footnote) reference defition."
+  (save-excursion
+    (move-beginning-of-line 1)
+    (and (looking-at-p markdown-regex-reference-definition)
+         (not (looking-at-p "[ \t]*\\[^")))))
 
 (defun markdown-adaptive-fill-function ()
   "Return prefix for filling paragraph or nil if not determined."
@@ -4540,8 +4636,24 @@ This is an exact copy of `line-number-at-pos' for use in emacs21."
    ;; List items
    ((looking-at markdown-regex-list)
     (match-string-no-properties 0))
+   ((looking-at markdown-regex-footnote-definition)
+    "    ") ; four spaces
    ;; No match
    (t nil)))
+
+(defun markdown-fill-forward-paragraph-function (&optional arg)
+  (let* ((arg (or arg 1))
+         (paragraphs-remaining (forward-paragraph arg))
+         (start (point)))
+    (when (< arg 0)
+      (while (and (not (eobp))
+                  (progn (move-to-left-margin) (not (eobp)))
+                  (looking-at paragraph-separate))
+        (forward-line 1))
+      (if (looking-at markdown-regex-list)
+          (forward-char (length (match-string 0)))
+        (goto-char start)))
+    paragraphs-remaining))
 
 
 ;;; Extensions ================================================================
@@ -4615,14 +4727,36 @@ if ARG is omitted or nil."
   (set (make-local-variable 'end-of-defun-function)
        'markdown-end-of-defun)
   ;; Paragraph filling
-  (set (make-local-variable 'paragraph-start)
-       "\f\\|[ \t]*$\\|[ \t]*[*+-] \\|[ \t]*[0-9]+\\.[ \t]\\|[ \t]*: ")
-  (set (make-local-variable 'paragraph-separate)
-       "\\(?:[ \t\f]*\\|.*  \\)$")
+  (set
+   ; Should match start of lines that start or seaprate paragraphs
+   (make-local-variable 'paragraph-start)
+       (mapconcat 'identity
+                  '(
+                    "\f" ; starts with a literal line-feed
+                    "[ \t\f]*$" ; space-only line
+                    "[ \t]*[*+-][ \t]+" ; unordered list item
+                    "[ \t]*[0-9]+\\.[ \t]+" ; ordered list item
+                    "[ \t]*\\[\\S-*\\]:[ \t]+" ; link ref def
+                    )
+                  "\\|"))
+  (set
+   ; Should match lines that separate paragraphs without being
+   ; part of any paragraph:
+   (make-local-variable 'paragraph-separate)
+   (mapconcat 'identity
+              '("[ \t\f]*$" ; space-only line
+                ; The following is not ideal, but the Fill customization
+                ; options really only handle paragraph-starting prefixes,
+                ; not paragraph-ending suffixes:
+                ".*  $" ; line ending in two spaces
+                "[ \t]*\\[\\^\\S-*\\]:[ \t]*$") ; just the start of a footnote def
+              "\\|"))
   (set (make-local-variable 'adaptive-fill-first-line-regexp)
        "\\`[ \t]*>[ \t]*?\\'")
   (set (make-local-variable 'adaptive-fill-function)
        'markdown-adaptive-fill-function)
+  (set (make-local-variable 'fill-forward-paragraph-function)
+       'markdown-fill-forward-paragraph-function)
   ;; Outline mode
   (make-local-variable 'outline-regexp)
   (setq outline-regexp markdown-regex-header)
@@ -4630,9 +4764,16 @@ if ARG is omitted or nil."
   (setq outline-level 'markdown-outline-level)
   ;; Cause use of ellipses for invisible text.
   (add-to-invisibility-spec '(outline . t))
-  ;; Indentation and filling
-  (make-local-variable 'fill-nobreak-predicate)
-  (add-hook 'fill-nobreak-predicate 'markdown-nobreak-p)
+
+  ;; Inhibiting line-breaking:
+  ;; Separating out each condition into a separate function so that users can
+  ;; override if desired (with remove-hook)
+  (add-hook 'fill-nobreak-predicate
+            'markdown-inside-link-text-p nil t)
+  (add-hook 'fill-nobreak-predicate
+            'markdown-line-is-reference-definition-p nil t)
+
+  ;; Indentation
   (setq indent-line-function markdown-indent-function)
 
   ;; Prepare hooks for XEmacs compatibility
@@ -4657,9 +4798,12 @@ if ARG is omitted or nil."
   ;; do the initial link fontification
   (markdown-fontify-buffer-wiki-links))
 
-;;;###autoload(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-;;;###autoload(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-;;;###autoload(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+;;;###autoload
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+;;;###autoload
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+;;;###autoload
+(add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
 
 
 ;;; GitHub Flavored Markdown Mode  ============================================
@@ -4671,7 +4815,8 @@ if ARG is omitted or nil."
     (cons 'markdown-match-gfm-code-blocks '((1 markdown-pre-face)
                                             (2 markdown-language-keyword-face t t)
                                             (3 markdown-pre-face)
-                                            (4 markdown-pre-face))))
+                                            (4 markdown-pre-face)))
+    (cons markdown-regex-strike-through '(2 markdown-strike-through-face)))
    ;; Basic Markdown features (excluding possibly overridden ones)
    markdown-mode-font-lock-keywords-basic
    ;; GFM features to match last

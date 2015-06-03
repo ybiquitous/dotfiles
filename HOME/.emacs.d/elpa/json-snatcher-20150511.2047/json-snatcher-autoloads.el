@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (jsons-print-path) "json-snatcher" "json-snatcher.el"
-;;;;;;  (21384 14956 394831 667000))
+;;;;;;  (21870 43640 670681 524000))
 ;;; Generated autoloads from json-snatcher.el
 
 (autoload 'jsons-print-path "json-snatcher" "\
@@ -14,8 +14,8 @@ Print the path to the JSON value under point, and save it in the kill ring.
 
 ;;;***
 
-;;;### (autoloads nil nil ("json-snatcher-pkg.el") (21384 14956 411787
-;;;;;;  26000))
+;;;### (autoloads nil nil ("json-snatcher-pkg.el") (21870 43641 360351
+;;;;;;  993000))
 
 ;;;***
 
