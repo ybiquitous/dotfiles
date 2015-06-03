@@ -56,7 +56,7 @@ See URL `http://jscs.info/'."
 (add-hook 'js-mode-hook
           (lambda()
             (electric-indent-mode t)
-            (c-set-offset 'case-label '+)
+            (custom-set-variables '(js-switch-indent-offset js-indent-level))
             (local-set-key (kbd "C-c C-d") 'js-doc-insert-function-doc)
             (add-hook 'after-save-hook 'jscs-format t t)
             ))
