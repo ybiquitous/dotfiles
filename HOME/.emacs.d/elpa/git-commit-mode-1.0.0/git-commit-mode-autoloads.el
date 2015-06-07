@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (git-commit-mode) "git-commit-mode" "git-commit-mode.el"
-;;;;;;  (21836 18444 195128 405000))
+;;;;;;  (21875 59559 551452 85000))
 ;;; Generated autoloads from git-commit-mode.el
 
 (autoload 'git-commit-mode "git-commit-mode" "\
@@ -22,8 +22,8 @@ basic structure of and errors in git commit messages.
 
 ;;;***
 
-;;;### (autoloads nil nil ("git-commit-mode-pkg.el") (21836 18444
-;;;;;;  339707 678000))
+;;;### (autoloads nil nil ("git-commit-mode-pkg.el") (21875 59559
+;;;;;;  644330 252000))
 
 ;;;***
 

@@ -11,7 +11,7 @@ $ LANG=C xdg-user-dirs-gtk-update
 # Emacs byte recompile all
 
 ```
-(byte-recompile-directory "~/.emacs.d/" 0 t)
+M-: (byte-recompile-directory "~/.emacs.d/" 0 t)
 ```
 
 # Setup Emacs on Windows
