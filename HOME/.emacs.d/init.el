@@ -19,7 +19,6 @@
  '(js-indent-level tab-width)
  '(line-number-mode t)
  '(load-prefer-newer t)
- '(magit-diff-refine-hunk t)
  '(make-backup-files nil)
  '(nxml-auto-insert-xml-declaration-flag t)
  '(nxml-default-buffer-file-coding-system (quote utf-8))
@@ -122,5 +121,13 @@
 (add-hook 'html-mode-hook 'emmet-mode)
 (add-hook 'css-mode-hook  'emmet-mode)
 (add-hook 'web-mode-hook  'emmet-mode)
+
+;; magit
+(setq magit-last-seen-setup-instructions "1.4.0")
+(add-hook 'magit-mode-hook
+          (lambda ()
+            (custom-set-variables
+             '(magit-diff-refine-hunk t))
+            ))
 
 ;;; init.el ends here
