@@ -19,6 +19,7 @@
  '(js-indent-level tab-width)
  '(line-number-mode t)
  '(load-prefer-newer t)
+ '(magit-diff-refine-hunk t)
  '(make-backup-files nil)
  '(nxml-auto-insert-xml-declaration-flag t)
  '(nxml-default-buffer-file-coding-system (quote utf-8))
