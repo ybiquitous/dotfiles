@@ -18,6 +18,7 @@
  '(initial-scratch-message nil)
  '(js-indent-level tab-width)
  '(line-number-mode t)
+ '(load-prefer-newer t)
  '(make-backup-files nil)
  '(nxml-auto-insert-xml-declaration-flag t)
  '(nxml-default-buffer-file-coding-system (quote utf-8))
@@ -39,7 +40,13 @@
  '(web-mode-sql-indent-offset tab-width)
  '(web-mode-style-padding tab-width)
  '(whitespace-action (quote (auto-cleanup)))
- '(whitespace-display-mappings (quote ((space-mark 12288 [9633]) (tab-mark 9 [187 9] [92 9]))))
+ '(whitespace-display-mappings
+   (quote
+    ((space-mark 12288
+                 [9633])
+     (tab-mark 9
+               [187 9]
+               [92 9]))))
  '(whitespace-space-regexp "\\(\\u3000+\\)")
  '(x-select-enable-clipboard t))
 (custom-set-faces
