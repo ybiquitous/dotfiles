@@ -23,6 +23,10 @@
  '(nxml-auto-insert-xml-declaration-flag t)
  '(nxml-default-buffer-file-coding-system (quote utf-8))
  '(nxml-slash-auto-complete-flag t)
+ '(package-archives
+   (quote
+    (("gnu" . "http://elpa.gnu.org/packages/")
+     ("marmalade" . "https://marmalade-repo.org/packages/"))))
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(scroll-bar-mode (quote right))
@@ -71,9 +75,6 @@
 (global-set-key (kbd "C-c C-v") 'browse-url-of-buffer)
 
 ;; package
-(require 'package)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
 ;; flycheck

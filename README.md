@@ -14,12 +14,14 @@ $ LANG=C xdg-user-dirs-gtk-update
 (byte-recompile-directory "~/.emacs.d/" 0 t)
 ```
 
+# Setup Emacs on Windows
+
+See `emacs-{version}/share/emacs/{version}/README.W32`.
+
 # Emacs Upgrade All Packages
 
 ```
 M-x list-packages
-Type 'U'
-Type 'x'
 ```
 
 # Add yasnippet of web-mode
