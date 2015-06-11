@@ -1,23 +1,5 @@
-(require 'flycheck)
-
-;; flycheck-jscs
-(flycheck-def-config-file-var flycheck-jscsrc javascript-jscs ".jscsrc"
-  :safe #'stringp)
-
-(flycheck-define-checker javascript-jscs
-  "A JavaScript style checker using JSCS.
-
-See URL `http://jscs.info/'."
-  :command ("jscs"
-            "--reporter" "checkstyle"
-            (config-file "--config" flycheck-jscsrc)
-            source)
-  :error-parser flycheck-parse-checkstyle
-  :modes (js-mode js2-mode js3-mode)
-  :next-checkers (javascript-jshint))
-(add-to-list 'flycheck-checkers 'javascript-jscs)
-
-(defcustom jscs-format-enabled t
+;; JSCS Formatter
+(defcustom jscs-format-enabled nil
   "*Turn on/off JSCS formatting"
   :type 'boolean
   :group 'jscs)
@@ -28,10 +10,10 @@ See URL `http://jscs.info/'."
   :group 'jscs)
 
 (defun jscs-format-enable () (interactive)
-  (custom-set-variables '(jscs-format-enabled t)))
+       (custom-set-variables '(jscs-format-enabled t)))
 
 (defun jscs-format-disable () (interactive)
-  (custom-set-variables '(jscs-format-enabled nil)))
+       (custom-set-variables '(jscs-format-enabled nil)))
 
 (defvar jscs-buffer-name "*JSCS*")
 
