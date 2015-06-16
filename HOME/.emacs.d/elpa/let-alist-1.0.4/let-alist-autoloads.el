@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads (let-alist) "let-alist" "let-alist.el" (21674 15605
-;;;;;;  155875 849000))
+;;;### (autoloads (let-alist) "let-alist" "let-alist.el" (21887 28669
+;;;;;;  795261 596000))
 ;;; Generated autoloads from let-alist.el
 
 (autoload 'let-alist "let-alist" "\
@@ -42,8 +42,8 @@ displayed in the example above.
 
 ;;;***
 
-;;;### (autoloads nil nil ("let-alist-pkg.el") (21674 15605 208162
-;;;;;;  918000))
+;;;### (autoloads nil nil ("let-alist-pkg.el") (21887 28669 871535
+;;;;;;  796000))
 
 ;;;***
 

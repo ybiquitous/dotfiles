@@ -3622,9 +3622,11 @@ tracked in the current repository are reverted if
       (process-send-string
        proc
        (downcase
-        (concat (match-string (if (yes-or-no-p (substring string 0 beg)) 1 2)
-                              string)
-                "\n"))))))
+        (concat
+         (match-string
+          (if (save-match-data (yes-or-no-p (substring string 0 beg))) 1 2)
+          string)
+         "\n"))))))
 
 (defun magit-process-password-prompt (proc string)
   "Forward password prompts to the user."
@@ -4065,8 +4067,16 @@ the current repository."
               (and file (string-prefix-p topdir file)
                    (not (string-prefix-p gitdir file))
                    (member (file-relative-name file topdir) tracked)
-                   (let ((auto-revert-mode t))
-                     (auto-revert-handler)
+                   (let ((remote-file-name-inhibit-cache t))
+                     (when (and buffer-file-name
+                                (file-readable-p buffer-file-name)
+                                (not (verify-visited-file-modtime (current-buffer))))
+                       (setq auto-revert-notify-modified-p nil)
+                       (when auto-revert-verbose
+                         (message "Reverting buffer `%s'." (buffer-name)))
+                       (let ((buffer-read-only buffer-read-only))
+                         (revert-buffer 'ignore-auto 'dont-ask 'preserve-modes)))
+                     (vc-find-file-hook)
                      (run-hooks 'magit-revert-buffer-hook))))))))))
 
 ;;; (misplaced)
@@ -4381,12 +4391,12 @@ can be used to override this."
     (when stashes
       (magit-with-section (section stashes 'stashes "Stashes:" t)
         (dolist (stash stashes)
-          (string-match "^\\(stash@{\\([0-9]+\\)}\\): \\(.+\\)$" stash)
-          (let ((stash (match-string 1 stash))
-                (number (match-string 2 stash))
-                (message (match-string 3 stash)))
-            (magit-with-section (section stash stash)
-              (insert number ": " message "\n"))))
+          (when (string-match "^\\(stash@{\\([0-9]+\\)}\\): \\(.+\\)$" stash)
+            (let ((stash (match-string 1 stash))
+                  (number (match-string 2 stash))
+                  (message (match-string 3 stash)))
+              (magit-with-section (section stash stash)
+                (insert number ": " message "\n")))))
         (insert "\n")))))
 
 (defun magit-insert-untracked-files ()
@@ -6279,7 +6289,7 @@ Type `\\[magit-log-show-more-entries]` to show more commits, \
 and `\\[magit-refresh]` to refresh the log.
 Type `\\[magit-diff-working-tree]` to see the diff between current commit and your working tree,
 Type `\\[magit-diff]` to see diff between any two version
-Type `\\[magit-apply-item]` to apply the change of the current commit to your wortree,
+Type `\\[magit-apply-item]` to apply the change of the current commit to your worktree,
 and `\\[magit-cherry-pick-item]` to apply and commit the result.
 Type `\\[magit-revert-item]` to revert a commit, and `\\[magit-reset-head]` reset your current head to a commit,
 
@@ -7782,28 +7792,27 @@ You have just updated to version 1.4.0 of Magit, and have to
 make a choice.
 
 Before running Git, Magit by default reverts all unmodified
-buffers which visit files tracked in the current repository.
-This can potentially lead to dataloss so you might want to
+buffers that visit files tracked in the current repository.
+This can potentially lead to data loss, so you might want to
 disable this by adding the following line to your init file:
 
   (setq magit-auto-revert-mode nil)
 
-The risk is not as high as it might seem.  If snapshots on Melpa
-and Melpa-Stable had this enabled for a long time, so if you did
-not experience any dataloss in the past, then you should probably
-keep this enabled.
+The risk is not as high as it might seem.  Snapshots on MELPA
+and MELPA-Stable have had this enabled for a long time, so if
+you have not experienced any data loss in the past, you should
+probably keep this enabled.
 
 Keeping this mode enabled is only problematic if you, for
-example, use `git reset --hard REV' or `magit-reset-head-hard',
+example, use `git reset --hard REV' or `magit-reset-head-hard'
 and expect Emacs to preserve the old state of some file in a
-buffer.  If you turn of this mode then file-visiting buffers and
-Magit buffer will no longer by in sync, which can be confusing
-and complicates many operations.  Also note that it is possible
-to undo a buffer revert using `C-x u' (`undo').
+buffer.  If you turn off this mode then file-visiting buffers and
+the Magit buffer will no longer be in sync, which can be confusing
+and would complicate many operations.  Note that it is possible
+to undo an automatic buffer reversion using `C-x u' (`undo').
 
-Then you also have to add the following line to your init file
-to prevent this message from being shown again when you restart
-Emacs:
+To prevent this message from being shown each time you start
+Emacs, you must add the following line to your init file:
 
   (setq magit-last-seen-setup-instructions \"1.4.0\")
 
