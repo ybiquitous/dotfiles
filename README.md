@@ -5,7 +5,7 @@ Use 'mklink' as Administrator on Windows, instead 'ln -s'.
 # Update home directory names
 
 ```sh
-$ LANG=C xdg-user-dirs-gtk-update
+LANG=C xdg-user-dirs-gtk-update
 ```
 
 # Emacs byte recompile all
@@ -27,19 +27,22 @@ M-x list-packages
 # Add yasnippet of web-mode
 
 ```sh
-$ cd HOME/.emacs.d/elpa/yasnippet-*/snippets
-$ mkdir web-mode
-$ cd web-mode
-$ (echo "html-mode"; echo "css-mode"; echo "js-mode") > .yas-parents
+ORIG_DIR=$(pwd)
+cd ~/.emacs.d/elpa/yasnippet-*/snippets
+mkdir web-mode
+cd web-mode
+(echo "html-mode"; echo "css-mode"; echo "js-mode") > .yas-parents
+cd $ORIG_DIR
+unset ORIG_DIR
 ```
 
 # JDK font setting on Linux
 
 ```sh
-$ cd $JAVA_HOME/jre/lib/fonts/
-$ mkdir fallback
-$ cd fallback
-$ ln -s /usr/share/fonts/truetype/****.ttf .
+cd ${JAVA_HOME}/jre/lib/fonts/
+mkdir fallback
+cd fallback
+ln -s /usr/share/fonts/truetype/****.ttf .
 ```
 
 # Install Node.js and npm commands
@@ -47,7 +50,7 @@ $ ln -s /usr/share/fonts/truetype/****.ttf .
 See https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
 
 ```sh
-$ npm install -g jsonlint jshint csslint js-beautify jscs jscs-jsdoc marked editorconfig
+npm install -g jsonlint jshint csslint js-beautify jscs jscs-jsdoc marked editorconfig
 ```
 
 # Eclipse keybind (based on Emacs)

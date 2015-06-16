@@ -26,6 +26,7 @@
  '(package-archives
    (quote
     (("gnu" . "http://elpa.gnu.org/packages/")
+     ("melpa-stable" . "http://stable.melpa.org/packages/")
      ("marmalade" . "https://marmalade-repo.org/packages/"))))
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
