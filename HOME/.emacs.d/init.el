@@ -52,7 +52,11 @@
      (tab-mark 9
                [187 9]
                [92 9]))))
+ '(whitespace-line-column 100)
  '(whitespace-space-regexp "\\(\\u3000+\\)")
+ '(whitespace-style
+   (quote
+    (face tabs spaces trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark newline-mark lines-tail)))
  '(x-select-enable-clipboard t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
