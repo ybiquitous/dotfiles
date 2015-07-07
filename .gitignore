@@ -8,5 +8,6 @@ HOME/.emacs.d/tramp
 HOME/.emacs.d/eshell/history
 HOME/.emacs.d/project-explorer-cache
 HOME/.emacs.d/inits/init-env.el
+HOME/.emacs.d/server/server
 HOME/.zsh/.zcompdump
 HOME/.zsh/Completion
