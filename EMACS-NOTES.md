@@ -12,6 +12,19 @@
 | Name | Notes |
 | ---- | ----- |
 | `align-regexp` | 列揃えの整形 |
+| `M-: (byte-recompile-directory "~/.emacs.d/" 0 t)` | 全Elispの再コンパイル |
+
+## yasnippet に web-mode を追加するコマンド
+
+```sh
+ORIG_DIR=$(pwd)
+cd ~/.emacs.d/elpa/yasnippet-*/snippets
+mkdir web-mode
+cd web-mode
+(echo "html-mode"; echo "css-mode"; echo "js-mode") > .yas-parents
+cd $ORIG_DIR
+unset ORIG_DIR
+```
 
 ## TIPS for Windows
 
@@ -20,3 +33,5 @@
 (setenv "PATH" (format "C:\\Program Files\\Git\\usr\\bin;%s" (getenv "PATH")))
 (setq null-device "/dev/null")
 ```
+
+See `emacs-{version}/share/emacs/{version}/README.W32`.

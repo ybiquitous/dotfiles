@@ -8,34 +8,6 @@ Use 'mklink' as Administrator on Windows, instead 'ln -s'.
 LANG=C xdg-user-dirs-gtk-update
 ```
 
-# Emacs byte recompile all
-
-```elisp
-M-: (byte-recompile-directory "~/.emacs.d/" 0 t)
-```
-
-# Setup Emacs on Windows
-
-See `emacs-{version}/share/emacs/{version}/README.W32`.
-
-# Emacs Upgrade All Packages
-
-```elisp
-M-x list-packages
-```
-
-# Add yasnippet of web-mode
-
-```sh
-ORIG_DIR=$(pwd)
-cd ~/.emacs.d/elpa/yasnippet-*/snippets
-mkdir web-mode
-cd web-mode
-(echo "html-mode"; echo "css-mode"; echo "js-mode") > .yas-parents
-cd $ORIG_DIR
-unset ORIG_DIR
-```
-
 # JDK font setting on Linux
 
 ```sh
