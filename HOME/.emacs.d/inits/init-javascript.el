@@ -49,29 +49,4 @@
      (require 'tern-auto-complete)
      (tern-ac-setup)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; Flycheck JSCS
-;;
-;; FIXME: 本家で開発中のため、リリースされたらこのコードは削除する
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(flycheck-def-config-file-var flycheck-jscs javascript-jscs ".jscsrc"
-  :safe #'stringp)
-(flycheck-define-checker javascript-jscs
-  "A JavaScript code style checker.
-See URL `http://jscs.info/'."
-  :command ("jscs" "--reporter" "checkstyle"
-            (config-file "--config" flycheck-jscs)
-            source)
-  :error-parser flycheck-parse-checkstyle
-  :modes (js-mode js2-mode js3-mode)
-  :next-checkers (javascript-jshint))
-
-(defun flycheck-jscs-enable () (interactive)
-       (add-to-list 'flycheck-checkers 'javascript-jscs))
-
-(defun flycheck-jscs-disable () (interactive)
-       (setq flycheck-checkers (remove 'javascript-jscs flycheck-checkers)))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (provide 'init-javascript)

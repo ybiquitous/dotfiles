@@ -1,13 +1,11 @@
 ;;; flycheck-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-
+(add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
 
-;;;### (autoloads (flycheck-def-option-var flycheck-def-config-file-var
-;;;;;;  flycheck-define-command-checker flycheck-define-error-level
-;;;;;;  global-flycheck-mode flycheck-mode flycheck-info) "flycheck"
-;;;;;;  "flycheck.el" (21887 29045 54145 168000))
-;;; Generated autoloads from flycheck.el
+;;;### (autoloads nil "flycheck" "../../../../../.emacs.d/elpa/flycheck-0.24/flycheck.el"
+;;;;;;  "bb3913ef90273f2246c5fa9143212c5c")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/flycheck-0.24/flycheck.el
 
 (autoload 'flycheck-info "flycheck" "\
 Open the Flycheck manual.
@@ -67,6 +65,16 @@ The following PROPERTIES constitute an error level:
 
      The severity is used by `flycheck-error-level-<' to
      determine the ordering of errors according to their levels.
+
+`:compilation-level LEVEL'
+
+     A number indicating the broad class of messages that errors
+     at this level belong to: one of 0 (info), 1 (warning), or
+     2 or nil (error).  Defaults to nil.
+
+     This is used by `flycheck-checker-pattern-to-error-regexp'
+     to map error levels into `compilation-mode''s hierarchy and
+     to get proper highlighting of errors in `compilation-mode'.
 
 `:overlay-category CATEGORY'
      A symbol denoting the overlay category to use for error
@@ -165,9 +173,8 @@ of command checkers is `flycheck-sanitize-errors'.
 
 Note that you may not give `:start', `:interrupt', and
 `:print-doc' for a command checker.  You can give a custom
-`:verify' function, but you should take care to call
-`flycheck-verify-command-checker' in a custom `:verify'
-function.
+`:verify' function, though, whose results will be appended to the
+default `:verify' function of command checkers.
 
 \(fn SYMBOL DOCSTRING &rest PROPERTIES)" nil nil)
 
@@ -212,16 +219,17 @@ Use this together with the `option', `option-list' and
 
 ;;;***
 
-;;;### (autoloads nil nil ("flycheck-ert.el" "flycheck-pkg.el") (21887
-;;;;;;  29045 117585 947000))
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/flycheck-0.24/flycheck-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/flycheck-0.24/flycheck-ert.el"
+;;;;;;  "../../../../../.emacs.d/elpa/flycheck-0.24/flycheck-pkg.el"
+;;;;;;  "../../../../../.emacs.d/elpa/flycheck-0.24/flycheck.el")
+;;;;;;  (21983 45365 933385 800000))
 
 ;;;***
 
-(provide 'flycheck-autoloads)
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
-;; coding: utf-8
 ;; End:
 ;;; flycheck-autoloads.el ends here
