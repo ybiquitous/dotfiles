@@ -12,3 +12,11 @@
 | Name | Notes |
 | ---- | ----- |
 | `align-regexp` | 列揃えの整形 |
+
+## TIPS for Windows
+
+```elisp
+;; rgrep を有効にする
+(setenv "PATH" (format "C:\\Program Files\\Git\\usr\\bin;%s" (getenv "PATH")))
+(setq null-device "/dev/null")
+```
