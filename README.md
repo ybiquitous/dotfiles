@@ -10,7 +10,7 @@ LANG=C xdg-user-dirs-gtk-update
 
 # Emacs byte recompile all
 
-```
+```elisp
 M-: (byte-recompile-directory "~/.emacs.d/" 0 t)
 ```
 
@@ -20,7 +20,7 @@ See `emacs-{version}/share/emacs/{version}/README.W32`.
 
 # Emacs Upgrade All Packages
 
-```
+```elisp
 M-x list-packages
 ```
 
