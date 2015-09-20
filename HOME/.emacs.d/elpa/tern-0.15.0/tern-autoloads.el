@@ -3,9 +3,9 @@
 ;;; Code:
 (add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
 
-;;;### (autoloads nil "tern" "../../../../../.emacs.d/elpa/tern-0.13.0/tern.el"
-;;;;;;  "552c05fc25a40963d6bbb45cea03b293")
-;;; Generated autoloads from ../../../../../.emacs.d/elpa/tern-0.13.0/tern.el
+;;;### (autoloads nil "tern" "../../../../../.emacs.d/elpa/tern-0.15.0/tern.el"
+;;;;;;  "dcc94313a82a4149128991f94febe72a")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/tern-0.15.0/tern.el
 
 (autoload 'tern-use-server "tern" "\
 
@@ -19,9 +19,9 @@ Minor mode binding to the Tern JavaScript analyzer
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/tern-0.13.0/tern-autoloads.el"
-;;;;;;  "../../../../../.emacs.d/elpa/tern-0.13.0/tern.el") (21965
-;;;;;;  26589 766872 300000))
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/tern-0.15.0/tern-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/tern-0.15.0/tern.el") (22014
+;;;;;;  20961 209982 300000))
 
 ;;;***
 

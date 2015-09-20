@@ -3,7 +3,7 @@
 
 ;; Author: Marijn Haverbeke
 ;; URL: http://ternjs.net/
-;; Package-Version: 0.13.0
+;; Package-Version: 0.15.0
 ;; Version: 0.0.1
 ;; Package-Requires: ((json "1.2") (cl-lib "0.5") (emacs "24"))
 
@@ -26,7 +26,7 @@
   (let* ((url-mime-charset-string nil) ; Suppress huge, useless header
          (url-request-method "POST")
          (deactivate-mark nil) ; Prevents json-encode from interfering with shift-selection-mode
-         (url-request-data (json-encode doc))
+         (url-request-data (encode-coding-string (json-encode doc) 'utf-8))
          (url-show-status nil)
          (url (url-parse-make-urlobj "http" nil nil tern-server port "/" nil nil nil)))
     (url-http url #'tern-req-finished (list c))))
@@ -37,6 +37,7 @@
   (let ((is-error (and (consp c) (eq (car c) :error)))
         (found-body (search-forward "\n\n" nil t))
         (deactivate-mark nil))
+    (set-buffer-multibyte t)
     (if (or is-error (not found-body))
         (let ((message (and found-body
                             (buffer-substring-no-properties (point) (point-max))))
@@ -88,8 +89,7 @@
                           buffer-file-name))
          (bin-file (expand-file-name "../bin/tern" (file-name-directory (file-truename script-file))))
          (tern-itself (list (if (file-exists-p bin-file) bin-file "tern"))))
-;;    (if (eq system-type 'windows-nt) (cons "node" tern-itself) tern-itself))
-    (if (eq system-type 'windows-nt) tern-itself))
+    (if (eq system-type 'windows-nt) (cons "node" tern-itself) tern-itself))
   "The command to be run to start the Tern server. Should be a
 list of strings, giving the binary name and arguments.")
 
@@ -473,7 +473,8 @@ list of strings, giving the binary name and arguments.")
 
 (defun tern-go-to-position (file pos)
   (find-file file)
-  (goto-char (min pos (point-max))))
+  (goto-char (min pos (point-max)))
+  (setf tern-last-point-pos (point)))
 
 ;; Query type
 
