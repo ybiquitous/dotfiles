@@ -9,6 +9,7 @@
  '(css-indent-offset tab-width)
  '(electric-pair-mode t)
  '(emmet-indentation tab-width)
+ '(flycheck-temp-prefix ".flycheck")
  '(global-font-lock-mode t)
  '(global-hl-line-mode t)
  '(global-linum-mode t)
