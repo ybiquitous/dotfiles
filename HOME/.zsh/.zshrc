@@ -18,9 +18,15 @@ esac
 #
 
 # http://git-prompt.sh/
+source ${HOME}/.git-prompt.sh
 setopt prompt_subst
-[ -f ${HOME}/.git-prompt.sh ] && source ${HOME}/.git-prompt.sh
-RPROMPT=$'$(__git_ps1 "%s")'
+RPROMPT='$(__git_ps1 "[%s]")'
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_DESCRIBE_STYLE="default"
+GIT_PS1_SHOWCOLORHINTS=1
 
 autoload colors
 colors
