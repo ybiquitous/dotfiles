@@ -16,6 +16,12 @@ esac
 #
 # set prompt
 #
+
+# http://git-prompt.sh/
+setopt prompt_subst
+[ -f ${HOME}/.git-prompt.sh ] && source ${HOME}/.git-prompt.sh
+RPROMPT=$'$(__git_ps1 "%s")'
+
 autoload colors
 colors
 case ${UID} in
@@ -182,6 +188,6 @@ setopt ignoreeof
 
 [[ $EMACS = t ]] && unsetopt zle
 
-[ -f $HOME/.aliases ] && source $HOME/.aliases
+[ -f ${HOME}/.aliases ] && source ${HOME}/.aliases
 
 fpath=(${ZDOTDIR}/zsh-completions/src $fpath)
