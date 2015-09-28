@@ -128,12 +128,4 @@
 (add-hook 'css-mode-hook  'emmet-mode)
 (add-hook 'web-mode-hook  'emmet-mode)
 
-;; magit
-(setq magit-last-seen-setup-instructions "1.4.0")
-(add-hook 'magit-mode-hook
-          (lambda ()
-            (custom-set-variables
-             '(magit-diff-refine-hunk t))
-            ))
-
 ;;; init.el ends here
