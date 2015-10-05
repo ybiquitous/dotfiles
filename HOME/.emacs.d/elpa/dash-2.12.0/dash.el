@@ -1,10 +1,10 @@
 ;;; dash.el --- A modern list library for Emacs
 
-;; Copyright (C) 2012-2014 Magnar Sveen
+;; Copyright (C) 2012-2015 Free Software Foundation, Inc.
 
 ;; Author: Magnar Sveen <magnars@gmail.com>
-;; Version: 2.11.0
-;; Package-Version: 2.11.0
+;; Version: 2.12.0
+;; Package-Version: 2.12.0
 ;; Keywords: lists
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -134,7 +134,9 @@ item, etc. If LIST contains no items, return INITIAL-VALUE and
 FN is not called.
 
 In the anaphoric form `--reduce-from', the accumulated value is
-exposed as `acc`."
+exposed as `acc`.
+
+See also: `-reduce', `-reduce-r'"
   (--reduce-from (funcall fn acc it) initial-value list))
 
 (defmacro --reduce (form list)
@@ -154,7 +156,9 @@ reduce return the result of calling FN with no arguments. If
 LIST has only 1 item, it is returned and FN is not called.
 
 In the anaphoric form `--reduce', the accumulated value is
-exposed as `acc`."
+exposed as `acc`.
+
+See also: `-reduce-from', `-reduce-r'"
   (if list
       (-reduce-from fn (car list) (cdr list))
     (funcall fn)))
@@ -165,7 +169,9 @@ the resulting expression. If LIST is empty, INITIAL-VALUE is
 returned and FN is not called.
 
 Note: this function works the same as `-reduce-from' but the
-operation associates from right instead of from left."
+operation associates from right instead of from left.
+
+See also: `-reduce-r', `-reduce'"
   (if (not list) initial-value
     (funcall fn (car list) (-reduce-r-from fn initial-value (cdr list)))))
 
@@ -185,7 +191,9 @@ The first argument of FN is the new item, the second is the
 accumulated value.
 
 Note: this function works the same as `-reduce' but the operation
-associates from right instead of from left."
+associates from right instead of from left.
+
+See also: `-reduce-r-from', `-reduce'"
   (cond
    ((not list) (funcall fn))
    ((not (cdr list)) (car list))
@@ -388,6 +396,14 @@ Thus function FN should return a list."
 
 (defun -flatten (l)
   "Take a nested list L and return its contents as a single, flat list.
+
+Note that because `nil' represents a list of zero elements (an
+empty list), any mention of nil in L will disappear after
+flattening.  If you need to preserve nils, consider `-flatten-n'
+or map them to some unique symbol and then map them back.
+
+Conses of two atoms are considered \"terminals\", that is, they
+aren't flattened further.
 
 See also: `-flatten-n'"
   (if (and (listp l) (listp (cdr l)))
@@ -1192,6 +1208,33 @@ in second form, etc."
         (list form x))
     `(--> (--> ,x ,form) ,@more)))
 
+(defmacro -some-> (x &optional form &rest more)
+  "When expr is non-nil, thread it through the first form (via `->'),
+and when that result is non-nil, through the next form, etc."
+  (if (null form) x
+    (let ((result (make-symbol "result")))
+      `(-some-> (-when-let (,result ,x)
+                  (-> ,result ,form))
+                ,@more))))
+
+(defmacro -some->> (x &optional form &rest more)
+  "When expr is non-nil, thread it through the first form (via `->>'),
+and when that result is non-nil, through the next form, etc."
+  (if (null form) x
+    (let ((result (make-symbol "result")))
+      `(-some->> (-when-let (,result ,x)
+                   (->> ,result ,form))
+                 ,@more))))
+
+(defmacro -some--> (x &optional form &rest more)
+  "When expr in non-nil, thread it through the first form (via `-->'),
+and when that result is non-nil, through the next form, etc."
+  (if (null form) x
+    (let ((result (make-symbol "result")))
+      `(-some--> (-when-let (,result ,x)
+                   (--> ,result ,form))
+                 ,@more))))
+
 (defun -grade-up (comparator list)
   "Grade elements of LIST using COMPARATOR relation, yielding a
 permutation vector such that applying this permutation to LIST
@@ -1550,10 +1593,10 @@ Vectors:
                    If the PATTERN is longer than SOURCE, an `error' is
                    thrown.
 
-  [a1 a2 a3 ... &rest rest] ) - as above, but bind the rest of
-                                the sequence to REST.  This is
-                                conceptually the same as improper list
-                                matching (a1 a2 ... aN . rest)
+  [a1 a2 a3 ... &rest rest] - as above, but bind the rest of
+                              the sequence to REST.  This is
+                              conceptually the same as improper list
+                              matching (a1 a2 ... aN . rest)
 
 Key/value stores:
 
@@ -1667,7 +1710,9 @@ See `-let' for the description of destructuring mechanism."
 VARS and do THEN, otherwise do ELSE. VARS-VALS should be a list
 of (VAR VAL) pairs.
 
-Note: binding is done according to `-let*'."
+Note: binding is done according to `-let*'.  VALS are evaluated
+sequentially, and evaluation stops after the first nil VAL is
+encountered."
   (declare (debug ((&rest (sexp form)) form body))
            (indent 2))
   (->> vars-vals
@@ -1700,7 +1745,9 @@ otherwise do ELSE."
 VARS and execute body. VARS-VALS should be a list of (VAR VAL)
 pairs.
 
-Note: binding is done according to `-let*'."
+Note: binding is done according to `-let*'.  VALS are evaluated
+sequentially, and evaluation stops after the first nil VAL is
+encountered."
   (declare (debug ((&rest (sexp form)) body))
            (indent 1))
   `(-if-let* ,vars-vals (progn ,@body)))
@@ -1737,9 +1784,19 @@ Alias: `-uniq'"
   "Return a new list containing the elements of LIST1 and elements of LIST2 that are not in LIST1.
 The test for equality is done with `equal',
 or with `-compare-fn' if that's non-nil."
-  (let (result)
-    (--each list (!cons it result))
-    (--each list2 (unless (-contains? result it) (!cons it result)))
+  ;; We fall back to iteration implementation if the comparison
+  ;; function isn't one of `eq', `eql' or `equal'.
+  (let* ((result (reverse list))
+         ;; TODO: get rid of this dynamic variable, pass it as an
+         ;; argument instead.
+         (-compare-fn (if (bound-and-true-p -compare-fn)
+                          -compare-fn
+                        'equal)))
+    (if (memq -compare-fn '(eq eql equal))
+        (let ((ht (make-hash-table :test -compare-fn)))
+          (--each list (puthash it t ht))
+          (--each list2 (unless (gethash it ht) (!cons it result))))
+      (--each list2 (unless (-contains? result it) (!cons it result))))
     (nreverse result)))
 
 (defun -intersection (list list2)
@@ -1808,7 +1865,7 @@ Alias: `-is-prefix-p'"
   "Return non-nil if SUFFIX is suffix of LIST.
 
 Alias: `-is-suffix-p'"
-  (-is-prefix? (nreverse suffix) (nreverse list)))
+  (-is-prefix? (reverse suffix) (reverse list)))
 
 (defun -is-infix? (infix list)
   "Return non-nil if INFIX is infix of LIST.
