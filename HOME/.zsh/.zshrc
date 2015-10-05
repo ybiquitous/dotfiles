@@ -37,7 +37,7 @@ case ${UID} in
     SPROMPT="%B%{${fg_bold[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
     ;;
 *)
-    PROMPT="%{${fg_bold[green]}%}%n:%/%%%{${reset_color}%} "
+    PROMPT="%{${fg_bold[green]}%}%n@%m %{${fg_bold[yellow]}%}[%~] %{${reset_color}%}$ "
     PROMPT2="%{${fg_bold[green]}%}%_%%%{${reset_color}%} "
     SPROMPT="%{${fg_bold[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%} "
     [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
