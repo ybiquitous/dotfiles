@@ -89,6 +89,7 @@
 ;; inits
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/inits"))
 (require 'init-env)
+(require 'init-common)
 (require 'init-java)
 (require 'init-javascript)
 (require 'init-markdown)
