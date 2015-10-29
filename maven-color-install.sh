@@ -4,28 +4,28 @@
 #
 # See README on [https://github.com/jcgay/maven-color]
 #
-# ONLY FOR Maven 3.1.x
+# ONLY FOR Maven >=3.1.x
 #
 ########################################################################
 
-if [ ! -d "$1" ]; then
-  echo "usage: $0 {maven_home}"
+if [ ! -d "$1" -o ! -n "$2" ]; then
+  echo "usage: $0 {maven_home} {version}"
   exit 1
 fi
 
 MAVEN_HOME="$1"
-VERSION=1.0
-SLF4J_DEFAULT_IMPL=slf4j-simple-1.7.5.jar
+VERSION="$2"
+DISTFILE="maven-color-logback-${VERSION}-bundle.tar.gz"
 
-cd ${MAVEN_HOME}
-curl -L -O "http://dl.bintray.com/jcgay/maven/com/github/jcgay/maven/color/maven-color-logback/${VERSION}/maven-color-logback-${VERSION}-bundle.tar.gz"
-tar xvfz maven-color-logback-${VERSION}-bundle.tar.gz
-cp -rfv maven-color-logback-${VERSION}/* ./
+cd "${MAVEN_HOME}"
 
-if [ -f lib/${SLF4J_DEFAULT_IMPL} ]; then
-  mv -f lib/${SLF4J_DEFAULT_IMPL} lib/${SLF4J_DEFAULT_IMPL}.bak
+if [ ! -f "${DISTFILE}" ]; then
+  curl -L -O "http://dl.bintray.com/jcgay/maven/com/github/jcgay/maven/color/maven-color-logback/${VERSION}/${DISTFILE}"
+  tar xvfz "${DISTFILE}"
 fi
 
-rm -rfv maven-color-*
+for file in $(find ./lib -type f -name "slf4j-simple-*.jar") ; do
+  mv -fv "${file}" "${file}.bak"
+done
 
-${MAVEN_HOME}/bin/mvn help:help
+"${MAVEN_HOME}/bin/mvn" help:help
