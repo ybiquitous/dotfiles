@@ -3,8 +3,8 @@
 
 ;; Copyright 2011-2015 François-Xavier Bois
 
-;; Version: 12.4.0
-;; Package-Version: 12.4
+;; Version: 13.0.0
+;; Package-Version: 13
 ;; Author: François-Xavier Bois <fxbois AT Google Mail Service>
 ;; Maintainer: François-Xavier Bois
 ;; Created: July 2011
@@ -20,14 +20,9 @@
 
 ;; Code goes here
 
-;;---- TODO --------------------------------------------------------------------
-
-;; v13 : invert path and XX (web-mode-engines-alist,
-;;       web-mode-content-types-alist) for more consistency
-
 ;;---- CONSTS ------------------------------------------------------------------
 
-(defconst web-mode-version "12.4.0"
+(defconst web-mode-version "13.0.0"
   "Web Mode version.")
 
 ;;---- GROUPS ------------------------------------------------------------------
@@ -1055,7 +1050,7 @@ Must be used in conjunction with web-mode-enable-block-face."
    '("erb"              . "<%\\|^%.")
    '("freemarker"       . "<%\\|${\\|</?[[:alpha:]]+:[[:alpha:]]\\|</?[@#]\\|\\[/?[@#].")
    '("go"               . "{{.")
-   '("jsp"              . "<%\\|${\\|</?[[:alpha:]]+:[[:alpha:]]+")
+   '("jsp"              . "<%\\|${\\|</?[[:alpha:]]+[:.][[:alpha:]]+")
    '("lsp"              . "<%")
    '("mako"             . "</?%\\|${\\|^[ \t]*%.\\|^[ \t]*##")
    '("mason"            . "</?[&%]\\|^%.")
@@ -1738,7 +1733,7 @@ Must be used in conjunction with web-mode-enable-block-face."
 
 (defvar web-mode-engine-tag-font-lock-keywords
   (list
-   '("</?\\([[:alpha:]]+\\(?:Template\\|:[[:alpha:]-]+\\)\\)" 1 'web-mode-block-control-face)
+   '("</?\\([[:alpha:]]+\\(?:Template\\|[:.][[:alpha:]-]+\\)\\)" 1 'web-mode-block-control-face)
    '("\\<\\([[:alpha:]-]+=\\)\\(\"[^\"]*\"\\)"
      (1 'web-mode-block-attr-name-face t t)
      (2 'web-mode-block-attr-value-face t t))
@@ -1949,6 +1944,14 @@ Must be used in conjunction with web-mode-enable-block-face."
 Auto-complete sources will sometimes need some tweaking to work
 nicely with web-mode. This hook gives users the chance to adjust
 the environment as needed for ac-sources, right before they're used.")
+
+(defvar web-mode-ignore-ac-start-advice nil
+  "If not nil 'defadvice' for 'ac-start' will be ignored.
+
+Can be set inside a hook in 'web-mode-before-auto-complete-hooks' to
+non nil to ignore the defadvice which sets ac-sources according to current
+language. This is needed if the corresponding auto-completion triggers
+another auto-completion with different ac-sources (e.g. ac-php)")
 
 (defvar web-mode-ac-sources-alist nil
   "alist mapping language names to ac-sources for that language.")
@@ -3528,7 +3531,7 @@ the environment as needed for ac-sources, right before they're used.")
         (cond
          ((eq (char-after (1- reg-end)) ?\/)
           )
-         ((looking-at "</?\\([[:alpha:]]+\\(?:[:][[:alpha:]]+\\)\\|[[:alpha:]]+Template\\)")
+         ((looking-at "</?\\([[:alpha:]]+\\(?:[:.][[:alpha:]]+\\)\\|[[:alpha:]]+Template\\)")
           (setq control (match-string-no-properties 1)
                 type (if (eq (aref (match-string-no-properties 0) 1) ?\/) 'close 'open))
           (when (not (member control '("h:inputtext" "jsp:usebean" "jsp:forward" "struts:property")))
@@ -6349,7 +6352,7 @@ the environment as needed for ac-sources, right before they're used.")
                (web-mode-looking-at "<%@\\|<[[:alpha:]]" reg-beg))
           (save-excursion
             (goto-char reg-beg)
-            (looking-at "<%@[ ]*[[:alpha:]]+[ ]+\\|</?[[:alpha:]]+:[[:alpha:]]+[ ]+")
+            (looking-at "<%@[ ]*[[:alpha:]]+[ ]+\\|</?[[:alpha:]]+[:.][[:alpha:]]+[ ]+")
             (goto-char (match-end 0))
             (setq reg-col (current-column))
             )
@@ -6712,6 +6715,7 @@ the environment as needed for ac-sources, right before they're used.")
                (or (eq prev-char ?\))
                    (string-match-p "^else$" prev-line))
                (not (string-match-p "^\\([{.]\\|->\\)" curr-line)))
+          ;;(message "ici");
           (cond
            ((member language '("javascript" "jsx" "ejs"))
             (setq offset
@@ -6728,7 +6732,10 @@ the environment as needed for ac-sources, right before they're used.")
            )
           )
 
-         ((and (member language '("javascript" "jsx" "ejs")) (member ?\. chars))
+         ((and (member language '("javascript" "jsx" "ejs"))
+               (member ?\. chars)
+               (not (string-match-p "^\\.\\.\\." curr-line))
+               )
           (when (web-mode-javascript-calls-beginning pos reg-beg)
             (cond
              ((cdr (assoc "lineup-calls" web-mode-indentation-params))
@@ -6906,28 +6913,6 @@ the environment as needed for ac-sources, right before they're used.")
       ) ;when
 
     ))
-
-;; (defun web-mode-markup-indentation (pos)
-;;   (save-excursion
-;;     (goto-char pos)
-;;     (let ((offset 0) beg ret)
-;;       (setq beg (web-mode-markup-indentation-origin))
-;;       (when beg
-;;         (when (and (get-text-property pos 'jsx-depth)
-;;                    (not (get-text-property beg 'jsx-depth)))
-;;           (setq beg (web-mode-jsx-depth-beginning-position pos)))
-;;         (goto-char beg)
-;;         (setq ret (web-mode-element-is-opened beg pos))
-;;         (cond
-;;          ((null ret)
-;;           (setq offset (current-indentation)))
-;;          ((eq ret t)
-;;           (setq offset (+ (current-indentation) web-mode-markup-indent-offset)))
-;;          (t
-;;           (setq offset ret))
-;;          ) ;cond
-;;         ) ;when beg
-;;       offset)))
 
 (defun web-mode-markup-indentation (pos)
   (let ((offset 0) beg ret)
@@ -9465,7 +9450,7 @@ Pos should be in a tag."
    ((string= web-mode-engine "velocity")          "#{end}")
    ((string= web-mode-engine "template-toolkit")  "[% end %]")
    ((member web-mode-engine '("asp" "jsp"))
-    (if (string-match-p ":" type) (concat "</" type ">") "<% } %>"))
+    (if (string-match-p "[:.]" type) (concat "</" type ">") "<% } %>"))
    (t nil)
    ) ;cond
   )
@@ -11197,14 +11182,17 @@ Pos should be in a tag."
 
 (defadvice ac-start (before web-mode-set-up-ac-sources activate)
   "Set `ac-sources' based on current language before running auto-complete."
-  (if (equal major-mode 'web-mode)
-      (progn
-        (run-hooks 'web-mode-before-auto-complete-hooks)
-        (when web-mode-ac-sources-alist
-          (let ((new-web-mode-ac-sources
-                 (assoc (web-mode-language-at-pos)
-                        web-mode-ac-sources-alist)))
-            (setq ac-sources (cdr new-web-mode-ac-sources)))))))
+  (when (equal major-mode 'web-mode)
+    ;; set ignore each time to nil. User has to implement a hook to change it
+    ;; for each completion
+    (setq web-mode-ignore-ac-start-advice nil)
+    (run-hooks 'web-mode-before-auto-complete-hooks)
+    (unless web-mode-ignore-ac-start-advice
+      (when web-mode-ac-sources-alist
+        (let ((new-web-mode-ac-sources
+               (assoc (web-mode-language-at-pos)
+                      web-mode-ac-sources-alist)))
+          (setq ac-sources (cdr new-web-mode-ac-sources)))))))
 
 ;;---- MINOR MODE ADDONS -------------------------------------------------------
 
