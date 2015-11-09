@@ -5,6 +5,7 @@
 	br = branch
 	di = diff
 	pl = pull
+	dic = diff --cached
 [color]
 	ui = auto
 [core]
