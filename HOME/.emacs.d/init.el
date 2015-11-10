@@ -66,9 +66,6 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:background "black" :foreground "white")))))
 
-(eval-after-load "dired-aux"
-  '(add-to-list 'dired-compress-file-suffixes '("\\.zip\\'" ".zip" "unzip")))
-
 (prefer-coding-system 'utf-8-unix)
 
 (fset 'yes-or-no-p 'y-or-n-p)
