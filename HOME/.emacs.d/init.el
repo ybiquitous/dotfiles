@@ -83,6 +83,9 @@
 ;; package
 (package-initialize)
 
+;; exec-path
+(exec-path-from-shell-initialize)
+
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
