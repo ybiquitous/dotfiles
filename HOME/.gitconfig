@@ -7,7 +7,7 @@
 	dic = diff --cached
 	pl = pull
 	plp = pull --prune
-	delete-merged-branches = git branch --merged | grep -v '*' | grep -v master | grep -v develop | xargs -n 1 git branch -d
+	delete-merged-branches = !git branch --merged | grep -v \\* | grep -v master | grep -v develop | xargs -I % git branch -d %
 [color]
 	ui = auto
 [core]
