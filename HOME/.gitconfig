@@ -4,8 +4,10 @@
 	co = checkout
 	br = branch
 	di = diff
-	pl = pull
 	dic = diff --cached
+	pl = pull
+	plp = pull --prune
+	delete-merged-branches = git branch --merged | grep -v '*' | grep -v master | grep -v develop | xargs -n 1 git branch -d
 [color]
 	ui = auto
 [core]
