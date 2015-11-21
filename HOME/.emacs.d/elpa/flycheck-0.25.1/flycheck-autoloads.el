@@ -1,11 +1,13 @@
 ;;; flycheck-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-(add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
+
 
-;;;### (autoloads nil "flycheck" "../../../../../.emacs.d/elpa/flycheck-0.24/flycheck.el"
-;;;;;;  "bb3913ef90273f2246c5fa9143212c5c")
-;;; Generated autoloads from ../../../../../.emacs.d/elpa/flycheck-0.24/flycheck.el
+;;;### (autoloads (flycheck-def-option-var flycheck-def-config-file-var
+;;;;;;  flycheck-define-command-checker flycheck-define-error-level
+;;;;;;  global-flycheck-mode flycheck-mode flycheck-info) "flycheck"
+;;;;;;  "flycheck.el" (22095 52595 343657 800000))
+;;; Generated autoloads from flycheck.el
 
 (autoload 'flycheck-info "flycheck" "\
 Open the Flycheck manual.
@@ -83,11 +85,9 @@ The following PROPERTIES constitute an error level:
      overlay categories.
 
      A category for an error level overlay should at least define
-     the `face' property, for error highlighting.  Other useful
-     properties for error level categories are `priority' to
-     influence the stacking of multiple error level overlays, and
-     `help-echo' to define a default error messages for errors
-     without messages.
+     the `face' property, for error highlighting.  Another useful
+     property for error level categories is `priority', to
+     influence the stacking of multiple error level overlays.
 
 `:fringe-bitmap BITMAP'
      A fringe bitmap symbol denoting the bitmap to use for fringe
@@ -171,6 +171,14 @@ of command checkers is `flycheck-sanitize-errors'.
      `flycheck-parse-with-patterns'.  In this case,
      `:error-patterns' is mandatory.
 
+`:standard-input t'
+     Whether to send the buffer contents on standard input.
+
+     If this property is given and has a non-nil value, send the
+     contents of the buffer on standard input.
+
+     Defaults to nil.
+
 Note that you may not give `:start', `:interrupt', and
 `:print-doc' for a command checker.  You can give a custom
 `:verify' function, though, whose results will be appended to the
@@ -203,15 +211,16 @@ argument to `flycheck-define-checker'.
 Define SYMBOL as option variable with INIT-VALUE for CHECKER.
 
 SYMBOL is declared as customizable variable using `defcustom', to
-provide an option for the given syntax CHECKER.  INIT-VALUE is
-the initial value of the variable, and DOCSTRING is its
-docstring.  CUSTOM-ARGS are forwarded to `defcustom'.
+provide an option for the given syntax CHECKERS (a checker or a
+list of checkers).  INIT-VALUE is the initial value of the
+variable, and DOCSTRING is its docstring.  CUSTOM-ARGS are
+forwarded to `defcustom'.
 
 Use this together with the `option', `option-list' and
 `option-flag' forms in the `:command' argument to
 `flycheck-define-checker'.
 
-\(fn SYMBOL INIT-VALUE CHECKER DOCSTRING &rest CUSTOM-ARGS)" nil t)
+\(fn SYMBOL INIT-VALUE CHECKERS DOCSTRING &rest CUSTOM-ARGS)" nil t)
 
 (put 'flycheck-def-option-var 'lisp-indent-function '3)
 
@@ -219,17 +228,16 @@ Use this together with the `option', `option-list' and
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/flycheck-0.24/flycheck-autoloads.el"
-;;;;;;  "../../../../../.emacs.d/elpa/flycheck-0.24/flycheck-ert.el"
-;;;;;;  "../../../../../.emacs.d/elpa/flycheck-0.24/flycheck-pkg.el"
-;;;;;;  "../../../../../.emacs.d/elpa/flycheck-0.24/flycheck.el")
-;;;;;;  (21983 45365 933385 800000))
+;;;### (autoloads nil nil ("flycheck-ert.el" "flycheck-pkg.el") (22095
+;;;;;;  52595 357742 165000))
 
 ;;;***
 
+(provide 'flycheck-autoloads)
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
+;; coding: utf-8
 ;; End:
 ;;; flycheck-autoloads.el ends here
