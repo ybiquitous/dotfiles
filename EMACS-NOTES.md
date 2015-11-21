@@ -2,16 +2,16 @@
 
 ## キーバインド
 
-| Key | Notes |
-| --- | ----- |
+| Key     | Description  |
+| ------- | ------------ |
 | `C-M-s` | 正規表現検索 |
-| `M-s w` | 単語検索 |
+| `M-s w` | 単語検索     |
 
 ## 便利コマンド
 
-| Name | Notes |
-| ---- | ----- |
-| `align-regexp` | 列揃えの整形 |
+| Name                                               | Description           |
+| -------------------------------------------------- | --------------------- |
+| `align-regexp`                                     | 列揃えの整形          |
 | `M-: (byte-recompile-directory "~/.emacs.d/" 0 t)` | 全Elispの再コンパイル |
 
 ## yasnippet に web-mode を追加するコマンド
