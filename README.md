@@ -18,8 +18,8 @@ sudo apt-get install terminator
 | ------------------------ | -------------------- |
 | Ctrl + Shift + o         | 画面を水平に分割     |
 | Ctrl + Shift + e         | 画面を垂直に分割     |
-| Ctrl + Shift + t         | 新しいタブを開く     |
 | Ctrl + Shift + n         | 分割した画面間を移動 |
+| Ctrl + Shift + t         | 新しいタブを開く     |
 | Ctrl + PageUp (PageDown) | タブ間を移動         |
 
 # JDK font setting on Linux
