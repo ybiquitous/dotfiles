@@ -8,6 +8,14 @@ Use 'mklink' as Administrator on Windows, instead 'ln -s'.
 LANG=C xdg-user-dirs-gtk-update
 ```
 
+# Install Terminal
+
+[Terminator](http://gnometerminator.blogspot.jp/)
+
+```sh
+sudo apt-get install terminator
+```
+
 # JDK font setting on Linux
 
 ```sh
