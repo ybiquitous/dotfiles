@@ -27,4 +27,11 @@
 (global-set-key (kbd "C-c c l") 'lower-camel-case-word)
 (global-set-key (kbd "C-c c u") 'upper-camel-case-word)
 
+;; Font setting
+(when (eq system-type 'windows-nt)
+  (set-frame-font "Consolas 11" t)
+  (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "メイリオ"))
+  (add-to-list 'face-font-rescale-alist '(".*メイリオ.*" . 1.1))
+  )
+
 (provide 'init-common)
