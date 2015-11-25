@@ -29,7 +29,7 @@
 
 ;; Font setting
 (when (eq system-type 'windows-nt)
-  (set-frame-font "Consolas 11" t)
+  (add-to-list 'default-frame-alist '(font . "Consolas 11"))
   (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "メイリオ"))
   (add-to-list 'face-font-rescale-alist '(".*メイリオ.*" . 1.1))
   )
