@@ -38,7 +38,7 @@ ln -s /usr/share/fonts/truetype/****.ttf .
 See https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
 
 ```sh
-npm install -g jsonlint jshint csslint js-beautify jscs jscs-jsdoc marked editorconfig tern
+npm install -g jsonlint jshint eslint csslint js-beautify jscs jscs-jsdoc marked editorconfig tern
 ```
 
 # Eclipse keybind (based on Emacs)
