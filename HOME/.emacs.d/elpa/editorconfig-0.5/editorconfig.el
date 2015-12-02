@@ -1,35 +1,30 @@
-;;; editorconfig.el --- EditorConfig Emacs extension
+;;; editorconfig.el --- EditorConfig Emacs Plugin
 
-;; Copyright (C) 2011-2014 EditorConfig Team
+;; Copyright (C) 2011-2015 EditorConfig Team
 
 ;; Author: EditorConfig Team <editorconfig@googlegroups.com>
-;; Version: 0.4
-;; URL: http://github.com/editorconfig/editorconfig-emacs#readme
+;; Version: 0.5
+;; Package-Version: 0.5
+;; URL: https://github.com/editorconfig/editorconfig-emacs#readme
 
 ;; See
-;; http://github.com/editorconfig/editorconfig-emacs/graphs/contributors
+;; https://github.com/editorconfig/editorconfig-emacs/graphs/contributors
 ;; or the CONTRIBUTORS file for the list of contributors.
 
-;; Redistribution and use in source and binary forms, with or without
-;; modification, are permitted provided that the following conditions are met:
-;;
-;; 1. Redistributions of source code must retain the above copyright notice,
-;;    this list of conditions and the following disclaimer.
-;; 2. Redistributions in binary form must reproduce the above copyright notice,
-;;    this list of conditions and the following disclaimer in the documentation
-;;    and/or other materials provided with the distribution.
+;; This file is part of EditorConfig Emacs Plugin.
 
-;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-;; ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-;; LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-;; CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-;; SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-;; INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-;; CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-;; POSSIBILITY OF SUCH DAMAGE.
+;; EditorConfig Emacs Plugin is free software: you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or (at your
+;; option) any later version.
+
+;; EditorConfig Emacs Plugin is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+;; Public License for more details.
+
+;; You should have received a copy of the GNU General Public License along with
+;; EditorConfig Emacs Plugin. If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 
@@ -44,50 +39,96 @@
 
 ;;; Code:
 
-(defcustom edconf-exec-path
+(defcustom editorconfig-exec-path
   "editorconfig"
   "EditorConfig command"
   :type 'string
   :group 'editorconfig)
+(define-obsolete-variable-alias
+  'edconf-exec-path
+  'editorconfig-exec-path
+  "0.5")
 
-(defcustom edconf-indentation-alist
-  '((emacs-lisp-mode lisp-indent-offset)
-    (lisp-mode lisp-indent-offset)
-    (c-mode c-basic-offset)
+(defcustom editorconfig-get-properties-function
+  'editorconfig-get-properties-from-exec
+  "Function to get EditorConofig properties for current buffer.
+This function will be called with no argument and should return a hash object
+containing properties, or nil if any core program is not available.
+The hash object should have symbols of property names as keys and strings of
+property values as values."
+  :type 'function
+  :group 'editorconfig)
+(define-obsolete-variable-alias
+  'edconf-get-properties-function
+  'editorconfig-get-properties-function
+  "0.5")
+
+(defcustom editorconfig-custom-hooks ()
+  "A list of custom hooks after loading common EditorConfig settings
+
+Each element in this list is a hook function. This hook function takes one
+parameter, which is a property hash table. The value of properties can be
+obtained through gethash function.
+
+The hook does not have to be coding style related; you can add whatever
+functionality you want. For example, the following is an example to add a new
+property emacs_linum to decide whether to show line numbers on the left
+
+(add-to-list 'editorconfig-custom-hooks
+  '(lambda (props)
+     (let ((show-line-num (gethash 'emacs_linum props)))
+       (cond ((equal show-line-num \"true\") (linum-mode 1))
+         ((equal show-line-num \"false\") (linum-mode 0))))))
+
+"
+  :type '(lambda (properties) (body))
+  :group 'editorconfig)
+(define-obsolete-variable-alias
+  'edconf-custom-hooks
+  'editorconfig-custom-hooks
+  "0.5")
+
+(defcustom editorconfig-indentation-alist
+  '((awk-mode c-basic-offset)
     (c++-mode c-basic-offset)
-    (objc-mode c-basic-offset)
-    (java-mode c-basic-offset)
-    (idl-mode c-basic-offset)
-    (pike-mode c-basic-offset)
-    (awk-mode c-basic-offset)
+    (c-mode c-basic-offset)
     (cmake-mode cmake-tab-width)
     (coffee-mode coffee-tab-width)
     (cperl-mode cperl-indent-level)
     (css-mode css-indent-offset)
+    (emacs-lisp-mode lisp-indent-offset)
+    (erlang-mode erlang-indent-level)
+    (groovy-mode c-basic-offset)
     (haskell-mode haskell-indent-spaces
                   haskell-indent-offset
                   shm-indent-spaces)
+    (idl-mode c-basic-offset)
+    (java-mode c-basic-offset)
     (js-mode js-indent-level)
-    (json-mode js-indent-level)
     (js2-mode js2-basic-offset)
     (js3-mode js3-indent-level)
-    (perl-mode perl-indent-level)
-    (python-mode . edconf-set-indentation/python-mode)
-    (ruby-mode ruby-indent-level)
-    (sh-mode sh-basic-offset sh-indentation)
-    (nxml-mode nxml-child-indent (nxml-attribute-indent . 2))
-    (sgml-mode sgml-basic-offset)
+    (json-mode js-indent-level)
+    (latex-mode . editorconfig-set-indentation/latex-mode)
+    (lisp-mode lisp-indent-offset)
     (livescript-mode livescript-tab-width)
     (mustache-mode mustache-basic-offset)
+    (nxml-mode nxml-child-indent (nxml-attribute-indent . 2))
+    (objc-mode c-basic-offset)
+    (perl-mode perl-indent-level)
+    (pike-mode c-basic-offset)
+    (puppet-mode puppet-indent-level)
+    (python-mode . editorconfig-set-indentation/python-mode)
+    (ruby-mode ruby-indent-level)
     (scala-mode scala-indent:step)
-    (groovy-mode c-basic-offset)
-    (latex-mode . edconf-set-indentation/latex-mode)
+    (sgml-mode sgml-basic-offset)
+    (sh-mode sh-basic-offset sh-indentation)
     (web-mode (web-mode-indent-style . (lambda (size) 2))
               web-mode-markup-indent-offset
               web-mode-css-indent-offset
               web-mode-code-indent-offset
               web-mode-script-padding
-              web-mode-style-padding))
+              web-mode-style-padding)
+    (yaml-mode yaml-indent-offset))
   "Alist of indentation setting methods by modes.
 
 Each element looks like (MODE . FUNCTION) or (MODE . INDENT-SPEC-LIST).
@@ -122,14 +163,18 @@ NOTE: Only the **buffer local** value of VARIABLE will be set."
   :type '(alist :key-type symbol :value-type sexp)
   :risky t
   :group 'editorconfig)
+(define-obsolete-variable-alias
+  'edconf-indentation-alist
+  'editorconfig-indentation-alist
+  "0.5")
 
-(defun edconf-string-integer-p (string)
+(defun editorconfig-string-integer-p (string)
   "Whether a string representing integer"
   (if (stringp string)
     (string-match-p "\\`[0-9]+\\'" string)
     nil))
 
-(defun edconf-set-indentation/python-mode (size)
+(defun editorconfig-set-indentation/python-mode (size)
   (set (make-local-variable (if (or (> emacs-major-version 24)
                                     (and (= emacs-major-version 24)
                                          (>= emacs-minor-version 3)))
@@ -140,7 +185,7 @@ NOTE: Only the **buffer local** value of VARIABLE will be set."
   (when (boundp 'py-indent-offset)
     (set (make-local-variable 'py-indent-offset) size)))
 
-(defun edconf-set-indentation/latex-mode (size)
+(defun editorconfig-set-indentation/latex-mode (size)
   (set (make-local-variable 'tex-indent-basic) size)
   (set (make-local-variable 'tex-indent-item) size)
   (set (make-local-variable 'tex-indent-arg) (* 2 size))
@@ -152,11 +197,11 @@ NOTE: Only the **buffer local** value of VARIABLE will be set."
   (when (boundp 'LaTeX-item-indent)
     (set (make-local-variable 'LaTeX-item-indent) (- size))))
 
-(defun edconf-set-indentation (style &optional size tab_width)
+(defun editorconfig-set-indentation (style &optional size tab_width)
   "Set indentation type from given style and size"
   (make-local-variable 'indent-tabs-mode)
   (make-local-variable 'tab-width)
-  (if (edconf-string-integer-p size)
+  (if (editorconfig-string-integer-p size)
     (setq size (string-to-number size))
     (when (not (equal size "tab")) (setq size nil)))
   (setq tab-width (cond (tab_width (string-to-number tab_width))
@@ -169,11 +214,13 @@ NOTE: Only the **buffer local** value of VARIABLE will be set."
         ((equal style "tab")
          (setq indent-tabs-mode t)))
   (when size
+    (when (featurep 'evil)
+      (setq-local evil-shift-width size))
     (let ((parent major-mode)
           entry)
       ;; Find the closet parent mode of `major-mode' in
-      ;; `edconf-indentation-alist'.
-      (while (and (not (setq entry (assoc parent edconf-indentation-alist)))
+      ;; `editorconfig-indentation-alist'.
+      (while (and (not (setq entry (assoc parent editorconfig-indentation-alist)))
                   (setq parent (get parent 'derived-mode-parent))))
       (when entry
         (let ((fn-or-list (cdr entry)))
@@ -188,7 +235,7 @@ NOTE: Only the **buffer local** value of VARIABLE will be set."
                                        ((integerp spec) (* spec size))
                                        (t spec))))))))))))))
 
-(defun edconf-set-line-ending (end-of-line)
+(defun editorconfig-set-line-ending (end-of-line)
   "Set line ending style to CR, LF, or CRLF"
   (set-buffer-file-coding-system
    (cond
@@ -198,7 +245,7 @@ NOTE: Only the **buffer local** value of VARIABLE will be set."
     (t 'undecided))
    nil t))
 
-(defun edconf-set-trailing-nl (final-newline)
+(defun editorconfig-set-trailing-nl (final-newline)
   (cond
    ((equal final-newline "true")
     ;; keep prefs around how/when the nl is added, if set - otherwise add on save
@@ -210,7 +257,7 @@ NOTE: Only the **buffer local** value of VARIABLE will be set."
     (set      (make-local-variable 'require-final-newline) nil)
     (set      (make-local-variable 'mode-require-final-newline) nil))))
 
-(defun edconf-set-trailing-ws (trim-trailing-ws)
+(defun editorconfig-set-trailing-ws (trim-trailing-ws)
   "set up trimming of trailing whitespace at end of lines"
   (make-local-variable 'write-file-functions) ;; just current buffer
   (when (equal trim-trailing-ws "true")
@@ -228,15 +275,15 @@ NOTE: Only the **buffer local** value of VARIABLE will be set."
       'delete-trailing-whitespace
       write-file-functions))))
 
-(defun edconf-set-line-length (length)
+(defun editorconfig-set-line-length (length)
   "set the max line length (fill-column)"
-  (when (edconf-string-integer-p length)
+  (when (editorconfig-string-integer-p length)
     (set-fill-column (string-to-number length))))
 
-(defun edconf-get-properties ()
+(defun editorconfig-get-properties ()
   "Call EditorConfig core and return output"
   (let ((oldbuf (current-buffer)))
-    (call-process edconf-exec-path nil "ecbuffer" nil (buffer-file-name oldbuf))
+    (call-process editorconfig-exec-path nil "ecbuffer" nil (buffer-file-name oldbuf))
     (set-buffer (get-buffer "ecbuffer"))
     (let (props-string)
       (setq props-string (buffer-string))
@@ -244,7 +291,7 @@ NOTE: Only the **buffer local** value of VARIABLE will be set."
       (kill-buffer (get-buffer "ecbuffer"))
       props-string)))
 
-(defun edconf-parse-properties (props-string)
+(defun editorconfig-parse-properties (props-string)
   "Create properties hash table from string of properties"
   (let (props-list properties)
     (setq props-list (split-string props-string "\n")
@@ -256,20 +303,43 @@ NOTE: Only the **buffer local** value of VARIABLE will be set."
                 (val (mapconcat 'identity (cdr key-val) "")))
             (puthash key val properties)))))))
 
-;;;###autoload
-(defun edconf-find-file-hook ()
-  (when (executable-find edconf-exec-path)
-    (let ((props (edconf-parse-properties (edconf-get-properties))))
-      (edconf-set-indentation (gethash 'indent_style props)
-                              (gethash 'indent_size props)
-                              (gethash 'tab_width props))
-      (edconf-set-line-ending (gethash 'end_of_line props))
-      (edconf-set-trailing-nl (gethash 'insert_final_newline props))
-      (edconf-set-trailing-ws (gethash 'trim_trailing_whitespace props))
-      (edconf-set-line-length (gethash 'max_line_length props)))))
+(defun editorconfig-get-properties-from-exec ()
+  "Get EditorConfig properties of current buffer by calling `editorconfig-exec-path'."
+  (if (executable-find editorconfig-exec-path)
+    (editorconfig-parse-properties (editorconfig-get-properties))
+    (display-warning :error
+      "Unable to find editorconfig executable.")
+    nil))
 
 ;;;###autoload
-(add-hook 'find-file-hook 'edconf-find-file-hook)
+(defun editorconfig-find-file-hook ()
+  (let ((props (and (functionp editorconfig-get-properties-function)
+                 (funcall editorconfig-get-properties-function))))
+    (if props
+      (progn
+        (editorconfig-set-indentation (gethash 'indent_style props)
+          (gethash 'indent_size props)
+          (gethash 'tab_width props))
+        (editorconfig-set-line-ending (gethash 'end_of_line props))
+        (editorconfig-set-trailing-nl (gethash 'insert_final_newline props))
+        (editorconfig-set-trailing-ws (gethash 'trim_trailing_whitespace props))
+        (editorconfig-set-line-length (gethash 'max_line_length props))
+        (dolist (hook editorconfig-custom-hooks)
+          (funcall hook props)))
+      (display-warning :error "EditorConfig core program is not available.  Styles will not be applied."))))
+;;;###autoload
+(define-minor-mode editorconfig-mode
+  "Toggle EditorConfig feature."
+  :global t
+  :lighter ""
+  (if editorconfig-mode
+    (add-hook 'find-file-hook
+      'editorconfig-find-file-hook)
+    (remove-hook 'find-file-hook
+      'editorconfig-find-file-hook)))
+
+;;;###autoload
+(add-to-list 'auto-mode-alist '("/\\.editorconfig\\'" . conf-unix-mode))
 
 (provide 'editorconfig)
 
