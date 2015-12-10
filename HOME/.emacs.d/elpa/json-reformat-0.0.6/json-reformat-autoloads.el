@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (json-reformat-region) "json-reformat" "json-reformat.el"
-;;;;;;  (22095 52591 675622 930000))
+;;;;;;  (22121 32690 627295 985000))
 ;;; Generated autoloads from json-reformat.el
 
 (autoload 'json-reformat-region "json-reformat" "\
@@ -18,8 +18,8 @@ and `json-reformat:pretty-string?'.
 
 ;;;***
 
-;;;### (autoloads nil nil ("json-reformat-pkg.el") (22095 52591 717400
-;;;;;;  910000))
+;;;### (autoloads nil nil ("json-reformat-pkg.el") (22121 32690 683357
+;;;;;;  750000))
 
 ;;;***
 

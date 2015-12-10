@@ -3,14 +3,14 @@
 ;;; Code:
 
 
-;;;### (autoloads (editorconfig-mode editorconfig-find-file-hook)
-;;;;;;  "editorconfig" "editorconfig.el" (22110 22169 125617 894000))
+;;;### (autoloads (editorconfig-mode editorconfig-apply) "editorconfig"
+;;;;;;  "editorconfig.el" (22121 32693 59209 33000))
 ;;; Generated autoloads from editorconfig.el
 
-(autoload 'editorconfig-find-file-hook "editorconfig" "\
+(autoload 'editorconfig-apply "editorconfig" "\
+Apply EditorConfig properties for current buffer.
 
-
-\(fn)" nil nil)
+\(fn)" t nil)
 
 (defvar editorconfig-mode nil "\
 Non-nil if Editorconfig mode is enabled.
@@ -30,8 +30,8 @@ Toggle EditorConfig feature.
 
 ;;;***
 
-;;;### (autoloads nil nil ("editorconfig-pkg.el") (22110 22169 318421
-;;;;;;  61000))
+;;;### (autoloads nil nil ("editorconfig-pkg.el") (22121 32693 85533
+;;;;;;  679000))
 
 ;;;***
 
