@@ -26,22 +26,7 @@ cd $ORIG_DIR
 unset ORIG_DIR
 ```
 
-## TIPS for Windows
+## Tips
 
-```elisp
-;; rgrep を有効にする
-(setenv "PATH" (format "C:\\Program Files\\Git\\usr\\bin;%s" (getenv "PATH")))
-(setq null-device "/dev/null")
-```
-
-See `emacs-{version}/share/emacs/{version}/README.W32`.
-
-## Flycheck の設定をディレクトリによって変える
-
-対象ディレクトリに `.dir-locals.el` ファイルを置く。↓は JSHint チェックを無効にする例。
-
-```elisp
-((js-mode (flycheck-disabled-checkers javascript-jshint)))
-```
-
-See [Flycheck manual](http://www.flycheck.org/manual/latest/Syntax-checkers.html).
+- [Windows の Emacs で rgrep を使えるようにする](http://qiita.com/ybiquitous/items/2f2206ff7a557c4cbc11)
+- [Flycheck の設定をディレクトリによって変える方法](http://qiita.com/ybiquitous/items/9366bc4599abf78eac54)
