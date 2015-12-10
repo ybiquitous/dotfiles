@@ -27,4 +27,7 @@
 (global-set-key (kbd "C-c c l") 'lower-camel-case-word)
 (global-set-key (kbd "C-c c u") 'upper-camel-case-word)
 
+;; frame title
+(setq frame-title-format '("" "%b @ Emacs " emacs-version))
+
 (provide 'init-common)
