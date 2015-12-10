@@ -35,3 +35,13 @@ unset ORIG_DIR
 ```
 
 See `emacs-{version}/share/emacs/{version}/README.W32`.
+
+## Flycheck の設定をディレクトリによって変える
+
+対象ディレクトリに `.dir-locals.el` ファイルを置く。↓は JSHint チェックを無効にする例。
+
+```elisp
+((js-mode (flycheck-disabled-checkers javascript-jshint)))
+```
+
+See [Flycheck manual](http://www.flycheck.org/manual/latest/Syntax-checkers.html).
