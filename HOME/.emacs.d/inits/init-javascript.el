@@ -38,7 +38,10 @@
 (add-hook 'js-mode-hook
           (lambda()
             (electric-indent-mode t)
-            (custom-set-variables '(js-switch-indent-offset js-indent-level))
+            (custom-set-variables
+             '(js-switch-indent-offset js-indent-level)
+             '(json-reformat:indent-width js-indent-level)
+             '(json-reformat:pretty-string? t))
             (local-set-key (kbd "C-c i") 'js-doc-insert-function-doc)
             (local-set-key (kbd "@") 'js-doc-insert-tag)
             (add-hook 'after-save-hook 'jscs-format t t)
