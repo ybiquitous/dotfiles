@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads (tern-mode tern-use-server) "tern" "tern.el" (22064
-;;;;;;  8998 460164 184000))
+;;;### (autoloads (tern-mode tern-use-server) "tern" "tern.el" (22155
+;;;;;;  26993 648872 811000))
 ;;; Generated autoloads from tern.el
 
 (autoload 'tern-use-server "tern" "\
@@ -19,7 +19,7 @@ Minor mode binding to the Tern JavaScript analyzer
 
 ;;;***
 
-;;;### (autoloads nil nil ("tern-pkg.el") (22064 8998 519196 979000))
+;;;### (autoloads nil nil ("tern-pkg.el") (22155 26993 675251 477000))
 
 ;;;***
 

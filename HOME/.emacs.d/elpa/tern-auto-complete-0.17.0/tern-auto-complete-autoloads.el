@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (tern-ac-setup) "tern-auto-complete" "tern-auto-complete.el"
-;;;;;;  (22064 8996 680163 863000))
+;;;;;;  (22155 26992 572853 865000))
 ;;; Generated autoloads from tern-auto-complete.el
 
 (autoload 'tern-ac-setup "tern-auto-complete" "\
@@ -14,8 +14,8 @@ Setup auto-complete for tern-mode.
 
 ;;;***
 
-;;;### (autoloads nil nil ("tern-auto-complete-pkg.el") (22064 8996
-;;;;;;  727777 206000))
+;;;### (autoloads nil nil ("tern-auto-complete-pkg.el") (22155 26992
+;;;;;;  831591 533000))
 
 ;;;***
 

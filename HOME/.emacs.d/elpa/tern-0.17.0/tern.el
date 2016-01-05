@@ -1,9 +1,8 @@
-;;; -*- lexical-binding: t -*-
-;;; tern.el --- Tern-powered JavaScript integration
+;;; tern.el --- Tern-powered JavaScript integration -*- lexical-binding: t -*-
 
 ;; Author: Marijn Haverbeke
 ;; URL: http://ternjs.net/
-;; Package-Version: 0.16.0
+;; Package-Version: 0.17.0
 ;; Version: 0.0.1
 ;; Package-Requires: ((json "1.2") (cl-lib "0.5") (emacs "24"))
 
@@ -127,7 +126,9 @@ list of strings, giving the binary name and arguments.")
 (defvar tern-buffer-is-dirty nil)
 
 (defun tern-project-relative-file ()
-  (substring (buffer-file-name) (length (tern-project-dir))))
+  (if (buffer-file-name)
+      (substring (buffer-file-name) (length (tern-project-dir)))
+    (buffer-name)))
 
 (defun tern-get-partial-file (at)
   (let* (min-indent start-pos end-pos
