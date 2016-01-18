@@ -1,3 +1,7 @@
+# Links
+
+- [EMACS-NOTES](EMACS-NOTES.md)
+
 # For Windows
 
 Use 'mklink' as Administrator on Windows, instead 'ln -s'.
