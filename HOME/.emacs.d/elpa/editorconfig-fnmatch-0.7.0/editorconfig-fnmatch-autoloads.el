@@ -1,11 +1,11 @@
 ;;; editorconfig-fnmatch-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-
+(add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
 
-;;;### (autoloads (editorconfig-fnmatch-p) "editorconfig-fnmatch"
-;;;;;;  "editorconfig-fnmatch.el" (22121 32691 671258 516000))
-;;; Generated autoloads from editorconfig-fnmatch.el
+;;;### (autoloads nil "editorconfig-fnmatch" "../../../../../.emacs.d/elpa/editorconfig-fnmatch-0.7.0/editorconfig-fnmatch.el"
+;;;;;;  "bfe917da974f3627935343539b870d1b")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/editorconfig-fnmatch-0.7.0/editorconfig-fnmatch.el
 
 (autoload 'editorconfig-fnmatch-p "editorconfig-fnmatch" "\
 Test whether NAME match PATTERN.
@@ -27,16 +27,15 @@ be used:
 
 ;;;***
 
-;;;### (autoloads nil nil ("editorconfig-fnmatch-pkg.el") (22121
-;;;;;;  32691 714338 339000))
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/editorconfig-fnmatch-0.7.0/editorconfig-fnmatch-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/editorconfig-fnmatch-0.7.0/editorconfig-fnmatch.el")
+;;;;;;  (22172 37106 155020 300000))
 
 ;;;***
 
-(provide 'editorconfig-fnmatch-autoloads)
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
-;; coding: utf-8
 ;; End:
 ;;; editorconfig-fnmatch-autoloads.el ends here

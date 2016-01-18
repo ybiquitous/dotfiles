@@ -1,11 +1,11 @@
 ;;; editorconfig-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-
+(add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
 
-;;;### (autoloads (editorconfig-mode editorconfig-apply) "editorconfig"
-;;;;;;  "editorconfig.el" (22121 32693 59209 33000))
-;;; Generated autoloads from editorconfig.el
+;;;### (autoloads nil "editorconfig" "../../../../../.emacs.d/elpa/editorconfig-0.7.0/editorconfig.el"
+;;;;;;  "62987650a5dcb229d956a9cda724b006")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/editorconfig-0.7.0/editorconfig.el
 
 (autoload 'editorconfig-apply "editorconfig" "\
 Apply EditorConfig properties for current buffer.
@@ -30,16 +30,15 @@ Toggle EditorConfig feature.
 
 ;;;***
 
-;;;### (autoloads nil nil ("editorconfig-pkg.el") (22121 32693 85533
-;;;;;;  679000))
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/editorconfig-0.7.0/editorconfig-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/editorconfig-0.7.0/editorconfig.el")
+;;;;;;  (22172 37108 545737 800000))
 
 ;;;***
 
-(provide 'editorconfig-autoloads)
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
-;; coding: utf-8
 ;; End:
 ;;; editorconfig-autoloads.el ends here
