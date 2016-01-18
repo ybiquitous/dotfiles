@@ -1,6 +1,7 @@
 # Links
 
 - [EMACS-NOTES](EMACS-NOTES.md)
+- [Qiita](//qiita.com/ybiquitous)
 
 # For Windows
 
