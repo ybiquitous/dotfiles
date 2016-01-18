@@ -2,13 +2,18 @@
 
 Use 'mklink' as Administrator on Windows, instead 'ln -s'.
 
+```bat
+> mklink .gitconfig dotfiles\HOME\.gitconfig
+> mklink /D .emacs.d dotfiles\HOME\.emacs.d
+```
+
 # Update home directory names
 
 ```sh
 LANG=C xdg-user-dirs-gtk-update
 ```
 
-# Install [Terminator](http://gnometerminator.blogspot.jp/)
+# Install _[Terminator](http://gnometerminator.blogspot.jp/)_ (High Functional Terminal)
 
 ```sh
 sudo apt-get install terminator
