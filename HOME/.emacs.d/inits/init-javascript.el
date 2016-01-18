@@ -47,11 +47,12 @@
             (add-hook 'after-save-hook 'jscs-format t t)
             (if (not (equal (file-name-extension buffer-file-name) "json"))
                 (progn (tern-mode t)))
+            (add-to-list 'company-backends 'company-tern)
             ))
 
-(eval-after-load 'tern
-  '(progn
-     (require 'tern-auto-complete)
-     (tern-ac-setup)))
+;; (eval-after-load 'tern
+;;   '(progn
+;;      (require 'tern-auto-complete)
+;;      (tern-ac-setup)))
 
 (provide 'init-javascript)

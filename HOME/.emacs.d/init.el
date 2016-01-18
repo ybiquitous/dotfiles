@@ -98,10 +98,13 @@
 (defalias 'perl-mode 'cperl-mode)
 
 ;; auto-complete
-(ac-config-default)
+;;(ac-config-default)
+
+;; company
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;; yasnippet
-(yas-global-mode t)
+;;(yas-global-mode t)
 
 ;; web
 (add-to-list 'auto-mode-alist '("\\.jsp$" . web-mode))
