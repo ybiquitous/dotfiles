@@ -53,4 +53,10 @@
   '(progn
      (add-to-list 'company-backends 'company-tern)))
 
+(add-to-list 'auto-mode-alist '("\\.jshintrc\\'" . json-mode))
+(add-to-list 'auto-mode-alist '("\\.jscsrc\\'" . json-mode))
+(add-to-list 'auto-mode-alist '("\\.eslintrc\\'" . json-mode))
+(add-to-list 'auto-mode-alist '("\\.tern-config\\'" . json-mode))
+(add-to-list 'auto-mode-alist '("\\.tern-project\\'" . json-mode))
+
 (provide 'init-javascript)
