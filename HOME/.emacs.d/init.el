@@ -97,9 +97,6 @@
 ;; perl
 (defalias 'perl-mode 'cperl-mode)
 
-;; auto-complete
-;;(ac-config-default)
-
 ;; company
 (add-hook 'after-init-hook 'global-company-mode)
 
