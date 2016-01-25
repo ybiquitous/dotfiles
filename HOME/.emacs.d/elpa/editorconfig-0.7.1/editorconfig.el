@@ -3,8 +3,8 @@
 ;; Copyright (C) 2011-2015 EditorConfig Team
 
 ;; Author: EditorConfig Team <editorconfig@googlegroups.com>
-;; Version: 0.7.0
-;; Package-Version: 0.7.0
+;; Version: 0.7.1
+;; Package-Version: 0.7.1
 ;; URL: https://github.com/editorconfig/editorconfig-emacs#readme
 ;; Package-Requires: ((editorconfig-core "0.6.2"))
 
@@ -103,6 +103,7 @@ property emacs_linum to decide whether to show line numbers on the left
      (css-mode css-indent-offset)
      (emacs-lisp-mode lisp-indent-offset)
      (erlang-mode erlang-indent-level)
+     (ess-mode ess-indent-offset)
      (groovy-mode c-basic-offset)
      (haskell-mode haskell-indent-spaces
        haskell-indent-offset
@@ -123,6 +124,7 @@ property emacs_linum to decide whether to show line numbers on the left
      (objc-mode c-basic-offset)
      (perl-mode perl-indent-level)
      (pike-mode c-basic-offset)
+     (ps-mode ps-mode-tab)
      (puppet-mode puppet-indent-level)
      (python-mode . editorconfig-set-indentation/python-mode)
      (ruby-mode ruby-indent-level)
@@ -130,6 +132,8 @@ property emacs_linum to decide whether to show line numbers on the left
      (sgml-mode sgml-basic-offset)
      (sh-mode sh-basic-offset sh-indentation)
      (slim-mode slim-indent-offset)
+     (tcl-mode tcl-indent-level
+       tcl-continued-indent-level)
      (web-mode (web-mode-indent-style . (lambda (size) 2))
        web-mode-markup-indent-offset
        web-mode-css-indent-offset

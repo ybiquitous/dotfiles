@@ -1,11 +1,12 @@
 ;;; editorconfig-core-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-(add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
+
 
-;;;### (autoloads nil "editorconfig-core" "../../../../../.emacs.d/elpa/editorconfig-core-0.7.0/editorconfig-core.el"
-;;;;;;  "e0eb9813de214df97dd727e85c2a2e0a")
-;;; Generated autoloads from ../../../../../.emacs.d/elpa/editorconfig-core-0.7.0/editorconfig-core.el
+;;;### (autoloads (editorconfig-core-get-properties-hash editorconfig-core-get-properties)
+;;;;;;  "editorconfig-core" "editorconfig-core.el" (22181 31117 386396
+;;;;;;  693000))
+;;; Generated autoloads from editorconfig-core.el
 
 (autoload 'editorconfig-core-get-properties "editorconfig-core" "\
 Get EditorConfig properties for FILE.
@@ -31,17 +32,16 @@ hash object instead.
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/editorconfig-core-0.7.0/editorconfig-core-autoloads.el"
-;;;;;;  "../../../../../.emacs.d/elpa/editorconfig-core-0.7.0/editorconfig-core-handle.el"
-;;;;;;  "../../../../../.emacs.d/elpa/editorconfig-core-0.7.0/editorconfig-core-pkg.el"
-;;;;;;  "../../../../../.emacs.d/elpa/editorconfig-core-0.7.0/editorconfig-core.el")
-;;;;;;  (22172 37107 561313 600000))
+;;;### (autoloads nil nil ("editorconfig-core-handle.el" "editorconfig-core-pkg.el")
+;;;;;;  (22181 31117 419859 357000))
 
 ;;;***
 
+(provide 'editorconfig-core-autoloads)
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
+;; coding: utf-8
 ;; End:
 ;;; editorconfig-core-autoloads.el ends here
