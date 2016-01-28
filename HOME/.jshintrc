@@ -1,7 +1,6 @@
 {
   "bitwise": true,
   "eqeqeq": true,
-  "esversion": 5,
   "forin": true,
   "freeze": true,
   "latedef": true,
