@@ -1,13 +1,13 @@
 #!/bin/sh
 
-SRCDIR=`dirname \`readlink -f $0\``/HOME
+SRCDIR=$(dirname $(readlink -f $0))/HOME
 EMACS_DIR=$SRCDIR/.emacs.d
 
 cd $HOME
-CURRDIR=`pwd`
+CURRDIR=$(pwd)
 
 for target in $SRCDIR/.* ; do
-    base=`basename $target`
+    base=$(basename $target)
     case "$base" in
         "." | ".." ) continue ;;
     esac
@@ -17,8 +17,8 @@ done
 # bin
 mkdir -pv $HOME/bin
 cd $HOME/bin
-CURRDIR=`pwd`
+CURRDIR=$(pwd)
 for target in $SRCDIR/bin/* ; do
-    base=`basename $target`
+    base=$(basename $target)
     test -L $CURRDIR/$base || ln -siv $target
 done
