@@ -12,3 +12,4 @@ HOME/.emacs.d/server/server
 HOME/.zsh/.zshrc.mine
 HOME/.zsh/.zcompdump
 HOME/.zsh/Completion
+.tern-*
