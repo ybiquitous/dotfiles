@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (editorconfig-fnmatch-p) "editorconfig-fnmatch"
-;;;;;;  "editorconfig-fnmatch.el" (22181 31116 42592 77000))
+;;;;;;  "editorconfig-fnmatch.el" (22186 60793 808502 552000))
 ;;; Generated autoloads from editorconfig-fnmatch.el
 
 (autoload 'editorconfig-fnmatch-p "editorconfig-fnmatch" "\
@@ -27,8 +27,8 @@ be used:
 
 ;;;***
 
-;;;### (autoloads nil nil ("editorconfig-fnmatch-pkg.el") (22181
-;;;;;;  31116 142260 236000))
+;;;### (autoloads nil nil ("editorconfig-fnmatch-pkg.el") (22186
+;;;;;;  60793 956348 32000))
 
 ;;;***
 

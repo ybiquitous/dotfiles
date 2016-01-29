@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (editorconfig-mode editorconfig-apply) "editorconfig"
-;;;;;;  "editorconfig.el" (22181 31118 394249 505000))
+;;;;;;  "editorconfig.el" (22186 60797 148567 235000))
 ;;; Generated autoloads from editorconfig.el
 
 (autoload 'editorconfig-apply "editorconfig" "\
@@ -30,8 +30,8 @@ Toggle EditorConfig feature.
 
 ;;;***
 
-;;;### (autoloads nil nil ("editorconfig-pkg.el") (22181 31118 424745
-;;;;;;  218000))
+;;;### (autoloads nil nil ("editorconfig-pkg.el") (22186 60797 173133
+;;;;;;  371000))
 
 ;;;***
 

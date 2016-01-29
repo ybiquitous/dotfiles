@@ -4,8 +4,8 @@
 
 
 ;;;### (autoloads (editorconfig-core-get-properties-hash editorconfig-core-get-properties)
-;;;;;;  "editorconfig-core" "editorconfig-core.el" (22181 31117 386396
-;;;;;;  693000))
+;;;;;;  "editorconfig-core" "editorconfig-core.el" (22186 60796 464554
+;;;;;;  55000))
 ;;; Generated autoloads from editorconfig-core.el
 
 (autoload 'editorconfig-core-get-properties "editorconfig-core" "\
@@ -33,7 +33,7 @@ hash object instead.
 ;;;***
 
 ;;;### (autoloads nil nil ("editorconfig-core-handle.el" "editorconfig-core-pkg.el")
-;;;;;;  (22181 31117 419859 357000))
+;;;;;;  (22186 60796 483755 459000))
 
 ;;;***
 

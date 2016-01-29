@@ -1,9 +1,9 @@
 ;;; editorconfig-core-handle.el --- Handle Class for EditorConfig File
 
-;; Copyright (C) 2011-2015 EditorConfig Team
+;; Copyright (C) 2011-2016 EditorConfig Team
 
 ;; Author: EditorConfig Team <editorconfig@googlegroups.com>
-;; Version: 0.7.1
+;; Version: 0.7.2
 ;; URL: https://github.com/editorconfig/editorconfig-emacs#readme
 
 ;; See
@@ -165,26 +165,28 @@ If CONF is not found return nil."
                 (setq props nil))
               (setq pattern (match-string 1 line)))
 
-            ((string-match-p "=\\|:"
-               line)
-              ;; NOTE: Using match-string does not work as expected
-              (let* (
-                      (idx (string-match "=\\|:"
-                             line))
-                      (key (downcase (editorconfig-core-handle--string-trim (substring line
-                                                                              0
-                                                                              idx))))
-                      (value (editorconfig-core-handle--string-trim (substring line
-                                                                      (1+ idx))))
-                      )
-                (when (and (< (length key) 51)
-                        (< (length value) 256))
-                  (if pattern
-                    (when (< (length pattern) 4097)
-                      (setq props
-                        `(,@props (,key . ,value))))
-                    (setq top-props
-                      `(,@top-props (,key . ,value)))))))
+            (t
+              (let ((idx (string-match "=\\|:"
+                           line)))
+                (unless idx
+                  (error (format "Failed to parse file: %s"
+                           conf)))
+                (let (
+                       (key (downcase (editorconfig-core-handle--string-trim
+                                        (substring line
+                                          0
+                                          idx))))
+                       (value (editorconfig-core-handle--string-trim
+                                (substring line
+                                  (1+ idx)))))
+                  (when (and (< (length key) 51)
+                          (< (length value) 256))
+                    (if pattern
+                      (when (< (length pattern) 4097)
+                        (setq props
+                          `(,@props (,key . ,value))))
+                      (setq top-props
+                        `(,@top-props (,key . ,value))))))))
             )
           (forward-line 1))
         (when pattern
