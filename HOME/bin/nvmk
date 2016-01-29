@@ -1,0 +1,91 @@
+#!/bin/sh
+
+########################################################################
+#
+# Simple Node.js installer for Windows and Git Bash
+#
+########################################################################
+
+function usage {
+  cat <<EOF
+Usage:
+  nvmk i  "version"   - Install
+  nvmk rm "version"   - Uninstall
+  nvmk ls             - List installed
+EOF
+
+  exit
+}
+
+NVMK_CMD=$1
+NODE_VERSION=$2
+NVMK_DIR=${HOME}/.nvmk
+NVMK_CACHE_DIR=${NVMK_DIR}/cache
+NODE_DIR=${NVMK_DIR}/${NODE_VERSION}
+NODE_EXE=${NODE_DIR}/node.exe
+NODE_EXE_CACHE=${NVMK_CACHE_DIR}/node-${NODE_VERSION}.exe
+NODE_URL=https://nodejs.org/dist/${NODE_VERSION}
+NODE_EXE_REMOTE=${NODE_URL}/win-x64/node.exe
+
+test "$*" = "0" && usage
+case $NVMK_CMD in
+  "ls")
+    ls -1 $NVMK_DIR | grep -E '^v'
+    exit
+    ;;
+  "rm")
+    test -z "$NODE_VERSION" && usage
+    test -d $NODE_DIR && rm -rf $NODE_DIR && echo "${NODE_VERSION} uninstalled."
+    exit
+    ;;
+  "i")
+    test -z "$NODE_VERSION" && usage
+    ;;
+  *)
+    usage
+    ;;
+esac
+
+
+### Install Node.js ###
+
+test -f $NODE_EXE && echo "${NODE_VERSION} already installed." && exit 1
+
+mkdir -p $NVMK_CACHE_DIR
+mkdir -p $NODE_DIR
+
+if [ -f $NODE_EXE_CACHE ]
+then
+  cp $NODE_EXE_CACHE $NODE_EXE
+else
+  echo "Fetch ${NODE_EXE_REMOTE} -> ${NODE_EXE}"
+  curl -# -L -f $NODE_EXE_REMOTE -o $NODE_EXE
+
+  if [ $? != 0 ]
+  then
+    rm -rf $NODE_DIR
+    exit 1
+  fi
+
+  NODE_CHECKSUM=$(curl -s -L ${NODE_URL}/SHASUMS256.txt | grep 'win-x64/node.exe' | awk '{ print $1 }')
+  NODE_CHECKSUM2=$(sha256sum $NODE_EXE | awk '{ print $1 }')
+  test "$NODE_CHECKSUM" != "$NODE_CHECKSUM2" && echo "Failed checksum of ${NODE_EXE}" && exit 1
+
+  cp $NODE_EXE $NODE_EXE_CACHE
+fi
+
+
+### Install NPM ###
+
+NPM_REMOTE=https://www.npmjs.com/install.sh
+NPM_LOCAL=${NVMK_CACHE_DIR}/npm-install.sh
+
+echo
+echo "Fetch ${NPM_REMOTE} -> ${NPM_LOCAL}"
+curl -# -L -f $NPM_REMOTE -o $NPM_LOCAL || exit 1
+
+npm_config_progress=false npm_config_prefix=$NODE_DIR sh $NPM_LOCAL
+echo "prefix=${USERPROFILE}\\.nvmk\\${NODE_VERSION}" > ${NODE_DIR}/node_modules/npm/npmrc
+
+echo Node.js $($NODE_EXE -v) installed.
+echo NPM $(${NODE_DIR}/npm -v) installed.
