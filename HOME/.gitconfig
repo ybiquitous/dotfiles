@@ -15,9 +15,9 @@
 [push]
 	default = simple
 [pager]
-#	diff = diff-highlight | less
-#	show = diff-highlight | less
-#	log = diff-highlight | less
+	diff = diff-highlight | less
+	show = diff-highlight | less
+	log = diff-highlight | less
 [github]
 	user = ybiquitous
 	token = c10aa4d340230cbb510969ad260e5e56
