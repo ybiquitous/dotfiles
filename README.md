@@ -58,3 +58,11 @@ npm install -g jsonlint jshint eslint csslint js-beautify jscs marked editorconf
 - Maximize Active View or Editor: __Alt+M__
 - Open Search Dialog: __Alt+H__
 - Toggle Split Editor (Horizontal): __Ctrl+}__
+
+# Use diff-highlight on "git diff"
+
+``` sh
+$ cd ~/bin
+$ curl -O https://raw.githubusercontent.com/git/git/master/contrib/diff-highlight/diff-highlight
+$ chown +x diff-highlight
+```
