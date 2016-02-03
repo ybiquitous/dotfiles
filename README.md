@@ -64,5 +64,5 @@ npm install -g jsonlint jshint eslint csslint js-beautify jscs marked editorconf
 ``` sh
 $ cd ~/bin
 $ curl -O https://raw.githubusercontent.com/git/git/master/contrib/diff-highlight/diff-highlight
-$ chown +x diff-highlight
+$ chmod +x diff-highlight
 ```
