@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+set -e
 
 ########################################################################
 #
@@ -85,7 +86,11 @@ echo "Fetch ${NPM_REMOTE} -> ${NPM_LOCAL}"
 curl -# -L -f $NPM_REMOTE -o $NPM_LOCAL || exit 1
 
 npm_config_progress=false npm_config_prefix=$NODE_DIR sh $NPM_LOCAL
-echo "prefix=${USERPROFILE}\\.nvmk\\${NODE_VERSION}" > ${NODE_DIR}/node_modules/npm/npmrc
+cat <<EOF > ${NODE_DIR}/node_modules/npm/npmrc
+prefix=${USERPROFILE}\\.nvmk\\${NODE_VERSION}
+cache=${USERPROFILE}\\.nvmk\\npm-cache
+EOF
 
 echo Node.js $($NODE_EXE -v) installed.
 echo NPM $(${NODE_DIR}/npm -v) installed.
+echo Add "${NODE_DIR}" to PATH environment variable.
