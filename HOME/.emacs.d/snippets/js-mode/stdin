@@ -1,0 +1,10 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: stdin
+# key: stdin
+# binding: direct-keybinding
+# --
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+process.stdin.on('data', function(chunk) {
+  $0
+});
