@@ -46,7 +46,9 @@
             (local-set-key (kbd "@") 'js-doc-insert-tag)
             (add-hook 'after-save-hook 'jscs-format t t)
             (if (not (equal (file-name-extension buffer-file-name) "json"))
-                (progn (tern-mode t)))
+                (progn
+                  (if (eq system-type 'windows-nt) (defvar tern-command '("tern")))
+                  (tern-mode t)))
             ))
 
 (eval-after-load 'tern
