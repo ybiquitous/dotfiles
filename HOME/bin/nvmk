@@ -14,7 +14,6 @@ Usage:
   nvmk rm "version"   - Uninstall
   nvmk ls             - List installed
 EOF
-
   exit
 }
 
@@ -28,18 +27,21 @@ NODE_EXE_CACHE=${NVMK_CACHE_DIR}/node-${NODE_VERSION}.exe
 NODE_URL=https://nodejs.org/dist/${NODE_VERSION}
 NODE_EXE_REMOTE=${NODE_URL}/win-x64/node.exe
 
-test "$*" = "0" && usage
+test $# -eq 0 && usage
+
+mkdir -p $NVMK_DIR
+
 case $NVMK_CMD in
-  "ls")
+  'ls')
     ls -1 $NVMK_DIR | grep -E '^v'
     exit
     ;;
-  "rm")
+  'rm')
     test -z "$NODE_VERSION" && usage
     test -d $NODE_DIR && rm -rf $NODE_DIR && echo "${NODE_VERSION} uninstalled."
     exit
     ;;
-  "i")
+  'i')
     test -z "$NODE_VERSION" && usage
     ;;
   *)
@@ -62,7 +64,7 @@ else
   echo "Fetch ${NODE_EXE_REMOTE} -> ${NODE_EXE}"
   curl -# -L -f $NODE_EXE_REMOTE -o $NODE_EXE
 
-  if [ $? != 0 ]
+  if [ $? -ne 0 ]
   then
     rm -rf $NODE_DIR
     exit 1
