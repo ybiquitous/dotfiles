@@ -9,10 +9,13 @@ set -e
 
 function usage {
   cat <<EOF
-Usage:
-  nvmk i  "version"   - Install
-  nvmk rm "version"   - Uninstall
-  nvmk ls             - List installed
+Usage: nvmk {command} [{node_version}]
+
+  nvmk ls                              - List installed Node.js
+  nvmk i             {node_version}    - Install Node.js
+  nvmk rm            {node_version}    - Uninstall Node.js
+  nvmk npm-reinstall {node_version}    - Re-install NPM
+
 EOF
   exit
 }
@@ -31,6 +34,29 @@ test $# -eq 0 && usage
 
 mkdir -p $NVMK_DIR
 
+function npm_install {
+  if [ ! -d $NODE_DIR ]
+  then
+    echo "Not installed ${NODE_VERSION}"
+    exit 1
+  fi
+
+  local NPM_REMOTE=https://www.npmjs.com/install.sh
+  local NPM_LOCAL=${NVMK_CACHE_DIR}/npm-install.sh
+
+  echo
+  echo "Fetch ${NPM_REMOTE} -> ${NPM_LOCAL}"
+  curl -# -L -f $NPM_REMOTE -o $NPM_LOCAL
+
+  npm_config_progress=false npm_config_prefix=$NODE_DIR sh $NPM_LOCAL
+  cat <<EOF > ${NODE_DIR}/node_modules/npm/npmrc
+prefix=${USERPROFILE}\\.nvmk\\${NODE_VERSION}
+cache=${USERPROFILE}\\.nvmk\\npm-cache
+EOF
+
+  echo NPM $(${NODE_DIR}/npm -v) installed
+}
+
 case $NVMK_CMD in
   'ls')
     ls -1 $NVMK_DIR | grep -E '^v'
@@ -38,11 +64,16 @@ case $NVMK_CMD in
     ;;
   'rm')
     test -z "$NODE_VERSION" && usage
-    test -d $NODE_DIR && rm -rf $NODE_DIR && echo "${NODE_VERSION} uninstalled."
+    test -d $NODE_DIR && rm -rf $NODE_DIR && echo "${NODE_VERSION} uninstalled"
     exit
     ;;
   'i')
     test -z "$NODE_VERSION" && usage
+    ;;
+  'npm-reinstall')
+    test -z "$NODE_VERSION" && usage
+    npm_install
+    exit
     ;;
   *)
     usage
@@ -52,7 +83,7 @@ esac
 
 ### Install Node.js ###
 
-test -f $NODE_EXE && echo "${NODE_VERSION} already installed." && exit 1
+test -f $NODE_EXE && echo "${NODE_VERSION} already installed" && exit 1
 
 mkdir -p $NVMK_CACHE_DIR
 mkdir -p $NODE_DIR
@@ -77,22 +108,7 @@ else
   cp $NODE_EXE $NODE_EXE_CACHE
 fi
 
+npm_install
 
-### Install NPM ###
-
-NPM_REMOTE=https://www.npmjs.com/install.sh
-NPM_LOCAL=${NVMK_CACHE_DIR}/npm-install.sh
-
-echo
-echo "Fetch ${NPM_REMOTE} -> ${NPM_LOCAL}"
-curl -# -L -f $NPM_REMOTE -o $NPM_LOCAL || exit 1
-
-npm_config_progress=false npm_config_prefix=$NODE_DIR sh $NPM_LOCAL
-cat <<EOF > ${NODE_DIR}/node_modules/npm/npmrc
-prefix=${USERPROFILE}\\.nvmk\\${NODE_VERSION}
-cache=${USERPROFILE}\\.nvmk\\npm-cache
-EOF
-
-echo Node.js $($NODE_EXE -v) installed.
-echo NPM $(${NODE_DIR}/npm -v) installed.
-echo Add "${NODE_DIR}" to PATH environment variable.
+echo Node.js $($NODE_EXE -v) installed
+echo Add "${NODE_DIR}" to PATH environment variable
