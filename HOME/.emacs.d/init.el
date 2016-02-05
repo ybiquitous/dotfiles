@@ -92,6 +92,7 @@
 (require 'init-common)
 (require 'init-java)
 (require 'init-javascript)
+(require 'init-css)
 (require 'init-markdown)
 
 ;; perl
