@@ -88,8 +88,9 @@
 
 ;; inits
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/inits"))
-(require 'init-env)
 (require 'init-common)
+(require 'init-env)
+(require 'init-windows)
 (require 'init-java)
 (require 'init-javascript)
 (require 'init-css)
@@ -107,6 +108,9 @@
 ;; web
 (add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+
+;; shell script
+(add-to-list 'auto-mode-alist '("\\.sh\\'" . sh-mode))
 
 ;; shell
 (add-hook 'shell-mode-hook
