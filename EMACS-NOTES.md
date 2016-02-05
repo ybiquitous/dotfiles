@@ -10,10 +10,11 @@
 
 ## 便利コマンド
 
-| Name                                               | Description           |
-| -------------------------------------------------- | --------------------- |
-| `align-regexp`                                     | 列揃えの整形          |
-| `M-: (byte-recompile-directory "~/.emacs.d/" 0 t)` | 全Elispの再コンパイル |
+| Name                                               | Description              |
+| -------------------------------------------------- | ------------------------ |
+| `align-regexp`                                     | 列揃えの整形             |
+| `M-: (byte-recompile-directory "~/.emacs.d/" 0 t)` | 全Elispの再コンパイル    |
+| `yas-recompile-all`                                | 全snippetsの再コンパイル |
 
 ## Tips
 

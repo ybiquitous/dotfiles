@@ -13,3 +13,4 @@ HOME/.zsh/.zshrc.mine
 HOME/.zsh/.zcompdump
 HOME/.zsh/Completion
 .tern-port
+.yas-compiled-snippets.el
