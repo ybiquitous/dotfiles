@@ -9,12 +9,13 @@ set -e
 
 function usage {
   cat <<EOF
-Usage: nvmk {command} [{node_version}]
+Usage: nvmk {command} {node_version}
 
   nvmk ls                              - List installed Node.js
   nvmk i             {node_version}    - Install Node.js
   nvmk rm            {node_version}    - Uninstall Node.js
   nvmk npm-reinstall {node_version}    - Re-install NPM
+  nvmk root          {node_version}    - Print absolute path of installed Node.js
 
 EOF
   exit
@@ -28,7 +29,15 @@ NODE_DIR=${NVMK_DIR}/${NODE_VERSION}
 NODE_EXE=${NODE_DIR}/node.exe
 NODE_EXE_CACHE=${NVMK_CACHE_DIR}/node-${NODE_VERSION}.exe
 NODE_URL=https://nodejs.org/dist/${NODE_VERSION}
-NODE_EXE_REMOTE=${NODE_URL}/win-x64/node.exe
+
+if [[ "$NODE_VERSION" =~ ^v0.+$ ]]
+then
+  NODE_EXE_PATH=x64/node.exe
+else
+  NODE_EXE_PATH=win-x64/node.exe
+fi
+
+NODE_EXE_REMOTE=${NODE_URL}/${NODE_EXE_PATH}
 
 test $# -eq 0 && usage
 
@@ -45,16 +54,20 @@ function npm_install {
   local NPM_LOCAL=${NVMK_CACHE_DIR}/npm-install.sh
 
   echo
-  echo "Fetch ${NPM_REMOTE} -> ${NPM_LOCAL}"
+  echo "Fetching ${NPM_REMOTE} -> ${NPM_LOCAL}"
   curl -# -L -f $NPM_REMOTE -o $NPM_LOCAL
 
-  npm_config_progress=false npm_config_prefix=$NODE_DIR sh $NPM_LOCAL
-  cat <<EOF > ${NODE_DIR}/node_modules/npm/npmrc
-prefix=${USERPROFILE}\\.nvmk\\${NODE_VERSION}
-cache=${USERPROFILE}\\.nvmk\\npm-cache
-EOF
+  npm_config_progress=false npm_config_prefix=$NODE_DIR npm_config_cache=${NVMK_DIR}/npm-cache sh $NPM_LOCAL
+  sed -i 's|\\c||g' ${NODE_DIR}/node_modules/npm/npmrc
 
+  echo
   echo NPM $(${NODE_DIR}/npm -v) installed
+
+  # https://github.com/npm/npm/issues/10165#issuecomment-152451743
+  echo
+  echo 'Please run in Command-Prompt:'
+  echo
+  echo '  npm install -g npm@latest'
 }
 
 case $NVMK_CMD in
@@ -75,6 +88,11 @@ case $NVMK_CMD in
     npm_install
     exit
     ;;
+  'root')
+    test -z "$NODE_VERSION" && usage
+    echo $NODE_DIR
+    exit
+    ;;
   *)
     usage
     ;;
@@ -90,9 +108,9 @@ mkdir -p $NODE_DIR
 
 if [ -f $NODE_EXE_CACHE ]
 then
-  cp $NODE_EXE_CACHE $NODE_EXE
+  cp -v $NODE_EXE_CACHE $NODE_EXE
 else
-  echo "Fetch ${NODE_EXE_REMOTE} -> ${NODE_EXE}"
+  echo "Fetching ${NODE_EXE_REMOTE} -> ${NODE_EXE}"
   curl -# -L -f $NODE_EXE_REMOTE -o $NODE_EXE
 
   if [ $? -ne 0 ]
@@ -101,7 +119,7 @@ else
     exit 1
   fi
 
-  NODE_CHECKSUM=$(curl -s -L ${NODE_URL}/SHASUMS256.txt | grep 'win-x64/node.exe' | awk '{ print $1 }')
+  NODE_CHECKSUM=$(curl -s -L ${NODE_URL}/SHASUMS256.txt | grep $NODE_EXE_PATH | awk '{ print $1 }')
   NODE_CHECKSUM2=$(sha256sum $NODE_EXE | awk '{ print $1 }')
   test "$NODE_CHECKSUM" != "$NODE_CHECKSUM2" && echo "Failed checksum of ${NODE_EXE}" && exit 1
 
