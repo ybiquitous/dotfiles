@@ -11,11 +11,13 @@ function usage {
   cat <<EOF
 Usage: nvmk {command} {node_version}
 
-  nvmk ls                              - List installed Node.js
-  nvmk i             {node_version}    - Install Node.js
-  nvmk rm            {node_version}    - Uninstall Node.js
-  nvmk npm-reinstall {node_version}    - Re-install NPM
-  nvmk root          {node_version}    - Print absolute path of installed Node.js
+  nvmk ls                                 - List installed Node.js
+  nvmk i          {node_version}          - Install Node.js
+  nvmk rm         {node_version}          - Uninstall Node.js
+  nvmk root       {node_version}          - Print absolute path of installed Node.js
+  nvmk npm-i      {node_version}          - (Re)Install NPM
+  nvmk npm-ls     {node_version}          - List NPM global packages
+  nvmk npm-i-pkgs {node_version} {from}   - Install NPM global packages
 
 EOF
   exit
@@ -64,10 +66,12 @@ function npm_install {
   echo NPM $(${NODE_DIR}/npm -v) installed
 
   # https://github.com/npm/npm/issues/10165#issuecomment-152451743
-  echo
-  echo 'Please run in Command-Prompt:'
-  echo
-  echo '  npm install -g npm@latest'
+  cat <<EOF
+Please run in Command-Prompt:
+
+  npm install -g npm@latest
+
+EOF
 }
 
 case $NVMK_CMD in
@@ -83,17 +87,31 @@ case $NVMK_CMD in
   'i')
     test -z "$NODE_VERSION" && usage
     ;;
-  'npm-reinstall')
-    test -z "$NODE_VERSION" && usage
-    npm_install
-    exit
-    ;;
   'root')
     test -z "$NODE_VERSION" && usage
     echo $NODE_DIR
     exit
     ;;
+  'npm-i')
+    test -z "$NODE_VERSION" && usage
+    npm_install
+    exit
+    ;;
+  'npm-ls')
+    test -z "$NODE_VERSION" && usage
+    ${NODE_DIR}/npm ls -g --depth 0 | grep '@' | grep -v npm | awk '{print $2}' | awk -F'@' '{print $1}'
+    exit
+    ;;
+  'npm-i-pkgs')
+    test -z "$NODE_VERSION" && usage
+    test -z "$3" && usage
+    FROM_NODE_VERSION=$3
+    ${NVMK_DIR}/${NODE_VERSION}/npm install -g $(nvmk npm-ls $FROM_NODE_VERSION)
+    exit
+    ;;
   *)
+    echo 'No such command:' ${NVMK_CMD}
+    echo
     usage
     ;;
 esac
@@ -128,5 +146,8 @@ fi
 
 npm_install
 
-echo Node.js $($NODE_EXE -v) installed
-echo Add "${NODE_DIR}" to PATH environment variable
+cat <<EOF
+Node.js $($NODE_EXE -v) installed
+Add "${NODE_DIR}" to PATH environment variable
+
+EOF
