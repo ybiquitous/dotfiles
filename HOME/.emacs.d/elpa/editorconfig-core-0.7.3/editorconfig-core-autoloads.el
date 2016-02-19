@@ -1,11 +1,10 @@
 ;;; editorconfig-core-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-
+(add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
 
-;;;### (autoloads (editorconfig-core-get-properties-hash editorconfig-core-get-properties)
-;;;;;;  "editorconfig-core" "editorconfig-core.el" (22186 60796 464554
-;;;;;;  55000))
+;;;### (autoloads nil "editorconfig-core" "editorconfig-core.el"
+;;;;;;  (22214 27461 413645 457000))
 ;;; Generated autoloads from editorconfig-core.el
 
 (autoload 'editorconfig-core-get-properties "editorconfig-core" "\
@@ -33,15 +32,13 @@ hash object instead.
 ;;;***
 
 ;;;### (autoloads nil nil ("editorconfig-core-handle.el" "editorconfig-core-pkg.el")
-;;;;;;  (22186 60796 483755 459000))
+;;;;;;  (22214 27461 444305 188000))
 
 ;;;***
 
-(provide 'editorconfig-core-autoloads)
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
-;; coding: utf-8
 ;; End:
 ;;; editorconfig-core-autoloads.el ends here

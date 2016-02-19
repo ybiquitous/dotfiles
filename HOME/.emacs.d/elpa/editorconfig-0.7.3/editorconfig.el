@@ -3,8 +3,8 @@
 ;; Copyright (C) 2011-2016 EditorConfig Team
 
 ;; Author: EditorConfig Team <editorconfig@googlegroups.com>
-;; Version: 0.7.2
-;; Package-Version: 0.7.2
+;; Version: 0.7.3
+;; Package-Version: 0.7.3
 ;; URL: https://github.com/editorconfig/editorconfig-emacs#readme
 ;; Package-Requires: ((editorconfig-core "0.6.2"))
 
@@ -119,9 +119,12 @@ property emacs_linum to decide whether to show line numbers on the left
      (lisp-mode lisp-indent-offset)
      (livescript-mode livescript-tab-width)
      (lua-mode lua-indent-level)
+     (matlab-mode matlab-indent-level)
      (mustache-mode mustache-basic-offset)
+     (nginx-mode nginx-indent-level)
      (nxml-mode nxml-child-indent (nxml-attribute-indent . 2))
      (objc-mode c-basic-offset)
+     (octave-mode octave-block-offset)
      (perl-mode perl-indent-level)
      (pike-mode c-basic-offset)
      (ps-mode ps-mode-tab)
@@ -129,11 +132,13 @@ property emacs_linum to decide whether to show line numbers on the left
      (python-mode . editorconfig-set-indentation/python-mode)
      (ruby-mode ruby-indent-level)
      (scala-mode scala-indent:step)
+     (scss-mode css-indent-offset)
      (sgml-mode sgml-basic-offset)
      (sh-mode sh-basic-offset sh-indentation)
      (slim-mode slim-indent-offset)
      (tcl-mode tcl-indent-level
        tcl-continued-indent-level)
+     (typescript-mode typescript-indent-level)
      (web-mode (web-mode-indent-style . (lambda (size) 2))
        web-mode-markup-indent-offset
        web-mode-css-indent-offset

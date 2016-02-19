@@ -1,10 +1,10 @@
 ;;; editorconfig-fnmatch-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-
+(add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
 
-;;;### (autoloads (editorconfig-fnmatch-p) "editorconfig-fnmatch"
-;;;;;;  "editorconfig-fnmatch.el" (22186 60793 808502 552000))
+;;;### (autoloads nil "editorconfig-fnmatch" "editorconfig-fnmatch.el"
+;;;;;;  (22214 27460 277548 480000))
 ;;; Generated autoloads from editorconfig-fnmatch.el
 
 (autoload 'editorconfig-fnmatch-p "editorconfig-fnmatch" "\
@@ -27,16 +27,9 @@ be used:
 
 ;;;***
 
-;;;### (autoloads nil nil ("editorconfig-fnmatch-pkg.el") (22186
-;;;;;;  60793 956348 32000))
-
-;;;***
-
-(provide 'editorconfig-fnmatch-autoloads)
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
-;; coding: utf-8
 ;; End:
 ;;; editorconfig-fnmatch-autoloads.el ends here

@@ -1,10 +1,10 @@
 ;;; editorconfig-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-
+(add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
 
-;;;### (autoloads (editorconfig-mode editorconfig-apply) "editorconfig"
-;;;;;;  "editorconfig.el" (22186 60797 148567 235000))
+;;;### (autoloads nil "editorconfig" "editorconfig.el" (22214 27462
+;;;;;;  29698 44000))
 ;;; Generated autoloads from editorconfig.el
 
 (autoload 'editorconfig-apply "editorconfig" "\
@@ -30,16 +30,9 @@ Toggle EditorConfig feature.
 
 ;;;***
 
-;;;### (autoloads nil nil ("editorconfig-pkg.el") (22186 60797 173133
-;;;;;;  371000))
-
-;;;***
-
-(provide 'editorconfig-autoloads)
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
-;; coding: utf-8
 ;; End:
 ;;; editorconfig-autoloads.el ends here
