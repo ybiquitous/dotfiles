@@ -18,6 +18,15 @@ Use 'mklink' as Administrator on Windows, instead 'ln -s'.
 LANG=C xdg-user-dirs-gtk-update
 ```
 
+# Tools
+
+- emacs
+- zsh
+- git
+- xclip
+- nvm
+- docker
+
 # Install _[Terminator](http://gnometerminator.blogspot.jp/)_ (High Functional Terminal)
 
 ```sh
@@ -49,7 +58,7 @@ ln -s /usr/share/fonts/truetype/****.ttf .
 See https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
 
 ```sh
-$ npm install -g jsonlint jshint eslint csslint js-beautify jscs marked editorconfig tern node-sass sass-lint
+npm install -g jsonlint jshint eslint csslint js-beautify jscs marked editorconfig tern node-sass sass-lint
 ```
 
 # Eclipse keybind (based on Emacs)
@@ -61,8 +70,16 @@ $ npm install -g jsonlint jshint eslint csslint js-beautify jscs marked editorco
 
 # Use diff-highlight on "git diff"
 
-``` sh
-$ cd ~/bin
-$ curl -O https://raw.githubusercontent.com/git/git/master/contrib/diff-highlight/diff-highlight
-$ chmod +x diff-highlight
+```sh
+cd ~/bin
+curl -O https://raw.githubusercontent.com/git/git/master/contrib/diff-highlight/diff-highlight
+chmod +x diff-highlight
+```
+
+or
+
+```sh
+cd ~/bin
+ln -s /usr/share/doc/git/contrib/diff-highlight/diff-highlight
+sudo chmod +x /usr/share/doc/git/contrib/diff-highlight/diff-highlight
 ```
