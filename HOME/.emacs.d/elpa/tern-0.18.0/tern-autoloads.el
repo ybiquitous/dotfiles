@@ -1,10 +1,9 @@
 ;;; tern-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-
+(add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
 
-;;;### (autoloads (tern-mode tern-use-server) "tern" "tern.el" (22155
-;;;;;;  26993 648872 811000))
+;;;### (autoloads nil "tern" "tern.el" (22251 57496 358214 223000))
 ;;; Generated autoloads from tern.el
 
 (autoload 'tern-use-server "tern" "\
@@ -19,15 +18,9 @@ Minor mode binding to the Tern JavaScript analyzer
 
 ;;;***
 
-;;;### (autoloads nil nil ("tern-pkg.el") (22155 26993 675251 477000))
-
-;;;***
-
-(provide 'tern-autoloads)
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
-;; coding: utf-8
 ;; End:
 ;;; tern-autoloads.el ends here
