@@ -3,10 +3,9 @@
 ;; Copyright (C) 2011-2016 EditorConfig Team
 
 ;; Author: EditorConfig Team <editorconfig@googlegroups.com>
-;; Version: 0.7.3
-;; Package-Version: 0.7.3
+;; Version: 0.7.4
 ;; URL: https://github.com/editorconfig/editorconfig-emacs#readme
-;; Package-Requires: ((editorconfig-core "0.6.2"))
+;; Package-Requires: ((cl-lib "0.5"))
 
 ;; See
 ;; https://github.com/editorconfig/editorconfig-emacs/graphs/contributors
@@ -39,6 +38,8 @@
 ;; version control systems.
 
 ;;; Code:
+
+(require 'conf-mode)
 
 (declare-function editorconfig-core-get-properties-hash
   "editorconfig-core"
@@ -131,6 +132,7 @@ property emacs_linum to decide whether to show line numbers on the left
      (puppet-mode puppet-indent-level)
      (python-mode . editorconfig-set-indentation/python-mode)
      (ruby-mode ruby-indent-level)
+     (rust-mode rust-indent-offset)
      (scala-mode scala-indent:step)
      (scss-mode css-indent-offset)
      (sgml-mode sgml-basic-offset)
@@ -143,6 +145,7 @@ property emacs_linum to decide whether to show line numbers on the left
        web-mode-markup-indent-offset
        web-mode-css-indent-offset
        web-mode-code-indent-offset
+       web-mode-block-padding
        web-mode-script-padding
        web-mode-style-padding)
      (yaml-mode yaml-indent-offset))
@@ -184,6 +187,18 @@ NOTE: Only the **buffer local** value of VARIABLE will be set."
   'edconf-indentation-alist
   'editorconfig-indentation-alist
   "0.5")
+
+(defcustom editorconfig-exclude-modes ()
+  "List of major mode symbols not to apply properties."
+  :type '(repeat (symbol :tag "Major Mode"))
+  :group 'editorconfig)
+
+(defvar editorconfig-properties-hash nil
+  "Hash object of EditorConfig properties for current buffer.
+Set by `editorconfig-apply' and nil if that is not invoked in current buffer
+yet.")
+(make-variable-buffer-local 'editorconfig-properties-hash)
+
 
 (defun editorconfig-string-integer-p (string)
   "Return non-nil if STRING represents integer."
@@ -348,8 +363,29 @@ It calls `editorconfig-get-properties-from-exec' if
     (editorconfig-core-get-properties-hash)))
 
 ;;;###autoload
+(defun editorconfig-display-current-properties ()
+  "Display EditorConfig properties extracted for current buffer."
+  (interactive)
+  (if editorconfig-properties-hash
+    (let (
+           (buf (get-buffer-create "*EditorConfig Properties*"))
+           (file buffer-file-name)
+           (props editorconfig-properties-hash))
+      (with-current-buffer buf
+        (erase-buffer)
+        (insert (format "# EditorConfig for %s\n" file))
+        (maphash (lambda (k v)
+                   (insert (format "%S = %s\n" k v)))
+          props))
+      (display-buffer buf))
+    (message "Properties are not applied to current buffer yet.")
+    nil))
+
+;;;###autoload
 (defun editorconfig-apply ()
-  "Apply EditorConfig properties for current buffer."
+  "Apply EditorConfig properties for current buffer.
+This function ignores `editorconfig-exclude-modes' and always applies available
+properties."
   (interactive)
   (when buffer-file-name
     (condition-case err
@@ -358,6 +394,7 @@ It calls `editorconfig-get-properties-from-exec' if
           (error "Invalid editorconfig-get-properties-function value"))
         (let ((props (funcall editorconfig-get-properties-function)))
           (progn
+            (setq editorconfig-properties-hash props)
             (editorconfig-set-indentation (gethash 'indent_style props)
               (gethash 'indent_size props)
               (gethash 'tab_width props))
@@ -374,20 +411,63 @@ It calls `editorconfig-get-properties-from-exec' if
             ".  Styles will not be applied.")
           :error)))))
 
-;;;###autoload
-(define-minor-mode editorconfig-mode
-  "Toggle EditorConfig feature."
-  :global t
-  :lighter ""
-  (dolist (hook (list
-                  'find-file-hook
-                  'after-change-major-mode-hook))
-    (if editorconfig-mode
-      (add-hook hook 'editorconfig-apply)
-      (remove-hook hook 'editorconfig-apply))))
+(defun editorconfig-mode-apply ()
+  "Apply EditorConfig properties for current buffer.
+This function do the job only when the major mode is not listed in
+`editorconfig-exclude-modes'."
+  (when (and major-mode
+          (not (memq major-mode
+                 editorconfig-exclude-modes)))
+    (editorconfig-apply)))
 
 ;;;###autoload
-(add-to-list 'auto-mode-alist '("/\\.editorconfig\\'" . conf-unix-mode))
+(define-minor-mode editorconfig-mode
+  "Toggle EditorConfig feature.
+When enabled EditorConfig properties will be applied to buffers when first
+visiting files or changing major modes if the major mode is not listed in
+`editorconfig-exclude-modes'."
+  :global t
+  :lighter ""
+  (dolist (hook '(after-change-major-mode-hook))
+    (if editorconfig-mode
+      (add-hook hook 'editorconfig-mode-apply)
+      (remove-hook hook 'editorconfig-mode-apply))))
+
+
+
+;;;###autoload
+(define-derived-mode editorconfig-conf-mode conf-mode "EditorConfig"
+  "Major mode for editing .editorconfig files."
+  (set-variable 'indent-line-function 'indent-relative)
+  (conf-mode-initialize
+    "#"
+    `(
+       ("^#.*\\|^;.*\\| #.*\\| ;.*" 0 font-lock-comment-face)
+       ("^[ \t]*\\(root\\)[ \t]*[=:]" 1 font-lock-builtin-face)
+       ("^[ \t]*\\(indent_style\\)[ \t]*[=:]" 1 font-lock-builtin-face)
+       ("^[ \t]*\\(indent_size\\)[ \t]*[=:]" 1 font-lock-builtin-face)
+       ("^[ \t]*\\(tab_width\\)[ \t]*[=:]" 1 font-lock-builtin-face)
+       ("^[ \t]*\\(end_of_line\\)[ \t]*[=:]" 1 font-lock-builtin-face)
+       ("^[ \t]*\\(charset\\)[ \t]*[=:]" 1 font-lock-builtin-face)
+       ("^[ \t]*\\(trim_trailing_whitespace\\)[ \t]*[=:]" 1 font-lock-builtin-face)
+       ("^[ \t]*\\(insert_final_newline\\)[ \t]*[=:]" 1 font-lock-builtin-face)
+       ("^[ \t]*\\(max_line_length\\)[ \t]*[=:]" 1 font-lock-builtin-face)
+
+       ("[=:][ \t]*\\(true\\)\\([ \t]\\|$\\)" 1 font-lock-constant-face)
+       ("[=:][ \t]*\\(false\\)\\([ \t]\\|$\\)" 1 font-lock-constant-face)
+       ("[=:][ \t]*\\(lf\\)\\([ \t]\\|$\\)" 1 font-lock-constant-face)
+       ("[=:][ \t]*\\(cr\\)\\([ \t]\\|$\\)" 1 font-lock-constant-face)
+       ("[=:][ \t]*\\(crlf\\)\\([ \t]\\|$\\)" 1 font-lock-constant-face)
+       ("[=:][ \t]*\\(space\\)\\([ \t]\\|$\\)" 1 font-lock-constant-face)
+       ("[=:][ \t]*\\(tab\\)\\([ \t]\\|$\\)" 1 font-lock-constant-face)
+
+       ("^[ \t]*\\[\\(.+?\\)\\]" 1 'font-lock-type-face)
+       ("^[ \t]*\\(.+?\\)[ \t]*[=:]" 1 'font-lock-variable-name-face)
+       )))
+
+;;;###autoload
+(add-to-list 'auto-mode-alist
+  '("/\\.editorconfig\\'" . editorconfig-conf-mode))
 
 (provide 'editorconfig)
 

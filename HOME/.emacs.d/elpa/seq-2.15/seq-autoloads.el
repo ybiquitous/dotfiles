@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil nil ("seq-pkg.el" "seq.el") (22095 52593 730926
-;;;;;;  53000))
+;;;### (autoloads nil nil ("seq-24.el" "seq-25.el" "seq-pkg.el" "seq.el")
+;;;;;;  (22269 9699 68483 712000))
 
 ;;;***
 
