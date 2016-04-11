@@ -1,6 +1,0 @@
-# -*- mode: snippet; require-final-newline: nil -*-
-# name: module
-# key: mod
-# binding: direct-keybinding
-# --
-module.exports = $0;
