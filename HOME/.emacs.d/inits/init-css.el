@@ -1,27 +1,28 @@
 (require 'flycheck)
 
-(flycheck-def-config-file-var flycheck-sass-lintrc sass-lint ".sass-lint.yml"
-  :safe #'stringp)
+;;; stylelint (https://github.com/flycheck/flycheck/issues/785)
+(flycheck-define-checker stylelint-scss-lint
+  "A SCSS checker using stylelint.
 
-(flycheck-define-checker sass-lint
-  "A SASS (SCSS) checker using Sass Lint (on Node.js).
-
-See URL `https://github.com/sasstools/sass-lint'."
-  :command ("sass-lint"
-            "--verbose"
-            "--format" "checkstyle"
-            (config-file "--config" flycheck-sass-lintrc)
-            source)
-  :error-parser flycheck-parse-checkstyle
-  :modes (sass-mode scss-mode))
+See URL `http://stylelint.io/'."
+  :command ("stylelint" "--syntax" "scss" source)
+  :error-patterns
+  ((error line-start
+          (zero-or-more (any space)) line ":" column
+          (one-or-more (any space)) "✖" (one-or-more (any space))
+          (message)
+          (zero-or-more (any space))
+          line-end))
+  :modes (scss-mode))
+;;; stylelint
 
 (add-hook 'scss-mode-hook
           (lambda()
             (custom-set-variables
              '(scss-sass-command "node-sass")
-             '(scss-compile-at-save nil)
-             '(flycheck-disabled-checkers (flycheck-scss-lint)))
-            (add-to-list 'flycheck-checkers 'sass-lint)
+             '(scss-compile-at-save nil))
+            (add-to-list 'flycheck-checkers 'stylelint-scss-lint)
+            (flycheck-disable-checker 'scss-lint)
             ))
 
 (provide 'init-css)
