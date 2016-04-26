@@ -3,7 +3,7 @@
 ;; Copyright (C) 2011-2016 EditorConfig Team
 
 ;; Author: EditorConfig Team <editorconfig@googlegroups.com>
-;; Version: 0.7.4
+;; Version: 0.7.5
 ;; URL: https://github.com/editorconfig/editorconfig-emacs#readme
 ;; Package-Requires: ((cl-lib "0.5"))
 
@@ -44,6 +44,13 @@
 (declare-function editorconfig-core-get-properties-hash
   "editorconfig-core"
   nil)
+
+(defgroup editorconfig nil
+  "EditorConfig Emacs Plugin.
+
+EditorConfig Helps developers define and maintain consistent coding styles
+between different editors and IDEs"
+  :group 'tools)
 
 (defcustom editorconfig-exec-path
   "editorconfig"
@@ -95,12 +102,14 @@ property emacs_linum to decide whether to show line numbers on the left
   "0.5")
 
 (defcustom editorconfig-indentation-alist
+  ;; For contributors: Sort modes in alphabetical order, please :)
   '((awk-mode c-basic-offset)
      (c++-mode c-basic-offset)
      (c-mode c-basic-offset)
      (cmake-mode cmake-tab-width)
      (coffee-mode coffee-tab-width)
      (cperl-mode cperl-indent-level)
+     (crystal-mode crystal-indent-level)
      (css-mode css-indent-offset)
      (emacs-lisp-mode lisp-indent-offset)
      (erlang-mode erlang-indent-level)
@@ -113,7 +122,9 @@ property emacs_linum to decide whether to show line numbers on the left
      (jade-mode jade-tab-width)
      (java-mode c-basic-offset)
      (js-mode js-indent-level)
+     (js-jsx-mode js-indent-level sgml-basic-offset)
      (js2-mode js2-basic-offset)
+     (js2-jsx-mode js2-basic-offset sgml-basic-offset)
      (js3-mode js3-indent-level)
      (json-mode js-indent-level)
      (latex-mode . editorconfig-set-indentation/latex-mode)
@@ -321,7 +332,8 @@ yet.")
 
 (defun editorconfig-set-line-length (length)
   "Set the max line length (fill-column) to LENGTH."
-  (when (editorconfig-string-integer-p length)
+  (when (and (editorconfig-string-integer-p length)
+          (> (string-to-number length) 0))
     (set-fill-column (string-to-number length))))
 
 (defun editorconfig-call-editorconfig-exec ()
@@ -420,6 +432,13 @@ This function do the job only when the major mode is not listed in
                  editorconfig-exclude-modes)))
     (editorconfig-apply)))
 
+(defvar editorconfig-conf-mode-syntax-table
+  (let ((table (make-syntax-table conf-unix-mode-syntax-table)))
+    (modify-syntax-entry ?\; "<" table)
+    table)
+  "Syntax table in use in `editorconfig-conf-mode' buffers.")
+
+
 ;;;###autoload
 (define-minor-mode editorconfig-mode
   "Toggle EditorConfig feature.
@@ -436,34 +455,50 @@ visiting files or changing major modes if the major mode is not listed in
 
 
 ;;;###autoload
-(define-derived-mode editorconfig-conf-mode conf-mode "EditorConfig"
+(define-derived-mode editorconfig-conf-mode conf-unix-mode "EditorConfig"
   "Major mode for editing .editorconfig files."
   (set-variable 'indent-line-function 'indent-relative)
-  (conf-mode-initialize
-    "#"
-    `(
-       ("^#.*\\|^;.*\\| #.*\\| ;.*" 0 font-lock-comment-face)
-       ("^[ \t]*\\(root\\)[ \t]*[=:]" 1 font-lock-builtin-face)
-       ("^[ \t]*\\(indent_style\\)[ \t]*[=:]" 1 font-lock-builtin-face)
-       ("^[ \t]*\\(indent_size\\)[ \t]*[=:]" 1 font-lock-builtin-face)
-       ("^[ \t]*\\(tab_width\\)[ \t]*[=:]" 1 font-lock-builtin-face)
-       ("^[ \t]*\\(end_of_line\\)[ \t]*[=:]" 1 font-lock-builtin-face)
-       ("^[ \t]*\\(charset\\)[ \t]*[=:]" 1 font-lock-builtin-face)
-       ("^[ \t]*\\(trim_trailing_whitespace\\)[ \t]*[=:]" 1 font-lock-builtin-face)
-       ("^[ \t]*\\(insert_final_newline\\)[ \t]*[=:]" 1 font-lock-builtin-face)
-       ("^[ \t]*\\(max_line_length\\)[ \t]*[=:]" 1 font-lock-builtin-face)
+  (let ((key-property-list
+          '("charset"
+            "end_of_line"
+            "indent_size"
+            "indent_style"
+            "insert_final_newline"
+            "max_line_length"
+            "root"
+            "tab_width"
+            "trim_trailing_whitespace"))
+        (key-value-list
+          '("true"
+            "false"
+            "lf"
+            "cr"
+            "crlf"
+            "space"
+            "tab"
+            "latin1"
+            "utf-8"
+            "utf-8-bom"
+            "utf-16be"
+            "utf-16le"))
+        (font-lock-value
+          '(("^[ \t]*\\[\\(.+?\\)\\]" 1 font-lock-type-face)
+            ("^[ \t]*\\(.+?\\)[ \t]*[=:]" 1 font-lock-variable-name-face))))
 
-       ("[=:][ \t]*\\(true\\)\\([ \t]\\|$\\)" 1 font-lock-constant-face)
-       ("[=:][ \t]*\\(false\\)\\([ \t]\\|$\\)" 1 font-lock-constant-face)
-       ("[=:][ \t]*\\(lf\\)\\([ \t]\\|$\\)" 1 font-lock-constant-face)
-       ("[=:][ \t]*\\(cr\\)\\([ \t]\\|$\\)" 1 font-lock-constant-face)
-       ("[=:][ \t]*\\(crlf\\)\\([ \t]\\|$\\)" 1 font-lock-constant-face)
-       ("[=:][ \t]*\\(space\\)\\([ \t]\\|$\\)" 1 font-lock-constant-face)
-       ("[=:][ \t]*\\(tab\\)\\([ \t]\\|$\\)" 1 font-lock-constant-face)
+    ;; Highlight all key values
+    (dolist (key-value key-value-list)
+      (add-to-list
+        'font-lock-value
+        `(,(format "[=:][ \t]*\\(%s\\)\\([ \t]\\|$\\)" key-value)
+          1 font-lock-constant-face)))
+    ;; Highlight all key properties
+    (dolist (key-property key-property-list)
+      (add-to-list
+        'font-lock-value
+        `(,(format "^[ \t]*\\(%s\\)[ \t]*[=:]" key-property)
+          1 font-lock-builtin-face)))
 
-       ("^[ \t]*\\[\\(.+?\\)\\]" 1 'font-lock-type-face)
-       ("^[ \t]*\\(.+?\\)[ \t]*[=:]" 1 'font-lock-variable-name-face)
-       )))
+    (conf-mode-initialize "#" font-lock-value)))
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist

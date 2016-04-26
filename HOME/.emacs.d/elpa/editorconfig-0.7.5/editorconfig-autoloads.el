@@ -1,11 +1,10 @@
 ;;; editorconfig-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-
+(add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
 
-;;;### (autoloads (editorconfig-conf-mode editorconfig-mode editorconfig-apply
-;;;;;;  editorconfig-display-current-properties) "editorconfig" "editorconfig.el"
-;;;;;;  (22269 9702 787376 124000))
+;;;### (autoloads nil "editorconfig" "editorconfig.el" (22302 48449
+;;;;;;  774825 661000))
 ;;; Generated autoloads from editorconfig.el
 
 (autoload 'editorconfig-display-current-properties "editorconfig" "\
@@ -46,9 +45,8 @@ Major mode for editing .editorconfig files.
 
 ;;;***
 
-;;;### (autoloads (editorconfig-core-get-properties-hash editorconfig-core-get-properties)
-;;;;;;  "editorconfig-core" "editorconfig-core.el" (22269 9702 767376
-;;;;;;  443000))
+;;;### (autoloads nil "editorconfig-core" "editorconfig-core.el"
+;;;;;;  (22302 48449 746825 324000))
 ;;; Generated autoloads from editorconfig-core.el
 
 (autoload 'editorconfig-core-get-properties "editorconfig-core" "\
@@ -75,8 +73,8 @@ hash object instead.
 
 ;;;***
 
-;;;### (autoloads (editorconfig-fnmatch-p) "editorconfig-fnmatch"
-;;;;;;  "editorconfig-fnmatch.el" (22269 9702 759376 570000))
+;;;### (autoloads nil "editorconfig-fnmatch" "editorconfig-fnmatch.el"
+;;;;;;  (22302 48449 730825 175000))
 ;;; Generated autoloads from editorconfig-fnmatch.el
 
 (autoload 'editorconfig-fnmatch-p "editorconfig-fnmatch" "\
@@ -100,15 +98,13 @@ be used:
 ;;;***
 
 ;;;### (autoloads nil nil ("editorconfig-core-handle.el" "editorconfig-pkg.el")
-;;;;;;  (22269 9702 799110 652000))
+;;;;;;  (22302 48449 809429 870000))
 
 ;;;***
 
-(provide 'editorconfig-autoloads)
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
-;; coding: utf-8
 ;; End:
 ;;; editorconfig-autoloads.el ends here
