@@ -18,12 +18,6 @@
                   (js-auto-format-mode t)
                   ))))
 
-(add-hook 'flycheck-mode-hook
-          (lambda ()
-            (flycheck-disable-checker 'javascript-jshint)
-            (flycheck-disable-checker 'javascript-jscs)
-            ))
-
 (add-to-list 'auto-mode-alist '("\\.jshintrc\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.jscsrc\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.eslintrc\\'" . json-mode))
