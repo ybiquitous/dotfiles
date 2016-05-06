@@ -1,15 +1,13 @@
 ;;; flycheck-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-
+(add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
 
-;;;### (autoloads (flycheck-def-option-var flycheck-def-config-file-var
-;;;;;;  flycheck-define-command-checker flycheck-define-error-level
-;;;;;;  global-flycheck-mode flycheck-mode flycheck-info) "flycheck"
-;;;;;;  "flycheck.el" (22095 52595 343657 800000))
+;;;### (autoloads nil "flycheck" "flycheck.el" (22316 19107 536279
+;;;;;;  54000))
 ;;; Generated autoloads from flycheck.el
 
-(autoload 'flycheck-info "flycheck" "\
+(autoload 'flycheck-manual "flycheck" "\
 Open the Flycheck manual.
 
 \(fn)" t nil)
@@ -108,7 +106,7 @@ The following PROPERTIES constitute an error level:
 (put 'flycheck-define-error-level 'lisp-indent-function '1)
 
 (autoload 'flycheck-define-command-checker "flycheck" "\
-Define SYMBOL as syntax checker which runs a command.
+Define SYMBOL as syntax checker to run a command.
 
 Define SYMBOL as generic syntax checker via
 `flycheck-define-generic-checker', which uses an external command
@@ -228,16 +226,14 @@ Use this together with the `option', `option-list' and
 
 ;;;***
 
-;;;### (autoloads nil nil ("flycheck-ert.el" "flycheck-pkg.el") (22095
-;;;;;;  52595 357742 165000))
+;;;### (autoloads nil nil ("flycheck-buttercup.el" "flycheck-ert.el"
+;;;;;;  "flycheck-pkg.el") (22316 19107 588558 747000))
 
 ;;;***
 
-(provide 'flycheck-autoloads)
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
-;; coding: utf-8
 ;; End:
 ;;; flycheck-autoloads.el ends here

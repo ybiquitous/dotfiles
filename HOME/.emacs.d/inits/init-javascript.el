@@ -1,5 +1,4 @@
 (require 'company-tern)
-(require 'flycheck)
 
 (add-hook 'js-mode-hook
           (lambda()

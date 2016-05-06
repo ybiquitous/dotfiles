@@ -3,7 +3,7 @@
 ;; Copyright (C) 2011-2016 EditorConfig Team
 
 ;; Author: EditorConfig Team <editorconfig@googlegroups.com>
-;; Version: 0.7.5
+;; Version: 0.7.6
 ;; URL: https://github.com/editorconfig/editorconfig-emacs#readme
 ;; Package-Requires: ((cl-lib "0.5"))
 
@@ -127,6 +127,7 @@ property emacs_linum to decide whether to show line numbers on the left
      (js2-jsx-mode js2-basic-offset sgml-basic-offset)
      (js3-mode js3-indent-level)
      (json-mode js-indent-level)
+     (julia-mode julia-indent-offset)
      (latex-mode . editorconfig-set-indentation/latex-mode)
      (lisp-mode lisp-indent-offset)
      (livescript-mode livescript-tab-width)
