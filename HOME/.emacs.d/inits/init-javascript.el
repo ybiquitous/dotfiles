@@ -15,6 +15,10 @@
                   (tern-mode t)
                   (add-to-list 'company-backends 'company-tern)
                   (js-auto-format-mode t)
+                  (custom-set-variables
+                   '(flycheck-disabled-checkers '(javascript-jshint javascript-jscs javascript-eslint))
+                   '(js-auto-format-command "standard-format")
+                   '(js-auto-format-command-args "--write"))
                   ))))
 
 (add-to-list 'auto-mode-alist '("\\.jshintrc\\'" . json-mode))
