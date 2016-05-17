@@ -61,7 +61,8 @@ See https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
 npm install -g \
   jsonlint \
   jshint \
-  eslint eslint-config-airbnb \
+  eslint \
+  standard \
   stylelint \
   jscs \
   js-beautify \
