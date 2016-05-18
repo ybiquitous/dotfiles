@@ -63,6 +63,7 @@ npm install -g \
   jshint \
   eslint \
   standard \
+  standard-format \
   stylelint \
   jscs \
   js-beautify \
