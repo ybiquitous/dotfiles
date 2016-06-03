@@ -95,6 +95,7 @@
 (require 'init-javascript)
 (require 'init-css)
 (require 'init-markdown)
+(require 'init-ruby)
 
 ;; dired
 (require 'wdired)
