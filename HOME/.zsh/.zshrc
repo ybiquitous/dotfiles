@@ -197,3 +197,9 @@ setopt ignoreeof
 [ -f ${HOME}/.aliases ] && source ${HOME}/.aliases
 
 fpath=(${ZDOTDIR}/zsh-completions/src $fpath)
+
+# ruby (rbenv)
+if [ -d "${HOME}/.rbenv" ]; then
+  export PATH="${HOME}/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+fi
