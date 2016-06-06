@@ -8,7 +8,7 @@
 ;;             Clément Pit--Claudel <clement.pitclaudel@live.com>
 ;; URL: http://www.flycheck.org
 ;; Keywords: convenience, languages, tools
-;; Version: 27
+;; Version: 28
 ;; Package-Requires: ((dash "2.12.1") (pkg-info "0.4") (let-alist "1.0.4") (seq "1.11") (emacs "24.3"))
 
 ;; This file is not part of GNU Emacs.
@@ -211,7 +211,7 @@ attention to case differences."
     json-jsonlint
     json-python-json
     less
-    luacheck
+    lua-luacheck
     lua
     perl
     perl-perlcritic
@@ -1104,12 +1104,11 @@ is added to `flycheck-temporaries'.
 Add the path of the file to `flycheck-temporaries'.
 
 Return the path of the file."
-  (let (tempfile)
-    (if filename
-        (let ((directory (flycheck-temp-dir-system)))
-          (setq tempfile (expand-file-name (file-name-nondirectory filename)
-                                           directory)))
-      (setq tempfile (make-temp-file flycheck-temp-prefix)))
+  (let ((tempfile (convert-standard-filename
+                   (if filename
+                       (expand-file-name (file-name-nondirectory filename)
+                                         (flycheck-temp-dir-system))
+                     (make-temp-file flycheck-temp-prefix)))))
     (push tempfile flycheck-temporaries)
     tempfile))
 
@@ -1126,8 +1125,9 @@ Return the path of the file."
       (let* ((tempname (format "%s_%s"
                                flycheck-temp-prefix
                                (file-name-nondirectory filename)))
-             (tempfile (expand-file-name tempname
-                                         (file-name-directory filename))))
+             (tempfile (convert-standard-filename
+                        (expand-file-name tempname
+                                          (file-name-directory filename)))))
         (push tempfile flycheck-temporaries)
         tempfile)
     (flycheck-temp-file-system filename)))
@@ -3714,7 +3714,7 @@ the beginning of the buffer."
   "The keymap of `flycheck-error-list-mode'.")
 
 (defconst flycheck-error-list-format
-  [("Line" 4 flycheck-error-list-entry-< :right-align t)
+  [("Line" 5 flycheck-error-list-entry-< :right-align t)
    ("Col" 3 nil :right-align t)
    ("Level" 8 flycheck-error-list-entry-level-<)
    ("ID" 6 t)
@@ -5360,21 +5360,20 @@ the BUFFER that was checked respectively.
 
 See URL `https://palantir.github.io/tslint/' for more information
 about TSLint."
-  (let* ((json-array-type 'list)
-         (tslint-json-output (json-read-from-string output))
-         errors)
-    (dolist (emessage tslint-json-output)
-      (let-alist emessage
-        (push (flycheck-error-new-at
-               (+ 1 .startPosition.line)
-               (+ 1 .startPosition.character)
-               'warning .failure
-               :id .ruleName
-               :checker checker
-               :buffer buffer
-               :filename .name)
-              errors)))
-    (nreverse errors)))
+  (let ((json-array-type 'list))
+    (seq-map (lambda (message)
+               (let-alist message
+                 (flycheck-error-new-at
+                  (+ 1 .startPosition.line)
+                  (+ 1 .startPosition.character)
+                  'warning .failure
+                  :id .ruleName
+                  :checker checker
+                  :buffer buffer
+                  :filename .name)))
+             ;; Don't try to parse empty output as JSON
+             (and (not (string-empty-p output))
+                  (json-read-from-string output)))))
 
 
 ;;; Error parsing with regular expressions
@@ -5957,17 +5956,31 @@ including a list of supported checks."
   :safe #'flycheck-string-list-p
   :package-version '(flycheck . "0.14"))
 
-(flycheck-def-option-var flycheck-cppcheck-language-standard nil c/c++-cppcheck
-  "The language standard to use in cppcheck.
+(flycheck-def-option-var flycheck-cppcheck-standards nil c/c++-cppcheck
+  "The standards to use in cppcheck.
 
-The value of this variable is either a string denoting a language
-standard, or nil, to use the default standard.  When non-nil,
-pass the language standard via the `-std' option."
-  :type '(choice (const :tag "Default standard" nil)
-                 (string :tag "Language standard"))
-  :safe #'stringp
-  :package-version '(flycheck . "26"))
-(make-variable-buffer-local 'flycheck-cppcheck-language-standard)
+The value of this variable is either a list of strings denoting
+the standards to use, or nil to pass nothing to cppcheck.  When
+non-nil, pass the standards via one or more `--std=' options."
+  :type '(choice (const :tag "Default" nil)
+                 (repeat :tag "Custom standards"
+                         (string :tag "Standard name")))
+  :safe #'flycheck-string-list-p
+  :package-version '(flycheck . "28"))
+(make-variable-buffer-local 'flycheck-cppcheck-standards)
+
+(flycheck-def-option-var flycheck-cppcheck-suppressions nil c/c++-cppcheck
+  "The suppressions to use in cppcheck.
+
+The value of this variable is either a list of strings denoting
+the suppressions to use, or nil to pass nothing to cppcheck.
+When non-nil, pass the suppressions via one or more `--suppress='
+options."
+  :type '(choice (const :tag "Default" nil)
+                 (repeat :tag "Additional suppressions"
+                         (string :tag "Suppression")))
+  :safe #'flycheck-string-list-p
+  :package-version '(flycheck . "28"))
 
 (flycheck-def-option-var flycheck-cppcheck-inconclusive nil c/c++-cppcheck
   "Whether to enable Cppcheck inconclusive checks.
@@ -5999,7 +6012,8 @@ See URL `http://cppcheck.sourceforge.net/'."
                     flycheck-option-comma-separated-list)
             (option-flag "--inconclusive" flycheck-cppcheck-inconclusive)
             (option-list "-I" flycheck-cppcheck-include-path)
-            (option "--std=" flycheck-cppcheck-language-standard concat)
+            (option-list "--std=" flycheck-cppcheck-standards concat)
+            (option-list "--suppress=" flycheck-cppcheck-suppressions concat)
             "-x" (eval
                   (pcase major-mode
                     (`c++-mode "c++")
@@ -6941,7 +6955,7 @@ See URL `https://github.com/commercialhaskell/stack'."
                            (one-or-more " ")
                            (one-or-more not-newline)))
             line-end)
-   (error line-start (file-name) ":" line ":" column ":"
+   (error line-start (file-name) ":" line ":" column ":" (optional " error:")
           (or (message (one-or-more not-newline))
               (and "\n"
                    (message
@@ -6988,7 +7002,7 @@ See URL `https://www.haskell.org/ghc/'."
                            (one-or-more " ")
                            (one-or-more not-newline)))
             line-end)
-   (error line-start (file-name) ":" line ":" column ":"
+   (error line-start (file-name) ":" line ":" column ":" (optional " error:")
           (or (message (one-or-more not-newline))
               (and "\n"
                    (message
@@ -7306,11 +7320,11 @@ See URL `http://lesscss.org'."
           line-end))
   :modes less-css-mode)
 
-(flycheck-def-config-file-var flycheck-luacheckrc luacheck ".luacheckrc"
+(flycheck-def-config-file-var flycheck-luacheckrc lua-luacheck ".luacheckrc"
   :safe #'stringp
   :package-version '(flycheck . "0.23"))
 
-(flycheck-define-checker luacheck
+(flycheck-define-checker lua-luacheck
   "A Lua syntax checker using luacheck.
 
 See URL `https://github.com/mpeterv/luacheck'."
@@ -7812,7 +7826,12 @@ See URL `https://racket-lang.org/'."
   :command ("raco" "expand" source-inplace)
   :predicate
   (lambda ()
-    (flycheck-racket-has-expand-p (flycheck-checker-executable 'racket)))
+    (and (or (not (eq major-mode 'scheme-mode))
+             ;; In `scheme-mode' we must check the current Scheme implementation
+             ;; being used
+             (and (boundp 'geiser-impl--implementation)
+                  (eq geiser-impl--implementation 'racket)))
+         (flycheck-racket-has-expand-p (flycheck-checker-executable 'racket))))
   :verify
   (lambda (checker)
     (let ((has-expand (flycheck-racket-has-expand-p
@@ -7827,7 +7846,7 @@ See URL `https://racket-lang.org/'."
     (flycheck-sanitize-errors (flycheck-increment-error-columns errors)))
   :error-patterns
   ((error line-start (file-name) ":" line ":" column ":" (message) line-end))
-  :modes racket-mode)
+  :modes (racket-mode scheme-mode))
 
 (flycheck-define-checker rpm-rpmlint
   "A RPM SPEC file syntax checker using rpmlint.
@@ -8109,8 +8128,22 @@ The value of this variable is a string denoting the crate type,
 for the `--crate-type' flag."
   :type 'string
   :safe #'stringp
-  :package-version '("flycheck" . "0.20"))
+  :package-version '(flycheck . "0.20"))
 (make-variable-buffer-local 'flycheck-rust-crate-type)
+
+(flycheck-def-option-var flycheck-rust-binary-name nil rust-cargo
+  "The name of the binary to pass to `cargo rustc --bin'.
+
+The value of this variable is a string denoting the name of the
+binary to build: Either the name of the crate, or the name of one
+of the files under `src/bin'.
+
+This variable is used only when `flycheck-rust-crate-type' is
+`bin', and is only useful for crates with multiple targets."
+  :type 'string
+  :safe #'stringp
+  :package-version '(flycheck . "28"))
+(make-variable-buffer-local 'flycheck-rust-binary-name)
 
 (flycheck-def-option-var flycheck-rust-library-path nil (rust-cargo rust)
   "A list of library directories for Rust.
@@ -8127,7 +8160,10 @@ Relative paths are relative to the file being checked."
 
 This syntax checker needs Cargo with rustc subcommand."
   :command ("cargo" "rustc"
-            (eval (if (string= flycheck-rust-crate-type "lib") "--lib" nil))
+            (eval (cond
+                   ((string= flycheck-rust-crate-type "lib") "--lib")
+                   (flycheck-rust-binary-name
+                    (list "--bin" flycheck-rust-binary-name))))
             "--" "-Z" "no-trans"
             (option-flag "--test" flycheck-rust-check-tests)
             (option-list "-L" flycheck-rust-library-path concat)
