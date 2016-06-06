@@ -1,8 +1,16 @@
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias ls='ls -F'
+
+ls --color=auto >/dev/null 2>&1
+if [ "$?" = "0" ]; then
+  alias ls='ls -F --color=auto'
+else
+  alias ls='ls -F'
+fi
+
 alias ll='ls -la'
+
 alias rm='rm -i'
 alias mv='mv -i'
 alias su='su -l'
