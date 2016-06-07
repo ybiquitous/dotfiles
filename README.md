@@ -27,6 +27,55 @@ LANG=C xdg-user-dirs-gtk-update
 - nvm
 - docker
 
+## Zsh
+
+Use [prezto](https://github.com/sorin-ionescu/prezto).
+
+    diff --git a/runcoms/zpreztorc b/runcoms/zpreztorc
+    index e93ac6b..34eb1ea 100644
+    --- a/runcoms/zpreztorc
+    +++ b/runcoms/zpreztorc
+    @@ -32,7 +32,13 @@ zstyle ':prezto:load' pmodule \
+    'spectrum' \
+    'utility' \
+    'completion' \
+    -  'prompt'
+    +  'prompt' \
+    +  'history-substring-search' \
+    +  'osx' \
+    +  'git' \
+    +  'ruby' \
+    +  'rails' \
+    +  'node'
+
+    #
+    # Autosuggestions
+    diff --git a/runcoms/zprofile b/runcoms/zprofile
+    index d87cb3b..01df15e 100644
+    --- a/runcoms/zprofile
+    +++ b/runcoms/zprofile
+    @@ -17,8 +17,8 @@ fi
+    # Editors
+    #
+
+    -export EDITOR='nano'
+    -export VISUAL='nano'
+    +export EDITOR='/Applications/Emacs.app/Contents/MacOS/Emacs'
+    +export VISUAL='/Applications/Emacs.app/Contents/MacOS/Emacs'
+    export PAGER='less'
+
+    #
+    @@ -43,6 +43,7 @@ typeset -gU cdpath fpath mailpath path
+
+    # Set the list of directories that Zsh searches for programs.
+    path=(
+    +  "${HOME}/bin"
+    /usr/local/{bin,sbin}
+    $path
+    )
+
+TODO: Remove `.zsh*` from git repo.
+
 # Install _[Terminator](http://gnometerminator.blogspot.jp/)_ (High Functional Terminal)
 
 ```sh
