@@ -1,13 +1,8 @@
 [alias]
-	st = status
-	ci = commit
-	co = checkout
-	br = branch
-	di = diff
-	dic = diff --cached
-	pl = pull
-	plp = pull --prune
 	delete-merged-branches = !git branch --merged | grep -v \\* | grep -v master | grep -v develop | xargs -I % git branch -d %
+	diffc = diff --cached
+	pullp = pull --prune
+	commitv = commit --verbose
 [color]
 	ui = auto
 [core]
