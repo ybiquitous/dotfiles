@@ -3,6 +3,7 @@
 	diffc = diff --cached
 	pullp = pull --prune
 	commitv = commit --verbose
+	st = status
 [color]
 	ui = auto
 [core]
