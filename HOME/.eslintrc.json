@@ -1,3 +1,22 @@
 {
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "env": {
+    "es6": true,
+    "shared-node-browser": true
+  },
+  "rules": {
+    "block-spacing": "error",
+    "brace-style": ["error", "1tbs", {"allowSingleLine": true}],
+    "comma-spacing": "error",
+    "eqeqeq": ["error", "smart"],
+    "indent": ["error", 2],
+    "keyword-spacing": "error",
+    "quotes": ["error", "single", {"avoidEscape":true, "allowTemplateLiterals": true}],
+    "semi": ["error", "never"],
+    "space-infix-ops": "error"
+  },
   "extends": "eslint:recommended"
 }
