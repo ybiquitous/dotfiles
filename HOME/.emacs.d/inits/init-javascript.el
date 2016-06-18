@@ -14,9 +14,9 @@
                   (if (eq system-type 'windows-nt) (defvar tern-command '("tern")))
                   (tern-mode t)
                   (add-to-list 'company-backends 'company-tern)
-                  (js-auto-format-mode t)
+                  ;; (js-auto-format-mode t)
                   (custom-set-variables
-                   '(flycheck-disabled-checkers '(javascript-jshint javascript-jscs javascript-eslint))
+                   '(flycheck-disabled-checkers '(javascript-jshint javascript-jscs))
                    '(js-auto-format-command "standard-format")
                    '(js-auto-format-command-args "--write"))
                   ))))
