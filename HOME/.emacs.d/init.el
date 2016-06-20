@@ -85,6 +85,13 @@
 
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'flycheck-mode-hook
+          (lambda()
+            (let (path)
+              (setq path (locate-dominating-file buffer-file-name "node_modules"))
+              (setq path (concat path "node_modules/.bin"))
+              (add-to-list 'exec-path (path))
+              )))
 
 ;; inits
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/inits"))
