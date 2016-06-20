@@ -22,7 +22,6 @@ See URL `http://stylelint.io/'."
              '(scss-sass-command "node-sass")
              '(scss-compile-at-save nil))
             (add-to-list 'flycheck-checkers 'stylelint-scss-lint)
-            (flycheck-disable-checker 'scss-lint)
             ))
 
 (provide 'init-css)

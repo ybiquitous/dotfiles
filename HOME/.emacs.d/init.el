@@ -9,7 +9,6 @@
  '(css-indent-offset tab-width)
  '(electric-pair-mode t)
  '(emmet-indentation tab-width)
- '(flycheck-temp-prefix ".flycheck")
  '(global-font-lock-mode t)
  '(global-hl-line-mode t)
  '(global-linum-mode t)
@@ -83,21 +82,12 @@
 ;; exec-path
 (if (not (equal system-type 'windows-nt)) (exec-path-from-shell-initialize))
 
-;; flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
-(add-hook 'flycheck-mode-hook
-          (lambda()
-            (let (path)
-              (setq path (locate-dominating-file buffer-file-name "node_modules"))
-              (setq path (concat path "node_modules/.bin"))
-              (add-to-list 'exec-path (path))
-              )))
-
 ;; inits
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/inits"))
 (require 'init-common)
 (require 'init-env)
 (require 'init-windows)
+(require 'init-flycheck)
 (require 'init-java)
 (require 'init-javascript)
 (require 'init-css)
