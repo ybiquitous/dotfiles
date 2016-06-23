@@ -4,7 +4,7 @@
 (add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
 
 ;;;### (autoloads nil "js-auto-format-mode" "js-auto-format-mode.el"
-;;;;;;  (22303 3459 470253 423000))
+;;;;;;  (22378 25876 0 0))
 ;;; Generated autoloads from js-auto-format-mode.el
 
 (defvar js-auto-format-command "eslint" "\
@@ -34,8 +34,8 @@ Minor mode for auto-formatting JavaScript code
 
 ;;;***
 
-;;;### (autoloads nil nil ("js-auto-format-mode-pkg.el") (22303 3459
-;;;;;;  507229 166000))
+;;;### (autoloads nil nil ("js-auto-format-mode-pkg.el") (22378 25876
+;;;;;;  381570 0))
 
 ;;;***
 
