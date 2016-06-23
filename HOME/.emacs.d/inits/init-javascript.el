@@ -17,9 +17,9 @@
                   ;; (js-auto-format-mode t)
                   (custom-set-variables
                    '(flycheck-disabled-checkers '(javascript-jshint javascript-jscs))
-                   '(js-auto-format-command "standard-format")
-                   '(js-auto-format-command-args "--write"))
-                  ))))
+                   ;; '(js-auto-format-command "standard-format")
+                   ;; '(js-auto-format-command-args "--write"))
+                  )))))
 
 (flycheck-add-mode 'javascript-eslint 'web-mode)
 
