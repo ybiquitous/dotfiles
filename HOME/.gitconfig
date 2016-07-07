@@ -18,3 +18,5 @@
 	token = c10aa4d340230cbb510969ad260e5e56
 [commit]
 	verbose = true
+[diff]
+	compactionHeuristic = true
