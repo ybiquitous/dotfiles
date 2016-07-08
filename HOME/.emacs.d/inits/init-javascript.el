@@ -21,8 +21,6 @@
                    ;; '(js-auto-format-command-args "--write"))
                   )))))
 
-(flycheck-add-mode 'javascript-eslint 'web-mode)
-
 (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.jshintrc\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.jscsrc\\'" . json-mode))
