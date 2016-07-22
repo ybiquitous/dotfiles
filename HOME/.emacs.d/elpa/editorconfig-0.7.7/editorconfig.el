@@ -3,7 +3,7 @@
 ;; Copyright (C) 2011-2016 EditorConfig Team
 
 ;; Author: EditorConfig Team <editorconfig@googlegroups.com>
-;; Version: 0.7.6
+;; Version: 0.7.7
 ;; URL: https://github.com/editorconfig/editorconfig-emacs#readme
 ;; Package-Requires: ((cl-lib "0.5"))
 
@@ -38,8 +38,6 @@
 ;; version control systems.
 
 ;;; Code:
-
-(require 'conf-mode)
 
 (declare-function editorconfig-core-get-properties-hash
   "editorconfig-core"
@@ -214,9 +212,8 @@ yet.")
 
 (defun editorconfig-string-integer-p (string)
   "Return non-nil if STRING represents integer."
-  (if (stringp string)
-    (string-match-p "\\`[0-9]+\\'" string)
-    nil))
+  (and (stringp string)
+    (string-match-p "\\`[0-9]+\\'" string)))
 
 (defun editorconfig-set-indentation/python-mode (size)
   "Set `python-mode' indent size to SIZE."
@@ -295,10 +292,12 @@ yet.")
                ((equal charset "utf-16be") 'utf-16be)
                ((equal charset "utf-16le") 'utf-16le)
                (t 'undecided))))
-    (set-buffer-file-coding-system (merge-coding-systems
-                                     cs
-                                     eol)
-      nil t)))
+    (unless (and (eq eol 'undecided)
+              (eq cs 'undecided))
+      (set-buffer-file-coding-system (merge-coding-systems
+                                       cs
+                                       eol)
+        nil t))))
 
 (defun editorconfig-set-trailing-nl (final-newline)
   "Set up requiring final newline by FINAL-NEWLINE."
@@ -373,6 +372,7 @@ It calls `editorconfig-get-properties-from-exec' if
 `editorconfig-core-get-properties-hash'."
   (if (executable-find editorconfig-exec-path)
     (editorconfig-get-properties-from-exec)
+    (require 'editorconfig-core)
     (editorconfig-core-get-properties-hash)))
 
 ;;;###autoload
@@ -433,12 +433,6 @@ This function do the job only when the major mode is not listed in
                  editorconfig-exclude-modes)))
     (editorconfig-apply)))
 
-(defvar editorconfig-conf-mode-syntax-table
-  (let ((table (make-syntax-table conf-unix-mode-syntax-table)))
-    (modify-syntax-entry ?\; "<" table)
-    table)
-  "Syntax table in use in `editorconfig-conf-mode' buffers.")
-
 
 ;;;###autoload
 (define-minor-mode editorconfig-mode
@@ -452,58 +446,6 @@ visiting files or changing major modes if the major mode is not listed in
     (if editorconfig-mode
       (add-hook hook 'editorconfig-mode-apply)
       (remove-hook hook 'editorconfig-mode-apply))))
-
-
-
-;;;###autoload
-(define-derived-mode editorconfig-conf-mode conf-unix-mode "EditorConfig"
-  "Major mode for editing .editorconfig files."
-  (set-variable 'indent-line-function 'indent-relative)
-  (let ((key-property-list
-          '("charset"
-            "end_of_line"
-            "indent_size"
-            "indent_style"
-            "insert_final_newline"
-            "max_line_length"
-            "root"
-            "tab_width"
-            "trim_trailing_whitespace"))
-        (key-value-list
-          '("true"
-            "false"
-            "lf"
-            "cr"
-            "crlf"
-            "space"
-            "tab"
-            "latin1"
-            "utf-8"
-            "utf-8-bom"
-            "utf-16be"
-            "utf-16le"))
-        (font-lock-value
-          '(("^[ \t]*\\[\\(.+?\\)\\]" 1 font-lock-type-face)
-            ("^[ \t]*\\(.+?\\)[ \t]*[=:]" 1 font-lock-variable-name-face))))
-
-    ;; Highlight all key values
-    (dolist (key-value key-value-list)
-      (add-to-list
-        'font-lock-value
-        `(,(format "[=:][ \t]*\\(%s\\)\\([ \t]\\|$\\)" key-value)
-          1 font-lock-constant-face)))
-    ;; Highlight all key properties
-    (dolist (key-property key-property-list)
-      (add-to-list
-        'font-lock-value
-        `(,(format "^[ \t]*\\(%s\\)[ \t]*[=:]" key-property)
-          1 font-lock-builtin-face)))
-
-    (conf-mode-initialize "#" font-lock-value)))
-
-;;;###autoload
-(add-to-list 'auto-mode-alist
-  '("/\\.editorconfig\\'" . editorconfig-conf-mode))
 
 (provide 'editorconfig)
 

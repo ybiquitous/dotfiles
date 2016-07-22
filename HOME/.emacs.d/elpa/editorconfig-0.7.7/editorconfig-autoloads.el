@@ -1,10 +1,10 @@
 ;;; editorconfig-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-(add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
+
 
-;;;### (autoloads nil "editorconfig" "editorconfig.el" (22316 19109
-;;;;;;  916312 113000))
+;;;### (autoloads (editorconfig-mode editorconfig-apply editorconfig-display-current-properties)
+;;;;;;  "editorconfig" "editorconfig.el" (22418 7956 130015 840000))
 ;;; Generated autoloads from editorconfig.el
 
 (autoload 'editorconfig-display-current-properties "editorconfig" "\
@@ -36,7 +36,13 @@ visiting files or changing major modes if the major mode is not listed in
 
 \(fn &optional ARG)" t nil)
 
-(autoload 'editorconfig-conf-mode "editorconfig" "\
+;;;***
+
+;;;### (autoloads (editorconfig-conf-mode) "editorconfig-conf-mode"
+;;;;;;  "editorconfig-conf-mode.el" (22418 7956 118014 375000))
+;;; Generated autoloads from editorconfig-conf-mode.el
+
+(autoload 'editorconfig-conf-mode "editorconfig-conf-mode" "\
 Major mode for editing .editorconfig files.
 
 \(fn)" t nil)
@@ -45,8 +51,9 @@ Major mode for editing .editorconfig files.
 
 ;;;***
 
-;;;### (autoloads nil "editorconfig-core" "editorconfig-core.el"
-;;;;;;  (22316 19109 892311 775000))
+;;;### (autoloads (editorconfig-core-get-properties-hash editorconfig-core-get-properties)
+;;;;;;  "editorconfig-core" "editorconfig-core.el" (22418 7956 110013
+;;;;;;  397000))
 ;;; Generated autoloads from editorconfig-core.el
 
 (autoload 'editorconfig-core-get-properties "editorconfig-core" "\
@@ -73,8 +80,8 @@ hash object instead.
 
 ;;;***
 
-;;;### (autoloads nil "editorconfig-fnmatch" "editorconfig-fnmatch.el"
-;;;;;;  (22316 19109 836310 991000))
+;;;### (autoloads (editorconfig-fnmatch-p) "editorconfig-fnmatch"
+;;;;;;  "editorconfig-fnmatch.el" (22418 7956 38004 605000))
 ;;; Generated autoloads from editorconfig-fnmatch.el
 
 (autoload 'editorconfig-fnmatch-p "editorconfig-fnmatch" "\
@@ -98,13 +105,15 @@ be used:
 ;;;***
 
 ;;;### (autoloads nil nil ("editorconfig-core-handle.el" "editorconfig-pkg.el")
-;;;;;;  (22316 19109 968691 259000))
+;;;;;;  (22418 7956 172202 395000))
 
 ;;;***
 
+(provide 'editorconfig-autoloads)
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
+;; coding: utf-8
 ;; End:
 ;;; editorconfig-autoloads.el ends here
