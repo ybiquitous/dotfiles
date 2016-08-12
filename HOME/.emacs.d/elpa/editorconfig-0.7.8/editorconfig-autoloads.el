@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (editorconfig-mode editorconfig-apply editorconfig-display-current-properties)
-;;;;;;  "editorconfig" "editorconfig.el" (22418 7956 130015 840000))
+;;;;;;  "editorconfig" "editorconfig.el" (22445 48671 689057 588000))
 ;;; Generated autoloads from editorconfig.el
 
 (autoload 'editorconfig-display-current-properties "editorconfig" "\
@@ -39,7 +39,7 @@ visiting files or changing major modes if the major mode is not listed in
 ;;;***
 
 ;;;### (autoloads (editorconfig-conf-mode) "editorconfig-conf-mode"
-;;;;;;  "editorconfig-conf-mode.el" (22418 7956 118014 375000))
+;;;;;;  "editorconfig-conf-mode.el" (22445 48671 681058 206000))
 ;;; Generated autoloads from editorconfig-conf-mode.el
 
 (autoload 'editorconfig-conf-mode "editorconfig-conf-mode" "\
@@ -52,8 +52,8 @@ Major mode for editing .editorconfig files.
 ;;;***
 
 ;;;### (autoloads (editorconfig-core-get-properties-hash editorconfig-core-get-properties)
-;;;;;;  "editorconfig-core" "editorconfig-core.el" (22418 7956 110013
-;;;;;;  397000))
+;;;;;;  "editorconfig-core" "editorconfig-core.el" (22445 48671 673058
+;;;;;;  824000))
 ;;; Generated autoloads from editorconfig-core.el
 
 (autoload 'editorconfig-core-get-properties "editorconfig-core" "\
@@ -81,7 +81,7 @@ hash object instead.
 ;;;***
 
 ;;;### (autoloads (editorconfig-fnmatch-p) "editorconfig-fnmatch"
-;;;;;;  "editorconfig-fnmatch.el" (22418 7956 38004 605000))
+;;;;;;  "editorconfig-fnmatch.el" (22445 48671 653060 369000))
 ;;; Generated autoloads from editorconfig-fnmatch.el
 
 (autoload 'editorconfig-fnmatch-p "editorconfig-fnmatch" "\
@@ -105,7 +105,7 @@ be used:
 ;;;***
 
 ;;;### (autoloads nil nil ("editorconfig-core-handle.el" "editorconfig-pkg.el")
-;;;;;;  (22418 7956 172202 395000))
+;;;;;;  (22445 48671 739119 19000))
 
 ;;;***
 
