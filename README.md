@@ -1,24 +1,26 @@
-# Links
+# dotfiles
+
+## Links
 
 - [EMACS-NOTES](EMACS-NOTES.md)
 - [Qiita](//qiita.com/ybiquitous)
 
-# For Windows
+## For Windows
 
 Use 'mklink' as Administrator on Windows, instead 'ln -s'.
 
 ```bat
-> mklink .gitconfig dotfiles\HOME\.gitconfig
-> mklink /D .emacs.d dotfiles\HOME\.emacs.d
+mklink .gitconfig dotfiles\HOME\.gitconfig
+mklink /D .emacs.d dotfiles\HOME\.emacs.d
 ```
 
-# Update home directory names
+## Update home directory names
 
 ```sh
 LANG=C xdg-user-dirs-gtk-update
 ```
 
-# Tools
+## Tools
 
 - emacs
 - zsh
@@ -27,7 +29,7 @@ LANG=C xdg-user-dirs-gtk-update
 - nvm
 - docker
 
-## Zsh
+### zsh
 
 Use [prezto](https://github.com/sorin-ionescu/prezto).
 
@@ -76,7 +78,7 @@ Use [prezto](https://github.com/sorin-ionescu/prezto).
 
 TODO: Remove `.zsh*` from git repo.
 
-# Install _[Terminator](http://gnometerminator.blogspot.jp/)_ (High Functional Terminal)
+## Install _[Terminator](http://gnometerminator.blogspot.jp/)_ (High Functional Terminal)
 
 ```sh
 sudo apt-get install terminator
@@ -93,7 +95,7 @@ sudo apt-get install terminator
 | Shift + Ctrl + V         | 貼り付け             |
 | Shift + Ctrl + F         | 検索                 |
 
-# JDK font setting on Linux
+## JDK font setting on Linux
 
 ```sh
 cd ${JAVA_HOME}/jre/lib/fonts/
@@ -102,9 +104,9 @@ cd fallback
 ln -s /usr/share/fonts/truetype/****.ttf .
 ```
 
-# Install Node.js and npm commands
+## Install Node.js and npm commands
 
-See https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
+See <https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager>
 
 ```sh
 npm install -g \
@@ -122,14 +124,14 @@ npm install -g \
   node-sass
 ```
 
-# Eclipse keybind (based on Emacs)
+## Eclipse keybind (based on Emacs)
 
 - Delete Previous: __Ctrl+H__
 - Maximize Active View or Editor: __Alt+M__
 - Open Search Dialog: __Alt+H__
 - Toggle Split Editor (Horizontal): __Ctrl+}__
 
-# Use diff-highlight on "git diff"
+## Use diff-highlight on "git diff"
 
 ```sh
 cd ~/bin

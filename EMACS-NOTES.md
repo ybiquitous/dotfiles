@@ -3,13 +3,15 @@
 ## 環境依存初期化ファイルの設定
 
 POSIX:
+
 ```sh
-$ ln -s ~/init-env.el ~/.emacs.d/inits/init-env.el
+ln -s ~/init-env.el ~/.emacs.d/inits/init-env.el
 ```
 
 Windows:
+
 ```bat
-> mklink %USERPROFILE%\.emacs.d\inits\init-env.el %USERPROFILE%\init-env.el
+mklink %USERPROFILE%\.emacs.d\inits\init-env.el %USERPROFILE%\init-env.el
 ```
 
 ## キーバインド
