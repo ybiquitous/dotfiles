@@ -2,7 +2,7 @@
 
 ;; Author: Marijn Haverbeke
 ;; URL: http://ternjs.net/
-;; Package-Version: 0.19.0
+;; Package-Version: 0.20.0
 ;; Version: 0.0.1
 ;; Package-Requires: ((json "1.2") (cl-lib "0.5") (emacs "24"))
 
@@ -17,6 +17,8 @@
 (defvar tern-server nil)
 (defvar tern-explicit-port nil)
 (defvar tern-project-dir nil)
+(defvar tern-last-file-name nil)
+(defvar tern-last-project-dir nil)
 
 (defun tern-message (fmt &rest objects)
   (apply 'message fmt objects))
@@ -51,7 +53,7 @@
         (funcall c nil json)))))
 
 (defun tern-project-dir ()
-  (or tern-project-dir
+  (or (and (equal tern-last-file-name (buffer-file-name)) tern-project-dir)
       (and (not (buffer-file-name)) (setf tern-project-dir ""))
       (let ((project-dir (file-name-directory (buffer-file-name))))
         (cl-loop for cur = project-dir then (let ((shorter (file-name-directory (directory-file-name cur))))
@@ -59,14 +61,26 @@
                  while cur do
                  (when (file-exists-p (expand-file-name ".tern-project" cur))
                    (cl-return (setf project-dir cur))))
-        (setf tern-project-dir project-dir))))
+        (setf tern-project-dir project-dir)))
+  ;; Track the file name to detect if it changed, which means the project
+  ;; directory needs to be found again.
+  (setf tern-last-file-name (buffer-file-name))
+  tern-project-dir)
+
+(defun tern-known-port ()
+  ;; Invalidate the port when the project directory changes, since a new
+  ;; directory may yield a new .tern-port file.
+  (if (equal tern-last-project-dir (tern-project-dir))
+      tern-known-port
+    (setf tern-last-project-dir (tern-project-dir)
+          tern-known-port nil)))
 
 (defun tern-find-server (c &optional ignore-port)
   (cl-block nil
-    (when tern-known-port
-      (cl-return (if (consp tern-known-port)
-                     (funcall c nil (cdr tern-known-port))
-                   (funcall c tern-known-port nil))))
+    (when (tern-known-port)
+      (cl-return (if (consp (tern-known-port))
+                     (funcall c nil (cdr (tern-known-port)))
+                   (funcall c (tern-known-port) nil))))
     (if tern-explicit-port
         (funcall c tern-explicit-port nil)
       (unless (buffer-file-name)
@@ -94,7 +108,7 @@
 list of strings, giving the binary name and arguments.")
 
 (defun tern-start-server (c)
-  (let* ((default-directory tern-project-dir)
+  (let* ((default-directory (tern-project-dir))
          (cmd (if (member "--strip-crs" tern-command) tern-command (append tern-command '("--strip-crs"))))
          (proc (apply #'start-process "Tern" nil cmd))
          (all-output ""))
@@ -105,9 +119,9 @@ list of strings, giving the binary name and arguments.")
                                  (run-at-time "30 sec" nil
                                               (lambda (buf)
                                                 (with-current-buffer buf
-                                                  (when (consp tern-known-port) (setf tern-known-port nil))))
+                                                  (when (consp (tern-known-port)) (setf tern-known-port nil))))
                                               (current-buffer))
-                                 (funcall c nil tern-known-port)))
+                                 (funcall c nil (tern-known-port))))
     (set-process-filter proc (lambda (proc output)
                                (if (not (string-match "Listening on port \\([0-9][0-9]*\\)" output))
                                    (setf all-output (concat all-output output))
@@ -116,7 +130,7 @@ list of strings, giving the binary name and arguments.")
                                                               (delete-process proc)
                                                               (setf tern-known-port nil)))
                                  (set-process-filter proc nil)
-                                 (funcall c tern-known-port nil))))))
+                                 (funcall c (tern-known-port) nil))))))
 
 (defvar tern-command-generation 0)
 (defvar tern-activity-since-command -1)
@@ -160,7 +174,7 @@ list of strings, giving the binary name and arguments.")
       (when (and (not (eq buf (current-buffer)))
                  (buffer-local-value 'tern-mode buf)
                  (buffer-local-value 'tern-buffer-is-dirty buf)
-                 (equal tern-project-dir (buffer-local-value 'tern-project-dir buf)))
+                 (equal (tern-project-dir) (with-current-buffer buf (tern-project-dir))))
         (with-current-buffer buf
           (push `((type . "full")
                   (name . ,(tern-project-relative-file))
@@ -183,7 +197,7 @@ list of strings, giving the binary name and arguments.")
                                  (or (eq (cl-cadar err) 'connection-failed)
                                      (eq (caar err) 'file-error)))
                             (setf retrying t)
-                            (let ((old-port tern-known-port))
+                            (let ((old-port (tern-known-port)))
                               (setf tern-known-port nil)
                               (if tern-explicit-port
                                   (funcall callback nil err)
@@ -216,7 +230,7 @@ list of strings, giving the binary name and arguments.")
          (cond ((not err)
                 (dolist (file files)
                   (when (equal (cdr (assq 'type file)) "full")
-                    (with-current-buffer (find-file-noselect (expand-file-name (cdr (assq 'name file)) tern-project-dir))
+                    (with-current-buffer (find-file-noselect (expand-file-name (cdr (assq 'name file)) (tern-project-dir)))
                       (setf tern-buffer-is-dirty nil))))
                 (funcall f data))
                ((not (eq mode :silent)) (tern-message "Request failed: %s" err)))))
@@ -577,6 +591,8 @@ list of strings, giving the binary name and arguments.")
   (set (make-local-variable 'tern-server) "127.0.0.1")
   (set (make-local-variable 'tern-explicit-port) nil)
   (set (make-local-variable 'tern-project-dir) nil)
+  (set (make-local-variable 'tern-last-file-name) nil)
+  (set (make-local-variable 'tern-last-project-dir) nil)
   (set (make-local-variable 'tern-last-point-pos) nil)
   (set (make-local-variable 'tern-last-completions) nil)
   (set (make-local-variable 'tern-last-argument-hints) nil)

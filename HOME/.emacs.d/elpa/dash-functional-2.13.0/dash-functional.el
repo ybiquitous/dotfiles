@@ -5,7 +5,7 @@
 ;; Authors: Matus Goljer <matus.goljer@gmail.com>
 ;;          Magnar Sveen <magnars@gmail.com>
 ;; Version: 1.2.0
-;; Package-Version: 2.12.1
+;; Package-Version: 2.13.0
 ;; Package-Requires: ((dash "2.0.0") (emacs "24"))
 ;; Keywords: lisp functions combinators
 
@@ -97,16 +97,19 @@ See SRFI-26 for detailed description."
          (args (mapcar (lambda (_) (setq i (1+ i)) (make-symbol (format "D%d" i)))
                        (-filter (-partial 'eq '<>) params))))
     `(lambda ,args
-       ,(--map (if (eq it '<>) (pop args) it) params))))
+       ,(let ((body (--map (if (eq it '<>) (pop args) it) params)))
+          (if (eq (car params) '<>)
+              (cons 'funcall body)
+            body)))))
 
 (defun -not (pred)
-  "Take an unary predicates PRED and return an unary predicate
+  "Take a unary predicate PRED and return a unary predicate
 that returns t if PRED returns nil and nil if PRED returns
 non-nil."
   (lambda (x) (not (funcall pred x))))
 
 (defun -orfn (&rest preds)
-  "Take list of unary predicates PREDS and return an unary
+  "Take list of unary predicates PREDS and return a unary
 predicate with argument x that returns non-nil if at least one of
 the PREDS returns non-nil on x.
 
@@ -114,7 +117,7 @@ In types: [a -> Bool] -> a -> Bool"
   (lambda (x) (-any? (-cut funcall <> x) preds)))
 
 (defun -andfn (&rest preds)
-  "Take list of unary predicates PREDS and return an unary
+  "Take list of unary predicates PREDS and return a unary
 predicate with argument x that returns non-nil if all of the
 PREDS returns non-nil on x.
 
@@ -125,7 +128,7 @@ In types: [a -> Bool] -> a -> Bool"
   "Return a function FN composed N times with itself.
 
 FN is a unary function.  If you need to use a function of higher
-arity, use `-applify' first to turn it into an unary function.
+arity, use `-applify' first to turn it into a unary function.
 
 With n = 0, this acts as identity function.
 
@@ -146,11 +149,11 @@ will increment indefinitely.
 
 The closure accepts any number of arguments, which are discarded."
   (let ((inc (or inc 1))
-	(n (or beg 0)))
+    (n (or beg 0)))
     (lambda (&rest _)
       (when (or (not end) (< n end))
-	(prog1 n
-	  (setq n (+ n inc)))))))
+    (prog1 n
+      (setq n (+ n inc)))))))
 
 (defvar -fixfn-max-iterations 1000
   "The default maximum number of iterations performed by `-fixfn'
@@ -183,18 +186,18 @@ cdr the final output from HALT-TEST.
 
 In types: (a -> a) -> a -> a."
   (let ((eqfn   (or equal-test 'equal))
-	(haltfn (or halt-test
-		    (-not
-		      (-counter 0 -fixfn-max-iterations)))))
+    (haltfn (or halt-test
+            (-not
+              (-counter 0 -fixfn-max-iterations)))))
     (lambda (x)
       (let ((re (funcall fn x))
-	    (halt? (funcall haltfn x)))
-	(while (and (not halt?) (not (funcall eqfn x re)))
-	  (setq x     re
-		re    (funcall fn re)
-		halt? (funcall haltfn re)))
-	(if halt? (cons 'halted halt?)
-	  re)))))
+        (halt? (funcall haltfn x)))
+    (while (and (not halt?) (not (funcall eqfn x re)))
+      (setq x     re
+        re    (funcall fn re)
+        halt? (funcall haltfn re)))
+    (if halt? (cons 'halted halt?)
+      re)))))
 
 (defun -prodfn (&rest fns)
   "Take a list of n functions and return a function that takes a
