@@ -18,8 +18,11 @@
     "eqeqeq": ["error", "smart"],
     "indent": ["error", 2],
     "keyword-spacing": "error",
+    "no-console": "warn",
+    "no-var": "error",
     "quotes": ["error", "single", {"avoidEscape":true, "allowTemplateLiterals": true}],
     "semi": ["error", "never"],
+    "space-in-parens": ["error", "never"],
     "space-infix-ops": "error"
   },
   "extends": "eslint:recommended"
