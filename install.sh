@@ -12,11 +12,16 @@ for file in $(find "$BASEDIR/HOME" -maxdepth 1 -type f | grep -v Xmodmap); do
   ln -svf "$file" "$HOME"
 done
 
+# Emacs
+ln -svf "$BASEDIR/HOME/.emacs.d" "$HOME"
+touch "$HOME/init-env.el"
+ln -svf "$HOME/init-env.el" "$HOME/.emacs.d/inits"
+
 # bin
 export BIN_DIR="$HOME/bin"
 mkdir -pv $BIN_DIR
 
-# apt
+# Apt
 exists_command apt-get && (
   sudo add-apt-repository -y ppa:git-core/ppa
   sudo add-apt-repository -y ppa:fish-shell/release-2
