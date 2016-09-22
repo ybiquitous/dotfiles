@@ -78,7 +78,10 @@ export RBENV_DIR="$HOME/.rbenv" && [[ ! -d $RBENV_DIR ]] && (
   git clone https://github.com/rbenv/ruby-build.git "$RBENV_DIR/plugins/ruby-build"
 
   export FISH_CONFIG_FILE="$HOME/.config/fish/conf.d/000-env.fish"
-  echo 'set -x PATH "$HOME/.rbenv/bin" $PATH' > "$FISH_CONFIG_FILE"
+  cat <<'EOF' > "$FISH_CONFIG_FILE"
+set -x PATH "$HOME/.rbenv/bin" $PATH
+set -x EDITOR emacsclient
+EOF
   fish -c "source \"$FISH_CONFIG_FILE\""
   fish -c "fisher rbenv"
   fish -c "rbenv --version"
