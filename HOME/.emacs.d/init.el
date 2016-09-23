@@ -31,6 +31,7 @@
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(scroll-bar-mode (quote right))
+ '(select-enable-clipboard t)
  '(sh-basic-offset tab-width)
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
@@ -56,8 +57,7 @@
  '(whitespace-space-regexp "\\(\\u3000+\\)")
  '(whitespace-style
    (quote
-    (face tabs spaces trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark newline-mark lines-tail)))
- '(x-select-enable-clipboard t))
+    (face tabs spaces trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark newline-mark lines-tail))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
