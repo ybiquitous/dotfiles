@@ -33,6 +33,7 @@
  '(scroll-bar-mode (quote right))
  '(select-enable-clipboard t)
  '(sh-basic-offset tab-width)
+ '(shell-file-name "/bin/sh")
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(size-indication-mode nil)
