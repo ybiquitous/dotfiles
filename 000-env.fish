@@ -5,3 +5,5 @@ set -x PATH "$HOME/.rbenv/bin" $PATH
 
 set -x PATH "/usr/local/bin" $PATH
 set -x PATH "$HOME/bin" $PATH
+
+alias rm "rm -i"
