@@ -67,7 +67,7 @@ if [[ $(echo $SHELL) != $(which fish) ]]; then
   exit
 fi
 export FISH_CONFIG="$HOME/.config/fish/conf.d/000-env.fish"
-cp -f "$SCRIPT_DIR/000-env.fish" "$FISH_CONFIG"
+ln -svf "$SCRIPT_DIR/000-env.fish" "$FISH_CONFIG"
 fish -c "source \"$FISH_CONFIG_FILE\""
 
 # fisherman
