@@ -44,6 +44,7 @@ exists_command apt-get && (
        libreadline6-dev \
        libssl-dev \
        libyaml-dev \
+       module-assistant \
        terminator \
        tree \
        xclip \
