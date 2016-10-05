@@ -1,4 +1,5 @@
 (require 'company-robe)
+(require 'flycheck)
 
 (add-hook 'ruby-mode-hook
           (lambda ()
@@ -20,5 +21,17 @@
     (if (file-exists-p test-file-name)
         (find-file test-file-name)
       (message "No test file: %s" test-file-name))))
+
+;; To have reek to smell-check the ruby files
+;; https://gist.github.com/franciscoj/cf308995aaabf99e33a2
+(flycheck-define-checker ruby-reek
+  "A Ruby smeel checker using reek
+See URL `https://github.com/troessner/reek'."
+  :command ("reek" "--format=xml" source-original)
+  :standard-input t
+  :error-parser flycheck-parse-checkstyle
+  :modes (enh-ruby-mode ruby-mode)
+  :next-checkers (ruby-rubocop))
+(add-to-list 'flycheck-checkers 'ruby-reek)
 
 (provide 'init-ruby)
