@@ -15,6 +15,7 @@ done
 # Emacs
 ln -svf "$BASEDIR/HOME/.emacs.d" "$HOME"
 touch "$HOME/init-env.el"
+[[ -s "$HOME/init-env.el" ]] && echo "(provide 'init-env)" > "$HOME/init-env.el"
 ln -svf "$HOME/init-env.el" "$HOME/.emacs.d/inits"
 
 # bin
@@ -68,8 +69,9 @@ if [[ $(echo $SHELL) != $(which fish) ]]; then
   exit
 fi
 export FISH_CONFIG="$HOME/.config/fish/conf.d/000-env.fish"
-ln -svf "$SCRIPT_DIR/000-env.fish" "$FISH_CONFIG"
-fish -c "source \"$FISH_CONFIG_FILE\""
+mkdir -p $(dirname "$FISH_CONFIG")
+ln -svf "$BASEDIR/000-env.fish" "$FISH_CONFIG"
+fish -c "source \"$FISH_CONFIG\""
 
 # fisherman
 export FISHER="$HOME/.config/fish/functions/fisher.fish"
