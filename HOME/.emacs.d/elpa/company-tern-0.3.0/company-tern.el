@@ -1,11 +1,11 @@
 ;;; company-tern.el --- Tern backend for company-mode  -*- lexical-binding: t -*-
 
-;; Copyright (C) 2013, 2014 by Malyshev Artem
+;; Copyright (C) 2013-2016 by Artem Malyshev
 
-;; Author: Malyshev Artem <proofit404@gmail.com>
+;; Author: Artem Malyshev <proofit404@gmail.com>
 ;; URL: https://github.com/proofit404/company-tern
-;; Package-Version: 0.2.0
-;; Version: 0.2.0
+;; Package-Version: 0.3.0
+;; Version: 0.3.0
 ;; Package-Requires: ((company "0.8.0") (tern "0.0.1") (dash "2.8.0") (dash-functional "2.8.0") (s "1.9.0") (cl-lib "0.5.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -23,24 +23,7 @@
 
 ;;; Commentary:
 
-;; Add `company-tern' to allowed `company-mode' backends list
-;;
-;;     (add-to-list 'company-backends 'company-tern)
-;;
-;; If you don't like circles after object's own properties consider less
-;; annoying marker for that purpose.
-;;
-;;     (setq company-tern-property-marker "")
-;;
-;; You can trim too long function signatures to the frame width.
-;;
-;;     (setq company-tern-meta-as-single-line t)
-;;
-;; If you doesn't like inline argument annotations appear with
-;; corresponding identifiers, then you can to set up the company align
-;; option.
-;;
-;;     (setq company-tooltip-align-annotations t)
+;; See the README for more details.
 
 ;;; Code:
 
@@ -51,11 +34,22 @@
 (require 'dash-functional)
 (require 's)
 
-(defvar company-tern-property-marker " ○"
-  "String to indicate object own properties.")
+(defgroup company-tern nil
+  "Tern backend for company-mode"
+  :group 'languages
+  :prefix "company-tern-")
 
-(defvar company-tern-meta-as-single-line nil
-  "Trim candidate type information to length of frame width.")
+(defcustom company-tern-property-marker " ○"
+  "A string to indicate an object's own properties.
+This also can be nil to disable property markers."
+  :type '(choice (string :tag "Property suffix")
+                 (const :tag "None" nil))
+  :group 'company-tern)
+
+(defcustom company-tern-meta-as-single-line nil
+  "Trim candidate type information to frame width?"
+  :type 'boolean
+  :group 'company-tern)
 
 (defun company-tern-prefix ()
   "Grab prefix for tern."
@@ -127,11 +121,9 @@ Use CALLBACK function to display candidates."
 
 (defun company-tern-annotation (candidate)
   "Return type annotation for chosen CANDIDATE."
-  (concat
-   (company-tern-get-type candidate)
-   (if (company-tern-property-p candidate)
-       company-tern-property-marker
-     "")))
+  (--when-let (company-tern-get-type candidate)
+    (concat it (and (company-tern-property-p candidate)
+                    company-tern-property-marker))))
 
 (defun company-tern-get-type (candidate)
   "Analyze CANDIDATE type."
@@ -159,7 +151,7 @@ Use CALLBACK function to display candidates."
     (format annot type)))
 
 ;;;###autoload
-(defun company-tern (command &optional arg)
+(defun company-tern (command &optional arg &rest _args)
   "Tern backend for company-mode.
 See `company-backends' for more info about COMMAND and ARG."
   (interactive (list 'interactive))
@@ -169,6 +161,7 @@ See `company-backends' for more info about COMMAND and ARG."
     (annotation (company-tern-annotation arg))
     (meta (company-tern-meta arg))
     (doc-buffer (company-tern-doc arg))
+    (ignore-case t)
     (sorted t)
     (candidates (cons :async
                       (lambda (callback)
