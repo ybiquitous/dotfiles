@@ -131,12 +131,16 @@
 ;; See http://www.lares.dti.ne.jp/~foozy/fujiguruma/scm/cvs-emacs.html
 (defadvice vc-before-save
   (around examine-vc-make-backup-files activate)
-  "examine `vc-make-backup-files' (in vc-hooks.el) at first"
+  "Examine `vc-make-backup-files' (in vc-hooks.el) at first."
   (and vc-make-backup-files ad-do-it))
 
 ;; emmet(zen-coding)
 (add-hook 'html-mode-hook 'emmet-mode)
 (add-hook 'css-mode-hook  'emmet-mode)
 (add-hook 'web-mode-hook  'emmet-mode)
+
+;; highlight-symbol
+(add-hook 'prog-mode-hook 'highlight-symbol-mode)
+(add-hook 'prog-mode-hook 'highlight-symbol-nav-mode) ;; move by M-p/M-n
 
 ;;; init.el ends here
