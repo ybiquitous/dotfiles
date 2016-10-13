@@ -101,10 +101,10 @@ export RBENV_DIR="$HOME/.rbenv" && [[ ! -d $RBENV_DIR ]] && (
   src/configure
   make -C src
   git clone https://github.com/rbenv/ruby-build.git "$RBENV_DIR/plugins/ruby-build"
-  fish -c "fisher rbenv"
-  fish -c "rbenv --version"
-  fish -c "rbenv install 2.3.1"
-  fish -c "rbenv global 2.3.1"
+  export PATH="$RBENV_DIR/bin:$PATH"
+  rbenv --version
+  rbenv install 2.3.1
+  rbenv global 2.3.1
 )
 
 # heroku
