@@ -1,9 +1,9 @@
 set -x EDITOR emacsclient
 
-# https://github.com/fisherman/rbenv#notes
-set -x PATH "$HOME/.rbenv/bin" $PATH
-
 set -x PATH "/usr/local/bin" $PATH
 set -x PATH "$HOME/bin" $PATH
+
+set -x PATH "$HOME/.rbenv/bin" $PATH
+rbenv init - | source
 
 alias rm "rm -i"
