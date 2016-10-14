@@ -1,6 +1,7 @@
 set -x EDITOR emacsclient
 
 set -x PATH "/usr/local/bin" $PATH
+set -x PATH "/usr/local/heroku/bin" $PATH
 set -x PATH "$HOME/bin" $PATH
 
 set -x PATH "$HOME/.rbenv/bin" $PATH
