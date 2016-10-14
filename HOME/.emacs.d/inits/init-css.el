@@ -5,7 +5,7 @@
   "A SCSS checker using stylelint.
 
 See URL `http://stylelint.io/'."
-  :command ("stylelint" source)
+  :command ("stylelint" source-original)
   :error-patterns
   ((error line-start
           (zero-or-more (any space)) line ":" column
