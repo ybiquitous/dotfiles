@@ -89,10 +89,10 @@ fish -c "npm install --progress=false -g \
      eslint \
      git-open \
      marked \
-     standard \
      stylefmt \
      stylelint \
-     tern"
+     tern \
+     yarn"
 
 # rbenv
 export RBENV_DIR="$HOME/.rbenv" && [[ ! -d $RBENV_DIR ]] && (
