@@ -17,8 +17,9 @@ mklink %USERPROFILE%\.emacs.d\inits\init-env.el %USERPROFILE%\init-env.el
 | `C-q`          | 特殊文字入力                               |
 | `M-!`          | シェルコマンド実行                         |
 | `M-&`          | シェルコマンド実行(非同期)                 |
-| `C-x SPC`      | 矩形選択                                   |
+| `C-u M-!`      | シェルコマンドの出力を現在位置に挿入       |
 | `C-u M-¦` [^1] | 選択範囲を標準入力としてシェルコマンド実行 |
+| `C-x SPC`      | 矩形選択                                   |
 
 [^1]: 本来は `¦` (BROKEN BAR) ではなく `|` (VERTICAL BAR)。Markdownテーブルでエスケープできないため代用。
 
