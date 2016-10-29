@@ -6,11 +6,11 @@
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-(defun my/add-node-modules-path ()
+(defun my/use-node-modules-bin ()
   (let* ((local-path (replace-regexp-in-string
                       "[\r\n]+$" "" (shell-command-to-string "npm bin"))))
     (setq-local exec-path (cons local-path exec-path))))
 
-(add-hook 'flycheck-mode-hook 'my/add-node-modules-path)
+(add-hook 'flycheck-mode-hook #'my/use-node-modules-bin)
 
 (provide 'init-flycheck)
