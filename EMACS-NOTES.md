@@ -28,5 +28,6 @@ mklink %USERPROFILE%\.emacs.d\inits\init-env.el %USERPROFILE%\init-env.el
 | Name                                               | Description              |
 | -------------------------------------------------- | ------------------------ |
 | `align-regexp`                                     | 列揃えの整形             |
+| `vc-annotate`                                      | `git blame`              |
 | `M-: (byte-recompile-directory "~/.emacs.d/" 0 t)` | 全Elispの再コンパイル    |
 | `yas-recompile-all`                                | 全snippetsの再コンパイル |
