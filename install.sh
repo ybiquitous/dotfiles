@@ -89,6 +89,7 @@ fish -c "npm install --progress=false -g \
      eslint \
      git-open \
      marked \
+     msee \
      stylefmt \
      stylelint \
      tern \
