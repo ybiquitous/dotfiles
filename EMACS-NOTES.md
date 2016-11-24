@@ -20,6 +20,10 @@ mklink %USERPROFILE%\.emacs.d\inits\init-env.el %USERPROFILE%\init-env.el
 | `C-u M-!`      | シェルコマンドの出力を現在位置に挿入       |
 | `C-u M-¦` [^1] | 選択範囲を標準入力としてシェルコマンド実行 |
 | `C-x SPC`      | 矩形選択                                   |
+| `C-x v g`      | `git blame`                                |
+| `C-x v =`      | `git diff`                                 |
+| `C-x v l`      | `git log`                                  |
+| `C-c C-c p`    | Preview markdown                           |
 
 [^1]: 本来は `¦` (BROKEN BAR) ではなく `|` (VERTICAL BAR)。Markdownテーブルでエスケープできないため代用。
 
@@ -28,6 +32,5 @@ mklink %USERPROFILE%\.emacs.d\inits\init-env.el %USERPROFILE%\init-env.el
 | Name                                               | Description              |
 | -------------------------------------------------- | ------------------------ |
 | `align-regexp`                                     | 列揃えの整形             |
-| `vc-annotate`                                      | `git blame`              |
 | `M-: (byte-recompile-directory "~/.emacs.d/" 0 t)` | 全Elispの再コンパイル    |
 | `yas-recompile-all`                                | 全snippetsの再コンパイル |
