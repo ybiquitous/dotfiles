@@ -1,9 +1,9 @@
 ;;; inf-ruby-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-(add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
+(add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil "inf-ruby" "inf-ruby.el" (22352 58221 0 0))
+;;;### (autoloads nil "inf-ruby" "inf-ruby.el" (22590 30615 0 0))
 ;;; Generated autoloads from inf-ruby.el
 
 (defvar ruby-source-modes '(ruby-mode enh-ruby-mode) "\
@@ -36,8 +36,11 @@ run).
 \(fn &optional IMPL)" t nil)
 
 (autoload 'run-ruby "inf-ruby" "\
-Run an inferior Ruby process, input and output via buffer `*NAME*'.
-If there is a process already running in `*NAME*', switch to that buffer.
+Run an inferior Ruby process in a buffer related to the current project.
+If there is a process already running in a corresponding buffer,
+switch to that buffer. Otherwise create a new buffer.
+The consecutive buffer names will be:
+`*NAME*', `*NAME*<2>', `*NAME*<3>' and so on.
 
 NAME defaults to \"ruby\". COMMAND defaults to the default entry
 in `inf-ruby-implementations'.
@@ -54,10 +57,15 @@ keymaps to bind `inf-ruby-switch-from-compilation' to `С-x C-q'.
 
 (autoload 'inf-ruby-console-auto "inf-ruby" "\
 Run the appropriate Ruby console command.
-The command and and the directory to run it from are detected
+The command and the directory to run it from are detected
 automatically.
 
 \(fn)" t nil)
+
+(autoload 'inf-ruby-console-zeus "inf-ruby" "\
+Run Rails console in DIR using Zeus.
+
+\(fn DIR)" t nil)
 
 (autoload 'inf-ruby-console-rails "inf-ruby" "\
 Run Rails console in DIR.
@@ -71,8 +79,18 @@ Gemfile, it should use the `gemspec' instruction.
 
 \(fn DIR)" t nil)
 
+(autoload 'inf-ruby-auto-enter "inf-ruby" "\
+Switch to `inf-ruby-mode' if the breakpoint pattern matches the current line.
+
+\(fn)" nil nil)
+
+(autoload 'inf-ruby-auto-exit "inf-ruby" "\
+Return to the previous compilation mode if INPUT is a debugger exit command.
+
+\(fn INPUT)" nil nil)
+
 (autoload 'inf-ruby-console-default "inf-ruby" "\
-Run racksh, custom console.rb, or just IRB, in DIR.
+Run custom console.rb, Pry, or bundle console, in DIR.
 
 \(fn DIR)" t nil)
 
