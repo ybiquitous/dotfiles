@@ -142,5 +142,9 @@
 ;; highlight-symbol
 (add-hook 'prog-mode-hook 'highlight-symbol-mode)
 (add-hook 'prog-mode-hook 'highlight-symbol-nav-mode) ;; move by M-p/M-n
+(add-hook 'highlight-symbol-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-c r") 'highlight-symbol-query-replace)
+            ))
 
 ;;; init.el ends here
