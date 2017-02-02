@@ -1,10 +1,9 @@
 ;;; let-alist-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-
+(add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads (let-alist) "let-alist" "let-alist.el" (21887 28669
-;;;;;;  795261 596000))
+;;;### (autoloads nil "let-alist" "let-alist.el" (22674 32600 0 0))
 ;;; Generated autoloads from let-alist.el
 
 (autoload 'let-alist "let-alist" "\
@@ -22,10 +21,10 @@ For instance, the following code
 
 essentially expands to
 
-  (let ((.title (cdr (assq 'title alist)))
-        (.body  (cdr (assq 'body alist)))
-        (.site  (cdr (assq 'site alist)))
-        (.site.contents (cdr (assq 'contents (cdr (assq 'site alist))))))
+  (let ((.title (cdr (assq \\='title alist)))
+        (.body  (cdr (assq \\='body alist)))
+        (.site  (cdr (assq \\='site alist)))
+        (.site.contents (cdr (assq \\='contents (cdr (assq \\='site alist))))))
     (if (and .title .body)
         .body
       .site
@@ -38,20 +37,13 @@ displayed in the example above.
 
 \(fn ALIST &rest BODY)" nil t)
 
-(put 'let-alist 'lisp-indent-function '1)
+(function-put 'let-alist 'lisp-indent-function '1)
 
 ;;;***
 
-;;;### (autoloads nil nil ("let-alist-pkg.el") (21887 28669 871535
-;;;;;;  796000))
-
-;;;***
-
-(provide 'let-alist-autoloads)
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
-;; coding: utf-8
 ;; End:
 ;;; let-alist-autoloads.el ends here
