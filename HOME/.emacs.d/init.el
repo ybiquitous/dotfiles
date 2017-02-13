@@ -87,13 +87,14 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/inits"))
 (require 'init-common)
 (require 'init-env)
-(require 'init-windows)
 (require 'init-flycheck)
 (require 'init-java)
 (require 'init-javascript)
 (require 'init-css)
 (require 'init-markdown)
 (require 'init-ruby)
+(when (eq system-type 'windows-nt) (require 'init-windows))
+(when (eq system-type 'darwin) (require 'init-mac))
 
 ;; dired
 (require 'wdired)
