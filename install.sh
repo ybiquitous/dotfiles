@@ -62,12 +62,6 @@ exists_command apt-get && (
   chmod +x diff-highlight
 )
 
-# bash-it
-export BASH_IT_DIR="$HOME/.bash_it"
-if [[ -d $BASH_IT_DIR ]]; then
-  ln -svf "$BASEDIR/bash-it-custom.bash" "${BASH_IT_DIR}/custom"
-fi
-
 # fish
 if [[ $(echo $SHELL) != $(which fish) ]]; then
   chsh -s $(which fish)
