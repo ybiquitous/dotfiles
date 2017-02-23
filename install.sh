@@ -81,33 +81,6 @@ export FISHER="$HOME/.config/fish/functions/fisher.fish"
 )
 fish -c "fisher gitignore"
 
-# Node.js
-fish -c "fisher fnm"
-fish -c "fnm latest"
-fish -c "npm install --progress=false -g \
-     editorconfig \
-     eslint \
-     git-open \
-     marked \
-     msee \
-     stylefmt \
-     stylelint \
-     tern \
-     yarn"
-
-# rbenv
-export RBENV_DIR="$HOME/.rbenv" && [[ ! -d $RBENV_DIR ]] && (
-  git clone https://github.com/rbenv/rbenv.git "$RBENV_DIR"
-  cd "$RBENV_DIR"
-  src/configure
-  make -C src
-  git clone https://github.com/rbenv/ruby-build.git "$RBENV_DIR/plugins/ruby-build"
-  export PATH="$RBENV_DIR/bin:$PATH"
-  rbenv --version
-  rbenv install 2.3.1
-  rbenv global 2.3.1
-)
-
 # heroku
 curl -o- https://toolbelt.heroku.com/install.sh | sh
 heroku --version
