@@ -7,6 +7,7 @@ npm install -g \
     git-open \
     marked \
     msee \
+    npm-check \
     stylefmt \
     stylelint \
     tern
