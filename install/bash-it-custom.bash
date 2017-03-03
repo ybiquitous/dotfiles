@@ -12,20 +12,23 @@ export EDITOR=emacsclient
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 
+# https://github.com/creationix/nvm#zsh
 # https://github.com/creationix/nvm/pull/1057
-function nvm_use_if_needed () {
-  [[ -f .nvmrc ]] && nvm use && return
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
 
-  [[ -f package.json ]] || return
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
 
-  local WANTED=$(jq -r '.engines.node' package.json)
-  [[ $WANTED == null ]] && nvm use default && return
-
-  local CURRENT=$(hash node 2>/dev/null && node -v | sed 's/v//')
-  if [[ $WANTED != $CURRENT ]]; then
-    nvm use "$WANTED"
-  else
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
     nvm use default
   fi
 }
-export PROMPT_COMMAND="$PROMPT_COMMAND ; nvm_use_if_needed"
+export PROMPT_COMMAND="$PROMPT_COMMAND ; load-nvmrc"
