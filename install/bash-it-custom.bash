@@ -7,8 +7,8 @@ fi
 
 alias rm='rm -i'
 
+export HISTSIZE=100000
 export EDITOR=emacsclient
-
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 
