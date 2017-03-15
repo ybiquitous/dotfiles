@@ -20,30 +20,34 @@ if [[ ! -d ~/.bash_it ]]; then
   exit
 fi
 
+bash-it update
+
+# plugin
+bash-it disable plugin all
 bash-it enable plugin \
         alias-completion \
         base \
+        docker \
         git \
         history \
         node \
         nvm \
-        rails \
         rbenv \
         ruby
-
 if [[ $(uname -s) == Darwin ]]; then
   bash-it enable plugin osx
 fi
 
+# completion
+bash-it disable completion all
 bash-it enable completion \
         bash-it \
         brew \
         bundler \
         defaults \
+        docker \
         gem \
         git \
         npm \
         nvm \
-        projects \
-        rake \
         system
