@@ -8,6 +8,7 @@ fi
 
 brew update
 brew install \
+     bash-completion
      awscli \
      emacs \
      heroku \
