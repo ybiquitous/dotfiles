@@ -10,4 +10,5 @@ npm install -g \
     npm-check \
     stylefmt \
     stylelint \
+    svgo \
     tern
