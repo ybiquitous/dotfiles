@@ -33,3 +33,9 @@ load-nvmrc() {
   fi
 }
 export PROMPT_COMMAND="$PROMPT_COMMAND ; load-nvmrc"
+
+_heroku_completions() {
+  local cur=${COMP_WORDS[COMP_CWORD]}
+  COMPREPLY=($(compgen -W "$(heroku commands)" -- $cur))
+}
+complete -F _heroku_completions heroku
