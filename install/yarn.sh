@@ -2,7 +2,11 @@
 set -eu
 
 # https://yarnpkg.com/en/docs/install#alternatives-tab
-if [[ ! -d ~/.yarn ]]; then
+if [[ -d ~/.yarn ]]; then
+  echo 'Yarn is installed already:'
+  echo ''
+  echo $(command -v yarn)
+else
   dummy_profile=/tmp/yarn-dummy-profile
   touch $dummy_profile
   curl -o- -L https://yarnpkg.com/install.sh | PROFILE=$dummy_profile bash
