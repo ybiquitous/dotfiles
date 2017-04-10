@@ -8,6 +8,7 @@ npm install -g \
     marked \
     msee \
     npm-check \
+    sitespeed.io \
     stylefmt \
     stylelint \
     svgo \
