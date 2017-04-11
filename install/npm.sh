@@ -4,6 +4,7 @@ set -eux
 npm install -g \
     editorconfig \
     eslint \
+    flow-bin \
     git-open \
     marked \
     msee \
