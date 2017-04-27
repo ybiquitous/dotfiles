@@ -152,4 +152,8 @@
             (local-set-key (kbd "C-c r") 'highlight-symbol-query-replace)
             ))
 
+;; git-commit
+(global-git-commit-mode)
+(add-hook 'git-commit-mode-hook 'flyspell-mode)
+
 ;;; init.el ends here
