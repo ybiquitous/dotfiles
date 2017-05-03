@@ -2,6 +2,7 @@
 
 (custom-set-variables
  '(flycheck-temp-prefix ".flycheck")
+ '(flycheck-disabled-checkers '(javascript-jshint javascript-jscs javascript-gjslint javascript-standard))
  )
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
