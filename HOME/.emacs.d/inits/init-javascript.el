@@ -1,4 +1,5 @@
 (require 'company-tern)
+(require 'flycheck)
 
 (defun js-mode-hooks ()
   (custom-set-variables
@@ -24,11 +25,17 @@
 (add-hook 'js2-mode-hook 'js2-mode-hooks)
 
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx$" . js2-jsx-mode))
 (add-to-list 'auto-mode-alist '("\\.es6$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.tern-config\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.tern-project\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.babelrc\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.eslintrc\\'" . json-mode))
+
+;; rjsx-mode
+(add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
+(add-hook 'rjsx-mode-hook
+          (lambda ()
+            (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
+            (flycheck-mode)))
 
 (provide 'init-javascript)
