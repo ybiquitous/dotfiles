@@ -28,5 +28,7 @@
 (add-to-list 'auto-mode-alist '("\\.es6$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.tern-config\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.tern-project\\'" . json-mode))
+(add-to-list 'auto-mode-alist '("\\.babelrc\\'" . json-mode))
+(add-to-list 'auto-mode-alist '("\\.eslintrc\\'" . json-mode))
 
 (provide 'init-javascript)
