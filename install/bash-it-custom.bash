@@ -15,6 +15,8 @@ export PATH="$HOME/bin:$PATH"
 # https://github.com/creationix/nvm#zsh
 # https://github.com/creationix/nvm/pull/1057
 load-nvmrc() {
+  command -v nvm >/dev/null || return
+
   local node_version="$(nvm version)"
   local nvmrc_path="$(nvm_find_nvmrc)"
 
