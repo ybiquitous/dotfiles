@@ -36,8 +36,9 @@ load-nvmrc() {
 }
 export PROMPT_COMMAND="$PROMPT_COMMAND ; load-nvmrc"
 
+# Simple workaround for Heroku completion (see https://github.com/heroku/cli/issues/224)
 _heroku_completions() {
   local cur=${COMP_WORDS[COMP_CWORD]}
-  COMPREPLY=($(compgen -W "$(heroku commands)" -- $cur))
+  COMPREPLY=($(compgen -W "help $(heroku help | tail -n +4)" -- $cur))
 }
 complete -F _heroku_completions heroku
