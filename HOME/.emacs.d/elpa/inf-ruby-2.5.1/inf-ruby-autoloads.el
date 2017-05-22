@@ -3,7 +3,7 @@
 ;;; Code:
 (add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil "inf-ruby" "inf-ruby.el" (22590 30615 0 0))
+;;;### (autoloads nil "inf-ruby" "inf-ruby.el" (22818 14069 0 0))
 ;;; Generated autoloads from inf-ruby.el
 
 (defvar ruby-source-modes '(ruby-mode enh-ruby-mode) "\
@@ -29,25 +29,26 @@ The following commands are available:
 (autoload 'inf-ruby "inf-ruby" "\
 Run an inferior Ruby process in a buffer.
 With prefix argument, prompts for which Ruby implementation
-\(from the list `inf-ruby-implementations') to use.  Runs the
-hooks `inf-ruby-mode-hook' (after the `comint-mode-hook' is
-run).
+\(from the list `inf-ruby-implementations') to use.
+
+If there is a Ruby process running in an existing buffer, switch
+to that buffer. Otherwise create a new buffer.
 
 \(fn &optional IMPL)" t nil)
 
 (autoload 'run-ruby "inf-ruby" "\
-Run an inferior Ruby process in a buffer related to the current project.
-If there is a process already running in a corresponding buffer,
-switch to that buffer. Otherwise create a new buffer.
+Run an inferior Ruby process, input and output in a new buffer.
+
 The consecutive buffer names will be:
 `*NAME*', `*NAME*<2>', `*NAME*<3>' and so on.
 
-NAME defaults to \"ruby\". COMMAND defaults to the default entry
-in `inf-ruby-implementations'.
+NAME defaults to \"ruby\".
+
+Runs the hooks `comint-mode-hook' and `inf-ruby-mode-hook'.
 
 \(Type \\[describe-mode] in the process buffer for the list of commands.)
 
-\(fn &optional COMMAND NAME)" t nil)
+\(fn COMMAND &optional NAME)" nil nil)
 
 (autoload 'inf-ruby-switch-setup "inf-ruby" "\
 Modify `rspec-compilation-mode' and `ruby-compilation-mode'
