@@ -8,9 +8,10 @@ fi
 
 brew update
 brew install \
-     bash-completion
+     bash-completion \
      awscli \
      emacs \
+     gibo \
      heroku \
      imagemagick@6 \
      jq \
@@ -18,3 +19,13 @@ brew install \
      postgresql \
      rbenv \
      redis
+brew upgrade
+brew cleanup
+
+GITIGNORE_GLOBAL=~/.gitignore_global
+gibo macOS Emacs Ruby Rails Node > $GITIGNORE_GLOBAL
+cat <<EOF >> $GITIGNORE_GLOBAL
+# Tern.el
+.tern-*
+EOF
+echo "${GITIGNORE_GLOBAL} updated."

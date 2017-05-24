@@ -18,3 +18,5 @@
 	verbose = true
 [diff]
 	compactionHeuristic = true
+[core]
+	excludesfile = /Users/koba/.gitignore_global
