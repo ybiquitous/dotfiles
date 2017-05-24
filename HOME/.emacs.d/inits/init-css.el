@@ -16,7 +16,7 @@ See URL `http://stylelint.io/'."
   :modes (css-mode scss-mode))
 ;;; stylelint
 
-;;(add-to-list 'flycheck-checkers 'stylelint-lint)
+(add-to-list 'flycheck-checkers 'stylelint-lint)
 
 (add-hook 'scss-mode-hook
           (lambda()
