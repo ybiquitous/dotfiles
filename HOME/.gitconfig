@@ -5,8 +5,9 @@
 	dc = diff --cached
 	c = checkout
 	pl = pull --prune
-	b = branch --all
 	g = grep
+	b = branch
+	ba = branch --all
 [color]
 	ui = auto
 [core]
