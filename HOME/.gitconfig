@@ -6,6 +6,7 @@
 	c = checkout
 	pl = pull --prune
 	b = branch --all
+	g = grep
 [color]
 	ui = auto
 [core]
