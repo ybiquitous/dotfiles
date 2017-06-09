@@ -3,7 +3,7 @@
 ;; Copyright (C) 2011-2017 EditorConfig Team
 
 ;; Author: EditorConfig Team <editorconfig@googlegroups.com>
-;; Version: 0.7.9
+;; Version: 0.7.10
 ;; URL: https://github.com/editorconfig/editorconfig-emacs#readme
 ;; Package-Requires: ((cl-lib "0.5"))
 
@@ -39,7 +39,12 @@
 
 ;;; Code:
 (require 'cl-lib)
-(eval-when-compile (require 'rx))
+(eval-when-compile
+  (require 'rx)
+  (defvar tex-indent-basic)
+  (defvar tex-indent-item)
+  (defvar tex-indent-arg)
+  (defvar evil-shift-width))
 
 (declare-function editorconfig-core-get-properties-hash
                   "editorconfig-core"
@@ -118,6 +123,8 @@ show line numbers on the left:
     (emacs-lisp-mode lisp-indent-offset)
     (erlang-mode erlang-indent-level)
     (ess-mode ess-indent-offset)
+    (feature-mode feature-indent-offset
+                  feature-indent-level)
     (fsharp-mode fsharp-continuation-offset
                  fsharp-indent-level
                  fsharp-indent-offset)
@@ -170,6 +177,12 @@ show line numbers on the left:
     (tcl-mode tcl-indent-level
               tcl-continued-indent-level)
     (typescript-mode typescript-indent-level)
+    (verilog-mode verilog-indent-level
+                  verilog-indent-level-behavioral
+                  verilog-indent-level-declaration
+                  verilog-indent-level-module
+                  verilog-cexp-indent
+                  verilog-case-indent)
     (web-mode (web-mode-indent-style . (lambda (size) 2))
               web-mode-markup-indent-offset
               web-mode-css-indent-offset
@@ -363,7 +376,7 @@ TRIM-TRAILING-WS."
   "Set the max line length (`fill-column') to LENGTH."
   (when (and (editorconfig-string-integer-p length)
              (> (string-to-number length) 0))
-    (set-fill-column (string-to-number length))))
+    (setq fill-column (string-to-number length))))
 
 (defun editorconfig-call-editorconfig-exec ()
   "Call EditorConfig core and return output."
@@ -407,6 +420,16 @@ It calls `editorconfig-get-properties-from-exec' if
     (editorconfig-core-get-properties-hash)))
 
 ;;;###autoload
+(defun editorconfig-find-current-editorconfig ()
+  "Find the closest .editorconfig file for current file."
+  (interactive)
+  (eval-and-compile (require 'editorconfig-core))
+  (let ((file (editorconfig-core-get-nearest-editorconfig
+               default-directory)))
+    (when file
+      (find-file file))))
+
+;;;###autoload
 (defun editorconfig-display-current-properties ()
   "Display EditorConfig properties extracted for current buffer."
   (interactive)
@@ -448,7 +471,13 @@ applies available properties."
               (editorconfig-set-trailing-nl (gethash 'insert_final_newline props))
               (editorconfig-set-trailing-ws (gethash 'trim_trailing_whitespace props))
               (editorconfig-set-line-length (gethash 'max_line_length props))
-              (run-hook-with-args 'editorconfig-custom-hooks props))))
+              (condition-case err
+                  (run-hook-with-args 'editorconfig-custom-hooks props)
+                (error
+                 (display-warning 'editorconfig-custom-hooks
+                                  (concat (error-message-string err)
+                                          ". Stop running hook.")
+                                  :warning))))))
       (error
        (display-warning 'editorconfig
                         (concat (error-message-string err)
