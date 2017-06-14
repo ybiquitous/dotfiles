@@ -1,11 +1,10 @@
 ;;; js-auto-format-mode-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-
+(add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads (js-auto-format-mode js-auto-format-execute js-auto-format-disabled
-;;;;;;  js-auto-format-command-args js-auto-format-command) "js-auto-format-mode"
-;;;;;;  "js-auto-format-mode.el" (22465 20935 645461 699000))
+;;;### (autoloads nil "js-auto-format-mode" "js-auto-format-mode.el"
+;;;;;;  (22849 26643 348327 444000))
 ;;; Generated autoloads from js-auto-format-mode.el
 
 (defvar js-auto-format-command "eslint" "\
@@ -35,16 +34,9 @@ Minor mode for auto-formatting JavaScript code
 
 ;;;***
 
-;;;### (autoloads nil nil ("js-auto-format-mode-pkg.el") (22465 20935
-;;;;;;  701784 362000))
-
-;;;***
-
-(provide 'js-auto-format-mode-autoloads)
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
-;; coding: utf-8
 ;; End:
 ;;; js-auto-format-mode-autoloads.el ends here
