@@ -7,7 +7,7 @@
 	pl = pull --prune
 	b = branch
 	ba = branch --all
-	g = grep -i
+	g = grep
 [color]
 	ui = auto
 [core]
