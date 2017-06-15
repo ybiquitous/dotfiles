@@ -26,3 +26,6 @@
 	compactionHeuristic = true
 [core]
 	excludesfile = /Users/koba/.gitignore_global
+[user]
+	name = ybiquitous
+	email = ybiquitous@gmail.com
