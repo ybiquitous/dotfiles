@@ -5,7 +5,7 @@
 
 ;; Author: Dmitry Gutov
 ;; URL: https://github.com/dgutov/robe
-;; Version: 0.8.0
+;; Version: 0.8.1
 ;; Keywords: ruby convenience rails
 ;; Package-Requires: ((inf-ruby "2.5.1") (emacs "24.4"))
 
@@ -176,7 +176,8 @@ project."
       (robe-with-inf-buffer
        (setq robe-running t
              robe-load-path (mapcar #'file-name-as-directory
-                                    (robe-request "load_path")))))))
+                                    (robe-request "load_path"))))
+      (message "Robe connection established"))))
 
 (defun robe-inf-buffer ()
   ;; Using locate-dominating-file in a large directory
@@ -247,7 +248,7 @@ project."
 
 (defun robe-retrieve (url)
   (defvar url-http-response-status)
-  (let ((buffer (condition-case nil (url-retrieve-synchronously url)
+  (let ((buffer (condition-case nil (url-retrieve-synchronously url t)
                   (file-error nil))))
     (if (and buffer
              (with-current-buffer buffer
@@ -567,8 +568,7 @@ Only works with Rails, see e.g. `rinari-console'."
    (robe-signature-params (robe-spec-params spec) arg-num)))
 
 (defun robe-signature-params (params &optional arg-num)
-  (if (not params)
-      ""
+  (when params
     (let ((cnt 0) args)
       (dolist (pair params)
         (let ((kind (intern (car pair)))
@@ -697,8 +697,7 @@ Only works with Rails, see e.g. `rinari-console'."
               (substring msg 0 (min (frame-width) (length msg))))))))))
 
 (defun robe-complete-symbol-p (beginning)
-  (not (or (eq (char-before beginning) ?@)
-           (and
+  (not (or (and
             ;; Implement symbol completion using Symbol.all_symbols.
             (eq (char-after beginning) ?:)
             (not (eq (char-after (1+ beginning)) ?:)))
@@ -713,6 +712,7 @@ Only works with Rails, see e.g. `rinari-console'."
    (save-excursion
      (while (or (not (zerop (skip-syntax-backward "w_")))
                 (not (zerop (skip-chars-backward ":")))))
+     (skip-chars-backward "@")
      (point))
    (save-excursion
      (while (or (not (zerop (skip-syntax-forward "w_")))
@@ -735,11 +735,13 @@ Only works with Rails, see e.g. `rinari-console'."
     (gethash method robe-specs-cache)))
 
 (defun robe-complete-annotation (thing)
-  (let ((params (robe-signature-params (robe-spec-params
-                                        (car (robe-cached-specs thing))))))
-    (if robe-highlight-capf-candidates
-        params
-      (substring-no-properties params))))
+  (unless (get-text-property 0 'robe-type thing)
+    (let ((params (robe-signature-params (robe-spec-params
+                                          (car (robe-cached-specs thing))))))
+      (if robe-highlight-capf-candidates
+          params
+        (and params
+             (substring-no-properties params))))))
 
 (defun robe-complete-exit (&rest _)
   (setq robe-specs-cache nil))
@@ -750,21 +752,139 @@ Only works with Rails, see e.g. `rinari-console'."
       (progn
         (robe-complete-exit)
         (robe-request "complete_const" thing (car (robe-context))))
-    (cl-destructuring-bind (target module instance _) (robe-call-context)
-      (setq robe-specs-cache (make-hash-table :test 'equal))
-      (mapcar (lambda (spec)
-                (let* ((method (robe-spec-method spec))
-                       (value (gethash method robe-specs-cache))
-                       case-fold-search)
-                  (puthash method (cons spec value) robe-specs-cache)
-                  (if robe-highlight-capf-candidates
-                      (propertize method 'face
-                                  (if (string-match "\\`[A-Z]" method)
-                                      'font-lock-type-face
-                                    'font-lock-function-name-face))
-                    method)))
-              (reverse
-               (robe-request "complete_method" thing target module instance))))))
+    (cl-destructuring-bind
+        (target module instance (_ instance-method? name)) (robe-call-context)
+      (append
+       (unless target
+         ;; For company-robe mostly.  capf will call all-completions anyway.
+         (all-completions
+          thing
+          (robe-complete--variables instance-method? name)))
+       (robe-complete--methods thing target module instance)))))
+
+(defun robe-complete--methods (thing target module instance)
+  (setq robe-specs-cache (make-hash-table :test 'equal))
+  (mapcar (lambda (spec)
+            (let* ((method (robe-spec-method spec))
+                   (value (gethash method robe-specs-cache))
+                   case-fold-search)
+              (puthash method (cons spec value) robe-specs-cache)
+              (if robe-highlight-capf-candidates
+                  (propertize method 'face
+                              (if (string-match "\\`[A-Z]" method)
+                                  'font-lock-type-face
+                                'font-lock-function-name-face))
+                method)))
+          (reverse
+           (robe-request "complete_method" thing target module instance))))
+
+(defun robe-complete--variables (instance-method? method-name)
+  (let ((instance-vars (and instance-method?
+                            (robe-complete--instance-variables)))
+        (local-vars (robe-complete--local-variables method-name)))
+    (mapcar
+     (lambda (str)
+       (put-text-property 0 1 'robe-type 'variable str)
+       str)
+     (cl-delete-duplicates
+      (nconc instance-vars local-vars)))))
+
+(defun robe-complete--instance-variables ()
+  (let ((bol (line-beginning-position))
+        (eol (line-end-position))
+        (var-regexp (rx
+                     (or line-start (in ", \t"))
+                     (group
+                      (repeat 1 2 "@")
+                      (+ (or (syntax ?w) (syntax ?_))))
+                     (* ?\s)
+                     ?=
+                     (not (in "=>"))))
+        vars)
+    (save-excursion
+      (goto-char (point-min))
+      (while (re-search-forward var-regexp bol t)
+        (when (robe--not-in-string-or-comment)
+          (push (match-string-no-properties 1) vars)))
+      (goto-char eol)
+      (while (re-search-forward var-regexp nil t)
+        (when (robe--not-in-string-or-comment)
+          (push (match-string-no-properties 1) vars))))
+    vars))
+
+(defun robe--not-in-string-or-comment ()
+  (not (save-match-data (nth 8 (syntax-ppss)))))
+
+(defun robe-complete--local-variables (method-name)
+  (let ((method-regexp (concat
+                        (rx
+                         line-start
+                         (* (in " \t"))
+                         "def"
+                         (* (in " \t"))
+                         (optional (+ (in "a-z" "A-Z" ?:)) ?.))
+                        method-name
+                        (rx (* (in " \t"))
+                            (or eol ?\( (syntax ?w)))))
+        (block-regexp (rx
+                       (or
+                        (syntax ?w) (syntax ?_) ?\))
+                       (+ (in " \t"))
+                       (or
+                        (sequence "do" symbol-end)
+                        ?\{)
+                       (* (in " \t"))
+                       ?|
+                       (group
+                        (+ (not (in "|"))))
+                       ?|))
+        (arg-regexp (rx
+                     (or point ?\( ?,)
+                     (* (in " \t\n"))
+                     (* ?*)
+                     (group
+                      (+ (or (syntax ?w) (syntax ?_))))))
+        (var-regexp (rx
+                     (or line-start (in ", \t"))
+                     (group
+                      (+ (or (syntax ?w) (syntax ?_))))
+                     (* ?\s)
+                     ?=
+                     (not (in "=>"))))
+        (bol (line-beginning-position))
+        vars)
+    ;; FIXME: Add support for block arguments.
+    (save-excursion
+      (when (and method-name
+                 (re-search-backward method-regexp nil)
+                 (eq ?\( (char-before (match-end 0))))
+        (goto-char (1- (match-end 0)))
+        (let* ((beg (1+ (point)))
+               (forward-sexp-function nil)
+               (end (progn
+                      (forward-sexp 1)
+                      (point))))
+          (goto-char beg)
+          (while (re-search-forward arg-regexp end t)
+            (push (match-string-no-properties 1) vars))))
+      (unless method-name
+        (goto-char (point-min)))
+      (save-excursion
+        (while (re-search-forward block-regexp bol t)
+          (when (robe--not-in-string-or-comment)
+            (goto-char (match-beginning 1))
+            (let ((end (match-end 1)))
+              (while (re-search-forward arg-regexp end t)
+                (push (match-string-no-properties 1) vars))))))
+      ;; Now either after arglist or at bob.
+      ;; FIXME: Also skip over blocks that do not contain
+      ;; the original position.
+      ;; `backward-up-list' can be slow-ish in large files,
+      ;; but we could add a cache akin to syntax-ppss.
+      (while (re-search-forward var-regexp bol t)
+        (when (robe--not-in-string-or-comment)
+          (push (match-string-no-properties 1) vars))))
+    vars))
 
 (defvar robe-mode-map
   (let ((map (make-sparse-keymap)))
@@ -782,8 +902,21 @@ The following commands are available:
 
 \\{robe-mode-map}"
   nil " robe" robe-mode-map
-  (add-hook 'completion-at-point-functions 'robe-complete-at-point nil t)
-  (setq-local eldoc-documentation-function #'robe-eldoc))
+  (if robe-mode
+      (progn
+        (add-hook 'completion-at-point-functions 'robe-complete-at-point nil t)
+        ;; Compose to work together with `yard-eldoc-message'
+        ;; (though `yard-mode' has to be enabled first).
+        ;; TODO: Adapt the code to use :before-until, for reliability.
+        ;; TODO: Simplify when Emacs 25.1+ is required.
+        (if eldoc-documentation-function
+            (add-function :after-until (local 'eldoc-documentation-function)
+                          #'robe-eldoc)
+          (setq-local eldoc-documentation-function #'robe-eldoc)))
+    (remove-hook 'completion-at-point-functions 'robe-complete-at-point t)
+    (if (eq eldoc-documentation-function #'robe-eldoc)
+        (kill-local-variable 'eldoc-documentation-function)
+      (remove-function (local 'eldoc-documentation-function) #'robe-eldoc))))
 
 (provide 'robe)
 ;;; robe.el ends here
