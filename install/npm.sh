@@ -3,10 +3,13 @@ set -eu
 
 npm_install="npm install --global --no-progress"
 
-# upgrade npm
+# update npm
+echo "Updating npm..."
 $npm_install npm@latest
 
 # required packages
+echo
+echo "Installing required packages..."
 $npm_install \
     editorconfig \
     eslint \
@@ -17,6 +20,8 @@ $npm_install \
     tern
 
 # optional packages
+echo
+echo "Installing optional packages..."
 pkgs=" \
 flow-bin \
 msee \
@@ -40,4 +45,5 @@ if [ -n "$opt_pkgs" ]; then
 fi
 
 # show installed packages
+echo
 npm list --global --depth=0
