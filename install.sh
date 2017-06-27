@@ -55,13 +55,6 @@ exists_command apt-get && (
   sudo apt-get autoclean
 )
 
-# git diff-highlight
-[[ ! -f $BIN_DIR/diff-highlight ]] && (
-  cd $BIN_DIR
-  curl -LO https://raw.githubusercontent.com/git/git/master/contrib/diff-highlight/diff-highlight
-  chmod +x diff-highlight
-)
-
 # fish
 if [[ $(echo $SHELL) != $(which fish) ]]; then
   chsh -s $(which fish)
