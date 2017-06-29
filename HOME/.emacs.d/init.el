@@ -143,6 +143,7 @@
 (add-hook 'html-mode-hook 'emmet-mode)
 (add-hook 'css-mode-hook  'emmet-mode)
 (add-hook 'web-mode-hook  'emmet-mode)
+(add-hook 'rjsx-mode-hook 'emmet-mode)
 
 ;; highlight-symbol
 (add-hook 'prog-mode-hook 'highlight-symbol-mode)
