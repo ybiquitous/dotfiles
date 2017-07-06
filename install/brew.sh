@@ -18,7 +18,8 @@ brew install \
      mysql \
      postgresql \
      rbenv \
-     redis
+     redis \
+     watch
 brew upgrade
 brew cleanup
 
