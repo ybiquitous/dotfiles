@@ -20,6 +20,11 @@ if [[ ! -d ~/.bash_it ]]; then
   exit
 fi
 
+# load bash-it
+set +u
+source ~/.bash_it/bash_it.sh
+set -u
+
 bash-it update
 
 # plugin
