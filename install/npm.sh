@@ -15,7 +15,6 @@ $npm_install \
     eslint \
     git-open \
     marked \
-    stylefmt \
     stylelint \
     tern
 
