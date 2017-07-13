@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 set -eu
 
 # https://yarnpkg.com/en/docs/install#alternatives-tab
 
-if [[ -d ~/.yarn ]]; then
+if [ -d ~/.yarn ]; then
   echo
   echo 'Yarn is installed already:'
   echo
