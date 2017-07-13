@@ -11,12 +11,13 @@ $npm_install npm@latest
 echo
 echo "Installing required packages..."
 $npm_install \
-    editorconfig \
-    eslint \
-    git-open \
-    marked \
-    stylelint \
-    tern
+  editorconfig \
+  eslint@3 \
+  eslint-config-ybiquitous \
+  git-open \
+  marked \
+  stylelint \
+  tern \
 
 # optional packages
 echo
