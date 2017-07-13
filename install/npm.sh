@@ -23,9 +23,7 @@ $npm_install \
 echo
 echo "Installing optional packages..."
 pkgs=" \
-flow-bin \
 msee \
-npm-check \
 sitespeed.io \
 svgo \
 "
