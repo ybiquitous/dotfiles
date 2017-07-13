@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 set -eu
 
-# https://brew.sh/index_ja.html
-if [[ -z $(command -v brew) ]]; then
+# https://brew.sh
+if [ -z "$(command -v brew)" ]; then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
