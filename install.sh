@@ -1,25 +1,31 @@
 #!/bin/sh
 set -eu
 
-BASEDIR=$(cd $(dirname $0); pwd)
+BASEDIR="${HOME}/dotfiles"
+
+# download if not exists
+if [ ! -d "$BASEDIR" ]; then
+  git clone git@github.com:ybiquitous/dotfiles.git "$HOME"
+fi
+
+cd "$BASEDIR"
 
 # copy files to home directory
-for file in $(find "$BASEDIR/HOME" -maxdepth 1 -type f); do
+for file in $(find ./HOME -maxdepth 1 -type f); do
   ln -svf "$file" "$HOME"
 done
 
 # prepare ~/bin directory
-export BIN_DIR="$HOME/bin"
-mkdir -pv $BIN_DIR
+mkdir -pv "${HOME}/bin"
 
-"${BASEDIR}/install/apt"
-"${BASEDIR}/install/brew"
-"${BASEDIR}/install/bash-it"
-"${BASEDIR}/install/diff-highlight"
-"${BASEDIR}/install/emacs"
-"${BASEDIR}/install/heroku"
-"${BASEDIR}/install/npm"
-"${BASEDIR}/install/nvm"
-"${BASEDIR}/install/yarn"
+"./install/apt"
+"./install/brew"
+"./install/bash-it"
+"./install/diff-highlight"
+"./install/emacs"
+"./install/heroku"
+"./install/npm"
+"./install/nvm"
+"./install/yarn"
 
 echo 'Installation completed. Please reopen shell.'

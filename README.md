@@ -3,7 +3,7 @@
 ## Install
 
 ```sh
-./install.sh
+curl -o- -L https://raw.githubusercontent.com/ybiquitous/dotfiles/master/install.sh | sh
 ```
 
 ## Links
