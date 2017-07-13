@@ -1,4 +1,4 @@
-{
+module.exports = {
   "rules": {
     "block-opening-brace-space-before": "always",
     "color-hex-case": "lower",
