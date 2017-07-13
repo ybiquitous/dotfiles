@@ -1,6 +1,8 @@
 #!/bin/sh
 set -eu
 
+[ "$(uname)" != 'Darwin' ] && echo 'brew is unsupported in this platform' && exit
+
 # https://brew.sh
 if [ -z "$(command -v brew)" ]; then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"

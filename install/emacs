@@ -1,0 +1,22 @@
+#!/bin/sh
+set -eu
+
+BASEDIR=$(cd $(dirname $0); pwd)
+
+ln -svf "${BASEDIR}/../HOME/.emacs.d" "$HOME"
+touch "${HOME}/init-env.el"
+
+if [ ! -f "${HOME}/init-env.el" ]; then
+  cat >"${HOME}/init-env.el" <<EOF
+;; E.g.
+;; (add-to-list 'default-frame-alist '(font . "Ubuntu Mono"))
+;; (add-to-list 'default-frame-alist '(top . 0))
+;; (add-to-list 'default-frame-alist '(left . 500))
+;; (add-to-list 'default-frame-alist '(width . 100))
+;; (add-to-list 'default-frame-alist '(height . 35))
+
+(provide 'init-env)
+EOF
+fi
+
+ln -svf "${HOME}/init-env.el" "${HOME}/.emacs.d/inits"
