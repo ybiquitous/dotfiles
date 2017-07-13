@@ -14,7 +14,6 @@
    '(js2-mode-show-parse-errors nil)
    '(js2-mode-show-strict-warnings nil))
   (local-set-key (kbd "C-c i") 'js-doc-insert-function-doc)
-  (local-set-key (kbd "@") 'js-doc-insert-tag)
   (electric-indent-mode t)
   (if (not (equal (file-name-extension buffer-file-name) "json"))
       (progn
