@@ -13,7 +13,7 @@ brew install \
      emacs \
      gibo \
      heroku \
-     imagemagick@6 \
+     imagemagick \
      jq \
      mysql \
      postgresql \
