@@ -5,7 +5,7 @@ BASEDIR="${HOME}/dotfiles"
 
 # download if not exists
 if [ ! -d "$BASEDIR" ]; then
-  git clone https://github.com/ybiquitous/dotfiles.git "$HOME"
+  git clone https://github.com/ybiquitous/dotfiles.git "$BASEDIR"
 fi
 
 cd "$BASEDIR"
