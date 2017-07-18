@@ -9,10 +9,6 @@
  '(css-indent-offset tab-width)
  '(electric-pair-mode t)
  '(emmet-indentation tab-width)
- '(flycheck-disabled-checkers
-   (quote
-    (javascript-jshint javascript-jscs javascript-gjslint javascript-standard)))
- '(flycheck-temp-prefix ".flycheck")
  '(global-font-lock-mode t)
  '(global-hl-line-mode t)
  '(global-linum-mode t)
@@ -24,16 +20,6 @@
  '(line-number-mode t)
  '(load-prefer-newer t)
  '(make-backup-files nil)
- '(markdown-command "marked")
- '(markdown-content-type "application/xhtml+xml")
- '(markdown-css-paths
-   (quote
-    ("https://sindresorhus.com/github-markdown-css/github-markdown.css" "https://cdn.jsdelivr.net/highlight.js/9.4.0/styles/default.min.css")))
- '(markdown-xhtml-header-content
-   "
-<script>document.addEventListener('DOMContentLoaded', function() { document.body.className = 'markdown-body' })</script>
-<script src='https://cdn.jsdelivr.net/highlight.js/9.4.0/highlight.min.js'></script>
-<script>hljs.initHighlightingOnLoad();</script>")
  '(nxml-auto-insert-xml-declaration-flag t)
  '(nxml-default-buffer-file-coding-system (quote utf-8))
  '(nxml-slash-auto-complete-flag t)
@@ -42,14 +28,12 @@
     (("gnu" . "http://elpa.gnu.org/packages/")
      ("melpa-stable" . "http://stable.melpa.org/packages/")
      ("marmalade" . "https://marmalade-repo.org/packages/"))))
- '(package-selected-packages
-   (quote
-    (yasnippet yaml-mode web-mode scss-mode robe rjsx-mode rbenv popup markdown-mode json-mode js-auto-format-mode highlight-symbol git-commit flycheck fish-mode exec-path-from-shell emmet-mode editorconfig-core editorconfig company-tern)))
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(scroll-bar-mode (quote right))
  '(select-enable-clipboard t)
  '(sh-basic-offset tab-width)
+ '(sh-indentation tab-width)
  '(shell-file-name "/bin/sh")
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
