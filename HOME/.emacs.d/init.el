@@ -28,7 +28,6 @@
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
- '(js-indent-level tab-width)
  '(line-number-mode t)
  '(load-prefer-newer t)
  '(make-backup-files nil)

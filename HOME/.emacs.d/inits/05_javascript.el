@@ -2,19 +2,19 @@
 (require 'flycheck)
 
 (defun js-mode-hooks ()
-  (custom-set-variables
-   '(js-switch-indent-offset js-indent-level)
-   '(json-reformat:indent-width js-indent-level)
-   '(json-reformat:pretty-string? t)))
+  (setq
+   js-indent-level tab-width
+   js-switch-indent-offset tab-width
+   json-reformat:indent-width tab-width
+   json-reformat:pretty-string? t))
 (add-hook 'js-mode-hook 'js-mode-hooks)
 
 (defun js2-mode-hooks ()
-  (custom-set-variables
-   '(js2-basic-offset js-indent-level)
-   '(js2-mode-show-parse-errors nil)
-   '(js2-mode-show-strict-warnings nil))
+  (setq
+   js2-basic-offset tab-width
+   js2-mode-show-parse-errors nil
+   js2-mode-show-strict-warnings nil)
   (local-set-key (kbd "C-c i") 'js-doc-insert-function-doc)
-  (electric-indent-mode t)
   (if (not (equal (file-name-extension buffer-file-name) "json"))
       (progn
         (if (eq system-type 'windows-nt) (defvar tern-command '("tern")))
