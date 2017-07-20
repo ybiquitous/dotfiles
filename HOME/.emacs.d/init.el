@@ -49,12 +49,6 @@
  '(tab-width 2)
  '(tool-bar-mode nil)
  '(transient-mark-mode t)
- '(web-mode-code-indent-offset tab-width)
- '(web-mode-css-indent-offset tab-width)
- '(web-mode-markup-indent-offset tab-width)
- '(web-mode-script-padding tab-width)
- '(web-mode-sql-indent-offset tab-width)
- '(web-mode-style-padding tab-width)
  '(whitespace-action (quote (auto-cleanup)))
  '(whitespace-display-mappings
    (quote
@@ -92,11 +86,6 @@
 
 ;; init-loader
 (init-loader-load)
-
-;; web
-(add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 
 ;; shell script
 (add-to-list 'auto-mode-alist '("\\.sh\\'" . sh-mode))
