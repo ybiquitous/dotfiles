@@ -1,5 +1,3 @@
-(require 'flycheck)
-
 ;;; stylelint (https://github.com/flycheck/flycheck/issues/785)
 (flycheck-define-checker stylelint-lint
   "A SCSS checker using stylelint.
@@ -18,9 +16,9 @@ See URL `http://stylelint.io/'."
 
 (add-to-list 'flycheck-checkers 'stylelint-lint)
 
-(add-hook 'scss-mode-hook
-          (lambda()
-            (custom-set-variables
-             '(scss-sass-command "node-sass")
-             '(scss-compile-at-save nil))
-            ))
+(use-package scss-mode
+  :ensure t
+  :config
+  (setq
+    scss-sass-command "node-sass"
+    scss-compile-at-save nil))
