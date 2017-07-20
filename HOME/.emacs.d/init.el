@@ -78,13 +78,7 @@
 (package-initialize)
 
 ;; init-loader
-(require 'init-loader)
 (init-loader-load)
-
-;; dired
-(require 'wdired)
-(setq wdired-allow-to-change-permissions t)
-(define-key dired-mode-map "e" 'wdired-change-to-wdired-mode)
 
 ;; perl
 (defalias 'perl-mode 'cperl-mode)
