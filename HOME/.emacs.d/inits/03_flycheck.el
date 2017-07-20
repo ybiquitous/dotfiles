@@ -1,12 +1,20 @@
+(defun my-find-npm-command (command)
+  (let* ((dirname "node_modules")
+          (root (locate-dominating-file default-directory dirname)))
+    (if root (concat
+               (file-name-as-directory root)
+               (file-name-as-directory dirname)
+               (file-name-as-directory ".bin")
+               command))))
+
 (defun my-executable-find (command)
-  (let* ((local-dir (string-trim (shell-command-to-string "npm bin")))
-          (file-path (concat (file-name-as-directory local-dir) command)))
-    (if (file-exists-p file-path) file-path (executable-find command))))
+  (let* ((file-path (my-find-npm-command command)))
+    (if (and file-path (file-executable-p file-path))
+      file-path (executable-find command))))
 
 (use-package flycheck
   :ensure t
-  :init
-  (global-flycheck-mode)
+  :init (global-flycheck-mode)
   :config
   (setq
     flycheck-temp-prefix ".flycheck"
