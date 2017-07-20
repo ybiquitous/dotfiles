@@ -1,4 +1,5 @@
 (use-package whitespace
+  :diminish global-whitespace-mode
   :config
   (setq
     whitespace-action '(auto-cleanup)
@@ -6,4 +7,5 @@
                                    (tab-mark ?\t [?\xBB ?\t] [?\\ ?\t]))
     whitespace-space-regexp "\\(\\u3000+\\)"
     whitespace-line-column 100
-    whitespace-style '(face tabs spaces trailing lines-tail space-mark tab-mark)))
+    whitespace-style '(face tabs spaces trailing lines-tail space-mark tab-mark))
+  (global-whitespace-mode t))

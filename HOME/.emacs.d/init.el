@@ -24,7 +24,6 @@
  '(global-font-lock-mode t)
  '(global-hl-line-mode t)
  '(global-linum-mode t)
- '(global-whitespace-mode t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
