@@ -5,4 +5,5 @@
   :config
   (add-to-list 'exec-path-from-shell-variables "HISTFILE")
   (add-to-list 'exec-path-from-shell-variables "HISTSIZE")
+  (setq exec-path-from-shell-check-startup-files "~/.profile")
   (exec-path-from-shell-initialize))
