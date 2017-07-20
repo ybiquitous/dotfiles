@@ -33,6 +33,9 @@
  '(nxml-auto-insert-xml-declaration-flag t)
  '(nxml-default-buffer-file-coding-system (quote utf-8))
  '(nxml-slash-auto-complete-flag t)
+ '(package-selected-packages
+   (quote
+    (git-commit yaml-mode emmet-mode web-mode rbenv robe enh-ruby-mode highlight-symbol markdown-mode scss-mode js-auto-format-mode json-mode rjsx-mode js2-mode company-tern tern flycheck editorconfig yasnippet company exec-path-from-shell init-loader use-package)))
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(scroll-bar-mode (quote right))
