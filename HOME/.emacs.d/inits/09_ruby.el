@@ -1,13 +1,31 @@
-(require 'company-robe)
-(require 'flycheck)
+(use-package enh-ruby-mode
+  :ensure t
+  :interpreter "ruby"
+  :mode (("\\.rb\\'"       . enh-ruby-mode)
+         ("\\.ru\\'"       . enh-ruby-mode)
+         ("\\.jbuilder\\'" . enh-ruby-mode)
+         ("\\.gemspec\\'"  . enh-ruby-mode)
+         ("\\.rake\\'"     . enh-ruby-mode)
+         ("Rakefile\\'"    . enh-ruby-mode)
+         ("Gemfile\\'"     . enh-ruby-mode)
+         ("Guardfile\\'"   . enh-ruby-mode)
+         ("Capfile\\'"     . enh-ruby-mode)
+         ("Vagrantfile\\'" . enh-ruby-mode))
+  :config
+  (setq
+   ruby-insert-encoding-magic-comment nil
+   enh-ruby-indent-level tab-width
+   enh-ruby-add-encoding-comment-on-save nil
+   enh-ruby-deep-indent-paren nil
+   enh-ruby-bounce-deep-indent t
+   enh-ruby-hanging-indent-level tab-width))
 
-(add-hook 'ruby-mode-hook
-          (lambda ()
-            (custom-set-variables
-             '(ruby-insert-encoding-magic-comment nil))
-            (robe-mode t)
-            (add-to-list 'company-backends 'company-robe)
-            ))
+(use-package robe
+  :ensure t
+  :init
+  (add-hook 'enh-ruby-mode-hook 'robe-mode)
+  :config
+  (add-to-list 'company-backends 'company-robe))
 
 (defun rails-jump-to-test ()
   "Rails Jump to Test"
