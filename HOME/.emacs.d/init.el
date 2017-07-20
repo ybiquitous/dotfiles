@@ -93,12 +93,6 @@
 ;; init-loader
 (init-loader-load)
 
-;; company
-(add-hook 'after-init-hook 'global-company-mode)
-
-;; yasnippet
-(yas-global-mode t)
-
 ;; web
 (add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
