@@ -13,5 +13,3 @@
     (setq-local exec-path (cons local-path exec-path))))
 
 (add-hook 'flycheck-mode-hook #'my/use-node-modules-bin)
-
-(provide 'init-flycheck)

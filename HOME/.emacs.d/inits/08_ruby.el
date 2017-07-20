@@ -33,5 +33,3 @@ See URL `https://github.com/troessner/reek'."
   :modes (enh-ruby-mode ruby-mode)
   :next-checkers (ruby-rubocop))
 (add-to-list 'flycheck-checkers 'ruby-reek)
-
-(provide 'init-ruby)

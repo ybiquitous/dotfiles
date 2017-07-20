@@ -1,0 +1,1 @@
+/Users/koba/02_env.el

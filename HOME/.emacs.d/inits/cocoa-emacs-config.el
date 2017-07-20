@@ -6,6 +6,3 @@
 
 ;; http://rubikitch.com/2016/09/05/visible-bell-macosx-slow
 (setq ring-bell-function 'ignore)
-
-(provide 'init-mac)
-;;; init-mac.el ends here

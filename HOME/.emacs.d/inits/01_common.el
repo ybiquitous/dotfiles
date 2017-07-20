@@ -29,5 +29,3 @@
 
 ;; frame title
 (setq frame-title-format '("" "%b @ Emacs " emacs-version))
-
-(provide 'init-common)

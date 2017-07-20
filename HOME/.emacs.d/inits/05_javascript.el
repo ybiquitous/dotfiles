@@ -36,5 +36,3 @@
           (lambda ()
             (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
             (flycheck-mode)))
-
-(provide 'init-javascript)

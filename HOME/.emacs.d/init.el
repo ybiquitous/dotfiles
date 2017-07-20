@@ -91,18 +91,9 @@
 ;; exec-path
 (if (not (equal system-type 'windows-nt)) (exec-path-from-shell-initialize))
 
-;; inits
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/inits"))
-(require 'init-common)
-(require 'init-env)
-(require 'init-flycheck)
-(require 'init-java)
-(require 'init-javascript)
-(require 'init-css)
-(require 'init-markdown)
-(require 'init-ruby)
-(when (eq system-type 'windows-nt) (require 'init-windows))
-(when (eq system-type 'darwin) (require 'init-mac))
+;; init-loader
+(require 'init-loader)
+(init-loader-load)
 
 ;; dired
 (require 'wdired)

@@ -24,5 +24,3 @@ See URL `http://stylelint.io/'."
              '(scss-sass-command "node-sass")
              '(scss-compile-at-save nil))
             ))
-
-(provide 'init-css)

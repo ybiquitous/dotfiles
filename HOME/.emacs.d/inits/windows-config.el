@@ -11,6 +11,3 @@
                   diff-command (_posix-path "diff.exe")
                   null-device "/dev/null")
             ))
-
-(provide 'init-windows)
-;;; init-windows.el ends here

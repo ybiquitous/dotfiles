@@ -19,5 +19,3 @@
           (lambda ()
             (add-hook 'after-save-hook 'java-compile t t)
             ))
-
-(provide 'init-java)
