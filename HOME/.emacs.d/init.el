@@ -90,14 +90,6 @@
   "Examine `vc-make-backup-files' (in vc-hooks.el) at first."
   (and vc-make-backup-files ad-do-it))
 
-;; highlight-symbol
-(add-hook 'prog-mode-hook 'highlight-symbol-mode)
-(add-hook 'prog-mode-hook 'highlight-symbol-nav-mode) ;; move by M-p/M-n
-(add-hook 'highlight-symbol-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-c r") 'highlight-symbol-query-replace)
-            ))
-
 ;; git-commit
 (global-git-commit-mode)
 (add-hook 'git-commit-mode-hook 'flyspell-mode)
