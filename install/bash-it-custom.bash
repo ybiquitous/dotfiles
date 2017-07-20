@@ -7,10 +7,11 @@ fi
 
 alias rm='rm -i'
 
+export HISTFILE="$HOME/.bash_history"
 export HISTSIZE=100000
 export EDITOR=emacsclient
-export PATH="$HOME/.yarn/bin:$PATH"
-export PATH="$HOME/bin:$PATH"
+export PATH="${HOME}/.yarn/bin:${PATH}"
+export PATH="${HOME}/bin:${PATH}"
 
 # https://github.com/creationix/nvm#zsh
 # https://github.com/creationix/nvm/pull/1057
