@@ -46,20 +46,7 @@
  '(size-indication-mode nil)
  '(tab-width 2)
  '(tool-bar-mode nil)
- '(transient-mark-mode t)
- '(whitespace-action (quote (auto-cleanup)))
- '(whitespace-display-mappings
-   (quote
-    ((space-mark 12288
-                 [9633])
-     (tab-mark 9
-               [187 9]
-               [92 9]))))
- '(whitespace-line-column 100)
- '(whitespace-space-regexp "\\(\\u3000+\\)")
- '(whitespace-style
-   (quote
-    (face tabs spaces trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark newline-mark lines-tail))))
+ '(transient-mark-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
