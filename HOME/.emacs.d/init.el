@@ -33,9 +33,6 @@
  '(nxml-auto-insert-xml-declaration-flag t)
  '(nxml-default-buffer-file-coding-system (quote utf-8))
  '(nxml-slash-auto-complete-flag t)
- '(package-selected-packages
-   (quote
-    (init-loader yasnippet yaml-mode web-mode use-package scss-mode robe rjsx-mode rbenv popup markdown-mode json-mode js-auto-format-mode highlight-symbol git-commit flycheck exec-path-from-shell emmet-mode editorconfig company-tern)))
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(scroll-bar-mode (quote right))
@@ -68,9 +65,15 @@
   (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 
+;; use-package
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
 ;; init-loader
-(unless (package-installed-p 'init-loader) (package-install 'init-loader))
-(init-loader-load)
+(use-package init-loader
+  :ensure t
+  :init (init-loader-load))
 
 ;; vc-mode bug hack
 ;; See http://www.lares.dti.ne.jp/~foozy/fujiguruma/scm/cvs-emacs.html
