@@ -1,15 +1,12 @@
-(require 'flycheck)
+(defun my-executable-find (command)
+  (let* ((local-dir (string-trim (shell-command-to-string "npm bin")))
+          (file-path (concat (file-name-as-directory local-dir) command)))
+    (if (file-exists-p file-path) file-path (executable-find command))))
 
-(custom-set-variables
- '(flycheck-temp-prefix ".flycheck")
- '(flycheck-disabled-checkers '(javascript-jshint javascript-jscs javascript-gjslint javascript-standard))
- )
+(use-package flycheck
+  :init
+  (setq
+    flycheck-temp-prefix ".flycheck"
+    flycheck-executable-find #'my-executable-find))
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
-
-(defun my/use-node-modules-bin ()
-  (let* ((local-path (replace-regexp-in-string
-                      "[\r\n]+$" "" (shell-command-to-string "npm bin"))))
-    (setq-local exec-path (cons local-path exec-path))))
-
-(add-hook 'flycheck-mode-hook #'my/use-node-modules-bin)
