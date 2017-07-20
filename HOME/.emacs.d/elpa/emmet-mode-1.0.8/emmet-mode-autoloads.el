@@ -1,11 +1,10 @@
 ;;; emmet-mode-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-
+(add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads (emmet-prev-edit-point emmet-next-edit-point emmet-wrap-with-markup
-;;;;;;  emmet-preview emmet-expand-yas emmet-mode emmet-expand-line)
-;;;;;;  "emmet-mode" "emmet-mode.el" (21887 29610 98153 704000))
+;;;### (autoloads nil "emmet-mode" "emmet-mode.el" (22895 64723 0
+;;;;;;  0))
 ;;; Generated autoloads from emmet-mode.el
 
 (autoload 'emmet-expand-line "emmet-mode" "\
@@ -54,33 +53,11 @@ accept it or skip it.
 
 \(fn BEG END)" t nil)
 
-(autoload 'emmet-wrap-with-markup "emmet-mode" "\
-Wrap region with markup.
-
-\(fn WRAP-WITH)" t nil)
-
-(autoload 'emmet-next-edit-point "emmet-mode" "\
-
-
-\(fn COUNT)" t nil)
-
-(autoload 'emmet-prev-edit-point "emmet-mode" "\
-
-
-\(fn COUNT)" t nil)
-
 ;;;***
 
-;;;### (autoloads nil nil ("emmet-mode-pkg.el") (21887 29610 216868
-;;;;;;  490000))
-
-;;;***
-
-(provide 'emmet-mode-autoloads)
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
-;; coding: utf-8
 ;; End:
 ;;; emmet-mode-autoloads.el ends here

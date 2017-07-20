@@ -1,10 +1,9 @@
-;;; seq-autoloads.el --- automatically extracted autoloads
+;;; epl-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
 (add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil nil ("seq-24.el" "seq-25.el" "seq-pkg.el" "seq.el")
-;;;;;;  (22805 9179 0 0))
+;;;### (autoloads nil nil ("epl.el") (22895 65352 0 0))
 
 ;;;***
 
@@ -13,4 +12,4 @@
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
 ;; End:
-;;; seq-autoloads.el ends here
+;;; epl-autoloads.el ends here

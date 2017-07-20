@@ -1,13 +1,11 @@
 ;;; pkg-info-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-
+(add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads (pkg-info-version-info pkg-info-package-version
-;;;;;;  pkg-info-defining-library-version pkg-info-defining-library-original-version
-;;;;;;  pkg-info-library-version pkg-info-library-original-version)
-;;;;;;  "pkg-info" "pkg-info.el" (21887 29107 704733 193000))
-;;; Generated autoloads from pkg-info.el
+;;;### (autoloads nil "pkg-info" "../../../../../.emacs.d/elpa/pkg-info-0.6/pkg-info.el"
+;;;;;;  "a0ede30a59fcaaa109bcc70302e4ef0a")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/pkg-info-0.6/pkg-info.el
 
 (autoload 'pkg-info-library-original-version "pkg-info" "\
 Get the original version in the header of LIBRARY.
@@ -116,16 +114,15 @@ version.
 
 ;;;***
 
-;;;### (autoloads nil nil ("pkg-info-pkg.el") (21887 29107 795653
-;;;;;;  195000))
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/pkg-info-0.6/pkg-info-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/pkg-info-0.6/pkg-info.el")
+;;;;;;  (22895 65353 0 0))
 
 ;;;***
 
-(provide 'pkg-info-autoloads)
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
-;; coding: utf-8
 ;; End:
 ;;; pkg-info-autoloads.el ends here

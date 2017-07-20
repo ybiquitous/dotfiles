@@ -1,14 +1,13 @@
 ;;; emmet-mode.el --- Unofficial Emmet's support for emacs
 
-;; Copyright (C) 2014-     Dmitry Mukhutdinov (@flyingleafe  https://github.com/flyingleafe)
-;; Copyright (C) 2014-     William David Mayo (@pbocks       https://github.com/pobocks)
-;; Copyright (C) 2013-     Shin Aoyama        (@smihica      https://github.com/smihica)
+;; Copyright (C) 2013-     Shin Aoyama
 ;; Copyright (C) 2009-2012 Chris Done
 
-;; Version: 1.0.10
+;; Version: 1.0.8
+;; Package-Version: 1.0.8
 ;; Author: Shin Aoyama <smihica@gmail.com>
 ;; URL: https://github.com/smihica/emmet-mode
-;; Last-Updated: 2014-08-11 Mon
+;; Last-Updated: 2014-02-19 Wed
 ;; Keywords: convenience
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -67,7 +66,7 @@
 ;;
 ;;; Code:
 
-(defconst emmet-mode:version "1.0.10")
+(defconst emmet-mode:version "1.0.8")
 
 (require 'cl)
 
@@ -129,14 +128,6 @@
                                        (expr (car it)))
                                    ,then-form)
                                  ,@else-forms)))
-
-(defmacro emmet-find (direction regexp &optional limit-of-search repeat-count)
-  "Regexp-search in given direction, returning the position (or nil)
-and leaving the point in place."
-  `(save-excursion
-     (if (,(intern (concat "re-search-" direction))
-          ,regexp ,limit-of-search t ,repeat-count)
-         (match-beginning 0))))
 
 (defun emmet-regex (regexp string refs)
   "Return a list of (`ref') matches for a `regex' on a `string' or nil."
@@ -718,22 +709,22 @@ tbl) tbl)
 (puthash "html" (let ((tbl (make-hash-table :test 'equal)))
 (puthash "aliases" (let ((tbl (make-hash-table :test 'equal)))
 (puthash "!" "html:5" tbl)
-(puthash "a:link" "a[href=http://]" tbl)
-(puthash "a:mail" "a[href=mailto:]" tbl)
+(puthash "a:link" "a href=http://" tbl)
+(puthash "a:mail" "a href=mailto:" tbl)
 (puthash "acr" "acronym" tbl)
 (puthash "adr" "address" tbl)
-(puthash "area:c" "area[shape=circle coords href alt]" tbl)
-(puthash "area:d" "area[shape=default href alt]" tbl)
-(puthash "area:p" "area[shape=poly coords href alt]" tbl)
-(puthash "area:r" "area[shape=rect coords href alt]" tbl)
+(puthash "area:c" "area shape=circle coords href alt" tbl)
+(puthash "area:d" "area shape=default href alt" tbl)
+(puthash "area:p" "area shape=poly coords href alt" tbl)
+(puthash "area:r" "area shape=rect coords href alt" tbl)
 (puthash "art" "article" tbl)
-(puthash "bdo:l" "bdo[dir=ltr]" tbl)
-(puthash "bdo:r" "bdo[dir=rtl]" tbl)
+(puthash "bdo:l" "bdo dir=ltr" tbl)
+(puthash "bdo:r" "bdo dir=rtl" tbl)
 (puthash "bq" "blockquote" tbl)
 (puthash "btn" "button" tbl)
-(puthash "btn:b" "button[type=button]" tbl)
-(puthash "btn:r" "button[type=reset]" tbl)
-(puthash "btn:s" "button[type=submit]" tbl)
+(puthash "btn:b" "button type=button" tbl)
+(puthash "btn:r" "button type=reset" tbl)
+(puthash "btn:s" "button type=submit" tbl)
 (puthash "cap" "caption" tbl)
 (puthash "cmd" "command" tbl)
 (puthash "colg" "colgroup" tbl)
@@ -744,73 +735,73 @@ tbl) tbl)
 (puthash "det" "details" tbl)
 (puthash "dl+" "dl>dt+dd" tbl)
 (puthash "dlg" "dialog" tbl)
-(puthash "doc" "html>(head>meta[charset=UTF-8]+title{Document})+body" tbl)
-(puthash "doc4" "html>(head>meta[http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\"]+title{Document})" tbl)
+(puthash "doc" "html>(head>meta charset=UTF-8+title{Document})+body" tbl)
+(puthash "doc4" "html>(head>meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\"+title{Document})" tbl)
 (puthash "emb" "embed" tbl)
 (puthash "fig" "figure" tbl)
 (puthash "figc" "figcaption" tbl)
-(puthash "form:get" "form[action method=get]" tbl)
-(puthash "form:post" "form[action method=post]" tbl)
+(puthash "form:get" "form action method=get" tbl)
+(puthash "form:post" "form action method=post" tbl)
 (puthash "fset" "fieldset" tbl)
 (puthash "fst" "fieldset" tbl)
 (puthash "ftr" "footer" tbl)
 (puthash "hdr" "header" tbl)
-(puthash "html:4s" "!!!4s+doc4[lang=en]" tbl)
-(puthash "html:4t" "!!!4t+doc4[lang=en]" tbl)
-(puthash "html:5" "!!!+doc[lang=en]" tbl)
-(puthash "html:xml" "html[xmlns=http://www.w3.org/1999/xhtml]" tbl)
-(puthash "html:xs" "!!!xs+doc4[xmlns=http://www.w3.org/1999/xhtml xml:lang=en]" tbl)
-(puthash "html:xt" "!!!xt+doc4[xmlns=http://www.w3.org/1999/xhtml xml:lang=en]" tbl)
-(puthash "html:xxs" "!!!xxs+doc4[xmlns=http://www.w3.org/1999/xhtml xml:lang=en]" tbl)
+(puthash "html:4s" "!!!4s+doc4 lang=en" tbl)
+(puthash "html:4t" "!!!4t+doc4 lang=en" tbl)
+(puthash "html:5" "!!!+doc lang=en" tbl)
+(puthash "html:xml" "html xmlns=http://www.w3.org/1999/xhtml" tbl)
+(puthash "html:xs" "!!!xs+doc4 xmlns=http://www.w3.org/1999/xhtml xml:lang=en" tbl)
+(puthash "html:xt" "!!!xt+doc4 xmlns=http://www.w3.org/1999/xhtml xml:lang=en" tbl)
+(puthash "html:xxs" "!!!xxs+doc4 xmlns=http://www.w3.org/1999/xhtml xml:lang=en" tbl)
 (puthash "ifr" "iframe" tbl)
 (puthash "input:b" "input:button" tbl)
-(puthash "input:button" "input[type=button]" tbl)
+(puthash "input:button" "input type=button" tbl)
 (puthash "input:c" "input:checkbox" tbl)
-(puthash "input:checkbox" "input[type=checkbox]" tbl)
-(puthash "input:color" "input[type=color]" tbl)
-(puthash "input:date" "input[type=date]" tbl)
-(puthash "input:datetime" "input[type=datetime]" tbl)
-(puthash "input:datetime-local" "input[type=datetime-local]" tbl)
-(puthash "input:email" "input[type=email]" tbl)
+(puthash "input:checkbox" "input type=checkbox" tbl)
+(puthash "input:color" "input type=color" tbl)
+(puthash "input:date" "input type=date" tbl)
+(puthash "input:datetime" "input type=datetime" tbl)
+(puthash "input:datetime-local" "input type=datetime-local" tbl)
+(puthash "input:email" "input type=email" tbl)
 (puthash "input:f" "input:file" tbl)
-(puthash "input:file" "input[type=file]" tbl)
+(puthash "input:file" "input type=file" tbl)
 (puthash "input:h" "input:hidden" tbl)
-(puthash "input:hidden" "input[type=hidden]" tbl)
+(puthash "input:hidden" "input type=hidden" tbl)
 (puthash "input:i" "input:image" tbl)
-(puthash "input:image" "input[type=image src alt]" tbl)
-(puthash "input:month" "input[type=month]" tbl)
-(puthash "input:number" "input[type=number]" tbl)
+(puthash "input:image" "input type=image src alt" tbl)
+(puthash "input:month" "input type=month" tbl)
+(puthash "input:number" "input type=number" tbl)
 (puthash "input:p" "input:password" tbl)
-(puthash "input:password" "input[type=password]" tbl)
+(puthash "input:password" "input type=password" tbl)
 (puthash "input:r" "input:radio" tbl)
-(puthash "input:radio" "input[type=radio]" tbl)
-(puthash "input:range" "input[type=range]" tbl)
-(puthash "input:reset" "input[type=reset]" tbl)
+(puthash "input:radio" "input type=radio" tbl)
+(puthash "input:range" "input type=range" tbl)
+(puthash "input:reset" "input type=reset" tbl)
 (puthash "input:s" "input:submit" tbl)
-(puthash "input:search" "input[type=search]" tbl)
-(puthash "input:submit" "input[type=submit]" tbl)
+(puthash "input:search" "input type=search" tbl)
+(puthash "input:submit" "input type=submit" tbl)
 (puthash "input:t" "input" tbl)
 (puthash "input:text" "input" tbl)
-(puthash "input:time" "input[type=time]" tbl)
-(puthash "input:url" "input[type=url]" tbl)
-(puthash "input:week" "input[type=week]" tbl)
+(puthash "input:time" "input type=time" tbl)
+(puthash "input:url" "input type=url" tbl)
+(puthash "input:week" "input type=week" tbl)
 (puthash "kg" "keygen" tbl)
 (puthash "leg" "legend" tbl)
-(puthash "link:atom" "link[rel=alternate type=\"application/atom+xml\" title=Atom href=atom.xml]" tbl)
-(puthash "link:css" "link[rel=stylesheet href=style.css]" tbl)
-(puthash "link:favicon" "link[icon rel=shortcut type=image/x-icon href=favicon.ico]" tbl)
-(puthash "link:print" "link[rel=stylesheet href=print.css media=print]" tbl)
-(puthash "link:rss" "link[rel=alternate type=application/rss+xml title=RSS href=rss.xml]" tbl)
-(puthash "link:touch" "link[rel=apple-touch-icon href=favicon.png]" tbl)
+(puthash "link:atom" "link rel=alternate type=\"application/atom+xml\" title=Atom href=atom.xml" tbl)
+(puthash "link:css" "link rel=stylesheet href=style.css" tbl)
+(puthash "link:favicon" "link icon rel=shortcut type=image/x-icon href=favicon.ico" tbl)
+(puthash "link:print" "link rel=stylesheet href=print.css media=print" tbl)
+(puthash "link:rss" "link rel=alternate type=application/rss+xml title=RSS href=rss.xml" tbl)
+(puthash "link:touch" "link rel=apple-touch-icon href=favicon.png" tbl)
 (puthash "map+" "map>area" tbl)
 (puthash "menu:c" "menu:context" tbl)
-(puthash "menu:context" "menu[type=context]" tbl)
+(puthash "menu:context" "menu type=context" tbl)
 (puthash "menu:t" "menu:toolbar" tbl)
-(puthash "menu:toolbar" "menu[type=toolbar]" tbl)
-(puthash "meta:compat" "meta[http-equiv=X-UA-Compatible content=\"IE=edge,chrome=1\"]" tbl)
-(puthash "meta:utf" "meta[http-equiv=Content-Type content=\"text/html;charset=UTF-8\"]" tbl)
-(puthash "meta:vp" "meta[name=viewport content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\"]" tbl)
-(puthash "meta:win" "meta[http-equiv=Content-Type content=\"text/html;charset=windows-1251\"]" tbl)
+(puthash "menu:toolbar" "menu type=toolbar" tbl)
+(puthash "meta:compat" "meta http-equiv=X-UA-Compatible content=\"IE=edge,chrome=1\"" tbl)
+(puthash "meta:utf" "meta http-equiv=Content-Type content=\"text/html;charset=UTF-8\"" tbl)
+(puthash "meta:vp" "meta name=viewport content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\"" tbl)
+(puthash "meta:win" "meta http-equiv=Content-Type content=\"text/html;charset=windows-1251\"" tbl)
 (puthash "obj" "object" tbl)
 (puthash "ol+" "ol>li" tbl)
 (puthash "opt" "option" tbl)
@@ -819,7 +810,7 @@ tbl) tbl)
 (puthash "optgroup+" "optgroup>option" tbl)
 (puthash "out" "output" tbl)
 (puthash "prog" "progress" tbl)
-(puthash "script:src" "script[src]" tbl)
+(puthash "script:src" "script src" tbl)
 (puthash "sect" "section" tbl)
 (puthash "select+" "select>option" tbl)
 (puthash "src" "source" tbl)
@@ -839,15 +830,6 @@ tbl) tbl)
 (puthash "cc:ie" "<!--[if IE]>\n\t${child}\n<![endif]-->" tbl)
 (puthash "cc:ie6" "<!--[if lte IE 6]>\n\t${child}\n<![endif]-->" tbl)
 (puthash "cc:noie" "<!--[if !IE]><!-->\n\t${child}\n<!--<![endif]-->" tbl)
-tbl) tbl)
-tbl) tbl)
-(puthash "sass" (let ((tbl (make-hash-table :test 'equal)))
-(puthash "snippets" (let ((tbl (make-hash-table :test 'equal)))
-(puthash "@f" "@font-face\n\tfont-family:|\n\tsrc:url(|)\n" tbl)
-(puthash "@f+" "@font-face\n\tfont-family: '${1:FontName}'\n\tsrc: url('${2:FileName}.eot')\n\tsrc: url('${2:FileName}.eot?#iefix') format('embedded-opentype'), url('${2:FileName}.woff') format('woff'), url('${2:FileName}.ttf') format('truetype'), url('${2:FileName}.svg#${1:FontName}') format('svg')\n\tfont-style: ${3:normal}\n\tfont-weight: ${4:normal}\n" tbl)
-(puthash "@kf" "@-webkit-keyframes ${1:identifier}\n\t${2:from}\n\t\t${3}${6}\n\t${4:to}\n\t\t${5}\n\n@-o-keyframes ${1:identifier}\n\t${2:from}\n\t\t${3}${6}\n\t${4:to}\n\t\t${5}\n\n@-moz-keyframes ${1:identifier}\n\t${2:from}\n\t\t${3}${6}\n\t${4:to}\n\t\t${5}\n\n@keyframes ${1:identifier}\n\t${2:from}\n\t\t${3}${6}\n\t${4:to}\n\t\t${5}\n" tbl)
-(puthash "@m" "@media ${1:screen}\n\t|\n" tbl)
-(puthash "@media" "@media ${1:screen}\n\t|\n" tbl)
 tbl) tbl)
 tbl) tbl)
 tbl))
@@ -1995,7 +1977,7 @@ tbl) tbl)
 (puthash "selfClosing" nil tbl)
 tbl) tbl)
 (puthash "div" (let ((tbl (make-hash-table :test 'equal)))
-(puthash "block" t tbl)
+(puthash "block" nil tbl)
 (puthash "selfClosing" nil tbl)
 tbl) tbl)
 (puthash "dl" (let ((tbl (make-hash-table :test 'equal)))
@@ -2224,7 +2206,7 @@ tbl) tbl)
 (puthash "selfClosing" nil tbl)
 tbl) tbl)
 (puthash "p" (let ((tbl (make-hash-table :test 'equal)))
-(puthash "block" t tbl)
+(puthash "block" nil tbl)
 (puthash "selfClosing" nil tbl)
 tbl) tbl)
 (puthash "param" (let ((tbl (make-hash-table :test 'equal)))
@@ -2555,7 +2537,7 @@ tbl))
                       `(tag (,tagname ,has-body? nil)) input))
       (let ((tag-data (cadar it)) (input (cdr it)))
         (emmet-pif (emmet-run
-                        emmet-properties
+                        emmet-props
                         (let ((props (cdr expr)))
                           `((tag ,(append tag-data (list props))) . ,input))
                         `((tag ,(append tag-data '(nil))) . ,input))
@@ -2634,7 +2616,7 @@ tbl))
 
 (defun emmet-tag-props (tag input)
   (let ((tag-data (cadr tag)))
-    (emmet-run emmet-properties
+    (emmet-run emmet-props
                    (let ((props (cdr expr)))
                      `((tag ,(append tag-data (list props))) . ,input))
                    `((tag ,(append tag-data '(nil))) . ,input))))
@@ -2648,7 +2630,7 @@ tbl))
 
 (defun emmet-prop (input)
   (emmet-parse
-   " *" 1 "space"
+   " " 1 "space"
    (emmet-run
     emmet-name
     (let ((name (cdr expr)))
@@ -2691,12 +2673,6 @@ tbl))
   (emmet-parse "{\\(.*?\\)}" 2 "inner text"
                    (let ((txt (emmet-split-numbering-expressions (elt it 1))))
                      `((text ,txt) . ,input))))
-
-(defun emmet-properties (input)
-  "A bracketed emmet property expression."
-  (emmet-parse "\\[\\(.*?\\)\\]" 2 "properties"
-                `(,(car (emmet-props (elt it 1))) . ,input)))
-
 
 (defun emmet-pexpr (input)
   "A zen coding expression with parentheses around it."
@@ -2960,17 +2936,16 @@ tbl))
           (self-closing?      (and (not (or tag-txt content))
                                    (or (not tag-has-body?)
                                        (and settings (gethash "selfClosing" settings)))))
-	  (block-indentation? (or content-multiline? (and block-tag? content)))
-          (lf                 (if block-indentation? "\n")))
+          (lf                 (if (or content-multiline? block-tag?) "\n")))
      (concat "<" tag-name id classes props
              (if self-closing? "/>"
                (concat ">"
                        (if tag-txt
-                           (if block-indentation? 
+                           (if (or content-multiline? block-tag?)
                                (emmet-indent tag-txt)
                              tag-txt))
                        (if content
-                           (if block-indentation?
+                           (if (or content-multiline? block-tag?)
                                (emmet-indent content)
                              content))
                        lf
@@ -3014,16 +2989,15 @@ tbl))
                    (lambda (prop)
                      (concat ":" (symbol-name (car prop)) " \"" (cadr prop) "\""))))
          (content-multiline? (and content (string-match "\n" content)))
-         (block-tag? (and settings (gethash "block" settings)))
-         (block-indentation? (or content-multiline? (and block-tag? content))))
+         (block-tag? (and settings (gethash "block" settings))))
     (concat "[:" tag-name id classes props
             (if tag-txt
                 (let ((tag-txt-quoted (concat "\"" tag-txt "\"")))
-                  (if block-indentation?
+                  (if (or content-multiline? block-tag?)
                       (emmet-indent tag-txt-quoted)
                     (concat " " tag-txt-quoted))))
             (if content
-                (if block-indentation?
+                (if (or content-multiline? block-tag?)
                     (emmet-indent content)
                   (concat " " content)))
             "]")))
@@ -3094,13 +3068,12 @@ tbl))
             (sib2 (emmet-transform-ast (caddr ast) tag-maker)))
         (concat sib1 "\n" sib2))))))
 
-;; Indents text rigidly by inserting spaces
-;; Only matters if emmet-indent-after-insert is set to nil
 (defun emmet-indent (text)
   "Indent the text"
   (if text
-      (replace-regexp-in-string "\n" (concat "\n" (make-string emmet-indentation ?\ )) (concat "\n" text))
+      (replace-regexp-in-string "\n" "\n    " (concat "\n" text))
     nil))
+
 (defvar emmet-lorem-words
   '("lorem" "ipsum" "dolor" "sit" "amet," "consectetur" "adipiscing" "elit" "ut" "aliquam," "purus" "sit" "amet" "luctus" "venenatis,"
     "lectus" "magna" "fringilla" "urna," "porttitor" "rhoncus" "dolor" "purus" "non" "enim" "praesent" "elementum" "facilisis" "leo,"
@@ -3366,10 +3339,6 @@ tbl))
  (gethash "snippets" (gethash "css" emmet-snippets)))
 
 (emmet-defparameter
- emmet-sass-snippets
- (gethash "snippets" (gethash "sass" emmet-snippets)))
-
-(emmet-defparameter
  emmet-css-unitless-properties
  (gethash "unitlessProperties" (gethash "css" emmet-preferences)))
 
@@ -3444,48 +3413,43 @@ tbl))
   (emmet-join-string
    (mapcar
     #'(lambda (expr)
-        (let* 
-	    ((hash-map (if emmet-use-sass-syntax emmet-sass-snippets emmet-css-snippets))
-	     (basement
-	      (emmet-aif
-	       (or (gethash (car expr) hash-map) (gethash (car expr) emmet-css-snippets))
-	       (let ((set it) (fn nil) (unitlessp nil))
-		 (if (stringp set)
-		     (progn
-		       ;; new pattern
-		       ;; creating print function
-		       (setf fn (emmet-css-instantiate-lambda set))
-		       ;; get unitless or no
-		       (setf unitlessp
-			     (not (null (string-match
-					 emmet-css-unitless-properties-regex set))))
-		       ;; caching
-		       (puthash (car expr) (cons fn unitlessp) hash-map))
-		   (progn
-		     ;; cache hit.
-		     (setf fn (car set))
-		     (setf unitlessp (cdr set))))
-		 (apply fn
-			(mapcar
-			 #'(lambda (arg)
-			     (if (listp arg)
-				 (if unitlessp (car arg)
-				   (apply #'concat arg))
-			       arg))
-			 (cdddr expr))))
-	       (concat (car expr) ": "
-		       (emmet-join-string
-			(mapcar #'(lambda (arg)
-				    (if (listp arg) (apply #'concat arg) arg))
-				(cdddr expr)) " ")
-		       ";"))))
+        (let ((basement
+               (emmet-aif
+                (gethash (car expr) emmet-css-snippets)
+                (let ((set it) (fn nil) (unitlessp nil))
+                  (if (stringp set)
+                      (progn
+                        ;; new pattern
+                        ;; creating print function
+                        (setf fn (emmet-css-instantiate-lambda set))
+                        ;; get unitless or no
+                        (setf unitlessp
+                              (not (null (string-match
+                                          emmet-css-unitless-properties-regex set))))
+                        ;; caching
+                        (puthash (car expr) (cons fn unitlessp) emmet-css-snippets))
+                    (progn
+                      ;; cache hit.
+                      (setf fn (car set))
+                      (setf unitlessp (cdr set))))
+                  (apply fn
+                         (mapcar
+                          #'(lambda (arg)
+                              (if (listp arg)
+                                  (if unitlessp (car arg)
+                                    (apply #'concat arg))
+                                arg))
+                          (cdddr expr))))
+                (concat (car expr) ": "
+                        (emmet-join-string
+                         (mapcar #'(lambda (arg)
+                                     (if (listp arg) (apply #'concat arg) arg))
+                                 (cdddr expr)) " ")
+                        ";"))))
           (let ((line
                  (if (caddr expr)
                      (concat (subseq basement 0 -1) " !important;")
                    basement)))
-	    ;; remove trailing semicolon while editing Sass files
-	    (if (and emmet-use-sass-syntax (equal ";" (subseq line -1)))
-		(setq line (subseq line 0 -1)))
             (emmet-aif
              (cadr expr)
              (emmet-css-transform-vendor-prefixes line it)
@@ -3505,60 +3469,28 @@ tbl))
 (defun emmet-expr-on-line ()
   "Extract a emmet expression and the corresponding bounds
    for the current line."
-  (let* ((end (point))
-         (start (emmet-find-left-bound))
+  (let* ((start (line-beginning-position))
+         (end (line-end-position))
          (line (buffer-substring-no-properties start end))
          (expr (emmet-regex "\\([ \t]*\\)\\([^\n]+\\)" line 2)))
     (if (first expr)
         (list (first expr) start end))))
-
-(defun emmet-find-left-bound ()
-  "Find the left bound of an emmet expr"
-  (save-excursion (save-match-data
-    (let ((char (char-before))
-          (last-gt (point))
-          (in-style-attr (looking-back "style=[\"'][^\"']*")))
-      (while char
-        (cond ((and in-style-attr (member char '(?\" ?\')))
-               (setq char nil))
-              ((member char '(?\} ?\] ?\)))
-               (with-syntax-table (standard-syntax-table)
-                 (backward-sexp) (setq char (char-before))))
-              ((eq char ?\>)
-               (setq last-gt (point)) (backward-char) (setq char (char-before)))
-              ((eq char ?\<)
-               (goto-char last-gt) (setq char nil))
-              ((not (string-match-p "[[:space:]\n;]" (string char)))
-               (backward-char) (setq char (char-before)))
-              (t
-               (setq char nil))))
-      (point)))))
 
 (defcustom emmet-indentation 4
   "Number of spaces used for indentation."
   :type '(number :tag "Spaces")
   :group 'emmet)
 
-(defcustom emmet-indent-after-insert t
-  "Indent region after insert?"
-  :type 'boolean
-  :group 'emmet)
-
-(defcustom emmet-use-style-tag-and-attr-detection t
-  "When true, enables detection of style tags and attributes in HTML
-to provide proper CSS abbreviations completion."
-  :type 'boolean
-  :group 'emmet)
+(defun emmet-prettify (markup indent)
+  (let ((first-col (format (format "%%%ds" indent) ""))
+        (tab       (format (format "%%%ds" emmet-indentation) "")))
+    (concat first-col
+            (replace-regexp-in-string "\n" (concat "\n" first-col)
+                                      (replace-regexp-in-string "    " tab markup)))))
 
 (defvar emmet-use-css-transform nil
   "When true, transform Emmet snippets into CSS, instead of the usual HTML.")
 (make-variable-buffer-local 'emmet-use-css-transform)
-
-(defvar emmet-use-sass-syntax nil
-  "When true, uses Sass syntax for CSS abbreviations expanding,
-e. g. without semicolons")
-(make-variable-buffer-local 'emmet-use-sass-syntax)
-
 
 (defvar emmet-css-major-modes
   '(css-mode
@@ -3569,40 +3501,9 @@ e. g. without semicolons")
   "Major modes that use emmet for CSS, rather than HTML.")
 
 (defun emmet-transform (input)
-  (if (or (emmet-detect-style-tag-and-attr) emmet-use-css-transform)
+  (if emmet-use-css-transform
       (emmet-css-transform input)
     (emmet-html-transform input)))
-
-(defun emmet-reposition-cursor (expr)
-  (let ((output-markup (buffer-substring-no-properties (second expr) (point))))
-    (when emmet-move-cursor-after-expanding
-      (let ((p (point))
-            (new-pos (if (emmet-html-text-p output-markup)
-                         (emmet-html-next-insert-point output-markup)
-                       (emmet-css-next-insert-point output-markup))))
-        (goto-char
-         (+ (- p (length output-markup))
-            new-pos))))))
-
-(defun emmet-detect-style-tag-and-attr ()
-  (let* ((style-attr-end "[^=][\"']")
-         (style-attr-begin "style=[\"']")
-         (style-tag-end "</style>")
-         (style-tag-begin "<style>"))
-    (and emmet-use-style-tag-and-attr-detection
-         (or
-          (emmet-check-if-between style-attr-begin style-attr-end) ; style attr
-          (emmet-check-if-between style-tag-begin style-tag-end))))) ; style tag
-
-(defun emmet-check-if-between (begin end)
-  (let ((begin-back (emmet-find "backward" begin))
-        (end-back (emmet-find "backward" end))
-        (begin-front (emmet-find "forward" begin))
-        (end-front (emmet-find "forward" end)))
-    (and begin-back end-front
-         (or (not end-back) (> begin-back end-back))
-         (or (not begin-front) (< end-front begin-front)))))
-
 
 ;;;###autoload
 (defun emmet-expand-line (arg)
@@ -3617,12 +3518,18 @@ For more information see `emmet-mode'."
   (let* ((here (point))
          (preview (if emmet-preview-default (not arg) arg))
          (beg (if preview
-                  (emmet-find-left-bound)
-                (when (use-region-p) (region-beginning))))
+                  (progn
+                    (beginning-of-line)
+                    (skip-chars-forward " \t")
+                    (point))
+                (when mark-active (region-beginning))))
          (end (if preview
-                  here
-                (when (use-region-p) (region-end)))))
-    (if (and preview beg)
+                  (progn
+                    (end-of-line)
+                    (skip-chars-backward " \t")
+                    (point))
+                (when mark-active (region-end)))))
+    (if beg
         (progn
           (goto-char here)
           (emmet-preview beg end))
@@ -3630,27 +3537,30 @@ For more information see `emmet-mode'."
         (if expr
             (let ((markup (emmet-transform (first expr))))
               (when markup
-                (delete-region (second expr) (third expr))
-                (emmet-insert-and-flash markup)
-                (emmet-reposition-cursor expr))))))))
+                (let ((pretty (emmet-prettify markup (current-indentation))))
+                  (when pretty
+                    (delete-region (second expr) (third expr))
+                    (emmet-insert-and-flash pretty)
+                    (when (and emmet-move-cursor-after-expanding (emmet-html-text-p markup))
+                      (let ((p (point)))
+                        (goto-char
+                         (+ (- p (length pretty))
+                            (emmet-html-next-insert-point pretty))))))))))))))
 
-(defvar emmet-mode-keymap
-  (let
-      ((map (make-sparse-keymap)))
-    (define-key map (kbd "C-j") 'emmet-expand-line)
-    (define-key map (kbd "<C-return>") 'emmet-expand-line)
-    (define-key map (kbd "<C-M-right>") 'emmet-next-edit-point)
-    (define-key map (kbd "<C-M-left>") 'emmet-prev-edit-point)
-    (define-key map (kbd "C-c w") 'emmet-wrap-with-markup)
-    map)
+(defvar emmet-mode-keymap nil
   "Keymap for emmet minor mode.")
+
+(if emmet-mode-keymap
+    nil
+  (progn
+    (setq emmet-mode-keymap (make-sparse-keymap))
+    (define-key emmet-mode-keymap (kbd "C-j") 'emmet-expand-line)
+    (define-key emmet-mode-keymap (kbd "<C-return>") 'emmet-expand-line)))
 
 (defun emmet-after-hook ()
   "Initialize Emmet's buffer-local variables."
   (if (memq major-mode emmet-css-major-modes)
-      (setq emmet-use-css-transform t))
-  (if (eq major-mode 'sass-mode)
-      (setq emmet-use-sass-syntax t)))
+      (setq emmet-use-css-transform t)))
 
 ;;;###autoload
 (define-minor-mode emmet-mode
@@ -3737,34 +3647,53 @@ See also `emmet-expand-line'."
 
 (defun emmet-preview-accept ()
   (interactive)
-  (let ((ovli emmet-preview-input)
-        (expr (emmet-expr-on-line)))
+  (let ((ovli emmet-preview-input))
     (if (not (and (overlayp ovli)
                   (bufferp (overlay-buffer ovli))))
         (message "Preview is not active")
       (let* ((indent (current-indentation))
              (markup (emmet-preview-transformed indent)))
         (when markup
-          (delete-region (overlay-start ovli) (overlay-end ovli))
+          (delete-region (line-beginning-position) (overlay-end ovli))
           (emmet-insert-and-flash markup)
-          (emmet-reposition-cursor expr)))))
+          (when (and emmet-move-cursor-after-expanding (emmet-html-text-p markup))
+            (let ((p (point)))
+              (goto-char
+               (+ (- p (length markup))
+                  (emmet-html-next-insert-point markup)))))))))
   (emmet-preview-abort))
 
 (defun emmet-html-next-insert-point (str)
-  (with-temp-buffer
-    (insert str)
-    (goto-char (point-min))
-    (or
-     (emmet-aif (emmet-go-to-edit-point 1 t) (- it 1)) ; try to find an edit point
-     (emmet-aif (re-search-forward ".+</" nil t) (- it 3))   ; try to place cursor after tag contents
-     (length str))))                             ; ok, just go to the end
-
-(defun emmet-css-next-insert-point (str)
-  (let ((regexp (if emmet-use-sass-syntax ": *\\($\\)" ": *\\(;\\)$")))
-    (save-match-data
-      (set-match-data nil t)
-      (string-match regexp str)
-      (or (match-beginning 1) (length str)))))
+  (let ((intag t)    (instring nil)
+        (last-c nil) (c nil)
+        (rti 0))
+    (loop for i to (1- (length str)) do
+          (setq last-c c)
+          (setq c (elt str i))
+          (case c
+            (?\" (if (not (= last-c ?\\))
+                     (progn (setq instring (not instring))
+                            (when (and emmet-move-cursor-between-quotes
+                                       (not instring)
+                                       (= last-c ?\"))
+                              (return i)))))
+            (?>  (if (not instring)
+                     (if intag
+                         (if (= last-c ?/) (return (1+ i))
+                           (progn (setq intag nil)
+                                  (setq rti (1+ i))))
+                       (return i)))) ;; error?
+            (?<  (if (and (not instring) (not intag))
+                     (setq intag t)))
+            (?/  (if (and intag
+                          (not instring)
+                          (= last-c ?<))
+                     (return rti)))
+            (t
+             (if (memq c '(?\t ?\n ?\r ?\s))
+                 (progn (setq c last-c))
+               (if (and (not intag) (not instring))
+                   (return rti))))))))
 
 (defvar emmet-flash-ovl nil)
 (make-variable-buffer-local 'emmet-flash-ovl)
@@ -3804,8 +3733,6 @@ cursor position will be moved to after the first quote."
   (emmet-remove-flash-ovl (current-buffer))
   (let ((here (point)))
     (insert markup)
-    (if emmet-indent-after-insert
-        (indent-region here (point)))
     (setq emmet-flash-ovl (make-overlay here (point)))
     (overlay-put emmet-flash-ovl 'face 'emmet-preview-output)
     (when (< 0 emmet-insert-flash-time)
@@ -3817,7 +3744,7 @@ cursor position will be moved to after the first quote."
   "Expand emmet between BEG and END interactively.
 This will show a preview of the expanded emmet code and you can
 accept it or skip it."
-  (interactive (if (use-region-p)
+  (interactive (if mark-active
                    (list (region-beginning) (region-end))
                  (list nil nil)))
   (emmet-preview-abort)
@@ -3888,7 +3815,7 @@ accept it or skip it."
 		  (overlay-end emmet-preview-input))))
     (let ((output (emmet-transform string)))
       (when output
-        output))))
+        (emmet-prettify output indent)))))
 
 (defun emmet-update-preview (indent)
   (let* ((pretty (emmet-preview-transformed indent))
@@ -3897,79 +3824,6 @@ accept it or skip it."
     (when show
       (overlay-put emmet-preview-output 'after-string
                    (concat show "\n")))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Implementation of "Go to Edit Point" functionality ;;
-;; http://docs.emmet.io/actions/go-to-edit-point/     ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defun emmet-go-to-edit-point (count &optional only-before-closed-tag)
-  (let*
-      ((between-tags
-        (if only-before-closed-tag "\\(><\\)/" "\\(><\\)"))
-       (indented-line "\\(^[[:blank:]]+$\\)")
-       (between-quotes
-        (if emmet-move-cursor-between-quotes "\\(=\\(\"\\|'\\)\\{2\\}\\)" nil))
-       (whole-regex
-        (mapconcat 'identity
-                   (delq nil
-                         (list between-tags indented-line between-quotes))
-                   "\\|"))
-       (edit-point (format "\\(%s\\)" whole-regex)))
-    (if (> count 0)
-	(progn
-	  (forward-char)
-	  (let
-	      ((search-result (re-search-forward edit-point nil t count)))
-	    (if search-result
-		(progn
-		  (cond
-		   ((match-string 2) (goto-char (- (match-end 2) 1)))
-		   ((match-string 3) (end-of-line))
-                   ((match-string 4) (backward-char)))
-		  (point))
-		(backward-char))))
-      (progn
-	(backward-char)
-	(let
-	    ((search-result (re-search-backward edit-point nil t (- count))))
-	  (if search-result
-	      (progn
-		(cond
-		 ((match-string 2) (goto-char (- (match-end 2) 1)))
-		 ((match-string 3) (end-of-line))
-		 ((match-string 4) (forward-char 2)))
-		(point))
-	      (forward-char)))))))
-
-;;;###autoload
-(defun emmet-wrap-with-markup (wrap-with)
-  "Wrap region with markup."
-  (interactive "sExpression to wrap with: ")
-  (let* ((emmet-move-cursor-between-quotes nil)
-         (to-wrap (buffer-substring-no-properties (region-beginning) (region-end)))
-         (expr (concat wrap-with ">{!EMMET-TO-WRAP-REPLACEMENT!}"))
-         (markup (replace-regexp-in-string
-                  "!EMMET-TO-WRAP-REPLACEMENT!" to-wrap
-                  (emmet-transform expr)
-                  t t)))
-         (when markup
-           (delete-region (region-beginning) (region-end))
-           (insert markup)
-           (indent-region (region-beginning) (region-end))
-           )))
-
-;;;###autoload
-(defun emmet-next-edit-point (count)
-  (interactive "^p")
-  (unless (or emmet-use-css-transform (emmet-go-to-edit-point count))
-    (error "Last edit point reached.")))
-
-;;;###autoload
-(defun emmet-prev-edit-point (count)
-  (interactive "^p")
-  (unless (or emmet-use-css-transform (emmet-go-to-edit-point (- count)))
-    (error "First edit point reached.")))
 
 (provide 'emmet-mode)
 

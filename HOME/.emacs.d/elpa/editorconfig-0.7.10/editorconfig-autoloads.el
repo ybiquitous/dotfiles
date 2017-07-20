@@ -3,9 +3,9 @@
 ;;; Code:
 (add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil "editorconfig" "editorconfig.el" (22842 15916
-;;;;;;  0 0))
-;;; Generated autoloads from editorconfig.el
+;;;### (autoloads nil "editorconfig" "../../../../../.emacs.d/elpa/editorconfig-0.7.10/editorconfig.el"
+;;;;;;  "354ba3a0b6b41f150537632d4e918c88")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/editorconfig-0.7.10/editorconfig.el
 
 (autoload 'editorconfig-find-current-editorconfig "editorconfig" "\
 Find the closest .editorconfig file for current file.
@@ -44,9 +44,9 @@ mode is not listed in `editorconfig-exclude-modes'.
 
 ;;;***
 
-;;;### (autoloads nil "editorconfig-conf-mode" "editorconfig-conf-mode.el"
-;;;;;;  (22842 15916 0 0))
-;;; Generated autoloads from editorconfig-conf-mode.el
+;;;### (autoloads nil "editorconfig-conf-mode" "../../../../../.emacs.d/elpa/editorconfig-0.7.10/editorconfig-conf-mode.el"
+;;;;;;  "d8f231bb7239f4031816161b7ea59209")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/editorconfig-0.7.10/editorconfig-conf-mode.el
 
 (autoload 'editorconfig-conf-mode "editorconfig-conf-mode" "\
 Major mode for editing .editorconfig files.
@@ -57,9 +57,9 @@ Major mode for editing .editorconfig files.
 
 ;;;***
 
-;;;### (autoloads nil "editorconfig-core" "editorconfig-core.el"
-;;;;;;  (22842 15916 0 0))
-;;; Generated autoloads from editorconfig-core.el
+;;;### (autoloads nil "editorconfig-core" "../../../../../.emacs.d/elpa/editorconfig-0.7.10/editorconfig-core.el"
+;;;;;;  "16ebcf900bd8e3b93b6881bb09f8c1f8")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/editorconfig-0.7.10/editorconfig-core.el
 
 (autoload 'editorconfig-core-get-nearest-editorconfig "editorconfig-core" "\
 Return path to .editorconfig file that is closest to DIRECTORY.
@@ -90,9 +90,9 @@ hash object instead.
 
 ;;;***
 
-;;;### (autoloads nil "editorconfig-fnmatch" "editorconfig-fnmatch.el"
-;;;;;;  (22842 15916 0 0))
-;;; Generated autoloads from editorconfig-fnmatch.el
+;;;### (autoloads nil "editorconfig-fnmatch" "../../../../../.emacs.d/elpa/editorconfig-0.7.10/editorconfig-fnmatch.el"
+;;;;;;  "c03ca189a6b3bee27f40b8a0e6b093a0")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/editorconfig-0.7.10/editorconfig-fnmatch.el
 
 (autoload 'editorconfig-fnmatch-p "editorconfig-fnmatch" "\
 Test whether NAME match PATTERN.
@@ -114,8 +114,14 @@ be used:
 
 ;;;***
 
-;;;### (autoloads nil nil ("editorconfig-core-handle.el" "editorconfig-pkg.el")
-;;;;;;  (22842 15916 0 0))
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/editorconfig-0.7.10/editorconfig-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/editorconfig-0.7.10/editorconfig-conf-mode.el"
+;;;;;;  "../../../../../.emacs.d/elpa/editorconfig-0.7.10/editorconfig-core-handle.el"
+;;;;;;  "../../../../../.emacs.d/elpa/editorconfig-0.7.10/editorconfig-core.el"
+;;;;;;  "../../../../../.emacs.d/elpa/editorconfig-0.7.10/editorconfig-fnmatch.el"
+;;;;;;  "../../../../../.emacs.d/elpa/editorconfig-0.7.10/editorconfig-pkg.el"
+;;;;;;  "../../../../../.emacs.d/elpa/editorconfig-0.7.10/editorconfig.el")
+;;;;;;  (22895 64747 0 0))
 
 ;;;***
 
