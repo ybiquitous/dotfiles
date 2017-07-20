@@ -90,16 +90,6 @@
 ;; shell script
 (add-to-list 'auto-mode-alist '("\\.sh\\'" . sh-mode))
 
-;; shell
-(add-hook 'shell-mode-hook
-          (lambda ()
-            (setq comint-input-ring-file-name (getenv "HISTFILE"))
-            (setq comint-input-ring-size (string-to-number (getenv "HISTSIZE")))
-            (comint-read-input-ring t)
-            (local-set-key (kbd "M-p") 'comint-previous-matching-input-from-input)
-            (local-set-key (kbd "M-n") 'comint-next-matching-input-from-input)
-            ))
-
 ;; vc-mode bug hack
 ;; See http://www.lares.dti.ne.jp/~foozy/fujiguruma/scm/cvs-emacs.html
 (defadvice vc-before-save
