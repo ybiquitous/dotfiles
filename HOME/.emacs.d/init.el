@@ -93,9 +93,6 @@
 ;; init-loader
 (init-loader-load)
 
-;; perl
-(defalias 'perl-mode 'cperl-mode)
-
 ;; company
 (add-hook 'after-init-hook 'global-company-mode)
 
