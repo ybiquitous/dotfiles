@@ -23,11 +23,6 @@
  '(nxml-auto-insert-xml-declaration-flag t)
  '(nxml-default-buffer-file-coding-system (quote utf-8))
  '(nxml-slash-auto-complete-flag t)
- '(package-archives
-   (quote
-    (("gnu" . "http://elpa.gnu.org/packages/")
-     ("melpa-stable" . "http://stable.melpa.org/packages/")
-     ("marmalade" . "https://marmalade-repo.org/packages/"))))
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(scroll-bar-mode (quote right))
@@ -82,7 +77,15 @@
 (global-set-key (kbd "C-c 0")      'text-scale-adjust)
 (global-set-key (kbd "C-c C-r")    'eval-buffer)
 
-;; package
+;; package (https://github.com/melpa/melpa)
+(require 'package)
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (url (concat (if no-ssl "http" "https") "://stable.melpa.org/packages/")))
+  (add-to-list 'package-archives (cons "melpa-stable" url) t))
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 
 ;; exec-path
