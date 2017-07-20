@@ -1,38 +1,44 @@
-(require 'company-tern)
-(require 'flycheck)
+(use-package tern
+  :ensure t
+  :init (add-hook 'js2-mode-hook 'tern-mode))
 
-(defun js-mode-hooks ()
+(use-package company-tern
+  :ensure t
+  :config
+  (add-to-list 'company-backends 'company-tern))
+
+(use-package js-mode
+  :config
   (setq
-   js-indent-level tab-width
-   js-switch-indent-offset tab-width
-   json-reformat:indent-width tab-width
-   json-reformat:pretty-string? t))
-(add-hook 'js-mode-hook 'js-mode-hooks)
+    js-indent-level tab-width
+    js-switch-indent-offset tab-width))
 
-(defun js2-mode-hooks ()
+(use-package js2-mode
+  :ensure t
+  :bind (:map js2-mode-map
+          ("C-c i" . js-doc-insert-function-doc))
+  :mode "\\.js$"
+  :interpreter "node"
+  :config
   (setq
-   js2-basic-offset tab-width
-   js2-mode-show-parse-errors nil
-   js2-mode-show-strict-warnings nil)
-  (local-set-key (kbd "C-c i") 'js-doc-insert-function-doc)
-  (if (not (equal (file-name-extension buffer-file-name) "json"))
-      (progn
-        (if (eq system-type 'windows-nt) (defvar tern-command '("tern")))
-        (tern-mode t)
-        (add-to-list 'company-backends 'company-tern)
-        )))
-(add-hook 'js2-mode-hook 'js2-mode-hooks)
+    js2-basic-offset tab-width
+    js2-mode-show-parse-errors nil
+    js2-mode-show-strict-warnings nil))
 
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.es6$" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.tern-config\\'" . json-mode))
-(add-to-list 'auto-mode-alist '("\\.tern-project\\'" . json-mode))
-(add-to-list 'auto-mode-alist '("\\.babelrc\\'" . json-mode))
-(add-to-list 'auto-mode-alist '("\\.eslintrc\\'" . json-mode))
+(use-package rjsx-mode
+  :ensure t
+  :mode "components\\/.*\\.js\\'"
+  :config
+  (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
+  (flycheck-mode))
 
-;; rjsx-mode
-(add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
-(add-hook 'rjsx-mode-hook
-          (lambda ()
-            (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
-            (flycheck-mode)))
+(use-package json-mode
+  :ensure t
+  :mode (("\\.tern-config\\'" . json-mode)
+          ("\\.tern-project\\'" . json-mode)
+          ("\\.babelrc\\'" . json-mode)
+          ("\\.eslintrc\\'" . json-mode)
+          ("\\.stylelintrc\\'" . json-mode))
+  :config
+  (setq
+    json-mode-indent-level tab-width))
