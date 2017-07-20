@@ -11,8 +11,13 @@ fi
 cd "$BASEDIR"
 
 # copy files to home directory
-for file in $(find ./HOME -maxdepth 1 -type f); do
-  ln -svf "$file" "$HOME"
+for file in $(find "${BASEDIR}/HOME" -maxdepth 1 -type f); do
+  target_file="${HOME}/$(basename $file)"
+  if [ -f "$target_file" ]; then
+    mv -vf "$target_file" "${target_file}.bak"
+  fi
+
+  ln -svf "$file" "$target_file"
 done
 
 # prepare ~/bin directory
