@@ -9,5 +9,6 @@
             (setq find-program (_posix-path "find.exe")
                   grep-program (_posix-path "grep.exe")
                   diff-command (_posix-path "diff.exe")
-                  null-device "/dev/null")
+                  null-device "/dev/null"
+                  shell-file-name "/bin/sh")
             ))

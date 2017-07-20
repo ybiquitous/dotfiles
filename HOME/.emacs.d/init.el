@@ -40,9 +40,6 @@
  '(read-file-name-completion-ignore-case t)
  '(scroll-bar-mode (quote right))
  '(select-enable-clipboard t)
- '(sh-basic-offset tab-width)
- '(sh-indentation tab-width)
- '(shell-file-name "/bin/sh")
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(size-indication-mode nil)
@@ -86,9 +83,6 @@
 
 ;; init-loader
 (init-loader-load)
-
-;; shell script
-(add-to-list 'auto-mode-alist '("\\.sh\\'" . sh-mode))
 
 ;; vc-mode bug hack
 ;; See http://www.lares.dti.ne.jp/~foozy/fujiguruma/scm/cvs-emacs.html
