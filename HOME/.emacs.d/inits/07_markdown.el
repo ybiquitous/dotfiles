@@ -3,7 +3,7 @@
   :commands (markdown-mode gfm-mode)
   :mode (("\\.md\\'" . gfm-mode)
           ("\\.markdown\\'" . gfm-mode))
-  :init
+  :config
   (setq
     markdown-command "marked"
     markdown-content-type "application/xhtml+xml"
