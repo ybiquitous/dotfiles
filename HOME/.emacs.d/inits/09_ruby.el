@@ -27,6 +27,9 @@
   :config
   (add-to-list 'company-backends 'company-robe))
 
+(use-package rbenv
+  :ensure t)
+
 (defun rails-jump-to-test ()
   "Rails Jump to Test"
   (interactive)
