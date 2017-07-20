@@ -1,22 +1,27 @@
 #!/bin/sh
 set -eu
 
-BASEDIR=$(cd $(dirname $0); pwd)
+# get emacs directory
+basedir=$(cd $(dirname $0); pwd)
+emacsdir="$(dirname $basedir)/HOME/.emacs.d"
 
-ln -svf "${BASEDIR}/../HOME/.emacs.d" "$HOME"
-touch "${HOME}/init-env.el"
+# remove all compiled elisp files
+find "$emacsdir" -type f -name '*.elc' | xargs rm -vf
 
-if [ ! -f "${HOME}/init-env.el" ]; then
-  cat >"${HOME}/init-env.el" <<EOF
+# link emacs directory to home
+ln -svf "$emacsdir" "$HOME"
+
+# create environment specific file
+config_file="${HOME}/99_env.el"
+if [ ! -f "$config_file" ]; then
+  cat >"$config_file" <<EOF
 ;; E.g.
 ;; (add-to-list 'default-frame-alist '(font . "Ubuntu Mono"))
 ;; (add-to-list 'default-frame-alist '(top . 0))
 ;; (add-to-list 'default-frame-alist '(left . 500))
 ;; (add-to-list 'default-frame-alist '(width . 100))
 ;; (add-to-list 'default-frame-alist '(height . 35))
-
-(provide 'init-env)
 EOF
 fi
 
-ln -svf "${HOME}/init-env.el" "${HOME}/.emacs.d/inits"
+ln -svf "$config_file" "${HOME}/.emacs.d/inits"
