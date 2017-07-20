@@ -21,7 +21,6 @@
  '(column-number-mode t)
  '(css-indent-offset tab-width)
  '(electric-pair-mode t)
- '(emmet-indentation tab-width)
  '(global-font-lock-mode t)
  '(global-hl-line-mode t)
  '(global-linum-mode t)
@@ -90,12 +89,6 @@
   (around examine-vc-make-backup-files activate)
   "Examine `vc-make-backup-files' (in vc-hooks.el) at first."
   (and vc-make-backup-files ad-do-it))
-
-;; emmet(zen-coding)
-(add-hook 'html-mode-hook 'emmet-mode)
-(add-hook 'css-mode-hook  'emmet-mode)
-(add-hook 'web-mode-hook  'emmet-mode)
-(add-hook 'rjsx-mode-hook 'emmet-mode)
 
 ;; highlight-symbol
 (add-hook 'prog-mode-hook 'highlight-symbol-mode)
