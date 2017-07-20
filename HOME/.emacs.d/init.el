@@ -90,8 +90,4 @@
   "Examine `vc-make-backup-files' (in vc-hooks.el) at first."
   (and vc-make-backup-files ad-do-it))
 
-;; git-commit
-(global-git-commit-mode)
-(add-hook 'git-commit-mode-hook 'flyspell-mode)
-
 ;;; init.el ends here
