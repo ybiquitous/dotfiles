@@ -3,7 +3,6 @@
   :if (memq window-system '(mac ns))
   :ensure t
   :config
-  (add-to-list 'exec-path-from-shell-variables "HISTFILE")
-  (add-to-list 'exec-path-from-shell-variables "HISTSIZE")
-  (setq exec-path-from-shell-check-startup-files "~/.profile")
+  (dolist (var '("HISTFILE" "HISTSIZE" "NODE_PATH"))
+    (add-to-list 'exec-path-from-shell-variables var t ))
   (exec-path-from-shell-initialize))
