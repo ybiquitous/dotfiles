@@ -18,6 +18,7 @@ brew install \
      imagemagick \
      jq \
      mysql \
+     node \
      postgresql \
      rbenv \
      redis \
