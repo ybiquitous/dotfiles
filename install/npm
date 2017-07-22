@@ -16,6 +16,7 @@ $npm_install \
   git-open \
   marked \
   stylelint \
+  stylelint-config-standard \
   tern
 
 # HACK: install dependencies of ESLint shareable config
