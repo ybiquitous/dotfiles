@@ -26,9 +26,10 @@ brew install \
 brew upgrade
 brew cleanup
 
-GITIGNORE_GLOBAL=~/.gitignore_global
-gibo macOS Emacs Ruby Rails Node > $GITIGNORE_GLOBAL
-cat <<EOF >> $GITIGNORE_GLOBAL
+# setup gibo
+GITIGNORE_GLOBAL="${HOME}/.gitignore_global"
+gibo macOS Emacs Ruby Rails Node > "$GITIGNORE_GLOBAL"
+cat <<EOF >> "$GITIGNORE_GLOBAL"
 # Tern.el
 .tern-*
 EOF
