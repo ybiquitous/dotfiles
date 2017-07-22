@@ -1,5 +1,4 @@
 (use-package highlight-symbol
-  :ensure t
   :bind (:map highlight-symbol-mode
           ("C-c r" . highlight-symbol-query-replace))
   :init

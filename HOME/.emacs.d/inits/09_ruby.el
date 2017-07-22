@@ -1,5 +1,4 @@
 (use-package enh-ruby-mode
-  :ensure t
   :interpreter "ruby"
   :mode (("\\.rb\\'"       . enh-ruby-mode)
          ("\\.ru\\'"       . enh-ruby-mode)
@@ -21,14 +20,12 @@
    enh-ruby-hanging-indent-level tab-width))
 
 (use-package robe
-  :ensure t
   :init
   (add-hook 'enh-ruby-mode-hook 'robe-mode)
   :config
   (add-to-list 'company-backends 'company-robe))
 
-(use-package rbenv
-  :ensure t)
+(use-package rbenv)
 
 (defun rails-jump-to-test ()
   "Rails Jump to Test"

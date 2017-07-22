@@ -35,7 +35,7 @@
  '(nxml-slash-auto-complete-flag t)
  '(package-selected-packages
    (quote
-    (git-commit yaml-mode emmet-mode web-mode rbenv robe enh-ruby-mode highlight-symbol markdown-mode scss-mode js-auto-format-mode json-mode rjsx-mode js2-mode company-tern tern flycheck editorconfig yasnippet company exec-path-from-shell init-loader use-package)))
+    (git-commit yaml-mode emmet-mode web-mode rbenv robe enh-ruby-mode highlight-symbol markdown-mode scss-mode js-auto-format-mode json-mode rjsx-mode js2-mode company-tern tern flycheck editorconfig yasnippet company s exec-path-from-shell init-loader use-package)))
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(scroll-bar-mode (quote right))
@@ -73,10 +73,10 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+(setq use-package-always-ensure t)
 
 ;; init-loader
 (use-package init-loader
-  :ensure t
   :init (init-loader-load))
 
 ;; vc-mode bug hack
