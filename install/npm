@@ -12,12 +12,19 @@ echo
 echo "Installing required packages..."
 $npm_install \
   editorconfig \
-  eslint@3 \
   eslint-config-ybiquitous \
   git-open \
   marked \
   stylelint \
-  tern \
+  tern
+
+# HACK: install dependencies of ESLint shareable config
+# See details: https://github.com/eslint/eslint/issues/3458
+npm -g view eslint-config-ybiquitous peerDependencies dependencies --json |
+  sed 's/[\{\},]//g ; s/: /@/g' |
+  grep -v -i 'dependencies' |
+  paste -s - |
+  xargs $npm_install
 
 # optional packages
 echo
