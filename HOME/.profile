@@ -10,5 +10,8 @@ alias rm='rm -i'
 export HISTFILE="${HOME}/.bash_history"
 export HISTSIZE=100000
 export EDITOR=emacsclient
-export PATH="${HOME}/.yarn/bin:${PATH}"
-export PATH="${HOME}/bin:${PATH}"
+export PATH="${HOME}/bin:${HOME}/.yarn/bin:${PATH}"
+
+if [[ -n $(command -v npm) ]]; then
+  export NODE_PATH=$(npm root -g)
+fi
