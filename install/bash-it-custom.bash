@@ -23,6 +23,8 @@ load-nvmrc() {
     echo "Reverting to nvm default version"
     nvm use default
   fi
+
+  ln -sF "$(npm bin)" "${HOME}/node_shims"
 }
 export PROMPT_COMMAND="$PROMPT_COMMAND ; load-nvmrc"
 
