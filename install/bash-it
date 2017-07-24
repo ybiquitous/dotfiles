@@ -35,7 +35,6 @@ bash-it enable plugin \
         docker \
         git \
         history \
-        node \
         nvm \
         rbenv \
         ruby
