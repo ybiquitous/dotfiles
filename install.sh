@@ -23,6 +23,12 @@ done
 # prepare ~/bin directory
 mkdir -pv "${HOME}/bin"
 
+# copy files to ~/bin
+for file in $(find "${BASEDIR}/HOME/bin" -maxdepth 1 -type f); do
+  target_file="${HOME}/bin/$(basename $file)"
+  ln -svf "$file" "$target_file"
+done
+
 "./install/apt"
 "./install/brew"
 "./install/bash-it"
