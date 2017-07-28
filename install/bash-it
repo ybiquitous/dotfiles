@@ -34,10 +34,8 @@ bash-it enable plugin \
         base \
         docker \
         git \
-        history \
         nvm \
-        rbenv \
-        ruby
+        rbenv
 if [[ $(uname -s) == Darwin ]]; then
   bash-it enable plugin osx
 fi
