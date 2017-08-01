@@ -10,14 +10,18 @@ $npm_install npm@latest
 # required packages
 echo
 echo "Installing required packages..."
-$npm_install \
-  editorconfig \
-  eslint-config-ybiquitous \
-  git-open \
-  marked \
-  stylelint \
-  stylelint-config-standard \
-  tern
+npm_pkgs="
+editorconfig
+emoj
+eslint
+eslint-config-ybiquitous
+git-open
+marked
+stylelint
+stylelint-config-standard
+tern
+"
+$npm_install $npm_pkgs
 
 # HACK: install dependencies of ESLint shareable config
 # See details: https://github.com/eslint/eslint/issues/3458
@@ -30,15 +34,15 @@ npm -g view eslint-config-ybiquitous peerDependencies dependencies --json |
 # optional packages
 echo
 echo "Installing optional packages..."
-pkgs=" \
-msee \
-sitespeed.io \
-svgo \
+npm_pkgs="
+msee
+sitespeed.io
+svgo
 "
 
 opt_pkgs=""
 
-for pkg in $pkgs; do
+for pkg in $npm_pkgs; do
   read -p "> Install '$pkg'? [y/N] " answer
   case $answer in
     [Yy]* ) opt_pkgs="$opt_pkgs $pkg" && echo "yes" ;;
