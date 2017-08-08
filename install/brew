@@ -12,7 +12,6 @@ brew update
 brew install \
      bash-completion \
      awscli \
-     emacs \
      gibo \
      heroku \
      imagemagick \
@@ -23,6 +22,11 @@ brew install \
      rbenv \
      redis \
      watch
+brew cask install \
+     emacs \
+     imageoptim \
+     sequel-pro \
+     virtualbox
 brew upgrade
 brew cleanup
 
