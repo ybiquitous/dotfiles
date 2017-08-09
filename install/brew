@@ -1,7 +1,10 @@
 #!/bin/sh
 set -eu
 
-[ "$(uname)" != 'Darwin' ] && echo 'brew is unsupported in this platform' && exit
+if [ "$(uname)" != 'Darwin' ]; then
+  echo 'brew is unsupported in this platform'
+  exit
+fi
 
 # https://brew.sh
 if [ -z "$(command -v brew)" ]; then
@@ -21,6 +24,7 @@ brew install \
      postgresql \
      rbenv \
      redis \
+     shellcheck \
      watch
 brew cask install \
      emacs \
@@ -33,8 +37,8 @@ brew cleanup
 # setup gibo
 GITIGNORE_GLOBAL="${HOME}/.gitignore_global"
 gibo macOS Emacs Ruby Rails Node > "$GITIGNORE_GLOBAL"
-cat <<EOF >> "$GITIGNORE_GLOBAL"
+cat <<EOT >> "$GITIGNORE_GLOBAL"
 # Tern.el
 .tern-*
-EOF
+EOT
 echo "${GITIGNORE_GLOBAL} updated."
