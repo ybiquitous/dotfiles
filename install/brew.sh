@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-if [ "$(uname)" != 'Darwin' ]; then
+if [ "$(uname -s)" != 'Darwin' ]; then
   echo 'brew is unsupported in this platform'
   exit
 fi
@@ -35,10 +35,10 @@ brew upgrade
 brew cleanup
 
 # setup gibo
-GITIGNORE_GLOBAL="${HOME}/.gitignore_global"
+readonly GITIGNORE_GLOBAL=~/.gitignore_global
 gibo macOS Emacs Ruby Rails Node > "$GITIGNORE_GLOBAL"
 cat <<EOT >> "$GITIGNORE_GLOBAL"
 # Tern.el
 .tern-*
 EOT
-echo "${GITIGNORE_GLOBAL} updated."
+echo "$GITIGNORE_GLOBAL updated."

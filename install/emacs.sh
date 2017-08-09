@@ -2,19 +2,19 @@
 set -eu
 
 # get emacs directory
-basedir=$(cd $(dirname $0); pwd)
-emacsdir="$(dirname $basedir)/HOME/.emacs.d"
+readonly BASEDIR=$(cd "$(dirname "$0")"; pwd)
+readonly EMACSDIR="$(dirname "$BASEDIR")/HOME/.emacs.d"
 
 # remove all compiled elisp files
-find "$emacsdir" -type f -name '*.elc' | xargs rm -vf
+find "$EMACSDIR" -type f -name '*.elc' -exec rm -vf {} +
 
 # link emacs directory to home
-ln -svf "$emacsdir" "$HOME"
+ln -svf "$EMACSDIR" ~
 
 # create environment specific file
-config_file="${HOME}/99_env.el"
-if [ ! -f "$config_file" ]; then
-  cat >"$config_file" <<EOF
+readonly CONFIG_FILE=~/99_env.el
+if [ ! -f "$CONFIG_FILE" ]; then
+  cat <<EOF > "$CONFIG_FILE"
 ;; E.g.
 ;; (add-to-list 'default-frame-alist '(font . "Ubuntu Mono"))
 ;; (add-to-list 'default-frame-alist '(top . 0))
@@ -24,4 +24,4 @@ if [ ! -f "$config_file" ]; then
 EOF
 fi
 
-ln -svf "$config_file" "${HOME}/.emacs.d/inits"
+ln -svf "$CONFIG_FILE" ~/.emacs.d/inits

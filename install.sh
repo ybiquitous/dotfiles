@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-BASEDIR="${HOME}/dotfiles"
+readonly BASEDIR=~/dotfiles
 
 # download if not exists
 if [ ! -d "$BASEDIR" ]; then
@@ -21,7 +21,7 @@ find "${BASEDIR}/HOME" -maxdepth 1 -type f | while IFS= read -r file; do
 done
 
 # prepare ~/bin directory
-mkdir -pv "${HOME}/bin"
+mkdir -pv ~/bin
 
 # copy files to ~/bin
 find "${BASEDIR}/HOME/bin" -maxdepth 1 -type f | while IFS= read -r file; do
@@ -29,14 +29,14 @@ find "${BASEDIR}/HOME/bin" -maxdepth 1 -type f | while IFS= read -r file; do
   ln -svf "$file" "$target_file"
 done
 
-"./install/apt"
-"./install/brew"
-"./install/bash-it"
-"./install/diff-highlight"
-"./install/emacs"
-"./install/heroku"
-"./install/npm"
-"./install/nvm"
-"./install/yarn"
+./install/apt.sh
+./install/brew.sh
+./install/bash-it.sh
+./install/diff-highlight.sh
+./install/emacs.sh
+./install/heroku.sh
+./install/npm.sh
+./install/nvm.sh
+./install/yarn.sh
 
 echo 'Installation completed. Please reopen shell.'

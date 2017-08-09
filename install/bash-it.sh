@@ -1,28 +1,31 @@
-#!/bin/bash
+#!/bin/sh
 set -eu
 
-BASEDIR=$(cd $(dirname $0); pwd)
+readonly BASEDIR=$(cd "$(dirname "$0")"; pwd)
 
 # https://github.com/Bash-it/bash-it#install
-if [[ ! -d ~/.bash_it ]]; then
+if [ ! -d ~/.bash_it ]; then
   git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 
   ~/.bash_it/install.sh
 
   ln -svf "${BASEDIR}/bash-it-custom.bash" ~/.bash_it/custom
 
-  echo
-  echo "Add next line to ~/.bashrc or ~/.bash_profile:"
-  echo
-  echo "  export BASH_IT_THEME='mbriggs'"
-  echo
+  cat <<'EOT'
+
+Add next line to ~/.bashrc or ~/.bash_profile:
+
+  export BASH_IT_THEME='mbriggs'
+
+EOT
 
   exit
 fi
 
 # load bash-it
 set +u
-source ~/.bash_it/bash_it.sh
+# shellcheck disable=SC1090
+. ~/.bash_it/bash_it.sh
 set -u
 
 bash-it update
@@ -36,7 +39,7 @@ bash-it enable plugin \
         git \
         nvm \
         rbenv
-if [[ $(uname -s) == Darwin ]]; then
+if [ "$(uname -s)" = "Darwin" ]; then
   bash-it enable plugin osx
 fi
 
