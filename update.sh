@@ -1,10 +1,12 @@
 #!/bin/sh
 set -eu
 
-echo "Please update Bash-it update manually:"
-echo
-echo "    bash-it update"
-echo
+cat <<EOT
+Please update Bash-it update manually:
+
+    bash-it update
+
+EOT
 
 if [ -n "$(command -v brew)" ]; then
   echo "brew updating..."
