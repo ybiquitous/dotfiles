@@ -1,0 +1,21 @@
+{
+  "name": "dotfiles",
+  "version": "1.0.0",
+  "description": "dotfiles",
+  "private": true,
+  "license": "UNLICENSED",
+  "author": "ybiquitous",
+  "repository": "ybiquitous/dotfiles",
+  "homepage": "https://github.com/ybiquitous/dotfiles#readme",
+  "main": "index.js",
+  "scripts": {
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{sh,bash}": "shellcheck"
+  },
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "lint-staged": "^4.0.3"
+  }
+}
