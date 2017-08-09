@@ -11,8 +11,8 @@ fi
 cd "$BASEDIR"
 
 # copy files to home directory
-for file in $(find "${BASEDIR}/HOME" -maxdepth 1 -type f); do
-  target_file="${HOME}/$(basename $file)"
+find "${BASEDIR}/HOME" -maxdepth 1 -type f | while IFS= read -r file; do
+  target_file="${HOME}/$(basename "$file")"
   if [ -f "$target_file" ]; then
     mv -vf "$target_file" "${target_file}.bak"
   fi
@@ -24,8 +24,8 @@ done
 mkdir -pv "${HOME}/bin"
 
 # copy files to ~/bin
-for file in $(find "${BASEDIR}/HOME/bin" -maxdepth 1 -type f); do
-  target_file="${HOME}/bin/$(basename $file)"
+find "${BASEDIR}/HOME/bin" -maxdepth 1 -type f | while IFS= read -r file; do
+  target_file="${HOME}/bin/$(basename "$file")"
   ln -svf "$file" "$target_file"
 done
 
