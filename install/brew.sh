@@ -37,10 +37,10 @@ brew upgrade
 brew cleanup
 
 # Bash
-readonly BREW_BASH=/usr/local/bin/bash
+readonly BREW_BASH=$(brew --prefix)/bin/bash
 if grep -q "$BREW_BASH" /etc/shells; then
   sudo sh -c "echo $BREW_BASH >> /etc/shells"
-  chsh -s $BREW_BASH
+  chsh -s "$BREW_BASH"
   echo "Changed login shell to $BREW_BASH"
 fi
 
