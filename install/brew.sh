@@ -15,6 +15,7 @@ brew update
 brew install \
      bash-completion \
      awscli \
+     exercism \
      gibo \
      heroku \
      imagemagick \
