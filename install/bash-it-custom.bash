@@ -39,3 +39,15 @@ _heroku_completions() {
   COMPREPLY=($(compgen -W "help $(heroku help | tail -n +4)" -- "$cur"))
 }
 complete -F _heroku_completions heroku
+
+# cli.exercism.io
+if [ -n "$(command -v exercism)" ]; then
+  if [ ! -d ~/.config/exercism ]; then
+    mkdir -p ~/.config/exercism
+    echo "Downloading exercism_completion.bash..."
+    curl -s http://cli.exercism.io/exercism_completion.bash > ~/.config/exercism/exercism_completion.bash
+  fi
+  if [ -f ~/.config/exercism/exercism_completion.bash ]; then
+    . ~/.config/exercism/exercism_completion.bash
+  fi
+fi
