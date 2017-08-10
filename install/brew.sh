@@ -13,6 +13,7 @@ fi
 
 brew update
 brew install \
+     bash \
      bash-completion \
      awscli \
      exercism \
@@ -34,6 +35,14 @@ brew cask install \
      virtualbox
 brew upgrade
 brew cleanup
+
+# Bash
+readonly BREW_BASH=/usr/local/bin/bash
+if grep -q "$BREW_BASH" /etc/shells; then
+  sudo sh -c "echo $BREW_BASH >> /etc/shells"
+  chsh -s $BREW_BASH
+  echo "Changed login shell to $BREW_BASH"
+fi
 
 # setup gibo
 readonly GITIGNORE_GLOBAL=~/.gitignore_global
