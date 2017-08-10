@@ -15,14 +15,11 @@ load-nvmrc() {
   nvmrc_path="$(nvm_find_nvmrc)"
 
   if [ -n "$nvmrc_path" ]; then
-    local nvmrc_content
-    nvmrc_content=$(< "${nvmrc_path}")
-
     local nvmrc_node_version
-    nvmrc_node_version=$(nvm version "$nvmrc_content")
+    nvmrc_node_version=$(nvm version "$(< "$nvmrc_path")")
 
     if [ "$nvmrc_node_version" = "N/A" ]; then
-      echo "node version '$nvmrc_content' is not installed, please run: 'nvm install'"
+      nvm install
     elif [ "$nvmrc_node_version" != "$node_version" ]; then
       nvm use
     fi
