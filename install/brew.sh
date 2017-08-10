@@ -26,6 +26,7 @@ brew install \
      postgresql \
      rbenv \
      redis \
+     ruby \
      shellcheck \
      watch
 brew cask install \
