@@ -2,6 +2,8 @@
   :commands (markdown-mode gfm-mode)
   :mode (("\\.md\\'" . gfm-mode)
           ("\\.markdown\\'" . gfm-mode))
+  :init
+  (add-hook 'markdown-mode-hook 'flyspell-mode)
   :config
   (setq
     markdown-command "marked"
