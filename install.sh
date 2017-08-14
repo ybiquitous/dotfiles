@@ -34,6 +34,7 @@ done
 ./install/bash-it.sh
 ./install/diff-highlight.sh
 ./install/emacs.sh
+./install/gem.sh
 ./install/heroku.sh
 ./install/npm.sh
 ./install/nvm.sh
