@@ -16,6 +16,8 @@
           ("C-c i" . js-doc-insert-function-doc))
   :mode "\\.js$"
   :interpreter "node"
+  :init
+  (add-hook 'js2-mode-hook 'flyspell-prog-mode)
   :config
   (setq
     js2-basic-offset tab-width

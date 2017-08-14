@@ -10,6 +10,8 @@
          ("Guardfile\\'"   . enh-ruby-mode)
          ("Capfile\\'"     . enh-ruby-mode)
          ("Vagrantfile\\'" . enh-ruby-mode))
+  :init
+  (add-hook 'enh-ruby-mode-hook 'flyspell-prog-mode)
   :config
   (setq
    ruby-insert-encoding-magic-comment nil
