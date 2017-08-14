@@ -13,6 +13,7 @@ fi
 
 brew update
 brew install \
+     aspell \
      bash \
      bash-completion \
      awscli \
