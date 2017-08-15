@@ -19,4 +19,4 @@ npm -g outdated || true
 npm -g update
 echo
 
-gem update
+(cd ~ ; gem update)
