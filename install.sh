@@ -13,7 +13,8 @@ cd "$BASEDIR"
 # copy files to home directory
 find "${BASEDIR}/HOME" -maxdepth 1 -type f | while IFS= read -r file; do
   target_file="${HOME}/$(basename "$file")"
-  if [ -f "$target_file" ]; then
+  if [ -f "$target_file" ] && [ ! -L "$target_file" ]; then
+    printf "(backup) "
     mv -vf "$target_file" "${target_file}.bak"
   fi
 
