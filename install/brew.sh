@@ -39,6 +39,8 @@ brew cask install \
      virtualbox
 brew upgrade
 brew cleanup
+brew doctor
+brew cask cleanup
 
 # Bash
 readonly BREW_BASH=$(brew --prefix)/bin/bash
