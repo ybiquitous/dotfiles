@@ -13,7 +13,9 @@
       file-path (executable-find command))))
 
 (use-package flycheck
-  :init (global-flycheck-mode)
+  :init
+  (global-flycheck-mode)
+  (setq-default flycheck-disabled-checkers '(scss-lint))
   :config
   (setq
     flycheck-temp-prefix ".flycheck"
