@@ -33,6 +33,7 @@ brew install \
 brew cask install \
      emacs \
      imageoptim \
+     iterm2 \
      sequel-pro \
      virtualbox
 brew upgrade
