@@ -29,6 +29,7 @@ brew install \
      redis \
      ruby \
      shellcheck \
+     tree \
      watch
 brew cask install \
      emacs \
