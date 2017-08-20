@@ -10,13 +10,13 @@ EOT
 
 if [ -n "$(command -v brew)" ]; then
   echo "brew updating..."
-  brew update && brew upgrade && brew cleanup
+  brew update && brew upgrade && brew cleanup && brew cask cleanup
   echo
 fi
 
 echo "npm updating..."
-npm -g outdated || true
 npm -g update
+npm -g outdated || true
 echo
 
 (cd ~ ; gem update)
