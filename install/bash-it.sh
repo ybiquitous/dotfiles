@@ -1,16 +1,18 @@
 #!/bin/sh
 set -eu
 
-readonly BASEDIR=$(cd "$(dirname "$0")"; pwd)
+readonly BASEDIR=$(cd "$(dirname "$0")"; pwd)/bash-it
+
+create_symlinks() {
+  cd "$BASEDIR"
+  find . -type f | sed 's|./||' | xargs -I {} ln -svf "${BASEDIR}/{}" ~/.bash_it/{}
+}
 
 # https://github.com/Bash-it/bash-it#install
 if [ ! -d ~/.bash_it ]; then
   git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
-
   ~/.bash_it/install.sh
-
-  ln -svf "${BASEDIR}/bash-it-custom.bash" ~/.bash_it/custom
-
+  create_symlinks
   cat <<'EOT'
 
 Add next line to ~/.bashrc or ~/.bash_profile:
