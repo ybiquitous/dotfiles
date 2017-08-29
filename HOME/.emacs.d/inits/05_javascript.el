@@ -14,7 +14,7 @@
 (use-package js2-mode
   :bind (:map js2-mode-map
           ("C-c i" . js-doc-insert-function-doc))
-  :mode "\\.js$"
+  :mode "\\.js\\'"
   :interpreter "node"
   :init
   (add-hook 'js2-mode-hook 'flyspell-prog-mode)
@@ -25,7 +25,8 @@
     js2-mode-show-strict-warnings nil))
 
 (use-package rjsx-mode
-  :mode "components\\/.*\\.js\\'"
+  :mode (("components\\/.*\\.jsx?\\'" . rjsx-mode)
+          ("\\.jsx\\'" . rjsx-mode))
   :config
   (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
   (flycheck-mode))

@@ -4,5 +4,6 @@
   (add-hook 'css-mode-hook  'emmet-mode)
   (add-hook 'web-mode-hook  'emmet-mode)
   (add-hook 'rjsx-mode-hook 'emmet-mode)
+  (add-hook 'js2-jsx-mode-hook 'emmet-mode)
   :config
   (setq emmet-indentation tab-width))
