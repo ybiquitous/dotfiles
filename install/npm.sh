@@ -15,6 +15,7 @@ $NPM_INSTALL \
   emoj \
   eslint \
   eslint-config-ybiquitous \
+  fs-extra \
   git-open \
   marked \
   stylelint \
