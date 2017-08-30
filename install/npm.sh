@@ -17,6 +17,7 @@ $NPM_INSTALL \
   eslint-config-ybiquitous \
   fs-extra \
   git-open \
+  markdownlint-cli \
   marked \
   stylelint \
   stylelint-config-standard \
