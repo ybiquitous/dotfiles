@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-readonly BIN_DIR=~/bin
+readonly BIN_DIR="${HOME}/bin"
 mkdir -pv "$BIN_DIR"
 cd "$BIN_DIR"
 
