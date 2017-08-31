@@ -1,14 +1,13 @@
 #!/bin/sh
 set -eu
 
-readonly NPM_INSTALL="npm install --global --no-progress"
-
 echo "Updating system gem..."
 gem update --system
 
 echo
 echo "Installing gems..."
-gem install \
+gem install --no-ri --no-rdoc \
+    bundler \
     mdl \
     reek \
     rubocop

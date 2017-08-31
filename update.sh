@@ -28,4 +28,4 @@ npm -g update
 npm -g outdated || true
 echo
 
-(cd ~ ; gem update)
+(cd ~ ; gem update --system ; gem update --no-ri --no-rdoc)
