@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-readonly BASEDIR=~/dotfiles
+readonly BASEDIR="${HOME}/dotfiles"
 
 # download if not exists
 if [ ! -d "$BASEDIR" ]; then
@@ -22,7 +22,7 @@ find "${BASEDIR}/HOME" -maxdepth 1 -type f | while IFS= read -r file; do
 done
 
 # prepare ~/bin directory
-mkdir -pv ~/bin
+mkdir -pv "${HOME}/bin"
 
 # copy files to ~/bin
 find "${BASEDIR}/HOME/bin" -maxdepth 1 -type f | while IFS= read -r file; do
