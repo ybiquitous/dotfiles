@@ -1,5 +1,5 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: arrow-function
-# key: ar
+# name: template
+# key: te
 # --
-(${1:arg}) => { $0 }
+\`\${${1:var}}$0\`;

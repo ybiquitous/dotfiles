@@ -1,5 +1,5 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: arrow-function
-# key: ar
+# name: const
+# key: con
 # --
-(${1:arg}) => { $0 }
+const ${1:name} = ${2:initial};

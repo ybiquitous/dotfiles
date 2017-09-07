@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: for-of
+# key: forof
+# --
+for (let ${1:element} of ${2:collection}) {
+  $0
+}

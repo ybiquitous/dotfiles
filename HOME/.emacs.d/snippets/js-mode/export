@@ -1,5 +1,5 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: arrow-function
-# key: ar
+# name: export
+# key: ex
 # --
-(${1:arg}) => { $0 }
+export ${1:default} $0
