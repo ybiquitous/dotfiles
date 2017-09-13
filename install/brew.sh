@@ -20,6 +20,7 @@ brew install \
      exercism \
      gibo \
      heroku \
+     hub \
      imagemagick \
      jq \
      mysql \
