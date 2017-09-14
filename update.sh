@@ -15,6 +15,8 @@ if [ -n "$(command -v brew)" ]; then
   brew upgrade
   brew cleanup
   brew cask cleanup
+  brew cask outdated
+  echo "If there are outdated packages, please run 'brew cask install --force'."
 fi
 
 if [ -n "$(command -v apt-get)" ]; then
@@ -32,7 +34,9 @@ if [ -n "$NVM_DIR" ]; then
   echo "Updating nvm..."
   cd "$NVM_DIR"
   git fetch origin
-  git checkout $(git describe --abbrev=0 --tags --match "v[0-9]*" origin)
+  git checkout "$(git describe --abbrev=0 --tags --match 'v[0-9]*' origin)"
+
+  # shellcheck disable=SC1090
   . "$NVM_DIR/nvm.sh"
 fi
 
