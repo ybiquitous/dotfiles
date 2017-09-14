@@ -35,7 +35,7 @@
  '(nxml-slash-auto-complete-flag t)
   '(package-selected-packages
      (quote
-       (git-commit yaml-mode emmet-mode web-mode robe enh-ruby-mode highlight-symbol markdown-mode js-auto-format-mode json-mode rjsx-mode js2-mode company-tern tern flycheck editorconfig yasnippet company s exec-path-from-shell init-loader use-package)))
+       (git-commit yaml-mode emmet-mode web-mode robe enh-ruby-mode highlight-symbol markdown-mode js-auto-format-mode json-mode rjsx-mode js2-mode company-tern tern flycheck editorconfig yasnippet yasnippet-snippets company s exec-path-from-shell init-loader use-package)))
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(scroll-bar-mode (quote right))
