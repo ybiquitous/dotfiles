@@ -7,5 +7,6 @@ HOME/.emacs.d/eshell
 HOME/.emacs.d/project-explorer-cache
 HOME/.emacs.d/inits/*_env.el
 HOME/.emacs.d/server/server
+HOME/.emacs.d/recentf
 .tern-port
 .yas-compiled-snippets.el
