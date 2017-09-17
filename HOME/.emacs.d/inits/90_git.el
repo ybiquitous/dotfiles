@@ -1,6 +1,6 @@
 (use-package git-commit
-  :init (global-git-commit-mode)
   :config
+  (global-git-commit-mode)
   (add-hook 'git-commit-mode-hook 'flyspell-mode))
 
 ;; disable git pager

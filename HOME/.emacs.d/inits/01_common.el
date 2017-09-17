@@ -9,7 +9,7 @@
     (insert (funcall func word))))
 
 (use-package s
-  :init
+  :config
   (defun dasherize-word ()
     (interactive)
     (_template-word-func 's-dashed-words))
