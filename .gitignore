@@ -8,5 +8,7 @@ HOME/.emacs.d/project-explorer-cache
 HOME/.emacs.d/inits/*_env.el
 HOME/.emacs.d/server/server
 HOME/.emacs.d/recentf
+HOME/.emacs.d/.emacs.desktop
+HOME/.emacs.d/.emacs.desktop.lock
 .tern-port
 .yas-compiled-snippets.el
