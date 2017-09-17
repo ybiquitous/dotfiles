@@ -27,6 +27,10 @@
       (robe-mode)
       (push 'company-robe company-backends))))
 
+(use-package ruby-electric
+  :config
+  (add-hook 'enh-ruby-mode-hook 'ruby-electric-mode))
+
 (defun rails-jump-to-test ()
   "Rails Jump to Test"
   (interactive)
