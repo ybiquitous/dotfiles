@@ -9,6 +9,9 @@ echo "Installing gems..."
 gem install --no-ri --no-rdoc \
     bundler \
     mdl \
+    method_source \
+    pry \
+    pry-doc \
     reek \
     rubocop
 
