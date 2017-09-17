@@ -10,27 +10,27 @@ mklink %USERPROFILE%\.emacs.d\inits\99_env.el %USERPROFILE%\99_env.el
 
 ## キーバインド
 
-| Key            | Description                                |
-| -------------- | ------------------------------------------ |
-| `C-M-s`        | 正規表現検索                               |
-| `M-s w`        | 単語検索                                   |
-| `C-q`          | 特殊文字入力                               |
-| `M-!`          | シェルコマンド実行                         |
-| `M-&`          | シェルコマンド実行(非同期)                 |
-| `C-u M-!`      | シェルコマンドの出力を現在位置に挿入       |
-| `C-u M-¦` [^1] | 選択範囲を標準入力としてシェルコマンド実行 |
-| `C-x SPC`      | 矩形選択                                   |
-| `C-x v g`      | `git blame`                                |
-| `C-x v =`      | `git diff`                                 |
-| `C-x v l`      | `git log`                                  |
-| `C-c C-c p`    | Preview markdown                           |
+| Key                     | Description                                |
+| ----------------------- | ------------------------------------------ |
+| <kbd>C-M-s</kbd>        | 正規表現検索                               |
+| <kbd>M-s w</kbd>        | 単語検索                                   |
+| <kbd>C-q</kbd>          | 特殊文字入力                               |
+| <kbd>M-!</kbd>          | シェルコマンド実行                         |
+| <kbd>M-&</kbd>          | シェルコマンド実行(非同期)                 |
+| <kbd>C-u M-!</kbd>      | シェルコマンドの出力を現在位置に挿入       |
+| <kbd>C-u M-¦</kbd> [^1] | 選択範囲を標準入力としてシェルコマンド実行 |
+| <kbd>C-x SPC</kbd>      | 矩形選択                                   |
+| <kbd>C-x v g</kbd>      | `git blame`                                |
+| <kbd>C-x v =</kbd>      | `git diff`                                 |
+| <kbd>C-x v l</kbd>      | `git log`                                  |
+| <kbd>C-c C-c p</kbd>    | Preview markdown                           |
 
 [^1]: 本来は `¦` (BROKEN BAR) ではなく `|` (VERTICAL BAR)。Markdownテーブルでエスケープできないため代用。
 
 ## 便利コマンド
 
-| Name                                               | Description              |
-| -------------------------------------------------- | ------------------------ |
-| `align-regexp`                                     | 列揃えの整形             |
-| `M-: (byte-recompile-directory "~/.emacs.d/" 0 t)` | 全Elispの再コンパイル    |
-| `yas-recompile-all`                                | 全snippetsの再コンパイル |
+| Key                                                         | Description              |
+| ----------------------------------------------------------- | ------------------------ |
+| <kbd>M-x align-regexp</kbd>                                 | 列揃えの整形             |
+| <kbd>M-: (byte-recompile-directory "~/.emacs.d/" 0 t)</kbd> | 全Elispの再コンパイル    |
+| <kbd>yas-recompile-all</kbd>                                | 全snippetsの再コンパイル |

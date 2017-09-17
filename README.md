@@ -28,25 +28,25 @@ LANG=C xdg-user-dirs-gtk-update
 
 ## [Terminator](http://gnometerminator.blogspot.jp/)
 
-| Key binding              | Description          |
-| ------------------------ | -------------------- |
-| Shift + Ctrl + O         | 画面を水平に分割     |
-| Shift + Ctrl + E         | 画面を垂直に分割     |
-| Ctrl + Tab               | 分割した画面間を移動 |
-| Shift + Ctrl + T         | 新しいタブを開く     |
-| Ctrl + PageUp (PageDown) | タブ間を移動         |
-| Shift + Ctrl + C         | コピー               |
-| Shift + Ctrl + V         | 貼り付け             |
-| Shift + Ctrl + F         | 検索                 |
+| Key binding                         | Description          |
+| ----------------------------------- | -------------------- |
+| <kbd>Shift + Ctrl + O</kbd>         | 画面を水平に分割     |
+| <kbd>Shift + Ctrl + E</kbd>         | 画面を垂直に分割     |
+| <kbd>Ctrl + Tab</kbd>               | 分割した画面間を移動 |
+| <kbd>Shift + Ctrl + T</kbd>         | 新しいタブを開く     |
+| <kbd>Ctrl + PageUp (PageDown)</kbd> | タブ間を移動         |
+| <kbd>Shift + Ctrl + C</kbd>         | コピー               |
+| <kbd>Shift + Ctrl + V</kbd>         | 貼り付け             |
+| <kbd>Shift + Ctrl + F</kbd>         | 検索                 |
 
 ## Eclipse keybind (based on Emacs)
 
-| Key binding | Description                      |
-| ------------| -------------------------------- |
-| Ctrl + H    | Delete Previous                  |
-| Alt + H     | Maximize Active View or Editor   |
-| Alt + H     | Open Search Dialog               |
-| Ctrl + }    | Toggle Split Editor (Horizontal) |
+| Key binding            | Description                      |
+| ---------------------- | -------------------------------- |
+| <kbd>Ctrl + H</kbd>    | Delete Previous                  |
+| <kbd>Alt + H</kbd>     | Maximize Active View or Editor   |
+| <kbd>Alt + H</kbd>     | Open Search Dialog               |
+| <kbd>Ctrl + }</kbd>    | Toggle Split Editor (Horizontal) |
 
 ## JDK font setting on Linux
 
