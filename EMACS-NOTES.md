@@ -18,14 +18,12 @@ mklink %USERPROFILE%\.emacs.d\inits\99_env.el %USERPROFILE%\99_env.el
 | <kbd>M-!</kbd>          | シェルコマンド実行                         |
 | <kbd>M-&</kbd>          | シェルコマンド実行(非同期)                 |
 | <kbd>C-u M-!</kbd>      | シェルコマンドの出力を現在位置に挿入       |
-| <kbd>C-u M-¦</kbd> [^1] | 選択範囲を標準入力としてシェルコマンド実行 |
+| <kbd>C-u M-&#124;</kbd> | 選択範囲を標準入力としてシェルコマンド実行 |
 | <kbd>C-x SPC</kbd>      | 矩形選択                                   |
 | <kbd>C-x v g</kbd>      | `git blame`                                |
 | <kbd>C-x v =</kbd>      | `git diff`                                 |
 | <kbd>C-x v l</kbd>      | `git log`                                  |
 | <kbd>C-c C-c p</kbd>    | Preview markdown                           |
-
-[^1]: 本来は `¦` (BROKEN BAR) ではなく `|` (VERTICAL BAR)。Markdownテーブルでエスケープできないため代用。
 
 ## 便利コマンド
 
