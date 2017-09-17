@@ -10,5 +10,6 @@ HOME/.emacs.d/server/server
 HOME/.emacs.d/recentf
 HOME/.emacs.d/.emacs.desktop
 HOME/.emacs.d/.emacs.desktop.lock
+HOME/.emacs.d/projectile-bookmarks.eld
 .tern-port
 .yas-compiled-snippets.el
