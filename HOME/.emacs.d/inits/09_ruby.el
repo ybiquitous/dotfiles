@@ -10,9 +10,8 @@
          ("Guardfile\\'"   . enh-ruby-mode)
          ("Capfile\\'"     . enh-ruby-mode)
          ("Vagrantfile\\'" . enh-ruby-mode))
-  :init
-  (add-hook 'enh-ruby-mode-hook 'flyspell-prog-mode)
   :config
+  (add-hook 'enh-ruby-mode-hook 'flyspell-prog-mode)
   (setq
    ruby-insert-encoding-magic-comment nil
    enh-ruby-indent-level tab-width
@@ -22,10 +21,11 @@
    enh-ruby-hanging-indent-level tab-width))
 
 (use-package robe
-  :init
-  (add-hook 'enh-ruby-mode-hook 'robe-mode)
   :config
-  (add-to-list 'company-backends 'company-robe))
+  (add-hook 'enh-ruby-mode-hook
+    (lambda ()
+      (robe-mode)
+      (push 'company-robe company-backends))))
 
 (defun rails-jump-to-test ()
   "Rails Jump to Test"

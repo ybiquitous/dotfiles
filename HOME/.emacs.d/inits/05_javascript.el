@@ -1,28 +1,28 @@
 (add-hook 'js-mode-hook
-  '(lambda ()
-     (setq
-       js-indent-level tab-width
-       js-switch-indent-offset tab-width)))
-
-(use-package tern
-  :init (add-hook 'js2-mode-hook 'tern-mode))
-
-(use-package company-tern
-  :config
-  (add-to-list 'company-backends 'company-tern))
+  (lambda ()
+    (setq
+      js-indent-level tab-width
+      js-switch-indent-offset tab-width)))
 
 (use-package js2-mode
   :bind (:map js2-mode-map
           ("C-c i" . js-doc-insert-function-doc))
   :mode "\\.js\\'"
   :interpreter "node"
-  :init
-  (add-hook 'js2-mode-hook 'flyspell-prog-mode)
   :config
+  (add-hook 'js2-mode-hook 'flyspell-prog-mode)
   (setq
     js2-basic-offset tab-width
     js2-mode-show-parse-errors nil
     js2-mode-show-strict-warnings nil))
+
+(use-package tern
+  :config
+  (add-hook 'js2-mode-hook 'tern-mode))
+
+(use-package company-tern
+  :config
+  (push 'company-tern company-backends))
 
 (use-package rjsx-mode
   :mode (("components\\/.*\\.jsx?\\'" . rjsx-mode)
