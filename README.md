@@ -8,7 +8,7 @@ curl -o- -L https://raw.githubusercontent.com/ybiquitous/dotfiles/master/install
 
 ## Links
 
-- [EMACS-NOTES](EMACS-NOTES.md)
+- [Emacs Tips](EMACS-TIPS.md)
 - [Qiita](//qiita.com/ybiquitous)
 
 ## For Windows
