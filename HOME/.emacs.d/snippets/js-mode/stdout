@@ -1,6 +1,5 @@
 # -*- mode: snippet; require-final-newline: nil -*-
 # name: stdout
 # key: stdout
-# binding: direct-keybinding
 # --
 process.stdout.write($0);
