@@ -1,11 +1,5 @@
 # Emacs Tips
 
-## For Windows
-
-```bat
-mklink %USERPROFILE%\.emacs.d\inits\99_env.el %USERPROFILE%\99_env.el
-```
-
 ## Key bindings
 
 | Key                     | Description                                | Example            |
@@ -34,3 +28,9 @@ mklink %USERPROFILE%\.emacs.d\inits\99_env.el %USERPROFILE%\99_env.el
 | <kbd>M-x align-regexp</kbd>                                 | Algin current region     |
 | <kbd>M-: (byte-recompile-directory "~/.emacs.d/" 0 t)</kbd> | Recompile all *.el       |
 | <kbd>yas-reload-all</kbd>                                   | Reload all snippets      |
+
+## Windows
+
+```bat
+mklink %USERPROFILE%\.emacs.d\inits\99_env.el %USERPROFILE%\99_env.el
+```
