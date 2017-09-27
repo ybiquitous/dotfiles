@@ -11,6 +11,7 @@ mklink %USERPROFILE%\.emacs.d\inits\99_env.el %USERPROFILE%\99_env.el
 | Key                     | Description                                | Example            |
 | ----------------------- | ------------------------------------------ | ------------------ |
 | <kbd>C-? f</kbd>        | `describe-function`                        |                    |
+| <kbd>C-? k</kbd>        | `describe-key`                             |                    |
 | <kbd>C-? b</kbd>        | `describe-bindings`                        |                    |
 | <kbd>C-M-s</kbd>        | `isearch-forward-regexp`                   |                    |
 | <kbd>M-s w</kbd>        | `isearch-forward-word`                     |                    |
@@ -24,6 +25,7 @@ mklink %USERPROFILE%\.emacs.d\inits\99_env.el %USERPROFILE%\99_env.el
 | <kbd>C-x v =</kbd>      | `vc-diff` (`git diff`)                     |                    |
 | <kbd>C-x v l</kbd>      | `vc-print-log` (`git log`)                 |                    |
 | <kbd>C-c C-c p</kbd>    | `markdown-preview`                         |                    |
+| <kbd>C-c p f</kbd>      | `projectile-find-file`                     |                    |
 
 ## Useful commands
 
