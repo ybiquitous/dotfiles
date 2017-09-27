@@ -7,7 +7,6 @@
 	ba = branch --all
 	g = grep
 	ss = status --short
-	lo = log --oneline
 	open = browse -- .
 [color]
 	ui = auto
