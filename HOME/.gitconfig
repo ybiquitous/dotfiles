@@ -1,14 +1,11 @@
 [alias]
 	delete-merged-branches = !git branch --merged | grep -v \\* | grep -v master | grep -v develop | xargs -I % git branch -d %
-	d = diff
-	di = diff
 	dc = diff --cached
 	c = checkout
 	pl = pull --prune
 	b = branch
 	ba = branch --all
 	g = grep
-	s = status
 	ss = status --short
 	lo = log --oneline
 	open = browse -- .

@@ -39,6 +39,7 @@ bash-it enable plugin \
         base \
         docker \
         git \
+        hub \
         nvm \
         rbenv
 if [ "$(uname -s)" = "Darwin" ]; then
