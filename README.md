@@ -6,12 +6,11 @@
 curl -o- -L https://raw.githubusercontent.com/ybiquitous/dotfiles/master/install.sh | sh
 ```
 
-## Links
+## Emacs
 
-- [Emacs Tips](EMACS-TIPS.md)
-- [Qiita](//qiita.com/ybiquitous)
+[Emacs Tips](EMACS-TIPS.md)
 
-## For Windows
+## Windows
 
 Use 'mklink' as Administrator on Windows, instead 'ln -s'.
 
@@ -20,15 +19,17 @@ mklink .gitconfig dotfiles\HOME\.gitconfig
 mklink /D .emacs.d dotfiles\HOME\.emacs.d
 ```
 
-## Update home directory names
+## Linux
+
+### Update home directory names
 
 ```sh
 LANG=C xdg-user-dirs-gtk-update
 ```
 
-## [Terminator](http://gnometerminator.blogspot.jp/)
+### [Terminator](http://gnometerminator.blogspot.jp/)
 
-| Key binding                         | Description          |
+| Key                                 | Description          |
 | ----------------------------------- | -------------------- |
 | <kbd>Shift + Ctrl + O</kbd>         | 画面を水平に分割     |
 | <kbd>Shift + Ctrl + E</kbd>         | 画面を垂直に分割     |
@@ -39,16 +40,20 @@ LANG=C xdg-user-dirs-gtk-update
 | <kbd>Shift + Ctrl + V</kbd>         | 貼り付け             |
 | <kbd>Shift + Ctrl + F</kbd>         | 検索                 |
 
-## Eclipse keybind (based on Emacs)
+## Eclipse
 
-| Key binding            | Description                      |
+### Key bindings (based on Emacs)
+
+| Key                    | Description                      |
 | ---------------------- | -------------------------------- |
 | <kbd>Ctrl + H</kbd>    | Delete Previous                  |
 | <kbd>Alt + H</kbd>     | Maximize Active View or Editor   |
 | <kbd>Alt + H</kbd>     | Open Search Dialog               |
 | <kbd>Ctrl + }</kbd>    | Toggle Split Editor (Horizontal) |
 
-## JDK font setting on Linux
+## Java
+
+### Font setting on Linux
 
 ```sh
 cd ${JAVA_HOME}/jre/lib/fonts/
