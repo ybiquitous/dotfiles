@@ -37,7 +37,8 @@ brew cask install \
      imageoptim \
      iterm2 \
      sequel-pro \
-     virtualbox
+     virtualbox \
+     caskroom/fonts/font-hack
 brew upgrade
 brew cleanup
 brew doctor
