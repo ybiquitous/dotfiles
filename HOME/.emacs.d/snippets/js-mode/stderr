@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: stderr
+# key: stderr
+# --
+process.stderr.write($0);
