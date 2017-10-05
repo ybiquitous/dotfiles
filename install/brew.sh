@@ -31,7 +31,8 @@ brew install \
      ruby \
      shellcheck \
      tree \
-     watch
+     watch \
+     homebrew/dupes/less
 brew cask install \
      emacs \
      imageoptim \
