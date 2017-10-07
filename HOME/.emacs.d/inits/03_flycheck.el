@@ -19,3 +19,8 @@
   (setq
     flycheck-temp-prefix ".flycheck"
     flycheck-executable-find #'my/executable-find))
+
+(use-package package-lint)
+(use-package flycheck-package
+  :config
+  (flycheck-package-setup))
