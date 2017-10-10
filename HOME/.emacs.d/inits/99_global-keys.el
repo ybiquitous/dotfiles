@@ -8,3 +8,4 @@
 (global-set-key (kbd "C-c 0")      'text-scale-adjust)
 (global-set-key (kbd "C-c C-r")    'eval-buffer)
 (global-set-key (kbd "C-c C-g")    'vc-git-grep)
+(global-set-key (kbd "C-c C-k")    'kill-buffer-and-window)
