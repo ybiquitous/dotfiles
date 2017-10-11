@@ -12,7 +12,7 @@ curl -o- -L https://raw.githubusercontent.com/ybiquitous/dotfiles/master/install
 
 ## Windows
 
-Use 'mklink' as Administrator on Windows, instead 'ln -s'.
+Use `mklink` as Administrator on Windows, instead `ln -s`.
 
 ```bat
 mklink .gitconfig dotfiles\HOME\.gitconfig
