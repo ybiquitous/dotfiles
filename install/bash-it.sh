@@ -59,3 +59,6 @@ bash-it enable completion \
         npm \
         nvm \
         system
+
+# yarn-completion
+curl -L -o ~/.bash_it/lib/yarn-completion.bash https://raw.githubusercontent.com/dsifford/yarn-completion/master/yarn-completion.bash
