@@ -9,13 +9,16 @@
   "homepage": "https://github.com/ybiquitous/dotfiles#readme",
   "main": "index.js",
   "scripts": {
+    "commitmsg": "commitlint -e",
+    "lint": "npm-run-all --print-name --print-label --parallel lint:*",
+    "lint:md": "markdownlint *.md",
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.{sh,bash}": "shellcheck"
+    "*.{sh,bash}": "shellcheck",
+    "*.md": "markdownlint"
   },
   "devDependencies": {
-    "husky": "^0.14.3",
-    "lint-staged": "^4.0.4"
+    "ybiq": "*"
   }
 }
