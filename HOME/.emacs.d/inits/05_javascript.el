@@ -1,8 +1,7 @@
-(add-hook 'js-mode-hook
-  (lambda ()
-    (setq
-      js-indent-level tab-width
-      js-switch-indent-offset tab-width)))
+(defun my/js-mode-hook ()
+  (setq-local js-indent-level tab-width)
+  (setq-local js-switch-indent-offset tab-width))
+(add-hook 'js-mode-hook #'my/js-mode-hook)
 
 (use-package js2-mode
   :bind (:map js2-mode-map
