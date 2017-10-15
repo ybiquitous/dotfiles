@@ -17,6 +17,7 @@ brew install \
      bash \
      bash-completion \
      awscli \
+     editorconfig \
      exercism \
      gibo \
      heroku \

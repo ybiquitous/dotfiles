@@ -11,7 +11,6 @@ $NPM_INSTALL npm@latest
 echo
 echo "Installing required packages..."
 $NPM_INSTALL \
-  editorconfig \
   emoj \
   eslint \
   eslint-config-ybiquitous \
