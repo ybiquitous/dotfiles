@@ -1,8 +1,3 @@
-(defun my/js-mode-hook ()
-  (setq-local js-indent-level tab-width)
-  (setq-local js-switch-indent-offset tab-width))
-(add-hook 'js-mode-hook #'my/js-mode-hook)
-
 (use-package js2-mode
   :bind (:map js2-mode-map
           ("C-c i" . js-doc-insert-function-doc))
