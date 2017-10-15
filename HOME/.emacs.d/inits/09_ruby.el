@@ -1,3 +1,10 @@
+(use-package robe
+  :config
+  (eval-after-load 'company
+    '(push 'company-robe company-backends)))
+
+(use-package ruby-electric)
+
 (use-package enh-ruby-mode
   :interpreter "ruby"
   :mode (("\\.rb\\'"       . enh-ruby-mode)
@@ -11,22 +18,15 @@
          ("Capfile\\'"     . enh-ruby-mode)
          ("Vagrantfile\\'" . enh-ruby-mode))
   :config
-  (add-hook 'enh-ruby-mode-hook 'flyspell-prog-mode)
   (setq
-   ruby-insert-encoding-magic-comment nil
-   enh-ruby-indent-level tab-width
-   enh-ruby-add-encoding-comment-on-save nil
-   enh-ruby-deep-indent-paren nil
-   enh-ruby-bounce-deep-indent t
-   enh-ruby-hanging-indent-level tab-width))
-
-(use-package robe
-  :config
-  (add-hook 'enh-ruby-mode-hook
-    (lambda ()
-      (robe-mode)
-      (push 'company-robe company-backends))))
-
-(use-package ruby-electric
-  :config
-  (add-hook 'enh-ruby-mode-hook 'ruby-electric-mode))
+    ruby-insert-encoding-magic-comment nil
+    enh-ruby-indent-level tab-width
+    enh-ruby-add-encoding-comment-on-save nil
+    enh-ruby-deep-indent-paren nil
+    enh-ruby-bounce-deep-indent t)
+  (defun my/enh-ruby-mode-hook ()
+    (robe-mode)
+    (ruby-electric-mode)
+    (flyspell-prog-mode)
+    (setq-local enh-ruby-hanging-indent-level tab-width))
+  (add-hook 'enh-ruby-mode-hook #'my/enh-ruby-mode-hook))
