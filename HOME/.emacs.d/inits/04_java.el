@@ -8,14 +8,12 @@
   :type 'string
   :group 'java)
 
-(defun java-compile ()
-  (if java-compile-enabled
-      (progn
-        (shell-command (format "javac %s %s" java-compile-option buffer-file-name) "*Java*")
-        (dolist (file (directory-files default-directory t (concat (file-name-base buffer-file-name) ".*.class"))) (delete-file file))
-        )))
+(defun my/java-compile ()
+  (when java-compile-enabled
+    (shell-command (format "javac %s %s" java-compile-option buffer-file-name) "*Java*")
+    (dolist (file (directory-files default-directory t (concat (file-name-base buffer-file-name) ".*.class"))) (delete-file file))))
 
-(add-hook 'java-mode-hook
-          (lambda ()
-            (add-hook 'after-save-hook 'java-compile t t)
-            ))
+(defun my/java-mode-hook ()
+  (add-hook 'after-save-hook #'my/java-compile t t))
+
+(add-hook 'java-mode-hook #'my/java-mode-hook)
