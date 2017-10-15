@@ -9,15 +9,25 @@
   :mode "\\.js\\'"
   :interpreter "node"
   :config
-  (add-hook 'js2-mode-hook 'flyspell-prog-mode)
+  (add-hook 'js2-mode-hook #'flyspell-prog-mode)
   (setq
     js2-basic-offset tab-width
     js2-mode-show-parse-errors nil
     js2-mode-show-strict-warnings nil))
 
+(use-package js-auto-format-mode
+  :config
+  (add-hook 'js-mode-hook #'js-auto-format-mode)
+  (add-hook 'js2-mode-hook #'js-auto-format-mode))
+
+(use-package add-node-modules-path
+  :config
+  (add-hook 'js-mode-hook #'add-node-modules-path)
+  (add-hook 'js2-mode-hook #'add-node-modules-path))
+
 (use-package tern
   :config
-  (add-hook 'js2-mode-hook 'tern-mode))
+  (add-hook 'js2-mode-hook #'tern-mode))
 
 (use-package company-tern
   :config
@@ -39,9 +49,3 @@
   :config
   (setq
     json-mode-indent-level tab-width))
-
-;; install js-auto-format-mode
-(unless (package-installed-p 'js-auto-format-mode)
-  (url-copy-file "https://raw.githubusercontent.com/ybiquitous/js-auto-format-mode/master/js-auto-format-mode.el" "js-auto-format-mode.el" t)
-  (package-install-file "js-auto-format-mode.el")
-  (delete-file "js-auto-format-mode.el"))
