@@ -83,8 +83,9 @@
 ;; use-package
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
-  (package-install 'use-package))
-(setq use-package-always-ensure t)
+  (package-install 'use-package)
+  (with-eval-after-load 'use-package
+    (setq use-package-always-ensure t)))
 
 ;; init-loader
 (use-package init-loader

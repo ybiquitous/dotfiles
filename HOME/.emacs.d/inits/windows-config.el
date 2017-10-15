@@ -3,12 +3,10 @@
 (defun _posix-path (filename)
   (format _posix-path-format filename))
 
-(add-hook 'after-init-hook
-          (lambda()
-            ;; Enable `rgrep'
-            (setq find-program (_posix-path "find.exe")
-                  grep-program (_posix-path "grep.exe")
-                  diff-command (_posix-path "diff.exe")
-                  null-device "/dev/null"
-                  shell-file-name "/bin/sh")
-            ))
+;; Enable `rgrep'
+(setq
+  find-program (_posix-path "find.exe")
+  grep-program (_posix-path "grep.exe")
+  diff-command (_posix-path "diff.exe")
+  null-device "/dev/null"
+  shell-file-name "/bin/sh")))
