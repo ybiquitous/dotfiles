@@ -45,6 +45,7 @@
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(recentf-mode t)
+ '(ruby-insert-encoding-magic-comment nil)
  '(scroll-bar-mode (quote right))
  '(select-enable-clipboard t)
  '(sh-basic-offset 2)

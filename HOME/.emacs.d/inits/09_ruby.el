@@ -19,14 +19,11 @@
          ("Vagrantfile\\'" . enh-ruby-mode))
   :config
   (setq
-    ruby-insert-encoding-magic-comment nil
-    enh-ruby-indent-level tab-width
     enh-ruby-add-encoding-comment-on-save nil
     enh-ruby-deep-indent-paren nil
     enh-ruby-bounce-deep-indent t)
   (defun my/enh-ruby-mode-hook ()
     (robe-mode)
     (ruby-electric-mode)
-    (flyspell-prog-mode)
-    (setq-local enh-ruby-hanging-indent-level tab-width))
+    (flyspell-prog-mode))
   (add-hook 'enh-ruby-mode-hook #'my/enh-ruby-mode-hook))
