@@ -11,7 +11,6 @@
   :config
   (add-hook 'js2-mode-hook #'flyspell-prog-mode)
   (setq
-    js2-basic-offset tab-width
     js2-mode-show-parse-errors nil
     js2-mode-show-strict-warnings nil))
 
@@ -47,5 +46,6 @@
           ("\\.eslintrc\\'" . json-mode)
           ("\\.stylelintrc\\'" . json-mode))
   :config
-  (setq
-    json-mode-indent-level tab-width))
+  (defun my/json-mode-hook ()
+    (setq-local js-auto-format-disabled t))
+  (add-hook 'json-mode-hook #'my/json-mode-hook))
