@@ -1,5 +1,4 @@
-(add-hook 'sh-mode-hook
-  (lambda ()
-    (setq
-      sh-basic-offset tab-width
-      sh-indentation tab-width)))
+(defun my/sh-mode-hook ()
+  (setq-local sh-basic-offset tab-width)
+  (setq-local sh-indentation tab-width))
+(add-hook 'sh-mode-hook #'my/sh-mode-hook)
