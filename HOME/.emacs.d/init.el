@@ -45,6 +45,8 @@
  '(recentf-mode t)
  '(scroll-bar-mode (quote right))
  '(select-enable-clipboard t)
+ '(sh-basic-offset 2)
+ '(sh-indentation 2)
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(size-indication-mode nil)
