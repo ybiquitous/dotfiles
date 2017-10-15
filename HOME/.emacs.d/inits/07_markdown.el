@@ -3,7 +3,7 @@
   :mode (("\\.md\\'" . gfm-mode)
           ("\\.markdown\\'" . gfm-mode))
   :config
-  (add-hook 'markdown-mode-hook 'flyspell-mode)
+  (add-hook 'markdown-mode-hook #'flyspell-mode)
   (setq
     markdown-command "marked --tables --breaks"
     markdown-content-type "application/xhtml+xml"
