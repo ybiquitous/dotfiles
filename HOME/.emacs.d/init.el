@@ -37,9 +37,9 @@
  '(nxml-auto-insert-xml-declaration-flag t)
  '(nxml-default-buffer-file-coding-system (quote utf-8))
  '(nxml-slash-auto-complete-flag t)
- '(package-selected-packages
-   (quote
-    (add-node-modules-path js-auto-format-mode flycheck-package package-lint projectile ruby-electric git-commit yaml-mode emmet-mode web-mode robe enh-ruby-mode highlight-symbol markdown-mode json-mode rjsx-mode js2-mode company-tern tern flycheck editorconfig yasnippet yasnippet-snippets company s exec-path-from-shell init-loader use-package)))
+  '(package-selected-packages
+     (quote
+       (add-node-modules-path js-auto-format-mode flycheck-package package-lint projectile ruby-electric git-commit yaml-mode emmet-mode web-mode robe enh-ruby-mode highlight-symbol markdown-mode json-mode rjsx-mode js2-mode company-tern tern flycheck editorconfig yasnippet yasnippet-snippets company s exec-path-from-shell init-loader use-package)))
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(recentf-mode t)
@@ -48,6 +48,7 @@
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(size-indication-mode nil)
+ '(standard-indent 2)
  '(tab-width 2)
  '(tool-bar-mode nil)
  '(transient-mark-mode t))
