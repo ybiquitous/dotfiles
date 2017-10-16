@@ -41,7 +41,7 @@
  '(nxml-slash-auto-complete-flag t)
   '(package-selected-packages
      (quote
-       (add-node-modules-path js-auto-format-mode flycheck-package package-lint projectile ruby-electric git-commit yaml-mode emmet-mode web-mode robe enh-ruby-mode highlight-symbol markdown-mode json-mode rjsx-mode js2-mode company-tern tern flycheck editorconfig yasnippet yasnippet-snippets company s exec-path-from-shell init-loader use-package)))
+       (neotree add-node-modules-path js-auto-format-mode flycheck-package package-lint projectile ruby-electric git-commit yaml-mode emmet-mode web-mode robe enh-ruby-mode highlight-symbol markdown-mode json-mode rjsx-mode js2-mode company-tern tern flycheck editorconfig yasnippet yasnippet-snippets company s exec-path-from-shell init-loader use-package)))
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(recentf-mode t)
@@ -83,9 +83,8 @@
 ;; use-package
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
-  (package-install 'use-package)
-  (with-eval-after-load 'use-package
-    (setq use-package-always-ensure t)))
+  (package-install 'use-package))
+(setq use-package-always-ensure t)
 
 ;; init-loader
 (use-package init-loader
