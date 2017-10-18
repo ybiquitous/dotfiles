@@ -16,7 +16,7 @@ if [ -n "$(command -v brew)" ]; then
   brew cleanup
   brew cask cleanup
   brew cask outdated
-  echo "If there are outdated packages, please run 'brew cask install --force'."
+  echo "If there are outdated packages, please run 'brew cask reinstall <package>'."
 fi
 
 if [ -n "$(command -v apt-get)" ]; then
