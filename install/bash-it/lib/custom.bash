@@ -1,3 +1,9 @@
+shopt -s autocd
+shopt -s cdspell
+shopt -s dotglob
+shopt -s extglob
+shopt -s globstar
+
 if [[ -t 1 ]]; then
   bind '"\C-p":history-search-backward'
   bind '"\C-n":history-search-forward'
