@@ -6,3 +6,6 @@
 
 ;; http://rubikitch.com/2016/09/05/visible-bell-macosx-slow
 (setq ring-bell-function 'ignore)
+
+;; http://hylom.net/emacs-25.1-ime-flicker-problem
+(setq redisplay-dont-pause nil)
