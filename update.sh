@@ -40,6 +40,13 @@ if [ -n "$NVM_DIR" ]; then
   . "$NVM_DIR/nvm.sh"
 fi
 
+if [ -d "$HOME/.yarn-completion" ]; then
+  echo
+  echo "Updating yarn-completion..."
+  cd "$HOME/.yarn-completion"
+  git pull
+fi
+
 cd "$HOME"
 
 echo

@@ -61,4 +61,5 @@ bash-it enable completion \
         system
 
 # yarn-completion
-curl -L -o ~/.bash_it/lib/yarn-completion.bash https://raw.githubusercontent.com/dsifford/yarn-completion/master/yarn-completion.bash
+git clone https://github.com/dsifford/yarn-completion.git ~/.yarn-completion
+ln -svf ~/.yarn-completion/yarn-completion.bash ~/.bash_it/lib
