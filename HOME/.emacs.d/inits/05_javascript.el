@@ -11,17 +11,15 @@
 
 (use-package js-auto-format-mode
   :config
-  (add-hook 'js-mode-hook #'js-auto-format-mode)
-  (add-hook 'js2-mode-hook #'js-auto-format-mode))
+  (add-hook 'js-mode-hook #'js-auto-format-mode))
 
 (use-package add-node-modules-path
   :config
-  (add-hook 'js-mode-hook #'add-node-modules-path)
-  (add-hook 'js2-mode-hook #'add-node-modules-path))
+  (add-hook 'js-mode-hook #'add-node-modules-path))
 
 (use-package tern
   :config
-  (add-hook 'js2-mode-hook #'tern-mode))
+  (add-hook 'js-mode-hook #'tern-mode))
 
 (use-package company-tern
   :config
