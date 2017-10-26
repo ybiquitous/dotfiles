@@ -11,15 +11,18 @@ $NPM_INSTALL npm@latest
 echo
 echo "Installing required packages..."
 $NPM_INSTALL \
+  alex \
   emoj \
   eslint \
   eslint-config-ybiquitous \
   fs-extra \
   markdownlint-cli \
   marked \
+  prettier \
   stylelint \
   stylelint-config-standard \
-  tern
+  tern \
+  write-good
 
 # HACK: install dependencies of ESLint shareable config
 # See details: https://github.com/eslint/eslint/issues/3458
