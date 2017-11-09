@@ -14,9 +14,10 @@ fi
 brew update
 brew install \
      aspell \
+     awscli \
      bash \
      bash-completion \
-     awscli \
+     coreutils \
      editorconfig \
      exercism \
      gibo \
