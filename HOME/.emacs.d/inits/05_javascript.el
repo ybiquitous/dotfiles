@@ -1,6 +1,4 @@
 (use-package js2-mode
-  :bind (:map js2-mode-map
-          ("C-c i" . js-doc-insert-function-doc))
   :mode "\\.js\\'"
   :interpreter "node"
   :config
