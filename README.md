@@ -61,3 +61,25 @@ mkdir fallback
 cd fallback
 ln -s /usr/share/fonts/truetype/****.ttf .
 ```
+
+## Chrome
+
+Extension list:
+
+- Adblock Plus
+- AMP Validator
+- Check My Links
+- Code Climate
+- Contrast Ratio Checker
+- Copy Title and Url as Markdown Style
+- Google Analytics Debugger
+- Google 翻訳
+- HTML5 Outliner
+- OctoLinker
+- Octotree
+- React Developer Tools
+- Save to Pocket
+- SPOF-O-Matic
+- Tag Assistant
+- Validity
+- Wappalyzer
