@@ -8,6 +8,8 @@ echo
 echo "Installing gems..."
 gem install --no-ri --no-rdoc \
     bundler \
+    commonmarker \
+    github-markup \
     mdl \
     method_source \
     pry \

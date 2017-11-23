@@ -5,12 +5,30 @@
   :config
   (add-hook 'markdown-mode-hook #'flyspell-mode)
   (setq
-    markdown-command "marked --tables --breaks"
+    markdown-command "github-markup"
+    markdown-command-needs-filename t
     markdown-content-type "application/xhtml+xml"
-    markdown-css-paths '("https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css"
-                          "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css")
-    markdown-xhtml-header-content
-    (concat
-      "<style>.markdown-body { box-sizing: border-box; min-width: 200px; max-width: 980px; margin: 0 auto; padding: 45px; }</style>"
-      "<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script>"
-      "<script>document.addEventListener('DOMContentLoaded', function() { document.body.className = 'markdown-body'; hljs.initHighlightingOnLoad(); })</script>")))
+    markdown-css-paths '("https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css"
+                          "http://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/github.min.css")
+    markdown-xhtml-header-content "
+<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+<style>
+body {
+  box-sizing: border-box;
+  max-width: 740px;
+  width: 100%;
+  margin: 40px auto;
+  padding: 0 10px;
+}
+</style>
+<script src='http://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js'></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.add('markdown-body');
+  document.querySelectorAll('pre[lang] > code').forEach((code) => {
+    code.classList.add(code.parentElement.lang);
+    hljs.highlightBlock(code);
+  });
+});
+</script>
+"))
