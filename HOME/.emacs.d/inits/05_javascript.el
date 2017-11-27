@@ -1,5 +1,5 @@
 (use-package js2-mode
-  :mode "\\.js\\'"
+  :mode "\\.m?js\\'"
   :interpreter "node"
   :config
   (add-hook 'js2-mode-hook #'flyspell-prog-mode)
