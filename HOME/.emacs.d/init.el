@@ -39,9 +39,9 @@
  '(nxml-auto-insert-xml-declaration-flag t)
  '(nxml-default-buffer-file-coding-system (quote utf-8))
  '(nxml-slash-auto-complete-flag t)
-  '(package-selected-packages
-     (quote
-       (neotree add-node-modules-path js-auto-format-mode flycheck-package package-lint projectile ruby-electric git-commit yaml-mode emmet-mode web-mode robe enh-ruby-mode highlight-symbol markdown-mode json-mode rjsx-mode js2-mode company-tern tern flycheck editorconfig yasnippet yasnippet-snippets company s exec-path-from-shell init-loader use-package)))
+ '(package-selected-packages
+   (quote
+    (delight neotree add-node-modules-path js-auto-format-mode flycheck-package package-lint projectile ruby-electric git-commit yaml-mode emmet-mode web-mode robe enh-ruby-mode highlight-symbol markdown-mode json-mode rjsx-mode js2-mode company-tern tern flycheck editorconfig yasnippet yasnippet-snippets company s exec-path-from-shell init-loader use-package)))
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(recentf-mode t)
@@ -85,6 +85,7 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (setq use-package-always-ensure t)
+(use-package delight)
 
 ;; init-loader
 (use-package init-loader
