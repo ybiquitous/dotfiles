@@ -9,4 +9,4 @@
   grep-program (_posix-path "grep.exe")
   diff-command (_posix-path "diff.exe")
   null-device "/dev/null"
-  shell-file-name "/bin/sh")))
+  shell-file-name "/bin/sh")
