@@ -9,6 +9,7 @@
 
 (use-package js-auto-format-mode
   :config
+  (setq js-auto-format-command-args (concat js-auto-format-command-args " --no-ignore"))
   (add-hook 'js-mode-hook #'js-auto-format-mode))
 
 (use-package add-node-modules-path
