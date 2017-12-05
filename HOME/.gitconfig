@@ -29,3 +29,5 @@
 [user]
 	name = ybiquitous
 	email = ybiquitous@gmail.com
+[help]
+	autocorrect = -1
