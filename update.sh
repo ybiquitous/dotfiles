@@ -4,8 +4,7 @@ set -eu
 cat <<EOT
 Please update Bash-it manually:
 
-    bash-it update
-
+    $ bash-it update
 EOT
 
 if [ -n "$(command -v brew)" ]; then
