@@ -58,3 +58,4 @@ echo
 echo "Updating gem..."
 gem update --system
 gem update --no-ri --no-rdoc
+gem cleanup
