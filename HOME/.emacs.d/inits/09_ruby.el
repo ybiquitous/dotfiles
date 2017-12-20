@@ -25,5 +25,12 @@
   (defun my/enh-ruby-mode-hook ()
     (robe-mode)
     (ruby-electric-mode)
-    (flyspell-prog-mode))
+    (flyspell-prog-mode)
+    (if (locate-dominating-file default-directory "Gemfile")
+      (progn
+        (setq-local js-auto-format-command "bundle")
+        (setq-local js-auto-format-command-args "exec rubocop --auto-correct --format emacs"))
+      (progn
+        (setq-local js-auto-format-command "rubocop")
+        (setq-local js-auto-format-command-args "--auto-correct --format emacs"))))
   (add-hook 'enh-ruby-mode-hook #'my/enh-ruby-mode-hook))
