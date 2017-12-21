@@ -10,6 +10,7 @@ gem install --no-ri --no-rdoc \
     bundler \
     commonmarker \
     github-markup \
+    gist \
     mdl \
     method_source \
     pry \
