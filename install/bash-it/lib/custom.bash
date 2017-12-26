@@ -12,7 +12,7 @@ fi
 export HISTFILE=~/.bash_history
 export HISTSIZE=10000
 export EDITOR=emacsclient
-export PATH=~/bin:~/.yarn/bin:$PATH
+export PATH=~/bin:$PATH
 
 if [[ -n $(command -v npm) ]]; then
   NODE_PATH=$(npm root -g)

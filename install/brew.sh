@@ -35,6 +35,7 @@ brew install \
      tree \
      watch \
      homebrew/dupes/less
+brew install yarn --without-node
 brew cask install \
      emacs \
      imageoptim \
