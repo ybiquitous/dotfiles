@@ -13,6 +13,7 @@
 	new-branch = checkout -b
 	rename-branch = branch --move
 	delete-branch = branch -D
+	unstage = reset --quiet HEAD --
 	master = checkout master
 	discard = checkout --
 	amend = commit --amend
