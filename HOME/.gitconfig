@@ -9,6 +9,7 @@
 	s = status
 	diff-staged = diff --cached
 	graph = log --graph
+	detail = show --pretty=full
 	pull-prune = pull --prune
 	switch-branch = checkout
 	new-branch = checkout -b
