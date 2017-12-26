@@ -71,10 +71,10 @@ Extension list:
 - Check My Links
 - Code Climate
 - Contrast Ratio Checker
-- Copy Title and Url as Markdown Style
 - Google Analytics Debugger
 - Google 翻訳
 - HTML5 Outliner
+- Copy as Markdown
 - OctoLinker
 - Octotree
 - React Developer Tools
