@@ -1,13 +1,10 @@
 {
-  "name": "dotfiles",
-  "version": "1.0.0",
-  "description": "dotfiles",
+  "name": "@ybiquitous/dotfiles",
   "private": true,
   "license": "UNLICENSED",
   "author": "ybiquitous",
   "repository": "ybiquitous/dotfiles",
   "homepage": "https://github.com/ybiquitous/dotfiles#readme",
-  "main": "index.js",
   "scripts": {
     "commitmsg": "commitlint -e",
     "lint": "npm-run-all --print-name --print-label --parallel lint:*",
@@ -19,6 +16,6 @@
     "*.md": "markdownlint"
   },
   "devDependencies": {
-    "ybiq": "^0.6.0"
+    "ybiq": "^1.1.0"
   }
 }
