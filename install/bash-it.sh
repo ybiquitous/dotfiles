@@ -38,7 +38,6 @@ bash-it enable plugin \
         alias-completion \
         base \
         docker \
-        git \
         hub \
         nvm \
         rbenv
@@ -50,15 +49,18 @@ fi
 bash-it disable completion all
 bash-it enable completion \
         bash-it \
-        brew \
         bundler \
         defaults \
-        docker \
         gem \
-        git \
-        npm \
         nvm \
         system
+if [ "$(uname -s)" != "Darwin" ]; then
+  bash-it enable completion \
+          docker \
+          git \
+          hub \
+          npm
+fi
 
 # yarn-completion
 git clone https://github.com/dsifford/yarn-completion.git ~/.yarn-completion
