@@ -1,33 +1,50 @@
+# Inspiration from http://gggritso.com/human-git-aliases
+
+[user]
+	name = ybiquitous
+	email = ybiquitous@gmail.com
 [alias]
-	delete-merged-branches = !git branch --merged | grep -v \\* | grep -v master | grep -v develop | xargs -I % git branch -d %
-	dc = diff --cached
-	c = checkout
-	pl = pull --prune
-	b = branch
-	ba = branch --all
+	d = diff
 	g = grep
-	ss = status --short
+	s = status
+	diff-staged = diff --cached
+	graph = log --graph
+	pull-prune = pull --prune
+	new-branch = checkout -b
+	rename-branch = branch --move
+	delete-branch = branch -D
+	master = checkout master
+	discard = checkout --
+	amend = commit --amend
+	summary = status --short --untracked-files
+	grep-group = grep --line-number --heading --break
+	grep-word = grep --word-regexp
+	rewrite = rebase --interactive
+	tags = tag
+	branches = branch --all
+	stashes = stash list
+	remotes = remote --verbose
+	aliases = !git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+	edit-config = config --edit --global
+	list-config = config --list
 	open = browse -- .
+[format]
+	pretty = format:%C(auto)%h  %Creset%<(72,trunc)%s %Cgreen%cN%Creset, %ar %C(auto)%d
 [color]
 	ui = auto
-[core]
 [push]
 	default = simple
 [pager]
 	diff = diff-highlight | less
 	show = diff-highlight | less
 	log = diff-highlight | less
-[github]
-	user = ybiquitous
-	token = c10aa4d340230cbb510969ad260e5e56
 [commit]
 	verbose = true
 [diff]
 	compactionHeuristic = true
+	indentHeuristic = true
+	algorithm = patience
 [core]
 	excludesfile = /Users/koba/.gitignore_global
-[user]
-	name = ybiquitous
-	email = ybiquitous@gmail.com
 [help]
 	autocorrect = -1
