@@ -32,22 +32,23 @@ fi
 if [ -n "$NVM_DIR" ]; then
   echo
   echo "Updating nvm..."
-  cd "$NVM_DIR"
-  git fetch origin
-  git checkout "$(git describe --abbrev=0 --tags --match 'v[0-9]*' origin)"
 
   # shellcheck disable=SC1090
-  . "$NVM_DIR/nvm.sh"
+  (
+    cd "$NVM_DIR"
+    git fetch origin
+    git checkout "$(git describe --abbrev=0 --tags --match "v[0-9]*" origin)"
+  ) && . "${NVM_DIR}/nvm.sh"
 fi
 
 if [ -d "$HOME/.yarn-completion" ]; then
   echo
   echo "Updating yarn-completion..."
-  cd "$HOME/.yarn-completion"
-  git pull
+  (
+    cd "${HOME}/.yarn-completion"
+    git pull
+  )
 fi
-
-cd "$HOME"
 
 echo
 echo "Updating npm..."
@@ -56,6 +57,6 @@ npm -g outdated || true
 
 echo
 echo "Updating gem..."
-gem update --system
+gem update --system --no-ri --no-rdoc
 gem update --no-ri --no-rdoc
 gem cleanup
