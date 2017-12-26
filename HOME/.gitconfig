@@ -35,7 +35,7 @@
 [color]
 	ui = auto
 [push]
-	default = simple
+	default = current
 [pager]
 	diff = diff-highlight | less
 	show = diff-highlight | less
