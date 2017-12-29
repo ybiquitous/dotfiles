@@ -32,5 +32,6 @@
         (setq-local js-auto-format-command-args "exec rubocop --auto-correct --format emacs"))
       (progn
         (setq-local js-auto-format-command "rubocop")
-        (setq-local js-auto-format-command-args "--auto-correct --format emacs"))))
+        (setq-local js-auto-format-command-args "--auto-correct --format emacs")))
+    (js-auto-format-mode))
   (add-hook 'enh-ruby-mode-hook #'my/enh-ruby-mode-hook))
