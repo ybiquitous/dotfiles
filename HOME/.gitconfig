@@ -49,5 +49,3 @@
 	algorithm = patience
 [core]
 	excludesfile = /Users/koba/.gitignore_global
-[help]
-	autocorrect = -1
