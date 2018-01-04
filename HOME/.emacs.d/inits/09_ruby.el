@@ -26,6 +26,7 @@
     (robe-mode)
     (ruby-electric-mode)
     (flyspell-prog-mode)
+    (setq-local flycheck-disabled-checkers '(ruby-reek))
     (if (locate-dominating-file default-directory "Gemfile")
       (progn
         (setq-local js-auto-format-command "bundle")
