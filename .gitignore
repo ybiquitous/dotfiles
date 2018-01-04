@@ -13,5 +13,6 @@ HOME/.emacs.d/.emacs.desktop.lock
 HOME/.emacs.d/network-security.data
 HOME/.emacs.d/projectile-bookmarks.eld
 HOME/.emacs.d/url
+HOME/.emacs.d/ido.last
 .tern-port
 .yas-compiled-snippets.el
