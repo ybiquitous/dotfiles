@@ -30,7 +30,7 @@
 	aliases = !git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
 	edit-config = config --edit --global
 	list-config = config --list
-	open = browse -- .
+	open = browse
 [format]
 	pretty = format:%C(auto)%h  %Creset%<(72,trunc)%s %Cgreen%aN%Creset, %ar %C(auto)%d
 [color]
