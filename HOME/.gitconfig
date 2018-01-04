@@ -27,6 +27,7 @@
 	branches = branch --all
 	stashes = stash list
 	remotes = remote --verbose
+	contributors = shortlog -s -n --no-merges
 	aliases = !git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
 	edit-config = config --edit --global
 	list-config = config --list
