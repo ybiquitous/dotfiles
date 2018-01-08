@@ -17,6 +17,7 @@ brew install \
      awscli \
      bash \
      bash-completion \
+     colordiff \
      coreutils \
      editorconfig \
      exercism \

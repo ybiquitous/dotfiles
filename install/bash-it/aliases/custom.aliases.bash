@@ -1,3 +1,6 @@
 alias rm='rm -i'
 alias g='grep'
 alias w='watch'
+alias less='less -R'
+alias diff='colordiff -u'
+alias diff-nocolor='diff --color=no'
