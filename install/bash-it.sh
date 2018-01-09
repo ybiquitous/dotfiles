@@ -38,6 +38,7 @@ bash-it enable plugin \
         alias-completion \
         base \
         docker \
+        docker-compose \
         hub \
         nvm \
         rbenv
@@ -57,6 +58,7 @@ bash-it enable completion \
 if [ "$(uname -s)" != "Darwin" ]; then
   bash-it enable completion \
           docker \
+          docker-compose \
           git \
           hub \
           npm
