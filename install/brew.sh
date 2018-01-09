@@ -6,6 +6,17 @@ if [ "$(uname -s)" != 'Darwin' ]; then
   exit
 fi
 
+if [ -z "$(command -v xcode-select)" ]; then
+  cat <<'EOT'
+Please install Xcode from App Store, then run the following command:
+
+  $ xcode-select --install
+
+Please see https://docs.brew.sh/Installation.html for more details.
+EOT
+  exit 1
+fi
+
 # https://brew.sh
 if [ -z "$(command -v brew)" ]; then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
