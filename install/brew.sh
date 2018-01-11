@@ -31,6 +31,7 @@ brew install \
      cmake \
      colordiff \
      coreutils \
+     direnv \
      editorconfig \
      exercism \
      gibo \
@@ -75,5 +76,8 @@ gibo macOS Emacs Ruby Rails Node > "$GITIGNORE_GLOBAL"
 cat <<EOT >> "$GITIGNORE_GLOBAL"
 # Tern.el
 .tern-*
+
+# direnv
+.envrc
 EOT
 echo "$GITIGNORE_GLOBAL updated."

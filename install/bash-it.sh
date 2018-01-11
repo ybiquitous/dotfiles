@@ -37,6 +37,7 @@ bash-it disable plugin all
 bash-it enable plugin \
         alias-completion \
         base \
+        direnv \
         docker \
         docker-compose \
         hub \

@@ -36,4 +36,4 @@ load-nvmrc() {
     nvm use default
   fi
 }
-export PROMPT_COMMAND="${PROMPT_COMMAND}; load-nvmrc"
+export PROMPT_COMMAND="load-nvmrc;${PROMPT_COMMAND}"
