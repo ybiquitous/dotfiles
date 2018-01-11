@@ -13,7 +13,7 @@ if [ -n "$(command -v brew)" ]; then
   brew update
   brew upgrade
   brew cleanup
-  brew doctor
+  brew doctor || echo "'brew doctor' exited with $?, but don't stop this process."
   brew cask cleanup
   brew cask outdated
   echo "If there are outdated packages, please run 'brew cask reinstall <package>'."
