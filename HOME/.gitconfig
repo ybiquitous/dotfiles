@@ -88,3 +88,6 @@
 
 [core]
 	excludesfile = /Users/koba/.gitignore_global
+
+[rebase]
+	autosquash = true
