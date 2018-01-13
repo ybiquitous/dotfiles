@@ -37,3 +37,7 @@ load-nvmrc() {
   fi
 }
 export PROMPT_COMMAND="load-nvmrc;${PROMPT_COMMAND}"
+
+function npm-open() {
+  npm info "$1" homepage | xargs open
+}
