@@ -1,3 +1,6 @@
+[core]
+	excludesfile = ~/.gitignore_global
+
 [user]
 	name = Masafumi Koba
 	email = ybiquitous@gmail.com
@@ -86,9 +89,6 @@
 	compactionHeuristic = true
 	indentHeuristic = true
 	algorithm = patience
-
-[core]
-	excludesfile = /Users/koba/.gitignore_global
 
 [rebase]
 	autosquash = true
