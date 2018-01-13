@@ -1,50 +1,90 @@
-# Inspiration from http://gggritso.com/human-git-aliases
-
 [user]
 	name = Masafumi Koba
 	email = ybiquitous@gmail.com
+
+# Inspired by
+# - https://github.com/GitAlias/gitalias
+# - http://gggritso.com/human-git-aliases
 [alias]
+
+	# Shortcut (most frequent commands)
+	b = branch
+	c = commit
 	d = diff
 	g = grep
+	l = log
+	ls = ls-files
 	s = status
-	diff-staged = diff --cached
-	graph = log --graph
-	detail = show --pretty=full
-	pull-prune = pull --prune
-	switch-branch = checkout
+
+	# Branch
+	branch-name = rev-parse --abbrev-ref HEAD
+	delete-branch = branch -D
+	master = checkout master
 	new-branch = checkout -b
 	rename-branch = branch --move
-	delete-branch = branch -D
-	unstage = reset --quiet HEAD --
-	master = checkout master
-	discard = checkout --
-	amend = commit --amend
+	switch-branch = checkout
+
+	# Info
+	detail = show --pretty=full
+	graph = log --graph
+	oneline = log --oneline
+	precommit = diff --staged
+	recent = log -10
 	summary = status --short --untracked-files
+
+	# Grep
 	grep-group = grep --line-number --heading --break
 	grep-word = grep --word-regexp
-	rewrite = rebase --interactive
-	tags = tag
-	branches = branch --all
-	stashes = stash list
-	remotes = remote --verbose
-	contributors = shortlog -s -n --no-merges
-	aliases = !git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
-	edit-config = config --edit --global
+
+	# Config
+	edit-config = config --edit
+	edit-config-global = edit-config --global
 	list-config = config --list
-	open = browse
+	list-config-global = list-config --global
+
+	# Undo
+	amend = commit --amend
+	discard = checkout --
+	rewrite = rebase --interactive
+	uncommit = reset --soft HEAD~1
+	unstage = reset HEAD
+
+	# Push
+	publish = !"git push --set-upstream origin $(git branch-name)"
+
+	# Clean
+	cleanest = clean --force -dx
+	prune-all = !"git remote | xargs -n 1 git remote prune"
+
+	# Sync fork
+	sync-fork = !"git checkout master && git fetch upstream && git merge upstream/master"
+
+	# Plural
+	aliases = "!git config --get-regexp '^alias\\.' | cut -c 7- | sed 's/ / = /'"
+	branches = branch --all
+	contributors = shortlog --summary --numbered --no-merges
+	remotes = remote --verbose
+	stashes = stash list
+	tags = tag
+
 [format]
-	pretty = format:%C(auto)%h  %Creset%<(72,trunc)%s %Cgreen%aN%Creset, %ar %C(auto)%d
+	pretty = format:%C(auto)%h %Creset%<(72,trunc)%s %Cgreen%<(16,trunc)%aN%Creset %ar%C(auto)%d
+
 [color]
 	ui = auto
+
 [pager]
 	diff = diff-highlight | less
 	show = diff-highlight | less
 	log = diff-highlight | less
+
 [commit]
 	verbose = true
+
 [diff]
 	compactionHeuristic = true
 	indentHeuristic = true
 	algorithm = patience
+
 [core]
 	excludesfile = /Users/koba/.gitignore_global
