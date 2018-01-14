@@ -38,6 +38,7 @@ load-nvmrc() {
 }
 export PROMPT_COMMAND="load-nvmrc;${PROMPT_COMMAND}"
 
+# Usage: npm-open <package>
 function npm-open() {
-  npm info "$1" homepage | xargs open
+  [ -n "$1" ] && npm info "$1" homepage repository.url | head -1 | cut -d ' ' -f 3 | xargs open
 }
