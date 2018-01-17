@@ -74,10 +74,15 @@ fi
 readonly GITIGNORE_GLOBAL=~/.gitignore_global
 gibo macOS Emacs Ruby Rails Node > "$GITIGNORE_GLOBAL"
 cat <<EOT >> "$GITIGNORE_GLOBAL"
+# === Custom ===
+
 # Tern.el
 .tern-*
 
 # direnv
 .envrc
+
+# foreman
+.foreman
 EOT
 echo "$GITIGNORE_GLOBAL updated."
