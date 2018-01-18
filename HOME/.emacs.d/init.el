@@ -68,10 +68,6 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; IDO
-(ido-mode t)
-(ido-everywhere t)
-
 ;; package (https://github.com/melpa/melpa)
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
