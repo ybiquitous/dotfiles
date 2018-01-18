@@ -11,6 +11,7 @@
 [alias]
 
 	# Shortcut (most frequent commands)
+	a = add
 	b = branch
 	c = commit
 	d = diff
