@@ -27,6 +27,7 @@
 	new-branch = checkout -b
 	rename-branch = branch --move
 	switch-branch = checkout
+	prune-branches = !"git remote | xargs -n 1 git remote prune"
 
 	# Info
 	detail = show --pretty=full
@@ -59,7 +60,6 @@
 
 	# Clean
 	cleanest = clean --force -dx
-	prune-all = !"git remote | xargs -n 1 git remote prune"
 
 	# Sync fork
 	sync-fork = !"git checkout master && git fetch upstream && git merge upstream/master"
