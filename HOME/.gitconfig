@@ -29,6 +29,9 @@
 	switch-branch = checkout
 	prune-branches = !"git remote | xargs -n 1 git remote prune"
 
+# Tag
+	delete-tag = !"f() { git push --delete $(git remote) $1 && git tag --delete $1; }; f"
+
 	# Info
 	detail = show --pretty=full
 	graph = log --graph
