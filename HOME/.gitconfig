@@ -74,6 +74,7 @@
 	remotes = remote --verbose
 	stashes = stash list
 	tags = tag
+	tags-remote = ls-remote --tag
 
 [format]
 	pretty = format:%C(auto)%h %Creset%<(72,trunc)%s %Cgreen%<(16,trunc)%aN%Creset %ar%C(auto)%d
