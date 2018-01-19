@@ -59,7 +59,7 @@
 	unstash = stash pop
 
 	# Push
-	publish = !"git push --set-upstream origin $(git branch-name)"
+	publish = !"git push --set-upstream $(git remote) $(git branch-name)"
 
 	# Clean
 	cleanest = clean --force -dx
