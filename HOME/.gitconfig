@@ -27,7 +27,7 @@
 	new-branch = checkout -b
 	rename-branch = branch --move
 	switch-branch = checkout
-	prune-branches = !"git remote | xargs -n 1 git remote prune"
+	prune-branches = !"git remote prune $(git remote)"
 
 # Tag
 	delete-tag = !"f() { git push --delete $(git remote) $1 && git tag --delete $1; }; f"
