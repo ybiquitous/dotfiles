@@ -4,5 +4,5 @@
 (defun my/css-mode-hook ()
   (add-node-modules-path)
   (setq-local js-auto-format-command "prettier")
-  (setq-local js-auto-format-command-args "--write >/dev/null"))
+  (setq-local js-auto-format-command-args "--write"))
 (add-hook 'css-mode-hook #'my/css-mode-hook)
