@@ -3,9 +3,9 @@
   :interpreter "node"
   :config
   (add-hook 'js2-mode-hook #'flyspell-prog-mode)
-  (setq
-    js2-mode-show-parse-errors nil
-    js2-mode-show-strict-warnings nil))
+  :custom
+  (js2-mode-show-parse-errors nil)
+  (js2-mode-show-strict-warnings nil))
 
 (use-package js-auto-format-mode
   :config
