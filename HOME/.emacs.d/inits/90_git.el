@@ -1,6 +1,7 @@
 (use-package git-commit
+  :custom
+  (git-commit-summary-max-length 100)
   :config
-  (setq git-commit-summary-max-length 80)
   (global-git-commit-mode)
   (add-hook 'git-commit-mode-hook #'flyspell-mode))
 
