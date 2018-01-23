@@ -4,13 +4,13 @@
           ("\\.markdown\\'" . gfm-mode))
   :config
   (add-hook 'markdown-mode-hook #'flyspell-mode)
-  (setq
-    markdown-command "github-markup"
-    markdown-command-needs-filename t
-    markdown-content-type "application/xhtml+xml"
-    markdown-css-paths '("https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css"
-                          "http://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/github.min.css")
-    markdown-xhtml-header-content "
+  :custom
+  (markdown-command "github-markup")
+  (markdown-command-needs-filename t)
+  (markdown-content-type "application/xhtml+xml")
+  (markdown-css-paths '("https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css"
+                        "http://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/github.min.css"))
+  (markdown-xhtml-header-content "
 <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
 <style>
 body {
