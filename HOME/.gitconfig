@@ -28,10 +28,10 @@
 	new-branch = checkout -b
 	rename-branch = branch --move
 	switch-branch = checkout
-	prune-branches = !"git remote prune $(git remote)"
+	prune-branches = !"git remote prune $(git origin)"
 
 # Tag
-	delete-tag = !"f() { git push --delete $(git remote) $1 && git tag --delete $1; }; f"
+	delete-tag = !"f() { git push --delete $(git origin) $1 && git tag --delete $1; }; f"
 
 	# Info
 	detail = show --pretty=full
@@ -40,6 +40,7 @@
 	precommit = diff --staged
 	recent = log -10
 	summary = status --short --untracked-files
+	origin = !"git remote | head -1"
 
 	# Grep
 	grep-group = grep --line-number --heading --break
@@ -60,7 +61,7 @@
 	unstash = stash pop
 
 	# Push
-	publish = !"git push --set-upstream $(git remote) $(git branch-name)"
+	publish = !"git push --set-upstream $(git origin) $(git branch-name)"
 
 	# Clean
 	cleanest = clean --force -dx
