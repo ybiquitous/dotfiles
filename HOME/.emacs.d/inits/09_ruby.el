@@ -17,11 +17,11 @@
          ("Guardfile\\'"   . enh-ruby-mode)
          ("Capfile\\'"     . enh-ruby-mode)
          ("Vagrantfile\\'" . enh-ruby-mode))
+  :custom
+  (enh-ruby-add-encoding-comment-on-save nil)
+  (enh-ruby-deep-indent-paren nil)
+  (enh-ruby-bounce-deep-indent t)
   :config
-  (setq
-    enh-ruby-add-encoding-comment-on-save nil
-    enh-ruby-deep-indent-paren nil
-    enh-ruby-bounce-deep-indent t)
   (defun my/enh-ruby-mode-hook ()
     (robe-mode)
     (ruby-electric-mode)
