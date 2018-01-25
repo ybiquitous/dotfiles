@@ -67,6 +67,7 @@
 	cleanest = clean --force -dx
 
 	# Sync fork
+	set-upstream = !"f() { if [ -n \"$1\" ]; then git remote add upstream $1; else echo 'usage: git set-upstream <url>' && exit 1; fi; }; f"
 	sync-fork = !"git checkout master && git fetch upstream && git merge upstream/master"
 
 	# Plural
@@ -99,5 +100,6 @@
 
 [rebase]
 	autosquash = true
+
 [grep]
 	lineNumber = true
