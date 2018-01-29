@@ -27,7 +27,7 @@
 	master = checkout master
 	new-branch = checkout -b
 	rename-branch = branch --move
-	switch-branch = checkout
+	switch-branch = !"f() { git branch --format='%(refname:short)' | grep --quiet $1 && git checkout $1; }; f"
 	prune-branches = !"git remote prune $(git origin)"
 
 # Tag
