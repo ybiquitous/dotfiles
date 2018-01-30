@@ -1,4 +1,5 @@
 (use-package highlight-symbol
+  :delight
   :bind ("C-c r" . highlight-symbol-query-replace)
   :config
   (add-hook 'prog-mode-hook #'highlight-symbol-mode)
