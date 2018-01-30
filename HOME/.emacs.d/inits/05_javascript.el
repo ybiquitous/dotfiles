@@ -1,6 +1,7 @@
 (use-package js2-mode
   :mode "\\.m?js\\'"
   :interpreter "node"
+  :delight
   :config
   (add-hook 'js2-mode-hook #'flyspell-prog-mode)
   :custom

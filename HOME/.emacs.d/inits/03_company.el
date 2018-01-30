@@ -1,5 +1,5 @@
 (use-package company
-  :diminish company-mode
+  :delight
   :bind ("C-c i" . company-yasnippet)
   :config
   (global-company-mode))

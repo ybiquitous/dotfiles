@@ -1,5 +1,5 @@
 (use-package whitespace
-  :diminish global-whitespace-mode
+  :delight global-whitespace-mode
   :custom
   (whitespace-action '(auto-cleanup))
   (whitespace-display-mappings '((space-mark ?\u3000 [?\u25a1])
