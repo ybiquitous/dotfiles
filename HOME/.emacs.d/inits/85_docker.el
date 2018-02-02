@@ -1,1 +1,2 @@
-(use-package dockerfile-mode)
+(use-package dockerfile-mode
+  :mode "Dockerfile")
