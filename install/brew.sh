@@ -34,6 +34,7 @@ brew install \
      direnv \
      editorconfig \
      exercism \
+     forego \
      gibo \
      heroku \
      hub \
@@ -82,7 +83,8 @@ cat <<EOT >> "$GITIGNORE_GLOBAL"
 # direnv
 .envrc
 
-# foreman
+# foreman / forego
 .foreman
+.forego
 EOT
 echo "$GITIGNORE_GLOBAL updated."
