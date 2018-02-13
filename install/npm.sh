@@ -22,6 +22,11 @@ $NPM_INSTALL \
   stylelint \
   stylelint-config-standard \
   tern \
+  tslint \
+  tslint-config-prettier \
+  tslint-plugin-prettier \
+  tslint-react \
+  typescript \
   write-good
 
 # HACK: install dependencies of ESLint shareable config
