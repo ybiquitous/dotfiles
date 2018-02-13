@@ -1,6 +1,7 @@
 (bind-key "C-?"     'help-command)
 (bind-key "C-c C-g" 'vc-git-grep)
 (bind-key "C-c C-k" 'kill-buffer-and-window)
+(bind-key "C-c C-p" 'my/prettier)
 (bind-key "C-c C-r" 'eval-buffer)
 (bind-key "C-c C-v" 'browse-url-of-buffer)
 (bind-key "C-c c l" 'lower-camel-case-word)
@@ -20,6 +21,7 @@ C-M-s          isearch-forward-regexp
 C-c C-c p      markdown-preview
 C-c C-g        vc-git-grep
 C-c C-k        kill-buffer-and-window
+C-c C-p        my/prettier
 C-c C-r        eval-buffer
 C-c c l        lower-camel-case-word
 C-c c u        upper-camel-case-word

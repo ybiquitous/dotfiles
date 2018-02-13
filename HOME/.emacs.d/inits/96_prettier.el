@@ -1,4 +1,4 @@
-(defun prettier ()
+(defun my/prettier ()
   (interactive)
   (shell-command
     (format "%s --write %s"
