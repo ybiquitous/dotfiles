@@ -5,3 +5,7 @@
       (shell-quote-argument (executable-find "prettier"))
       (shell-quote-argument (expand-file-name buffer-file-name))))
   (revert-buffer t t t))
+
+(add-hook 'markdown-mode-hook
+  (lambda ()
+    (add-hook 'after-save-hook 'my/prettier t t)))
