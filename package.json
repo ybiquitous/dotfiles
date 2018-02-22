@@ -7,7 +7,7 @@
   "homepage": "https://github.com/ybiquitous/dotfiles#readme",
   "scripts": {
     "lint": "npm-run-all --print-name --print-label --parallel lint:*",
-    "lint:md": "markdownlint *.md",
+    "lint:md": "markdownlint --ignore node_modules \"**/*.md\"",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "precommit": "lint-staged"
   },
@@ -16,6 +16,6 @@
     "*.md": "markdownlint"
   },
   "devDependencies": {
-    "ybiq": "^1.1.0"
+    "ybiq": "^1.4.1"
   }
 }
