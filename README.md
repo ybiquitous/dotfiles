@@ -44,12 +44,12 @@ LANG=C xdg-user-dirs-gtk-update
 
 ### Key bindings (based on Emacs)
 
-| Key                    | Description                      |
-| ---------------------- | -------------------------------- |
-| <kbd>Ctrl + H</kbd>    | Delete Previous                  |
-| <kbd>Alt + H</kbd>     | Maximize Active View or Editor   |
-| <kbd>Alt + H</kbd>     | Open Search Dialog               |
-| <kbd>Ctrl + }</kbd>    | Toggle Split Editor (Horizontal) |
+| Key                 | Description                      |
+| ------------------- | -------------------------------- |
+| <kbd>Ctrl + H</kbd> | Delete Previous                  |
+| <kbd>Alt + H</kbd>  | Maximize Active View or Editor   |
+| <kbd>Alt + H</kbd>  | Open Search Dialog               |
+| <kbd>Ctrl + }</kbd> | Toggle Split Editor (Horizontal) |
 
 ## Java
 
@@ -66,20 +66,20 @@ ln -s /usr/share/fonts/truetype/****.ttf .
 
 Extension list:
 
-- Adblock Plus
-- AMP Validator
-- Check My Links
-- Code Climate
-- Contrast Ratio Checker
-- Google Analytics Debugger
-- Google 翻訳
-- HTML5 Outliner
-- Copy as Markdown
-- OctoLinker
-- Octotree
-- React Developer Tools
-- Save to Pocket
-- SPOF-O-Matic
-- Tag Assistant
-- Validity
-- Wappalyzer
+* Adblock Plus
+* AMP Validator
+* Check My Links
+* Code Climate
+* Contrast Ratio Checker
+* Google Analytics Debugger
+* Google 翻訳
+* HTML5 Outliner
+* Copy as Markdown
+* OctoLinker
+* Octotree
+* React Developer Tools
+* Save to Pocket
+* SPOF-O-Matic
+* Tag Assistant
+* Validity
+* Wappalyzer
