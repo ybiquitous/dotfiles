@@ -6,9 +6,9 @@
   "repository": "ybiquitous/dotfiles",
   "homepage": "https://github.com/ybiquitous/dotfiles#readme",
   "scripts": {
-    "commitmsg": "commitlint -e",
     "lint": "npm-run-all --print-name --print-label --parallel lint:*",
     "lint:md": "markdownlint *.md",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
     "precommit": "lint-staged"
   },
   "lint-staged": {
