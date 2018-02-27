@@ -16,7 +16,8 @@ gem install --no-ri --no-rdoc \
     pry \
     pry-doc \
     reek \
-    rubocop
+    rubocop \
+    stackprof
 
 echo
 gem update
