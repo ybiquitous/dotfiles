@@ -40,6 +40,7 @@ brew install \
      hub \
      imagemagick \
      jq \
+     md5sha1sum \
      mysql \
      node \
      postgresql \
