@@ -16,6 +16,6 @@
     "*.md": "markdownlint"
   },
   "devDependencies": {
-    "ybiq": "^1.4.1"
+    "ybiq": "1.4.1"
   }
 }
