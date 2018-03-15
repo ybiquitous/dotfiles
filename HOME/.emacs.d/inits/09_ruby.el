@@ -10,6 +10,7 @@
   :mode (("\\.rb\\'"       . enh-ruby-mode)
          ("\\.ru\\'"       . enh-ruby-mode)
          ("\\.jbuilder\\'" . enh-ruby-mode)
+         ("\\.jb\\'"       . enh-ruby-mode)
          ("\\.gemspec\\'"  . enh-ruby-mode)
          ("\\.rake\\'"     . enh-ruby-mode)
          ("Rakefile\\'"    . enh-ruby-mode)
