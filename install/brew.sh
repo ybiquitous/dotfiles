@@ -56,6 +56,7 @@ brew cask install \
      emacs \
      imageoptim \
      iterm2 \
+     recordit \
      sequel-pro \
      virtualbox \
      caskroom/fonts/font-hack
