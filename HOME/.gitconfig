@@ -64,6 +64,7 @@
 
 	# Push
 	publish = !"git push --set-upstream $(git origin) $(git branch-name)"
+	force-push = push --force
 
 	# Clean
 	cleanest = clean --force -dx
