@@ -27,6 +27,7 @@ $NPM_INSTALL \
   tslint-plugin-prettier \
   tslint-react \
   typescript \
+  typings \
   write-good
 
 # HACK: install dependencies of ESLint shareable config
