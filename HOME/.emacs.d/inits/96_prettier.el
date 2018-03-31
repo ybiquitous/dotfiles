@@ -7,6 +7,9 @@
   (revert-buffer t t t)
   (if (fboundp 'flycheck-buffer) (flycheck-buffer)))
 
-(add-hook 'markdown-mode-hook
-  (lambda ()
-    (add-hook 'after-save-hook 'my/prettier t t)))
+(define-minor-mode my/prettier-mode
+  "Minor mode for Prettier"
+  :lighter " Prettier"
+  (if my/prettier-mode
+    (add-hook 'after-save-hook 'my/prettier t t)
+    (remove-hook 'after-save-hook 'my/prettier t)))
