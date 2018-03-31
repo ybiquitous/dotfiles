@@ -54,6 +54,7 @@ brew install \
 brew install yarn --without-node
 brew cask install \
      emacs \
+     google-japanese-ime \
      imageoptim \
      iterm2 \
      recordit \
