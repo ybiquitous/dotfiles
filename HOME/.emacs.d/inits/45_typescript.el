@@ -13,9 +13,11 @@
   :config
   (defun setup-tide-mode ()
     (tide-setup)
-    (eldoc-mode)
-    (tide-hl-identifier-mode)
-    (setq-local company-tooltip-align-annotations t))
+    (flycheck-mode +1)
+    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+    (eldoc-mode +1)
+    (tide-hl-identifier-mode +1)
+    (company-mode +1))
   (add-hook 'typescript-mode-hook #'setup-tide-mode)
 
   ;; TSX
