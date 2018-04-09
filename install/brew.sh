@@ -45,6 +45,7 @@ brew install \
      node \
      postgresql \
      rbenv \
+     rbenv-binstubs \
      redis \
      ruby \
      shellcheck \
