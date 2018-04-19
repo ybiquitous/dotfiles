@@ -34,6 +34,7 @@
  '(js-indent-level 2)
  '(js-switch-indent-offset 2)
  '(line-number-mode t)
+ '(line-spacing 2)
  '(load-prefer-newer t)
  '(make-backup-files nil)
  '(nxml-auto-insert-xml-declaration-flag t)
