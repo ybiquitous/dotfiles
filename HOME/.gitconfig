@@ -72,7 +72,7 @@
 
 	# Sync fork
 	# https://help.github.com/articles/configuring-a-remote-for-a-fork/
-	set-upstream = !"f() { if [ -n \"$1\" ]; then git remote add upstream $1; else echo 'usage: git set-upstream <url>' && exit 1; fi; }; f"
+	set-upstream = !"f() { if [ -n \"$1\" ]; then git remote add upstream $1; else echo 'usage: git set-upstream <https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git>' && exit 1; fi; }; f"
 	# https://help.github.com/articles/syncing-a-fork/
 	sync-fork = !"git fetch upstream && git checkout master && git merge upstream/master"
 
