@@ -42,6 +42,7 @@
 	summary = status --short --untracked-files
 	origin = !"git remote | head -1"
 	hash = !"f() { git log -${1:-1} --format='%H' | tail -1; }; f"
+	diff-ignore-spaces = diff --ignore-space-change
 
 	# Grep
 	grep-group = grep --line-number --heading --break
