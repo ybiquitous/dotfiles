@@ -21,6 +21,8 @@ Add next line to ~/.bashrc or ~/.bash_profile:
 
 EOT
 
+  (cd ~/.bash_it; patch -p1 < "${BASEDIR}/bash-it.patch")
+
   exit
 fi
 
