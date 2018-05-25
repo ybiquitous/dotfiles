@@ -5,6 +5,7 @@ readonly BASEDIR=$(cd "$(dirname "$0")"; pwd)/bash-it
 
 create_symlinks() {
   cd "$BASEDIR"
+  find . -type d ! -path . | sed 's|./||' | xargs -I {} mkdir -p ~/.bash_it/{}
   find . -type f | sed 's|./||' | xargs -I {} ln -svf "${BASEDIR}/{}" ~/.bash_it/{}
 }
 
@@ -17,11 +18,9 @@ if [ ! -d ~/.bash_it ]; then
 
 Add next line to ~/.bashrc or ~/.bash_profile:
 
-  export BASH_IT_THEME='mbriggs'
+  export BASH_IT_THEME='mbriggs-custom'
 
 EOT
-
-  (cd ~/.bash_it; patch -p1 < "${BASEDIR}/bash-it.patch")
 
   exit
 fi
