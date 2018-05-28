@@ -38,6 +38,7 @@
 	graph = log --graph
 	oneline = log --oneline
 	precommit = diff --staged
+	precommit-files = diff --staged --name-only
 	recent = log -10
 	summary = status --short --untracked-files
 	origin = !"git remote | head -1"
