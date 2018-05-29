@@ -32,6 +32,7 @@ brew install \
      colordiff \
      coreutils \
      direnv \
+     docker-completion \
      editorconfig \
      exercism \
      forego \
@@ -56,6 +57,7 @@ brew install \
      homebrew/dupes/less
 brew install yarn --without-node
 brew cask install \
+     docker \
      emacs \
      google-japanese-ime \
      imageoptim \
