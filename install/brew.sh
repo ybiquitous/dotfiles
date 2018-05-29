@@ -51,6 +51,8 @@ brew install \
      shellcheck \
      tree \
      watch \
+     zsh \
+     zsh-completions \
      homebrew/dupes/less
 brew install yarn --without-node
 brew cask install \
@@ -71,8 +73,16 @@ brew cask cleanup
 readonly BREW_BASH=$(brew --prefix)/bin/bash
 if grep -q "$BREW_BASH" /etc/shells; then
   sudo sh -c "echo $BREW_BASH >> /etc/shells"
-  chsh -s "$BREW_BASH"
-  echo "Changed login shell to $BREW_BASH"
+  # chsh -s "$BREW_BASH"
+  # echo "Changed login shell to $BREW_BASH"
+fi
+
+# Zsh
+readonly BREW_ZSH=$(brew --prefix)/bin/zsh
+if grep -q "$BREW_ZSH" /etc/shells; then
+  sudo sh -c "echo $BREW_ZSH >> /etc/shells"
+  chsh -s "$BREW_ZSH"
+  echo "Changed login shell to $BREW_ZSH"
 fi
 
 # setup gibo
