@@ -28,6 +28,7 @@ brew install \
      awscli \
      bash \
      bash-completion \
+     bundler-completion \
      cmake \
      colordiff \
      coreutils \
