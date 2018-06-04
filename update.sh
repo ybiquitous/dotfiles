@@ -5,6 +5,10 @@ cat <<EOT
 Please update Bash-it manually:
 
     $ bash-it update
+
+Please update Prezto manually:
+
+    $ zprezto-update
 EOT
 
 if [ -n "$(command -v brew)" ]; then
