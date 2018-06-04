@@ -19,11 +19,10 @@ if [ -n "$(command -v brew)" ]; then
   brew cleanup
   brew doctor || echo "'brew doctor' exited with $?, but don't stop this process."
   brew cask cleanup
-  brew_cask_outdated=$(brew cask outdated)
-  if [ -n "$brew_cask_outdated" ]; then
-    echo "$brew_cask_outdated"
-    echo "Please run 'brew cask reinstall <package>'."
-  fi
+  brew cask outdated
+  for package in $(brew cask outdated); do
+    brew cask reinstall "$package"
+  done
 fi
 
 if [ -n "$(command -v apt-get)" ]; then
