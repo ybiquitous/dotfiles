@@ -66,7 +66,7 @@ brew cask install \
      recordit \
      sequel-pro \
      virtualbox \
-     caskroom/fonts/font-hack
+     font-hack
 brew upgrade
 brew cleanup
 brew doctor
