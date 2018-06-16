@@ -87,21 +87,3 @@ if grep -q "$BREW_ZSH" /etc/shells; then
   chsh -s "$BREW_ZSH"
   echo "Changed login shell to $BREW_ZSH"
 fi
-
-# setup gibo
-readonly GITIGNORE_GLOBAL=~/.gitignore_global
-gibo macOS Emacs Ruby Rails Node > "$GITIGNORE_GLOBAL"
-cat <<EOT >> "$GITIGNORE_GLOBAL"
-# === Custom ===
-
-# Tern.el
-.tern-*
-
-# direnv
-.envrc
-
-# foreman / forego
-.foreman
-.forego
-EOT
-echo "$GITIGNORE_GLOBAL updated."

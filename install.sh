@@ -42,5 +42,6 @@ done
 ./install/npm.sh
 ./install/nvm.sh
 ./install/yarn.sh
+./install/gibo.sh
 
 echo 'Installation completed. Please reopen shell.'

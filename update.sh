@@ -1,6 +1,8 @@
 #!/bin/sh
 set -eu
 
+readonly BASEDIR="${HOME}/dotfiles"
+
 cat <<EOT
 Please update Bash-it manually:
 
@@ -66,3 +68,8 @@ echo "Updating gem..."
 gem update --system --no-ri --no-rdoc
 gem update --no-ri --no-rdoc
 gem cleanup
+
+echo
+echo "Updating gibo..."
+gibo update
+"${BASEDIR}/install/gibo.sh"
