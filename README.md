@@ -66,20 +66,20 @@ ln -s /usr/share/fonts/truetype/****.ttf .
 
 Extension list:
 
-* Adblock Plus
-* AMP Validator
-* Check My Links
-* Code Climate
-* Contrast Ratio Checker
-* Google Analytics Debugger
-* Google 翻訳
-* HTML5 Outliner
-* Copy as Markdown
-* OctoLinker
-* Octotree
-* React Developer Tools
-* Save to Pocket
-* SPOF-O-Matic
-* Tag Assistant
-* Validity
-* Wappalyzer
+- Adblock Plus
+- AMP Validator
+- Check My Links
+- Code Climate
+- Contrast Ratio Checker
+- Google Analytics Debugger
+- Google 翻訳
+- HTML5 Outliner
+- Copy as Markdown
+- OctoLinker
+- Octotree
+- React Developer Tools
+- Save to Pocket
+- SPOF-O-Matic
+- Tag Assistant
+- Validity
+- Wappalyzer

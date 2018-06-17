@@ -7,14 +7,24 @@
   "homepage": "https://github.com/ybiquitous/dotfiles#readme",
   "scripts": {
     "lint": "npm-run-all --print-name --print-label --parallel lint:*",
-    "lint:md": "markdownlint --ignore node_modules \"**/*.md\"",
-    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "lint:md": "markdownlint --ignore node_modules --ignore CHANGELOG.md \"**/*.md\"",
+    "lint:md:fix": "prettier --write \"**/*.md\"",
+    "commitmsg": "commitlint -E GIT_PARAMS",
     "precommit": "lint-staged",
     "commit": "commit"
   },
   "lint-staged": {
-    "*.{sh,bash}": "shellcheck",
-    "*.md": "markdownlint"
+    "linters": {
+      "*.{sh,bash}": "shellcheck",
+      "*.md": [
+        "prettier --write",
+        "markdownlint",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "CHANGELOG.md"
+    ]
   },
   "devDependencies": {
     "@commitlint/prompt-cli": "7.0.0",
