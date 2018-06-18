@@ -65,7 +65,8 @@ brew cask install \
      iterm2 \
      sequel-pro \
      virtualbox \
-     font-hack
+     font-hack \
+     font-source-code-pro
 brew upgrade
 brew cleanup
 brew doctor
