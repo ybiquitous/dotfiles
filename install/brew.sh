@@ -63,7 +63,6 @@ brew cask install \
      google-japanese-ime \
      imageoptim \
      iterm2 \
-     recordit \
      sequel-pro \
      virtualbox \
      font-hack
