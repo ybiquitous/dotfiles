@@ -27,10 +27,7 @@
 
 (use-package rjsx-mode
   :mode (("components\\/.*\\.jsx?\\'" . rjsx-mode)
-          ("\\.jsx\\'" . rjsx-mode))
-  :config
-  (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
-  (flycheck-mode))
+          ("\\.jsx\\'" . rjsx-mode)))
 
 (use-package json-mode
   :mode (("\\.tern-config\\'" . json-mode)
