@@ -5,6 +5,7 @@
 [user]
 	name = Masafumi Koba
 	email = ybiquitous@gmail.com
+	signingkey = 60F83A73EFECA4BD
 
 # Inspired by
 # - https://github.com/GitAlias/gitalias
