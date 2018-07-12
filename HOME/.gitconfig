@@ -36,7 +36,7 @@
 	delete-tag = !"f() { git push --delete $(git origin) $1 && git tag --delete $1; }; f"
 
 	# Info
-	detail = show --pretty=full
+	detail = show --pretty=full --show-signature
 	graph = log --graph
 	oneline = log --oneline
 	precommit = diff --staged
