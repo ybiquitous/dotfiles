@@ -28,6 +28,6 @@
   },
   "devDependencies": {
     "@commitlint/prompt-cli": "7.0.0",
-    "ybiq": "3.4.0"
+    "ybiq": "4.0.0"
   }
 }
