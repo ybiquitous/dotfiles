@@ -1,3 +1,6 @@
+(use-package magit
+  :bind (("C-x g" . magit-status)))
+
 (defun my/git-commit-mode-hook ()
   (setq fill-column 100)
   (flyspell-mode))
