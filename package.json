@@ -6,7 +6,7 @@
   "repository": "ybiquitous/dotfiles",
   "homepage": "https://github.com/ybiquitous/dotfiles#readme",
   "scripts": {
-    "lint": "npm-run-all --print-name --print-label --parallel lint:*",
+    "lint": "npm-run-all --print-label --parallel lint:*",
     "lint:md": "markdownlint --ignore node_modules --ignore CHANGELOG.md \"**/*.md\"",
     "lint:md:fix": "prettier --write \"**/*.md\"",
     "commitmsg": "commitlint -E GIT_PARAMS",
