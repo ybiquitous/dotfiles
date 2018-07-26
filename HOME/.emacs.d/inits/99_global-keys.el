@@ -29,10 +29,13 @@ C-c c u        upper-camel-case-word
 C-c c v        browse-url-of-buffer
 C-c d          dasherize-word
 C-c l          toggle-truncate-lines
-C-c p f        projectile-find-file
+C-c C-p f      projectile-find-file
 C-q            quoted-insert (e.g. `C-q TAB')
 C-u M-!        shell-command
 C-u M-|        shell-command-on-region
+C-x C-+        text-scale-adjust (increase)
+C-x C--        text-scale-adjust (decrease)
+C-x C-0        text-scale-adjust (reset)
 C-x SPC        rectangle-mark-mode
 C-x v =        vc-diff (git diff)
 C-x v g        vc-annotate (git blame)
