@@ -15,7 +15,10 @@
 
 (use-package add-node-modules-path
   :config
-  (add-hook 'js-mode-hook #'add-node-modules-path))
+  (add-hook 'prog-mode-hook #'add-node-modules-path)
+  (add-hook 'text-mode-hook #'add-node-modules-path)
+  :custom
+  (add-node-modules-path-debug t))
 
 (use-package tern
   :config

@@ -1,5 +1,4 @@
 (defun my/setup-tide-mode ()
-  (add-node-modules-path)
   (setq-local js-auto-format-command "tslint")
   (setq-local js-auto-format-command-args "--fix")
   (tide-setup)
