@@ -9,6 +9,8 @@
     "lint": "npm-run-all --print-label --parallel lint:*",
     "lint:md": "markdownlint --ignore node_modules --ignore CHANGELOG.md \"**/*.md\"",
     "lint:md:fix": "prettier --write \"**/*.md\"",
+    "lint:js": "eslint --ignore-path .gitignore --ext .js,.jsx,.mjs .",
+    "lint:js:fix": "npm run lint:js -- --fix",
     "commitmsg": "commitlint -E GIT_PARAMS",
     "precommit": "lint-staged",
     "commit": "commit"
@@ -16,6 +18,10 @@
   "lint-staged": {
     "linters": {
       "*.{sh,bash}": "shellcheck",
+      "*.{js,jsx,mjs}": [
+        "eslint --fix --no-ignore",
+        "git add"
+      ],
       "*.md": [
         "prettier --write",
         "markdownlint",
@@ -25,6 +31,9 @@
     "ignore": [
       "CHANGELOG.md"
     ]
+  },
+  "prettier": {
+    "trailingComma": "es5"
   },
   "devDependencies": {
     "@commitlint/prompt-cli": "7.0.0",
