@@ -1,2 +1,4 @@
 (use-package projectile
-  :delight)
+  :delight
+  :config
+  (define-key projectile-mode-map (kbd "C-c C-p") 'projectile-command-map))
