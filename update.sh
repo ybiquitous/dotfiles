@@ -18,13 +18,12 @@ if [ -n "$(command -v brew)" ]; then
   echo "Updating brew..."
   brew update
   brew upgrade
-  brew cleanup
-  brew doctor || echo "'brew doctor' exited with $?, but don't stop this process."
-  brew cask cleanup
-  brew cask outdated
   for package in $(brew cask outdated); do
     brew cask reinstall "$package"
   done
+  brew doctor || echo "'brew doctor' exited with $?, but don't stop this process."
+  brew cleanup
+  exit
 fi
 
 if [ -n "$(command -v apt-get)" ]; then

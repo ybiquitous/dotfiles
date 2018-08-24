@@ -68,9 +68,8 @@ brew cask install \
      font-hack \
      font-source-code-pro
 brew upgrade
-brew cleanup
 brew doctor
-brew cask cleanup
+brew cleanup
 
 # Bash
 readonly BREW_BASH=$(brew --prefix)/bin/bash
