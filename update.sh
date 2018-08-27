@@ -23,7 +23,6 @@ if [ -n "$(command -v brew)" ]; then
   done
   brew doctor || echo "'brew doctor' exited with $?, but don't stop this process."
   brew cleanup
-  exit
 fi
 
 if [ -n "$(command -v apt-get)" ]; then
