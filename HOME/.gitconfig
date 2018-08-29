@@ -79,7 +79,7 @@
 	# https://help.github.com/articles/configuring-a-remote-for-a-fork/
 	set-upstream = !"f() { if [ -n \"$1\" ]; then git remote add upstream $1; else echo 'usage: git set-upstream <https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git>' && exit 1; fi; }; f"
 	# https://help.github.com/articles/syncing-a-fork/
-	sync-fork = !"git fetch upstream && git checkout $(git default-branch) && git merge upstream/$(git default-branch) && git push"
+	sync-fork = !"git fetch upstream && git checkout $(git default-branch) && git merge upstream/$(git default-branch) && git push && git pull --prune"
 
 	# Plural
 	aliases = !"git config --get-regexp '^alias\\.' | cut -c 7- | sed 's/ / = /'"
