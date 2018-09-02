@@ -17,7 +17,7 @@ sudo apt-get -y install \
      build-essential \
      ca-certificates \
      curl \
-     emacs24 \
+     emacs \
      git \
      libffi-dev \
      libgdbm-dev \

@@ -69,22 +69,4 @@ typings/
 .serverless
 
 ### Custom
-HOME/.emacs.d/auto-save-list
-HOME/.emacs.d/**/*.elc
-HOME/.emacs.d/ac-comphist.dat
-HOME/.emacs.d/elpa
-HOME/.emacs.d/tramp
-HOME/.emacs.d/eshell
-HOME/.emacs.d/project-explorer-cache
-HOME/.emacs.d/inits/*_env.el
-HOME/.emacs.d/server/server
-HOME/.emacs.d/recentf
-HOME/.emacs.d/.emacs.desktop
-HOME/.emacs.d/.emacs.desktop.lock
-HOME/.emacs.d/network-security.data
-HOME/.emacs.d/projectile-bookmarks.eld
-HOME/.emacs.d/projectile.cache
-HOME/.emacs.d/url
-HOME/.emacs.d/ido.last
 .tern-port
-.yas-compiled-snippets.el
