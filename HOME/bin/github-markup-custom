@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+require 'github/markup'
+require 'html/pipeline'
+
+filename = ARGV[0]
+
+unless filename
+  STDERR.puts "Usage: #{$PROGRAM_NAME} FILE"
+  exit 1
+end
+
+unless File.exist? filename
+  STDERR.puts "No such file: #{filename}"
+  exit 1
+end
+
+html_source = GitHub::Markup.render(filename, File.read(filename))
+
+filters = [
+  HTML::Pipeline::TableOfContentsFilter
+]
+
+pipeline = HTML::Pipeline.new(filters)
+puts pipeline.call(html_source)[:output].to_s

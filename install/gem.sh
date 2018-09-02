@@ -9,8 +9,10 @@ echo "Installing gems..."
 gem install --no-ri --no-rdoc \
     bundler \
     commonmarker \
+    escape_utils \
     github-markup \
     gist \
+    html-pipeline \
     mdl \
     method_source \
     pry \
