@@ -6,17 +6,13 @@
 curl -o- -L https://raw.githubusercontent.com/ybiquitous/dotfiles/master/install.sh | sh
 ```
 
-## Emacs
-
-[Emacs Tips](EMACS-TIPS.md)
-
 ## Windows
 
 Use `mklink` as Administrator on Windows, instead `ln -s`.
 
 ```bat
 mklink .gitconfig dotfiles\HOME\.gitconfig
-mklink /D .emacs.d dotfiles\HOME\.emacs.d
+mklink /D foo dotfiles\HOME\foo
 ```
 
 ## Linux
