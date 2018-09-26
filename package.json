@@ -11,9 +11,13 @@
     "lint:md:fix": "prettier --write \"**/*.md\"",
     "lint:js": "eslint --ignore-path .gitignore --ext .js,.jsx,.mjs .",
     "lint:js:fix": "npm run lint:js -- --fix",
-    "commitmsg": "commitlint -E GIT_PARAMS",
-    "precommit": "lint-staged",
     "commit": "commit"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "linters": {
