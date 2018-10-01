@@ -15,7 +15,8 @@ unless File.exist? filename
   exit 1
 end
 
-html_source = GitHub::Markup.render(filename, File.read(filename))
+file_content = File.read(filename, encoding: Encoding::UTF_8)
+html_source = GitHub::Markup.render(filename, file_content)
 
 filters = [
   HTML::Pipeline::TableOfContentsFilter
