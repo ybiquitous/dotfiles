@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@commitlint/prompt-cli": "7.1.2",
-    "eslint-config-ybiquitous": "6.1.0",
+    "eslint-config-ybiquitous": "6.2.0",
     "ybiq": "5.0.0"
   }
 }
