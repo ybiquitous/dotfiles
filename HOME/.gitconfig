@@ -26,7 +26,6 @@
 	# Branch
 	branch-name = rev-parse --abbrev-ref HEAD
 	delete-branch = branch --delete
-	delete-branch-force = branch --delete --force
 	master = checkout master
 	new-branch = checkout -b
 	rename-branch = branch --move
