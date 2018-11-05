@@ -9,6 +9,7 @@ echo "Installing gems..."
 gem install --no-ri --no-rdoc \
     bundler \
     commonmarker \
+    goodcheck \
     escape_utils \
     github-markup \
     gist \
