@@ -18,9 +18,7 @@ if [ -n "$(command -v brew)" ]; then
   echo "Updating brew..."
   brew update
   brew upgrade
-  for package in $(brew cask outdated); do
-    brew cask reinstall "$package"
-  done
+  brew cask upgrade
   brew doctor || echo "'brew doctor' exited with $?, but don't stop this process."
   brew cleanup
 fi
