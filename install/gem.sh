@@ -18,6 +18,7 @@ gem install --no-ri --no-rdoc \
     method_source \
     pry \
     pry-doc \
+    querly \
     reek \
     rubocop \
     stackprof
