@@ -116,3 +116,5 @@
 
 [grep]
 	lineNumber = true
+[protocol]
+	version = 2
