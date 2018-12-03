@@ -4,7 +4,6 @@
   "license": "UNLICENSED",
   "author": "ybiquitous",
   "repository": "ybiquitous/dotfiles",
-  "homepage": "https://github.com/ybiquitous/dotfiles#readme",
   "scripts": {
     "lint": "npm-run-all --print-label --parallel lint:*",
     "lint:md": "markdownlint --ignore node_modules --ignore CHANGELOG.md \"**/*.md\"",
