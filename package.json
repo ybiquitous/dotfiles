@@ -15,9 +15,9 @@
     "commit": "commit"
   },
   "devDependencies": {
-    "@commitlint/prompt-cli": "7.2.1",
-    "eslint-config-ybiquitous": "6.2.0",
-    "ybiq": "6.0.0"
+    "@commitlint/prompt-cli": "^7.2.1",
+    "eslint-config-ybiquitous": "^6.2.0",
+    "ybiq": "^6.0.0"
   },
   "husky": {
     "hooks": {
