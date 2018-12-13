@@ -35,6 +35,9 @@
 	# https://stackoverflow.com/questions/28666357/git-how-to-get-default-branch
 	default-branch = !"git symbolic-ref  --short refs/remotes/origin/HEAD | sed 's|^origin/||'"
 
+	# Commit
+	wip = commit --all --no-verify --message 'chore: WIP'
+
 # Tag
 	delete-tag = !"f() { git push --delete $(git origin) $1 && git tag --delete $1; }; f"
 
