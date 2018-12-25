@@ -61,8 +61,8 @@ npm -g outdated || true
 
 echo
 echo "Updating gem..."
-gem update --system --no-ri --no-rdoc
-gem update --no-ri --no-rdoc
+gem update --system --no-document
+gem update --no-document
 gem cleanup
 
 echo

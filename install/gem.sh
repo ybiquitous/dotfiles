@@ -6,7 +6,7 @@ gem update --system
 
 echo
 echo "Installing gems..."
-gem install --no-ri --no-rdoc \
+gem install --no-document \
     bundler \
     commonmarker \
     goodcheck \
