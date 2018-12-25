@@ -10,11 +10,9 @@
     "lint:js": "eslint --ignore-path .gitignore --ext .js,.jsx,.mjs .",
     "lint:js:fix": "npm run lint:js -- --fix",
     "prettier:write": "prettier --write --ignore-path .gitignore \"**/*.{html,json,md,yaml,yml}\"",
-    "format": "npm-run-all --print-label --parallel lint:js:fix prettier:write",
-    "commit": "commit"
+    "format": "npm-run-all --print-label --parallel lint:js:fix prettier:write"
   },
   "devDependencies": {
-    "@commitlint/prompt-cli": "^7.2.1",
     "eslint-config-ybiquitous": "^7.0.0",
     "ybiq": "^6.0.0"
   },
