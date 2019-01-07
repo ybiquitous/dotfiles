@@ -1,0 +1,7 @@
+# See https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
