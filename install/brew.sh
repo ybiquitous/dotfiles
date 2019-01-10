@@ -42,6 +42,7 @@ brew install \
      hub \
      imagemagick \
      jq \
+     less \
      md5sha1sum \
      mysql \
      node \
@@ -54,8 +55,7 @@ brew install \
      tree \
      watch \
      zsh \
-     zsh-completions \
-     homebrew/dupes/less
+     zsh-completions
 brew install yarn --without-node
 brew cask install \
      docker \

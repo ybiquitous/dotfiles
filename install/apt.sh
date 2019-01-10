@@ -2,7 +2,7 @@
 set -eu
 
 if [ -z "$(command -v apt-get)" ]; then
-  echo 'apt-get command is not found'
+  echo '"apt-get" command is not found. skip.'
   exit
 fi
 
