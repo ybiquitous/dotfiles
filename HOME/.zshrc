@@ -124,3 +124,7 @@ export PATH="/usr/local/opt/mysql@5.7/bin:${PATH}"
 
 # HTTP Server
 alias http-server="python3 -m http.server"
+
+if [[ -f ~/.zshrc.env ]]; then
+  source ~/.zshrc.env
+fi
