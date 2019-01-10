@@ -36,7 +36,9 @@ sudo apt-get -y install \
      libyaml-dev \
      module-assistant \
      nodejs \
+     rbenv \
      ruby \
+     ruby-build \
      terminator \
      tree \
      xclip \
