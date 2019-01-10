@@ -35,11 +35,11 @@ done
 ./install/apt.sh
 ./install/brew.sh
 ./install/diff-highlight.sh
-./install/emacs.sh
 ./install/gem.sh
 ./install/heroku.sh
 ./install/npm.sh
 ./install/nvm.sh
 ./install/gibo.sh
+./install/emacs.sh
 
 echo 'Installation completed. Please reopen shell.'
