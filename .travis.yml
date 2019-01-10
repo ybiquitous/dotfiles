@@ -6,8 +6,9 @@ os:
 
 dist: xenial
 
-script:
-  - ./install.sh && ./update.sh
+script: ./install.sh
+
+after_success: ./update.sh
 
 branches:
   only:
