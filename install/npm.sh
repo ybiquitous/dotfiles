@@ -30,18 +30,6 @@ $NPM_INSTALL \
   typings \
   write-good
 
-# HACK: install dependencies of ESLint shareable config
-# See details: https://github.com/eslint/eslint/issues/3458
-echo
-echo "Installing ESLint packages..."
-npm_pkgs=$(npm -g view eslint-config-ybiquitous peerDependencies dependencies --json |
-             sed 's/[\{\},]//g ; s/: /@/g' |
-             grep -v -i 'dependencies' |
-             paste -s - |
-             tr -d '"')
-# shellcheck disable=SC2086
-$NPM_INSTALL $npm_pkgs
-
 # optional packages
 echo
 echo "Installing optional packages..."
