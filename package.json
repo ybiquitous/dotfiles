@@ -58,6 +58,7 @@
           "deps",
           "emacs",
           "git",
+          "heroku",
           "js",
           "readme",
           "ruby",

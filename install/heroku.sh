@@ -13,4 +13,4 @@ fi
 # https://github.com/heroku/heroku-cli-autocomplete
 heroku update
 heroku plugins:install autocomplete
-heroku autocomplete
+heroku autocomplete zsh
