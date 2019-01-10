@@ -60,6 +60,7 @@
           "git",
           "readme",
           "ruby",
+          "travis",
           "zsh"
         ]
       ]

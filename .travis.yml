@@ -1,0 +1,14 @@
+language: sh
+
+os:
+  - linux
+  - osx
+
+dist: xenial
+
+script:
+  - ./install.sh && ./update.sh
+
+branches:
+  only:
+    - master

@@ -1,5 +1,7 @@
 # dotfiles
 
+[![Build Status](https://travis-ci.com/ybiquitous/dotfiles.svg?branch=master)](https://travis-ci.com/ybiquitous/dotfiles)
+
 ## Install
 
 ```sh
