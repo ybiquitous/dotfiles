@@ -34,6 +34,7 @@ done
 
 ./install/apt.sh
 ./install/brew.sh
+./install/oh-my-zsh.sh
 ./install/diff-highlight.sh
 ./install/gem.sh
 ./install/heroku.sh
