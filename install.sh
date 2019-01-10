@@ -33,7 +33,6 @@ done
 ./install/apt.sh
 ./install/brew.sh
 ./install/zsh.sh
-./install/zsh-prezto.sh
 ./install/diff-highlight.sh
 ./install/emacs.sh
 ./install/gem.sh

@@ -3,12 +3,6 @@ set -eu
 
 readonly BASEDIR="${HOME}/dotfiles"
 
-cat <<EOT
-Please update Prezto manually:
-
-    $ zprezto-update
-EOT
-
 if [ -n "$(command -v brew)" ]; then
   echo
   echo "Updating brew..."
