@@ -38,7 +38,6 @@ brew install \
      exercism \
      forego \
      gibo \
-     heroku \
      hub \
      imagemagick \
      jq \
@@ -57,6 +56,7 @@ brew install \
      zsh \
      zsh-completions
 brew install yarn --without-node
+brew install heroku/brew/heroku
 brew cask install \
      docker \
      emacs \
