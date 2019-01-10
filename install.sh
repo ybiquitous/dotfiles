@@ -32,7 +32,6 @@ done
 
 ./install/apt.sh
 ./install/brew.sh
-./install/bash-it.sh
 ./install/zsh.sh
 ./install/zsh-prezto.sh
 ./install/diff-highlight.sh
