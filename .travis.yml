@@ -6,9 +6,19 @@ os:
 
 dist: xenial
 
-script: sudo ./install.sh
+script: |
+  if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+    ./install.sh;
+  else
+    sudo ./install.sh;
+  fi
 
-after_success: sudo ./update.sh
+after_success: |
+  if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+    ./update.sh;
+  else
+    sudo ./update.sh;
+  fi
 
 branches:
   only:
