@@ -4,10 +4,6 @@ set -eu
 readonly BASEDIR="${HOME}/dotfiles"
 
 cat <<EOT
-Please update Bash-it manually:
-
-    $ bash-it update
-
 Please update Prezto manually:
 
     $ zprezto-update
