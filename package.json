@@ -46,7 +46,24 @@
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
-    ]
+    ],
+    "rules": {
+      "scope-enum": [
+        2,
+        "always",
+        [
+          "bash",
+          "brew",
+          "commitlint",
+          "deps",
+          "emacs",
+          "git",
+          "readme",
+          "ruby",
+          "zsh"
+        ]
+      ]
+    }
   },
   "eslintConfig": {
     "env": {
