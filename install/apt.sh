@@ -31,7 +31,8 @@ sudo apt-get -y install \
      terminator \
      tree \
      xclip \
-     zlib1g-dev
+     zlib1g-dev \
+     zsh
 sudo apt-get clean
 sudo apt-get autoremove
 sudo apt-get autoclean
