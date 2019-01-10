@@ -5,7 +5,7 @@ readonly IGNORE_FILES=$(gibo dump macOS Emacs)
 
 readonly GITIGNORE_GLOBAL="${HOME}/.gitignore_global"
 
-rm -f "$GITIGNORE_GLOBAL"
+rm -fv "$GITIGNORE_GLOBAL"
 
 cat <<EOT >"$GITIGNORE_GLOBAL"
 ${IGNORE_FILES}

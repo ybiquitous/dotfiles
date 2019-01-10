@@ -1,11 +1,8 @@
 #!/bin/sh
-set -eu
+set -eux
 
-echo "Updating system gem..."
 gem update --system
 
-echo
-echo "Installing gems..."
 gem install --no-document \
     bundler \
     commonmarker \
@@ -23,8 +20,5 @@ gem install --no-document \
     rubocop \
     stackprof
 
-echo
 gem update
-
-echo
 gem list

@@ -3,9 +3,9 @@ set -eu
 
 readonly BASEDIR="${HOME}/dotfiles"
 
+set -x
+
 if [ -n "$(command -v brew)" ]; then
-  echo
-  echo "Updating brew..."
   brew update
   brew upgrade
   brew cask upgrade
@@ -14,8 +14,6 @@ if [ -n "$(command -v brew)" ]; then
 fi
 
 if [ -n "$(command -v apt-get)" ]; then
-  echo
-  echo "Updating apt..."
   sudo apt-get update
   sudo apt-get upgrade
   sudo apt-get autoremove
@@ -24,38 +22,29 @@ if [ -n "$(command -v apt-get)" ]; then
 fi
 
 if [ -n "$NVM_DIR" ]; then
-  echo
-  echo "Updating nvm..."
-
+  set +x
   # shellcheck disable=SC1090
   (
     cd "$NVM_DIR"
     git fetch origin
     git checkout "$(git describe --abbrev=0 --tags --match "v[0-9]*" origin)"
   ) && . "${NVM_DIR}/nvm.sh"
+  set -x
 fi
 
 if [ -d "$HOME/.yarn-completion" ]; then
-  echo
-  echo "Updating yarn-completion..."
   (
     cd "${HOME}/.yarn-completion"
     git pull
   )
 fi
 
-echo
-echo "Updating npm..."
 npm -g update
-npm -g outdated || true
+npm -g outdated || echo '' # ignore exit code
 
-echo
-echo "Updating gem..."
 gem update --system --no-document
 gem update --no-document
 gem cleanup
 
-echo
-echo "Updating gibo..."
 gibo update
 "${BASEDIR}/install/gibo.sh"

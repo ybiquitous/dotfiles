@@ -3,7 +3,7 @@ set -eu
 
 # download
 readonly EMACS_DIR="${HOME}/.emacs.d"
-rm -rf "$EMACS_DIR"
+rm -rfv "$EMACS_DIR"
 git clone git@github.com:ybiquitous/.emacs.d.git "$EMACS_DIR"
 
 # customize

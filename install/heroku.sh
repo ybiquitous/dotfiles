@@ -1,5 +1,5 @@
 #!/bin/sh
-set -eu
+set -eux
 
 if [ -z "$(command -v heroku)" ]; then
   if [ "$(uname -s)" = 'Darwin' ]; then

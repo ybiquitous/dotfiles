@@ -3,13 +3,12 @@ set -eu
 
 readonly NPM_INSTALL="npm install --global --no-progress"
 
+set -x
+
 # update npm
-echo "Updating npm..."
 $NPM_INSTALL npm@latest
 
 # required packages
-echo
-echo "Installing required packages..."
 $NPM_INSTALL \
   alex \
   emoj \
@@ -31,8 +30,6 @@ $NPM_INSTALL \
   write-good
 
 # optional packages
-echo
-echo "Installing optional packages..."
 npm_pkgs="
 msee
 sitespeed.io
@@ -54,5 +51,4 @@ if [ -n "$opt_pkgs" ]; then
 fi
 
 # show installed packages
-echo
 npm list --global --depth=0

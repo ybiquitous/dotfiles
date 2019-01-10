@@ -1,5 +1,5 @@
 #!/bin/sh
-set -eu
+set -eux
 
 if [ -z "$(command -v apt-get)" ]; then
   echo '"apt-get" command is not found. skip.'

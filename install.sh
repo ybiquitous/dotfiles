@@ -3,6 +3,8 @@ set -eu
 
 readonly BASEDIR="${HOME}/dotfiles"
 
+set -x
+
 # download if not exists
 if [ ! -d "$BASEDIR" ]; then
   git clone https://github.com/ybiquitous/dotfiles.git "$BASEDIR"
