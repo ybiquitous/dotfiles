@@ -58,6 +58,7 @@
           "deps",
           "emacs",
           "git",
+          "js",
           "readme",
           "ruby",
           "travis",
