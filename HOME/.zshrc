@@ -117,12 +117,6 @@ export VISUAL=emacsclient
 export EDITOR=$VISUAL
 export PATH="${HOME}/bin:${HOME}/.composer/vendor/bin:${PATH}"
 alias edit=$EDITOR
-
-# MySQL 5.7 (not latest)
-export PATH="/usr/local/opt/mysql@5.7/bin:${PATH}"
-
-
-# HTTP Server
 alias http-server="python3 -m http.server"
 
 if [[ -f ~/.zshrc.env ]]; then
