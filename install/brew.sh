@@ -42,7 +42,6 @@ brew install \
      imagemagick \
      jq \
      less \
-     md5sha1sum \
      mysql \
      node \
      postgresql \
