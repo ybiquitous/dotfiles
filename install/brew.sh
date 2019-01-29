@@ -36,6 +36,7 @@ brew install \
      docker-completion \
      editorconfig \
      exercism \
+     ffmpeg \
      forego \
      gibo \
      hub \
