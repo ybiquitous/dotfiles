@@ -6,11 +6,14 @@
   "repository": "ybiquitous/dotfiles",
   "scripts": {
     "lint": "npm-run-all --print-label --parallel lint:*",
-    "lint:md": "markdownlint --ignore node_modules --ignore CHANGELOG.md \"**/*.md\"",
+    "lint:md": "remark . --frail",
+    "lint:md:fix": "npm run lint:md -- --output",
     "lint:js": "eslint --ignore-path .gitignore --ext .js,.jsx,.mjs .",
     "lint:js:fix": "npm run lint:js -- --fix",
-    "prettier:write": "prettier --write --ignore-path .gitignore \"**/*.{html,json,md,yaml,yml}\"",
-    "format": "npm-run-all --print-label --parallel lint:js:fix prettier:write"
+    "prettier": "prettier --ignore-path .gitignore \"**/*.{css,html,js,json,jsx,md,mjs,scss,yaml,yml}\"",
+    "prettier:write": "npm run prettier -- --write",
+    "prettier:check": "npm run prettier -- --check",
+    "format": "npm-run-all --print-label --parallel lint:*:fix prettier:write"
   },
   "devDependencies": {
     "eslint-config-ybiquitous": "^7.0.0",
@@ -32,7 +35,8 @@
         "git add"
       ],
       "*.md": [
-        "markdownlint --ignore CHANGELOG.md"
+        "remark --output",
+        "git add"
       ],
       "*.{html,json,md,yaml,yml}": [
         "prettier --write",
