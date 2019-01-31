@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "eslint-config-ybiquitous": "^7.0.0",
-    "ybiq": "^6.0.0"
+    "ybiq": "^7.0.0"
   },
   "husky": {
     "hooks": {
