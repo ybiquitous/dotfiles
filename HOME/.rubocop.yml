@@ -1,7 +1,7 @@
 # See https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml
 
-Style/StringLiterals:
+Metrics:
   Enabled: false
 
-Style/WordArray:
+Style:
   Enabled: false
