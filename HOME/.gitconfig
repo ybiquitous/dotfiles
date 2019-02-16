@@ -19,6 +19,7 @@
 	ca = commit --all
 	d = diff
 	g = grep
+	gg = grep-group
 	l = log
 	ls = ls-files
 	s = status
@@ -54,7 +55,7 @@
 	diff-ignore-spaces = diff --ignore-space-change
 
 	# Grep
-	grep-group = grep --line-number --heading --break
+	grep-group = grep --heading --break --show-function
 	grep-word = grep --word-regexp
 
 	# Config
@@ -100,6 +101,11 @@
 [color]
 	ui = auto
 
+[color "grep"]
+	filename = green ul
+	function = dim
+	linenumber = dim
+
 [pager]
 	diff = diff-highlight | less
 	show = diff-highlight | less
@@ -119,5 +125,7 @@
 
 [grep]
 	lineNumber = true
+	extendedRegexp = true
+
 [protocol]
 	version = 2
