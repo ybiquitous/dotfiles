@@ -1,7 +1,8 @@
 language: sh
 
 os:
-  - linux
+  # TODO: Linux is not maintained now. macOS is usually used.
+  # - linux
   - osx
 
 dist: xenial
