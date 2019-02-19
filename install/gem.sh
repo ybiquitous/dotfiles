@@ -2,6 +2,7 @@
 set -eux
 
 gem update --system
+gem install bundler --no-document
 
 gem install --no-document \
     bundler \
