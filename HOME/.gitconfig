@@ -44,6 +44,7 @@
 
 	# Info
 	detail = show --pretty=full --show-signature
+	detail-stat = detail --stat
 	graph = log --graph
 	oneline = log --oneline
 	precommit = diff --staged
