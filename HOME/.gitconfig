@@ -88,7 +88,7 @@
 	sync-fork = !"git fetch upstream && git checkout $(git default-branch) && git merge upstream/$(git default-branch) && git push && git pull --prune && git remote prune upstream"
 
 	# Plural
-	aliases = !"git config --get-regexp '^alias\\.' | cut -c 7- | sed 's/ / = /'"
+	aliases = !"git config --get-regexp '^alias\\.' | cut -c 7- | sed 's/ / = /' | sort"
 	branches = branch --all
 	contributors = shortlog --summary --numbered --no-merges
 	remotes = remote --verbose
