@@ -23,6 +23,7 @@ if [ -z "$(command -v brew)" ]; then
 fi
 
 brew update
+brew uninstall --force --ignore-dependencies "$(brew list)"
 brew install \
      aspell \
      awscli \
