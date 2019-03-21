@@ -53,8 +53,7 @@ brew install \
      shellcheck \
      tree \
      watch \
-     zsh \
-     zsh-completions
+     zsh
 brew install yarn --without-node
 brew install heroku/brew/heroku
 brew cask install \
