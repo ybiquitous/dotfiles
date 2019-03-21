@@ -34,7 +34,8 @@
 	switch-remote = !"f() { git --no-pager branch --remotes --list $1 | xargs git checkout --track; }; f"
 	prune-branches = !"git remote prune $(git origin)"
 	# https://stackoverflow.com/questions/28666357/git-how-to-get-default-branch
-	default-branch = !"git symbolic-ref  --short refs/remotes/origin/HEAD | sed 's|^origin/||'"
+	default-branch = !"git symbolic-ref --short refs/remotes/origin/HEAD | sed 's|^origin/||'"
+	switch-default = !"git default-branch | xargs git checkout"
 
 	# Commit
 	wip = commit --all --no-verify --message 'chore: WIP'
