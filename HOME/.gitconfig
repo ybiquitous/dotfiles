@@ -108,6 +108,11 @@
 	function = dim
 	linenumber = dim
 
+[color "diff"]
+	meta = yellow
+	old = red bold
+	new = green bold
+
 [pager]
 	diff = diff-highlight | less
 	show = diff-highlight | less
