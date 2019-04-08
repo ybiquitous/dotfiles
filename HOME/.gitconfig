@@ -109,7 +109,8 @@
 	linenumber = dim
 
 [color "diff"]
-	meta = yellow
+	meta = cyan
+	frag = magenta
 	old = red bold
 	new = green bold
 
