@@ -14,7 +14,7 @@
 
 	# Shortcut (most frequent commands)
 	a = add
-	b = branch --all
+	b = branch --all -vv
 	c = commit
 	ca = commit --all
 	d = diff
