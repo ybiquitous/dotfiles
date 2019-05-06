@@ -90,7 +90,6 @@
 
 	# Plural
 	aliases = !"git config --get-regexp '^alias\\.' | cut -c 7- | sed 's/ / = /' | sort"
-	branches = branch --all
 	contributors = shortlog --summary --numbered --no-merges
 	remotes = remote --verbose
 	stashes = stash list
