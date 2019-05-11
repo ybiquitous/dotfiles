@@ -21,7 +21,7 @@
 	d = diff
 	g = grep
 	gg = grep-group
-	l = log
+	l = log -20
 	ls = ls-files
 	s = status
 
@@ -51,7 +51,6 @@
 	oneline = log --oneline
 	precommit = diff --staged
 	staged-files = diff --staged --name-only
-	recent = log -10
 	summary = status --short --untracked-files
 	origin = !"git remote | head -1"
 	hash = !"f() { git log -${1:-1} --format='%H' | tail -1; }; f"
