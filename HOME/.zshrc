@@ -118,6 +118,7 @@ export EDITOR=$VISUAL
 export PATH="${HOME}/bin:${HOME}/.composer/vendor/bin:${PATH}"
 alias edit=$EDITOR
 alias http-server="python3 -m http.server"
+alias ruby-grep="querly find"
 
 if [[ -f ~/.zshrc.env ]]; then
   source ~/.zshrc.env
