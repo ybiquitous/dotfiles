@@ -4,7 +4,9 @@ set -eu
 # download
 readonly EMACS_DIR="${HOME}/.emacs.d"
 rm -rf "$EMACS_DIR"
-if [ -z "$CI" ]; then
+if [ "$CI" = "true" ]; then
+  git clone --depth=1 https://github.com/ybiquitous/.emacs.d.git "$EMACS_DIR"
+else
   git clone git@github.com:ybiquitous/.emacs.d.git "$EMACS_DIR"
 fi
 
