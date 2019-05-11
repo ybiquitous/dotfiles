@@ -54,7 +54,7 @@ brew install ruby
 brew install shellcheck
 brew install tree
 brew install watch
-brew install yarn --without-node
+brew install yarn
 brew install zsh
 brew tap heroku/brew && brew install heroku && heroku autocomplete
 brew cask install
