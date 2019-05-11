@@ -59,6 +59,7 @@
         2,
         "always",
         [
+          "azure",
           "bash",
           "brew",
           "commitlint",

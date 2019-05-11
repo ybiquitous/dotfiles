@@ -1,6 +1,9 @@
+trigger:
+  - master
+
 pool:
-  vmImage: 'macOS-10.14'
+  vmImage: "macOS-10.14"
 
 steps:
-  - script: './install.sh'
-  - script: './update.sh'
+  - script: "./install.sh"
+  - script: "./update.sh"
