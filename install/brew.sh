@@ -1,5 +1,5 @@
 #!/bin/sh
-set -eux
+set -eu
 
 if [ "$(uname -s)" != 'Darwin' ]; then
   echo 'brew is unsupported in this platform'
@@ -18,59 +18,57 @@ EOT
 fi
 
 # https://brew.sh
-if [ -z "$(command -v brew)" ]; then
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+if [ -n "$(command -v brew)" ]; then
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
 fi
 
-brew update
-brew uninstall --force --ignore-dependencies "$(brew list)"
-brew install \
-     aspell \
-     awscli \
-     bash \
-     bash-completion \
-     bison \
-     bundler-completion \
-     cmake \
-     colordiff \
-     coreutils \
-     direnv \
-     docker-completion \
-     editorconfig \
-     exercism \
-     ffmpeg \
-     forego \
-     gibo \
-     hub \
-     imagemagick \
-     jq \
-     less \
-     mysql \
-     node \
-     postgresql \
-     rbenv \
-     rbenv-binstubs \
-     redis \
-     ruby \
-     shellcheck \
-     tree \
-     watch \
-     zsh
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+brew install aspell
+brew install awscli
+brew install bash
+brew install bash-completion
+brew install bison
+brew install bundler-completion
+brew install cmake
+brew install colordiff
+brew install coreutils
+brew install direnv
+brew install docker-completion
+brew install editorconfig
+brew install exercism
+brew install ffmpeg
+brew install forego
+brew install gibo
+brew install hub
+brew install imagemagick
+brew install jq
+brew install less
+brew install mysql
+brew install node
+brew install postgresql
+brew install rbenv
+brew install rbenv-binstubs
+brew install redis
+brew install ruby
+brew install shellcheck
+brew install tree
+brew install watch
 brew install yarn --without-node
-brew install heroku/brew/heroku
-brew cask install \
-     docker \
-     emacs \
-     google-japanese-ime \
-     imageoptim \
-     iterm2 \
-     sequel-pro \
-     virtualbox \
-     font-hack \
-     font-source-code-pro
-brew upgrade
-brew doctor
+brew install zsh
+brew tap heroku/brew && brew install heroku && heroku autocomplete
+brew cask install
+brew cask install docker
+brew cask install emacs
+brew cask install google-japanese-ime
+brew cask install imageoptim
+brew cask install iterm2
+brew cask install sequel-pro
+brew cask install virtualbox
+brew cask install font-hack
+brew cask install font-source-code-pro
 brew cleanup
+brew doctor
 
 # Bash
 readonly BREW_BASH=$(brew --prefix)/bin/bash
