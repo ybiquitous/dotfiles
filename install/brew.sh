@@ -56,7 +56,7 @@ brew install tree
 brew install watch
 brew install yarn
 brew install zsh
-brew tap heroku/brew && brew install heroku && heroku autocomplete --refresh-cache
+brew tap heroku/brew && brew install heroku
 brew cask install
 brew cask install docker
 brew cask install emacs
