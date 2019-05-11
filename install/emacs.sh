@@ -3,8 +3,12 @@ set -eu
 
 # download
 readonly EMACS_DIR="${HOME}/.emacs.d"
-rm -rfv "$EMACS_DIR"
-git clone git@github.com:ybiquitous/.emacs.d.git "$EMACS_DIR"
+rm -rf "$EMACS_DIR"
+if [ "$CI" = "true" ]; then
+  git clone --depth=1 https://github.com/ybiquitous/.emacs.d.git "$EMACS_DIR"
+else
+  git clone git@github.com:ybiquitous/.emacs.d.git "$EMACS_DIR"
+fi
 
 # customize
 readonly CONFIG_FILE="${HOME}/.emacs_env.el"
