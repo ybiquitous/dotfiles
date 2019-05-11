@@ -1,5 +1,5 @@
 #!/bin/sh
-set -eux
+set -eu
 
 if [ "$(uname -s)" != 'Darwin' ]; then
   echo 'brew is unsupported in this platform'
@@ -23,14 +23,9 @@ if [ -z "$(command -v brew)" ]; then
 fi
 
 brew update
+brew list | xargs -I {} brew uninstall --force --ignore-dependencies {}
 
-set +x
-for pkg in $(brew list); do
-  echo brew uninstall "$pkg"
-  brew uninstall --force --ignore-dependencies "$pkg"
-done
-
-PKGS='
+cat <<PKGS | xargs -I {} brew install {}
 aspell
 awscli
 bash
@@ -62,12 +57,7 @@ shellcheck
 tree
 watch
 zsh
-'
-for pkg in $PKGS; do
-  echo brew install "$pkg"
-  brew install "$pkg" >/dev/null
-done
-set -x
+PKGS
 
 brew install yarn --without-node
 brew install heroku/brew/heroku
