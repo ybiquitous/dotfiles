@@ -22,8 +22,8 @@ if [ -n "$(command -v brew)" ]; then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
 fi
 
-brew update
-brew uninstall --force --ignore-dependencies "$(brew list)"
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
 brew install \
      aspell \
      awscli \
