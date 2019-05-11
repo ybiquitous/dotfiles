@@ -13,7 +13,6 @@ $NPM_INSTALL \
   alex \
   emoj \
   eslint \
-  eslint-config-ybiquitous \
   fs-extra \
   markdownlint-cli \
   marked \
