@@ -23,39 +23,52 @@ if [ -z "$(command -v brew)" ]; then
 fi
 
 brew update
-brew uninstall --force --ignore-dependencies "$(brew list)"
-brew install \
-     aspell \
-     awscli \
-     bash \
-     bash-completion \
-     bison \
-     bundler-completion \
-     cmake \
-     colordiff \
-     coreutils \
-     direnv \
-     docker-completion \
-     editorconfig \
-     exercism \
-     ffmpeg \
-     forego \
-     gibo \
-     hub \
-     imagemagick \
-     jq \
-     less \
-     mysql \
-     node \
-     postgresql \
-     rbenv \
-     rbenv-binstubs \
-     redis \
-     ruby \
-     shellcheck \
-     tree \
-     watch \
-     zsh
+
+set +x
+for pkg in $(brew list); do
+  echo brew uninstall "$pkg"
+  brew uninstall --force --ignore-dependencies "$pkg"
+done
+
+PKGS='
+aspell
+awscli
+bash
+bash-completion
+bison
+bundler-completion
+cmake
+colordiff
+coreutils
+direnv
+docker-completion
+editorconfig
+exercism
+ffmpeg
+forego
+gibo
+hub
+imagemagick
+jq
+less
+mysql
+node
+postgresql
+rbenv
+rbenv-binstubs
+redis
+ruby
+shellcheck
+tree
+watch
+zsh
+'
+for pkg in $PKGS; do
+  echo brew install "$pkg"
+  brew install "$pkg" >/dev/null
+done
+set -x
+
 brew install yarn --without-node
 brew install heroku/brew/heroku
 brew cask install \
