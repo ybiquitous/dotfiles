@@ -17,9 +17,9 @@ EOT
   exit 1
 fi
 
-# https://brew.sh
-if [ -z "$(command -v brew)" ]; then
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+# At first, clean up.
+if [ -n "$(command -v brew)" ]; then
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
 fi
 
 brew update
