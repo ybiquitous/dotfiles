@@ -29,6 +29,7 @@ brew install \
      awscli \
      bash \
      bash-completion \
+     bison \
      bundler-completion \
      cmake \
      colordiff \
