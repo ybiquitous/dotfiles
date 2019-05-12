@@ -1,24 +1,20 @@
 #!/bin/sh
-set -eux
+set -eu
 
 gem update --system
-
-gem install --no-document \
-    bundler \
-    commonmarker \
-    goodcheck \
-    escape_utils \
-    github-markup \
-    gist \
-    html-pipeline \
-    mdl \
-    method_source \
-    pry \
-    pry-doc \
-    querly \
-    reek \
-    rubocop \
-    stackprof
-
 gem update
+gem install commonmarker
+gem install escape_utils
+gem install gist
+gem install github-markup
+gem install goodcheck
+gem install html-pipeline
+gem install mdl
+gem install method_source
+gem install pry
+gem install pry-doc
+gem install querly
+gem install reek
+gem install rubocop
+gem install stackprof
 gem list
