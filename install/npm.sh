@@ -16,4 +16,4 @@ $NPM_INSTALL tslint
 $NPM_INSTALL typescript
 
 # Installed packages
-npm list --global --depth=0
+npm list --global --depth=0 || true # suppress exit code 1
