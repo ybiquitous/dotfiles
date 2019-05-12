@@ -10,7 +10,7 @@ $NPM_INSTALL npm@latest
 $NPM_INSTALL eslint
 $NPM_INSTALL prettier
 $NPM_INSTALL stylelint
-$NPM_INSTALL stylelint-config-standard
+$NPM_INSTALL stylelint-config-recommended
 $NPM_INSTALL tern
 $NPM_INSTALL tslint
 $NPM_INSTALL typescript
