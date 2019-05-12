@@ -59,8 +59,6 @@ brew install zsh
 brew tap heroku/brew && brew install heroku
 brew cask install docker
 brew cask install emacs
-brew cask install font-hack
-brew cask install font-source-code-pro
 brew cask install google-japanese-ime
 brew cask install imageoptim
 brew cask install iterm2
@@ -68,6 +66,9 @@ brew cask install sequel-pro
 if [ -z "$CI" ]; then
   brew cask install virtualbox
 fi
+brew tap homebrew/cask-fonts
+brew cask install font-hack
+brew cask install font-source-code-pro
 brew cleanup
 brew doctor
 
