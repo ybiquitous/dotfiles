@@ -1,7 +1,5 @@
 # dotfiles
 
-[![Build Status](https://travis-ci.com/ybiquitous/dotfiles.svg?branch=master)](https://travis-ci.com/ybiquitous/dotfiles)
-
 ## Install
 
 ```sh
@@ -27,16 +25,16 @@ LANG=C xdg-user-dirs-gtk-update
 
 ### [Terminator](http://gnometerminator.blogspot.jp/)
 
-| Key                                 | Description          |
-| ----------------------------------- | -------------------- |
-| <kbd>Shift + Ctrl + O</kbd>         | 画面を水平に分割     |
-| <kbd>Shift + Ctrl + E</kbd>         | 画面を垂直に分割     |
-| <kbd>Ctrl + Tab</kbd>               | 分割した画面間を移動 |
-| <kbd>Shift + Ctrl + T</kbd>         | 新しいタブを開く     |
-| <kbd>Ctrl + PageUp (PageDown)</kbd> | タブ間を移動         |
-| <kbd>Shift + Ctrl + C</kbd>         | コピー               |
-| <kbd>Shift + Ctrl + V</kbd>         | 貼り付け             |
-| <kbd>Shift + Ctrl + F</kbd>         | 検索                 |
+| Key                                 | Description |
+| ----------------------------------- | ----------- |
+| <kbd>Shift + Ctrl + O</kbd>         | 画面を水平に分割    |
+| <kbd>Shift + Ctrl + E</kbd>         | 画面を垂直に分割    |
+| <kbd>Ctrl + Tab</kbd>               | 分割した画面間を移動  |
+| <kbd>Shift + Ctrl + T</kbd>         | 新しいタブを開く    |
+| <kbd>Ctrl + PageUp (PageDown)</kbd> | タブ間を移動      |
+| <kbd>Shift + Ctrl + C</kbd>         | コピー         |
+| <kbd>Shift + Ctrl + V</kbd>         | 貼り付け        |
+| <kbd>Shift + Ctrl + F</kbd>         | 検索          |
 
 ## Eclipse
 
@@ -64,20 +62,20 @@ ln -s /usr/share/fonts/truetype/****.ttf .
 
 Extension list:
 
-- Adblock Plus
-- AMP Validator
-- Check My Links
-- Code Climate
-- Contrast Ratio Checker
-- Google Analytics Debugger
-- Google 翻訳
-- HTML5 Outliner
-- Copy as Markdown
-- OctoLinker
-- Octotree
-- React Developer Tools
-- Save to Pocket
-- SPOF-O-Matic
-- Tag Assistant
-- Validity
-- Wappalyzer
+-   Adblock Plus
+-   AMP Validator
+-   Check My Links
+-   Code Climate
+-   Contrast Ratio Checker
+-   Google Analytics Debugger
+-   Google 翻訳
+-   HTML5 Outliner
+-   Copy as Markdown
+-   OctoLinker
+-   Octotree
+-   React Developer Tools
+-   Save to Pocket
+-   SPOF-O-Matic
+-   Tag Assistant
+-   Validity
+-   Wappalyzer
