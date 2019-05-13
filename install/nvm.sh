@@ -3,6 +3,8 @@ set -eu
 
 readonly NVM_DIR="${HOME}/.nvm"
 
+rm -rf "$NVM_DIR"
+
 # shellcheck disable=SC1090
 (
   git clone https://github.com/creationix/nvm.git "$NVM_DIR"
