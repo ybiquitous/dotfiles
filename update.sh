@@ -3,8 +3,6 @@ set -eu
 
 readonly BASEDIR="${HOME}/dotfiles"
 
-set -x
-
 if [ -n "$(command -v brew)" ]; then
   brew update
   brew upgrade
@@ -22,14 +20,12 @@ if [ -n "$(command -v apt-get)" ]; then
 fi
 
 if [ -n "$NVM_DIR" ]; then
-  set +x
   # shellcheck disable=SC1090
   (
     cd "$NVM_DIR"
     git fetch origin
     git checkout "$(git describe --abbrev=0 --tags --match "v[0-9]*" origin)"
   ) && . "${NVM_DIR}/nvm.sh"
-  set -x
 fi
 
 if [ -d "$HOME/.yarn-completion" ]; then
