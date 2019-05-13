@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/ybiquitous/dotfiles/_apis/build/status/ybiquitous.dotfiles?branchName=master)](https://dev.azure.com/ybiquitous/dotfiles/_build/latest?definitionId=1&branchName=master)
+
 # dotfiles
 
 ## Install
