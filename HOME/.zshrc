@@ -77,6 +77,8 @@ plugins=(
   history-substring-search
   npm
   rbenv
+  zsh-autosuggestions
+  zsh-completions
   zsh-nvm
 )
 bindkey -M emacs '^P' history-substring-search-up
