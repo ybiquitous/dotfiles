@@ -39,7 +39,7 @@
 	delete-unmerged-branches = !"git branch --no-merged | xargs -p -I {} git branch --delete --force {}"
 
 	# Commit
-	wip = commit --all --no-verify --message 'chore: WIP'
+	wip = commit --no-verify --message 'chore: WIP'
 
 # Tag
 	delete-tag = !"f() { git push --delete $(git origin) $1 && git tag --delete $1; }; f"
