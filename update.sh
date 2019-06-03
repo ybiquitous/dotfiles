@@ -44,3 +44,5 @@ gem cleanup
 
 gibo update
 "${BASEDIR}/install/gibo.sh"
+
+"${BASEDIR}/update/oh-my-zsh.sh"
