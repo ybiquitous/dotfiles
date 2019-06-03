@@ -1,5 +1,5 @@
 #!/bin/sh
-set -eux
+set -eu
 
 readonly PLUGINS=$(find "${HOME}/.oh-my-zsh/custom/plugins" -type d -depth 1 | grep -v example)
 
