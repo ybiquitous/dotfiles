@@ -21,7 +21,7 @@ gem install stackprof
 gem list
 
 # Create faster binstubs. See https://qiita.com/hanachin_/items/13c3d5aaa3ea56dd4e4c
-readonly gems="goodcheck querly rubocop"
+readonly gems="goodcheck querly"
 for gem in $gems; do
   binstub="${HOME}/bin/${gem}"
   cat <<EOF >"${binstub}"
