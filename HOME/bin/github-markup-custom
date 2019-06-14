@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'github/markup'
 require 'html/pipeline'
 
 filename = ARGV[0]
@@ -16,11 +15,11 @@ unless File.exist? filename
 end
 
 file_content = File.read(filename, encoding: Encoding::UTF_8)
-html_source = GitHub::Markup.render(filename, file_content)
 
-filters = [
-  HTML::Pipeline::TableOfContentsFilter
+pipeline = HTML::Pipeline.new [
+  HTML::Pipeline::MarkdownFilter,
+  HTML::Pipeline::TableOfContentsFilter,
+  HTML::Pipeline::AutolinkFilter,
 ]
 
-pipeline = HTML::Pipeline.new(filters)
-puts pipeline.call(html_source)[:output].to_s
+puts pipeline.call(file_content)[:output].to_s

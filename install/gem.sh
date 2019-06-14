@@ -7,7 +7,6 @@ gem install bootsnap
 gem install commonmarker
 gem install escape_utils
 gem install gist
-gem install github-markup
 gem install goodcheck
 gem install html-pipeline
 gem install mdl
@@ -16,6 +15,7 @@ gem install pry
 gem install pry-doc
 gem install querly
 gem install reek
+gem install rinku
 gem install rubocop
 gem install stackprof
 gem list
