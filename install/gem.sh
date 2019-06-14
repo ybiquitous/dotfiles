@@ -11,7 +11,6 @@ $gem_install escape_utils
 $gem_install gist
 $gem_install goodcheck
 $gem_install html-pipeline
-$gem_install mdl
 $gem_install method_source
 $gem_install pry
 $gem_install pry-doc
