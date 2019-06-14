@@ -8,7 +8,6 @@ readonly gem_install="gem install --no-document"
 $gem_install bootsnap
 $gem_install commonmarker
 $gem_install escape_utils
-$gem_install gist
 $gem_install goodcheck
 $gem_install html-pipeline
 $gem_install method_source
