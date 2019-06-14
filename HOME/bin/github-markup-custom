@@ -16,11 +16,42 @@ end
 
 file_content = File.read(filename, encoding: Encoding::UTF_8)
 
+class MyFilter < HTML::Pipeline::Filter
+  def call
+    <<~HTML
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs/styles/github.min.css" />
+
+      <style>
+        body {
+          max-width: 50rem;
+          width: 100%;
+          margin: 3rem auto;
+          padding: 0 0.5rem;
+        }
+      </style>
+
+      <div class="markdown-body">
+        #{doc}
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/highlightjs"></script>
+      <script>
+        document.querySelectorAll("pre[lang] > code").forEach(code => {
+          code.classList.add(code.parentElement.lang);
+          hljs.highlightBlock(code);
+        });
+      </script>
+    HTML
+  end
+end
+
 pipeline = HTML::Pipeline.new [
   HTML::Pipeline::MarkdownFilter,
   HTML::Pipeline::ImageMaxWidthFilter,
   HTML::Pipeline::AutolinkFilter,
   HTML::Pipeline::TableOfContentsFilter,
+  MyFilter,
 ]
 
 puts pipeline.call(file_content)[:output].to_s
