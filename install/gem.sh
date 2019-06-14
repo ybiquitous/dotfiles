@@ -2,22 +2,25 @@
 set -eu
 
 gem update --system
-gem update
-gem install bootsnap
-gem install commonmarker
-gem install escape_utils
-gem install gist
-gem install goodcheck
-gem install html-pipeline
-gem install mdl
-gem install method_source
-gem install pry
-gem install pry-doc
-gem install querly
-gem install reek
-gem install rinku
-gem install rubocop
-gem install stackprof
+gem update --no-document
+
+readonly gem_install="gem install --no-document"
+$gem_install bootsnap
+$gem_install commonmarker
+$gem_install escape_utils
+$gem_install gist
+$gem_install goodcheck
+$gem_install html-pipeline
+$gem_install mdl
+$gem_install method_source
+$gem_install pry
+$gem_install pry-doc
+$gem_install querly
+$gem_install reek
+$gem_install rinku
+$gem_install rubocop
+$gem_install stackprof
+
 gem list
 
 # Create faster binstubs. See https://qiita.com/hanachin_/items/13c3d5aaa3ea56dd4e4c
