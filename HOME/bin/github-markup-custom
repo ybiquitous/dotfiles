@@ -1,12 +1,21 @@
 #!/usr/bin/env ruby
 
+require "optparse"
 require "html/pipeline"
 require "cgi"
+
+options = {}
+opt_parser = OptionParser.new do |opts|
+  opts.banner = "Usage: github-markup-custom <input_file> [options]"
+
+  opts.on("--full-html", "Generate as full HTML") { |value| options[:full_html] = value }
+end
+opt_parser.parse!
 
 filename = ARGV[0]
 
 unless filename
-  STDERR.puts "Usage: #{$PROGRAM_NAME} FILE"
+  STDERR.puts opt_parser.help
   exit 1
 end
 
@@ -76,4 +85,22 @@ pipeline = HTML::Pipeline.new [
   CSSAndSyntaxHighlightFilter,
 ]
 
-puts pipeline.call(file_content)[:output].to_s
+output_html = pipeline.call(file_content)[:output].to_s.force_encoding(Encoding::UTF_8)
+
+if options[:full_html]
+  puts <<~HTML
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+      <head>
+        <meta charset="UTF-8" />
+        <title>#{filename}</title>
+      </head>
+      <body>
+        #{output_html}
+      </body>
+    </html>
+  HTML
+else
+  puts output_html
+end
