@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'html/pipeline'
+require "html/pipeline"
+require "cgi"
 
 filename = ARGV[0]
 
@@ -16,7 +17,17 @@ end
 
 file_content = File.read(filename, encoding: Encoding::UTF_8)
 
-class MyFilter < HTML::Pipeline::Filter
+class AnchorFilter < HTML::Pipeline::Filter
+  def call
+    doc.css("h1, h2, h3, h4, h5, h6").each do |node|
+      id = node.text.tr(" ", "-").downcase(:ascii)
+      node[:id] = CGI.escape(id)
+    end
+    doc
+  end
+end
+
+class CSSAndSyntaxHighlightFilter < HTML::Pipeline::Filter
   def call
     <<~HTML
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css" />
@@ -28,6 +39,17 @@ class MyFilter < HTML::Pipeline::Filter
           width: 100%;
           margin: 3rem auto;
           padding: 0 0.5rem;
+        }
+
+        .markdown-body h1,
+        .markdown-body h2,
+        .markdown-body h3,
+        .markdown-body h4,
+        .markdown-body h5,
+        .markdown-body h6,
+        .markdown-body h6,
+        .markdown-body strong {
+          font-weight: 700;
         }
       </style>
 
@@ -50,8 +72,8 @@ pipeline = HTML::Pipeline.new [
   HTML::Pipeline::MarkdownFilter,
   HTML::Pipeline::ImageMaxWidthFilter,
   HTML::Pipeline::AutolinkFilter,
-  HTML::Pipeline::TableOfContentsFilter,
-  MyFilter,
+  AnchorFilter,
+  CSSAndSyntaxHighlightFilter,
 ]
 
 puts pipeline.call(file_content)[:output].to_s
