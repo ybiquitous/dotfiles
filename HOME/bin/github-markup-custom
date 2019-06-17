@@ -44,10 +44,16 @@ class CSSAndSyntaxHighlightFilter < HTML::Pipeline::Filter
 
       <style>
         body {
-          max-width: 50rem;
-          width: 100%;
-          margin: 3rem auto;
-          padding: 0 0.5rem;
+          padding: 1rem 3rem;
+        }
+
+        @media only screen {
+          body {
+            border: 1px solid #ddd;
+            margin: 1rem auto;
+            max-width: 45rem;
+            padding: 3rem;
+          }
         }
 
         .markdown-body h1,
