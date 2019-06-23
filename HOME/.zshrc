@@ -37,7 +37,7 @@ SPACESHIP_DIR_TRUNC_REPO=false
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -125,3 +125,6 @@ alias ruby-grep="querly find"
 if [[ -f ~/.zshrc.env ]]; then
   source ~/.zshrc.env
 fi
+
+# Set empty title
+echo -ne "\e]1; \a"
