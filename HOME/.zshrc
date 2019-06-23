@@ -71,7 +71,6 @@ plugins=(
   bundler
   common-aliases
   emoji
-  github
   heroku
   history
   history-substring-search
@@ -119,6 +118,7 @@ export VISUAL=emacsclient
 export EDITOR=$VISUAL
 export PATH="${HOME}/bin:${HOME}/.composer/vendor/bin:${PATH}"
 alias edit=$EDITOR
+alias git=hub
 alias http-server="python3 -m http.server"
 alias ruby-grep="querly find"
 
@@ -128,3 +128,9 @@ fi
 
 # Set empty title
 echo -ne "\e]1; \a"
+
+# Work hub completions
+# See https://github.com/github/hub/pull/1962
+if [ -n "$(command -v brew)" ]; then
+  rm -f "$(brew --prefix)/share/zsh/site-functions/_git"
+fi
