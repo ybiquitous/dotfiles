@@ -29,7 +29,7 @@ file_content = File.read(filename, encoding: Encoding::UTF_8)
 class AnchorFilter < HTML::Pipeline::Filter
   def call
     doc.css("h1, h2, h3, h4, h5, h6").each do |node|
-      id = node.text.tr(" ", "-").downcase(:ascii)
+      id = node.text.tr(" ", "-").delete("()").downcase(:ascii)
       node[:id] = CGI.escape(id)
     end
     doc
