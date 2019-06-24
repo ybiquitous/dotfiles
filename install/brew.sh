@@ -71,7 +71,10 @@ brew tap homebrew/cask-fonts
 brew cask install font-hack
 brew cask install font-source-code-pro
 brew cleanup
-brew doctor
+
+# HACK: `wkhtmltopdf` fails `brew doctor`, which is a known and unresolved issue.
+#       See https://github.com/Homebrew/homebrew-cask/issues/24720
+brew doctor || echo "'brew doctor' exited with $?, but don't stop this process."
 
 # Bash
 readonly BREW_BASH=$(brew --prefix)/bin/bash
