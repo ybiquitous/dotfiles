@@ -31,8 +31,7 @@
 	master = checkout master
 	new-branch = checkout -b
 	rename-branch = branch --move
-	switch = !"f() { git --no-pager branch --all --list $1 | xargs git checkout; }; f"
-	switch-remote = !"f() { git --no-pager branch --remotes --list $1 | xargs git checkout --track; }; f"
+	switch = checkout
 	prune-branches = !"git remote prune $(git origin)"
 	# https://stackoverflow.com/questions/28666357/git-how-to-get-default-branch
 	default-branch = !"git symbolic-ref --short refs/remotes/origin/HEAD | sed 's|^origin/||'"
