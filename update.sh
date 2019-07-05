@@ -36,7 +36,7 @@ if [ -d "$HOME/.yarn-completion" ]; then
 fi
 
 npm -g update
-npm -g outdated || echo '' # ignore exit code
+npm -g outdated
 
 gem update --system --no-document
 gem update --no-document
