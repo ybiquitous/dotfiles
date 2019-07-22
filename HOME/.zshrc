@@ -121,6 +121,7 @@ alias edit=$EDITOR
 alias git=hub
 alias http-server="python3 -m http.server"
 alias ruby-grep="querly find"
+alias gen-copy-password="gtr -dc '0-9a-zA-Z' < /dev/urandom | head -c"
 
 if [[ -f ~/.zshrc.env ]]; then
   source ~/.zshrc.env
