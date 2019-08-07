@@ -32,6 +32,7 @@ brew install bison
 brew install bundler-completion
 brew install cmake
 brew install colordiff
+brew install composer
 brew install coreutils
 brew install direnv
 brew install docker-completion
@@ -46,6 +47,7 @@ brew install jq
 brew install less
 brew install mysql
 brew install node
+brew install php
 brew install postgresql
 brew install rbenv
 brew install rbenv-binstubs
