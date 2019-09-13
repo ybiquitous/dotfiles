@@ -16,7 +16,7 @@
     "format": "npm-run-all --print-label --parallel lint:*:fix prettier:write"
   },
   "devDependencies": {
-    "eslint-config-ybiquitous": "^8.0.0",
+    "eslint-config-ybiquitous": "^9.0.0",
     "ybiq": "^9.0.0"
   },
   "husky": {
