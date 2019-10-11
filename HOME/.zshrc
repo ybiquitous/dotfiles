@@ -117,11 +117,10 @@ eval "$(direnv hook zsh)"
 export VISUAL=emacsclient
 export EDITOR=$VISUAL
 export PATH="${HOME}/bin:${HOME}/.composer/vendor/bin:${PATH}"
-alias edit=$EDITOR
-alias git=hub
-alias http-server="python3 -m http.server"
-alias ruby-grep="querly find"
-alias gen-copy-password="gtr -dc '0-9a-zA-Z' < /dev/urandom | head -c"
+
+if [[ -f ~/.aliases ]]; then
+  source ~/.aliases
+fi
 
 if [[ -f ~/.zshrc.env ]]; then
   source ~/.zshrc.env
