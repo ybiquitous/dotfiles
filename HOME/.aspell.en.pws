@@ -1,4 +1,4 @@
-personal_ws-1.1 en 19 
+personal_ws-1.1 en 20 
 eslint
 catpost
 dir
@@ -6,6 +6,7 @@ Procfile
 emacs
 openssl
 RubyMine
+testability
 aspell
 macOS
 npm
