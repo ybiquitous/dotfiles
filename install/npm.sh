@@ -8,6 +8,7 @@ $NPM_INSTALL npm@latest
 
 # Required packages
 $NPM_INSTALL eslint
+$NPM_INSTALL ntl
 $NPM_INSTALL prettier
 $NPM_INSTALL stylelint
 $NPM_INSTALL stylelint-config-recommended
