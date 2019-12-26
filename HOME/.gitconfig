@@ -136,3 +136,5 @@
 
 [protocol]
 	version = 2
+[blame]
+	coloring = highlightRecent
