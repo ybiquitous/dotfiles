@@ -53,6 +53,7 @@
         2,
         "always",
         [
+          "actions",
           "azure",
           "aspell",
           "bash",
