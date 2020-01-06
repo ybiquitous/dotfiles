@@ -10,7 +10,7 @@ if [ -z "$(command -v heroku)" ]; then
   fi
 fi
 
-# https://github.com/heroku/heroku-cli-autocomplete
+# https://devcenter.heroku.com/articles/heroku-cli-autocomplete
 heroku update
-heroku plugins:install autocomplete
+heroku autocomplete
 heroku autocomplete:script zsh >> "${HOME}/.zshrc.env"
