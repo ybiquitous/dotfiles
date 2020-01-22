@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "eslint-config-ybiquitous": "^10.0.0",
-    "ybiq": "^9.0.0"
+    "ybiq": "^10.0.0"
   },
   "husky": {
     "hooks": {
@@ -26,20 +26,10 @@
     }
   },
   "lint-staged": {
-    "*.{sh,bash}": [
-      "shellcheck"
-    ],
-    "*.{js,jsx,mjs,ts,tsx}": [
-      "eslint --fix --no-ignore",
-      "git add"
-    ],
-    "!(CHANGELOG).md": [
-      "remark --frail"
-    ],
-    "*.{css,html,js,json,jsx,md,mdx,mjs,scss,ts,tsx,yaml,yml}": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.{sh,bash}": "shellcheck",
+    "*.{js,jsx,mjs,ts,tsx}": "eslint --fix --no-ignore",
+    "*.{css,html,js,json,jsx,md,mdx,mjs,scss,ts,tsx,yaml,yml}": "prettier --write",
+    "!(CHANGELOG).md": "remark --frail"
   },
   "prettier": {
     "trailingComma": "es5"
@@ -82,7 +72,8 @@
   "standard-version": {
     "scripts": {
       "postchangelog": "prettier --write CHANGELOG.md"
-    }
+    },
+    "sign": true
   },
   "remarkConfig": {
     "plugins": [
