@@ -21,6 +21,10 @@ ${IGNORE_FILES}
 # foreman / forego
 .foreman
 .forego
+
+# Bundler
+vendor/bundle/.bin/
+vendor/bundle/ruby/
 EOT
 
 echo "$GITIGNORE_GLOBAL updated."
