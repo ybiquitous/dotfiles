@@ -21,7 +21,7 @@
 	d = diff
 	g = grep
 	gg = grep-group
-	l = log -20
+	l = log -50
 	ls = ls-files
 	s = status
 
