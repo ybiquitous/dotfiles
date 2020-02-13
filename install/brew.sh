@@ -59,6 +59,7 @@ brew install tree
 brew install watch
 brew install yarn
 brew install zsh
+brew install github/gh/gh
 brew tap heroku/brew && brew install heroku
 brew cask install docker
 brew cask install emacs
