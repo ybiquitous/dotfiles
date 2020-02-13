@@ -134,3 +134,8 @@ echo -ne "\e]1; \a"
 if [ -n "$(command -v brew)" ]; then
   rm -f "$(brew --prefix)/share/zsh/site-functions/_git"
 fi
+
+# Add gh completions
+if [ -n "$(command -v gh)" ]; then
+  eval "$(gh completion --shell zsh)"
+fi
