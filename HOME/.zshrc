@@ -78,6 +78,7 @@ NVM_AUTO_USE=true
 plugins=(
   bundler
   common-aliases
+  dash
   emoji
   heroku
   history
