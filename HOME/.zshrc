@@ -116,7 +116,6 @@ source $ZSH/oh-my-zsh.sh
 eval "$(direnv hook zsh)"
 export VISUAL=emacsclient
 export EDITOR=$VISUAL
-export PATH="${HOME}/bin:${HOME}/.composer/vendor/bin:${PATH}"
 
 if [[ -f ~/.aliases ]]; then
   source ~/.aliases
