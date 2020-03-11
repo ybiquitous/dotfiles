@@ -85,6 +85,7 @@ plugins=(
   history-substring-search
   npm
   rbenv
+  web-search
   zsh-autosuggestions
   zsh-completions
   zsh-nvm
