@@ -74,6 +74,7 @@ if [ -z "$CI" ]; then
 fi
 brew tap homebrew/cask-fonts
 brew cask install font-hack
+brew cask install font-jetbrains-mono
 brew cask install font-source-code-pro
 brew cleanup
 
