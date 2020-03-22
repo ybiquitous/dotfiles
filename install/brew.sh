@@ -41,6 +41,7 @@ brew install exercism
 brew install ffmpeg
 brew install forego
 brew install gibo
+brew install git-delta
 brew install hub
 brew install imagemagick
 brew install jq

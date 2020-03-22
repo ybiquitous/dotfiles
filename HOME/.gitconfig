@@ -1,6 +1,7 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = emacsclient
+	pager = delta
 
 [user]
 	name = Masafumi Koba
@@ -113,11 +114,6 @@
 	old = red bold
 	new = green bold
 
-[pager]
-	diff = diff-highlight | less
-	show = diff-highlight | less
-	log = diff-highlight | less
-
 [commit]
 	verbose = true
 	gpgSign = true
@@ -136,5 +132,6 @@
 
 [protocol]
 	version = 2
+
 [blame]
 	coloring = highlightRecent
