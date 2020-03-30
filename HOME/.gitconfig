@@ -17,6 +17,7 @@
 	a = add
 	b = branch --all
 	bb = branch --all -vv
+	bd = branch --delete
 	c = commit
 	ca = commit --all
 	d = diff
