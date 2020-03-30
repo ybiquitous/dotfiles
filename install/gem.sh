@@ -14,7 +14,6 @@ $gem_install method_source
 $gem_install pry
 $gem_install pry-doc
 $gem_install querly
-$gem_install reek
 $gem_install rinku
 $gem_install rubocop
 $gem_install stackprof
