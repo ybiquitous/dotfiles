@@ -38,6 +38,8 @@ fi
 npm -g update
 npm -g outdated || echo '' # ignore exit code
 
+"${BASEDIR}/update/rbenv.sh"
+
 gem update --system --no-document
 gem update --no-document
 gem cleanup

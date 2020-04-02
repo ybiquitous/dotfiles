@@ -51,10 +51,7 @@ brew install node
 brew install php
 brew install postgresql
 brew install pyenv
-brew install rbenv
-brew install rbenv-binstubs
 brew install redis
-brew install ruby
 brew install shellcheck
 brew install tree
 brew install watch

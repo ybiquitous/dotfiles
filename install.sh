@@ -33,6 +33,7 @@ done
 ./install/apt.sh
 ./install/brew.sh
 ./install/oh-my-zsh.sh
+./install/rbenv.sh
 ./install/gem.sh
 ./install/heroku.sh
 ./install/npm.sh
