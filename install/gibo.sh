@@ -1,13 +1,10 @@
-#!/bin/sh
-set -eu
+#!/bin/bash
+set -euo pipefail
 
 readonly IGNORE_FILES=$(gibo dump macOS Emacs)
-
 readonly GITIGNORE_GLOBAL="${HOME}/.gitignore_global"
 
-rm -fv "$GITIGNORE_GLOBAL"
-
-cat <<EOT >"$GITIGNORE_GLOBAL"
+cat <<EOF >"${GITIGNORE_GLOBAL}.new"
 ${IGNORE_FILES}
 
 ### Custom
@@ -25,6 +22,21 @@ ${IGNORE_FILES}
 # Bundler
 vendor/bundle/.bin/
 vendor/bundle/ruby/
-EOT
+EOF
 
-echo "$GITIGNORE_GLOBAL updated."
+set +e
+diff -u "$GITIGNORE_GLOBAL" "${GITIGNORE_GLOBAL}.new"
+diff_exit_code=$?
+set -e
+case $diff_exit_code in
+  0)
+    echo "No changes: ${GITIGNORE_GLOBAL}"
+    ;;
+  1)
+    echo ""
+    mv -v "${GITIGNORE_GLOBAL}.new" "$GITIGNORE_GLOBAL"
+    ;;
+  *)
+    exit $diff_exit_code
+    ;;
+esac
