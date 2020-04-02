@@ -40,8 +40,5 @@ npm -g outdated || echo '' # ignore exit code
 
 "${BASEDIR}/update/rbenv.sh"
 "${BASEDIR}/update/gem.sh"
-
-gibo update
-"${BASEDIR}/install/gibo.sh"
-
+"${BASEDIR}/update/gibo.sh"
 "${BASEDIR}/update/oh-my-zsh.sh"
