@@ -28,6 +28,7 @@ brew install aspell
 brew install awscli
 brew install bash
 brew install bash-completion
+brew install bat
 brew install bison
 brew install bundler-completion
 brew install cmake

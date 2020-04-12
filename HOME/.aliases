@@ -4,3 +4,4 @@ alias open-pull-request='gh pr create'
 alias http-server='python3 -m http.server'
 alias ruby-grep='querly find'
 alias gen-copy-password='gtr -dc "0-9a-zA-Z" < /dev/urandom | head -c'
+alias less=bat
