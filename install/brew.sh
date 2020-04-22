@@ -22,7 +22,6 @@ fi
 
 brew install aspell
 brew install awscli
-brew install bash
 brew install bash-completion
 brew install bat
 brew install bison
@@ -69,19 +68,3 @@ brew cleanup
 # HACK: `wkhtmltopdf` fails `brew doctor`, which is a known and unresolved issue.
 #       See https://github.com/Homebrew/homebrew-cask/issues/24720
 brew doctor || echo "'brew doctor' exited with $?, but don't stop this process."
-
-# Bash
-readonly BREW_BASH=$(brew --prefix)/bin/bash
-if grep -q "$BREW_BASH" /etc/shells; then
-  sudo sh -c "echo $BREW_BASH >> /etc/shells"
-  # chsh -s "$BREW_BASH"
-  # echo "Changed login shell to $BREW_BASH"
-fi
-
-# Zsh
-readonly BREW_ZSH=$(brew --prefix)/bin/zsh
-if grep -q "$BREW_ZSH" /etc/shells; then
-  sudo sh -c "echo $BREW_ZSH >> /etc/shells"
-  chsh -s "$BREW_ZSH"
-  echo "Changed login shell to $BREW_ZSH"
-fi
