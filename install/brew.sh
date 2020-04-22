@@ -64,9 +64,7 @@ brew cask install ngrok
 brew cask install sequel-pro
 brew cask install wkhtmltopdf
 brew tap homebrew/cask-fonts
-brew cask install font-hack
 brew cask install font-jetbrains-mono
-brew cask install font-source-code-pro
 brew cleanup
 
 # HACK: `wkhtmltopdf` fails `brew doctor`, which is a known and unresolved issue.
