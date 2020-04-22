@@ -56,7 +56,6 @@ brew install yarn
 brew install zsh
 brew install github/gh/gh
 brew tap heroku/brew && brew install heroku
-brew cask install docker
 brew cask install emacs
 brew cask install google-japanese-ime
 brew cask install imageoptim
