@@ -1,13 +1,16 @@
-personal_ws-1.1 en 38 
+personal_ws-1.1 en 46 
 Backend
 Cheatsheet
 FlySpell
 Frontend
 Goodcheck
+LaTeX
+LanguageTool
 Procfile
 Quickstart
 RubyMine
 Sider
+TODO
 YAML
 aspell
 catpost
@@ -21,19 +24,24 @@ eslint
 goodcheck
 http
 https
+languagetool
 linter
 macOS
 multiline
 mysql
 npm
 openssl
+pandoc
 parens
 pwd
 repo
 rubygems
 setaria
 sideci
+sider
 testability
 tokenization
 tokenize
 tokenized
+yaml
+yml
