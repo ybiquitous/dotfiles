@@ -63,9 +63,6 @@ brew cask install iterm2
 brew cask install ngrok
 brew cask install sequel-pro
 brew cask install wkhtmltopdf
-if [ -z "$CI" ]; then
-  brew cask install virtualbox
-fi
 brew tap homebrew/cask-fonts
 brew cask install font-hack
 brew cask install font-jetbrains-mono
