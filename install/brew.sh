@@ -20,6 +20,11 @@ fi
 # https://brew.sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
+# remove all packages
+brew list -1 | xargs brew uninstall
+brew cask list -1 | xargs brew cask uninstall
+brew cleanup
+
 brew install aspell
 brew install awscli
 brew install bash-completion
@@ -66,3 +71,4 @@ brew cleanup
 # HACK: `wkhtmltopdf` fails `brew doctor`, which is a known and unresolved issue.
 #       See https://github.com/Homebrew/homebrew-cask/issues/24720
 brew doctor || echo "'brew doctor' exited with $?, but don't stop this process."
+brew cask doctor
