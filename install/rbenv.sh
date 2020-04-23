@@ -31,5 +31,4 @@ rbenv versions
 ruby -v
 
 # Install gems
-current_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-"${current_dir}"/gem.sh
+"${HOME}"/dotfiles/install/gem.sh

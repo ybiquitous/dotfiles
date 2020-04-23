@@ -18,5 +18,4 @@ nvm list
 node -v
 
 # Install npm packages
-current_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-"${current_dir}"/npm.sh
+"${HOME}"/dotfiles/install/npm.sh
