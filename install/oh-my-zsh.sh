@@ -1,8 +1,10 @@
-#!/bin/sh
-set -eux
+#!/bin/bash
+set -euo pipefail
 
 readonly OH_MY_ZSH="${HOME}/.oh-my-zsh"
-readonly OH_MY_ZSH_PLUGINS="${HOME}/.oh-my-zsh/custom/plugins"
+readonly OH_MY_ZSH_PLUGINS="${OH_MY_ZSH}/custom/plugins"
+
+rm -rf "${OH_MY_ZSH}"
 
 git clone https://github.com/robbyrussell/oh-my-zsh "${OH_MY_ZSH}"
 
