@@ -53,7 +53,6 @@ brew install shellcheck
 brew install tree
 brew install watch
 brew install github/gh/gh
-brew tap heroku/brew && brew install heroku
 brew cask install emacs
 brew cask install google-japanese-ime
 brew cask install imageoptim

@@ -80,7 +80,6 @@ plugins=(
   common-aliases
   dash
   emoji
-  heroku
   history
   history-substring-search
   npm

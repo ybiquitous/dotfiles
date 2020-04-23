@@ -34,7 +34,6 @@ done
 ./install/brew.sh
 ./install/oh-my-zsh.sh
 ./install/rbenv.sh
-./install/heroku.sh
 ./install/nvm.sh
 ./install/gibo.sh
 ./install/emacs.sh
