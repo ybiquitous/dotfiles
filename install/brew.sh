@@ -1,5 +1,5 @@
-#!/bin/sh
-set -eu
+#!/bin/bash
+set -euo pipefail
 
 if [ "$(uname -s)" != 'Darwin' ]; then
   echo 'brew is unsupported in this platform'
