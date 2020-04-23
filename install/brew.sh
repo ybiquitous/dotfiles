@@ -38,7 +38,6 @@ brew install coreutils
 brew install direnv
 brew install docker-completion
 brew install editorconfig
-brew install ffmpeg
 brew install forego
 brew install gibo
 brew install git-delta
