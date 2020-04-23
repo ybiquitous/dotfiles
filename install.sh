@@ -36,8 +36,8 @@ done
 ./install/rbenv.sh
 rbenv exec ./install/gem.sh
 ./install/heroku.sh
-./install/npm.sh
 ./install/nvm.sh
+nvm exec ./install/npm.sh
 ./install/gibo.sh
 ./install/emacs.sh
 
