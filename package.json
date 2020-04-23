@@ -10,7 +10,7 @@
     "lint:md:fix": "remark . --output",
     "lint:js": "eslint --ignore-path .gitignore --ext .js,.jsx,.mjs,.ts,.tsx .",
     "lint:js:fix": "npm run lint:js -- --fix",
-    "prettier": "prettier --ignore-path .gitignore \"**/*.{css,html,js,json,jsx,md,mdx,mjs,scss,ts,tsx,yaml,yml}\"",
+    "prettier": "prettier --ignore-path .gitignore .",
     "prettier:write": "npm run prettier -- --write",
     "prettier:check": "npm run prettier -- --check",
     "format": "npm-run-all --print-label --parallel lint:*:fix prettier:write"
@@ -28,7 +28,7 @@
   "lint-staged": {
     "*.{sh,bash}": "shellcheck",
     "*.{js,jsx,mjs,ts,tsx}": "eslint --fix --no-ignore",
-    "*.{css,html,js,json,jsx,md,mdx,mjs,scss,ts,tsx,yaml,yml}": "prettier --write",
+    "*": "prettier --write",
     "!(CHANGELOG).md": "remark --frail"
   },
   "prettier": {
