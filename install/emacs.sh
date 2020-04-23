@@ -7,7 +7,7 @@ rm -rf "$EMACS_DIR"
 git clone https://github.com/ybiquitous/.emacs.d.git "$EMACS_DIR"
 
 # customize
-readonly CONFIG_FILE="${HOME}/.emacs_env.el"
+readonly CONFIG_FILE="${HOME}/.emacs-env.el"
 if [[ -f $CONFIG_FILE ]]; then
   echo "'${CONFIG_FILE}' already exists."
 else
