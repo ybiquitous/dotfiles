@@ -13,8 +13,6 @@ $NPM_INSTALL prettier
 $NPM_INSTALL stylelint
 $NPM_INSTALL stylelint-config-recommended
 $NPM_INSTALL tern
-$NPM_INSTALL tslint
-$NPM_INSTALL typescript
 
 # Installed packages
 npm list --global --depth=0 || true # suppress exit code 1
