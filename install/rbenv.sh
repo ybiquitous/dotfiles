@@ -29,3 +29,7 @@ rbenv install "$ruby_version"
 rbenv global "$ruby_version"
 rbenv versions
 ruby -v
+
+# Install gems
+current_dir=$(cd "$(dirname "$0")" && pwd)
+"${current_dir}"/gem.sh
