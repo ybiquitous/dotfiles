@@ -11,4 +11,4 @@ for theme in $themes; do
   (cd "${theme}" && echo "Updating theme '$(basename "${theme}")'..." && git pull --no-verbose)
 done
 
-echo "The update of Oh-My-ZSH completed. Please restart Zsh."
+echo "The update of Oh-My-Zsh completed. Please restart the current session."
