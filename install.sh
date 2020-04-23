@@ -34,7 +34,7 @@ done
 ./install/brew.sh
 ./install/oh-my-zsh.sh
 ./install/rbenv.sh
-./install/gem.sh
+rbenv exec ./install/gem.sh
 ./install/heroku.sh
 ./install/npm.sh
 ./install/nvm.sh
