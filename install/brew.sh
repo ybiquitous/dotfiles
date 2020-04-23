@@ -43,7 +43,6 @@ brew install imagemagick
 brew install jq
 brew install less
 brew install mysql
-brew install node
 brew install php
 brew install postgresql
 brew install pyenv
@@ -51,7 +50,6 @@ brew install redis
 brew install shellcheck
 brew install tree
 brew install watch
-brew install yarn
 brew install github/gh/gh
 brew tap heroku/brew && brew install heroku
 brew cask install emacs
