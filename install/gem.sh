@@ -6,6 +6,7 @@ gem update --no-document
 
 readonly gem_install="gem install --no-document"
 $gem_install bootsnap
+$gem_install bundler
 $gem_install commonmarker
 $gem_install escape_utils
 $gem_install goodcheck
@@ -19,6 +20,10 @@ $gem_install rubocop
 $gem_install stackprof
 
 gem list
+
+# Configure Bundler
+bundle config --global path 'vendor.bundle'
+bundle config
 
 # Create faster binstubs. See https://qiita.com/hanachin_/items/13c3d5aaa3ea56dd4e4c
 readonly gems="goodcheck querly"
