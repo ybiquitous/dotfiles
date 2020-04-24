@@ -47,6 +47,7 @@ brew install imagemagick
 brew install jq
 brew install less
 brew install mysql
+brew install pinentry-mac
 brew install postgresql
 brew install pyenv
 brew install redis
