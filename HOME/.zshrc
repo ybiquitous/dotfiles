@@ -124,6 +124,7 @@ source $ZSH/oh-my-zsh.sh
 eval "$(direnv hook zsh)"
 export VISUAL=emacsclient
 export EDITOR=$VISUAL
+export GPG_TTY=$(tty)
 
 if [[ -f ~/.aliases ]]; then
   source ~/.aliases
