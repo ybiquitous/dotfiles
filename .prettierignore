@@ -1,3 +1,4 @@
 *.sh
+.aliases
 .prettierignore
 .zshrc
