@@ -41,7 +41,7 @@ brew install editorconfig
 brew install forego
 brew install gibo
 brew install git-delta
-brew install gnugp
+brew install gnupg
 brew install hub
 brew install imagemagick
 brew install jq
