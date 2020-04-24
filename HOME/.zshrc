@@ -136,14 +136,3 @@ fi
 
 # Set empty title
 echo -ne "\e]1; \a"
-
-# Work hub completions
-# See https://github.com/github/hub/pull/1962
-if [ -n "$(command -v brew)" ]; then
-  rm -f "$(brew --prefix)/share/zsh/site-functions/_git"
-fi
-
-# Add gh completions
-if [ -n "$(command -v gh)" ]; then
-  eval "$(gh completion --shell zsh)"
-fi
