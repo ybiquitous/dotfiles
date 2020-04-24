@@ -22,7 +22,7 @@ $gem_install stackprof
 gem list
 
 # Configure Bundler
-bundle config --global path 'vendor.bundle'
+bundle config --global path 'vendor/bundle'
 bundle config
 
 # Create faster binstubs. See https://qiita.com/hanachin_/items/13c3d5aaa3ea56dd4e4c
