@@ -39,6 +39,7 @@ brew install direnv
 brew install docker-completion
 brew install editorconfig
 brew install forego
+brew install fswatch
 brew install gibo
 brew install git
 brew install git-delta
