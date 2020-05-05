@@ -5,3 +5,6 @@ Metrics:
 
 Style:
   Enabled: false
+
+Layout/LineLength:
+  Enabled: false

@@ -1,11 +1,12 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = emacsclient
+	pager = delta
 
 [user]
 	name = Masafumi Koba
-	email = ybiquitous@gmail.com
-	signingkey = 60F83A73EFECA4BD
+	email = 473530+ybiquitous@users.noreply.github.com
+	signingkey = F114ED7E7743451E
 
 # Inspired by
 # - https://github.com/GitAlias/gitalias
@@ -16,12 +17,13 @@
 	a = add
 	b = branch --all
 	bb = branch --all -vv
+	bd = branch --delete
 	c = commit
 	ca = commit --all
 	d = diff
 	g = grep
 	gg = grep-group
-	l = log -20
+	l = log -50
 	ls = ls-files
 	s = status
 
@@ -35,7 +37,7 @@
 	prune-branches = !"git remote prune $(git origin)"
 	# https://stackoverflow.com/questions/28666357/git-how-to-get-default-branch
 	default-branch = !"git symbolic-ref --short refs/remotes/origin/HEAD | sed 's|^origin/||'"
-	delete-unmerged-branches = !"git branch --no-merged | xargs -p -I {} git branch --delete --force {}"
+	delete-unmerged-branches = !"git branch --no-merged | grep -v $(git default-branch) | xargs -p -I {} git branch --delete --force {}"
 
 	# Commit
 	wip = commit --no-verify --message 'chore: WIP'
@@ -52,7 +54,7 @@
 	staged-files = diff --staged --name-only
 	summary = status --short --untracked-files
 	origin = !"git remote | head -1"
-	hash = !"f() { git log -${1:-1} --format='%H' | tail -1; }; f"
+	hash = !"f() { git log -${1:-1} --format='%h' | tail -1 | tr -d '\n'; }; f"
 	diff-ignore-spaces = diff --ignore-space-change
 
 	# Grep
@@ -84,7 +86,7 @@
 
 	# Sync fork
 	# https://help.github.com/articles/configuring-a-remote-for-a-fork/
-	set-upstream = !"f() { if [ -n \"$1\" ]; then git remote add upstream $1; else echo 'usage: git set-upstream <https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git>' && exit 1; fi; }; f"
+	set-upstream = !"f() { if [ -n \"$1\" ]; then git remote add upstream $1; else echo 'usage: git set-upstream https://github.com/{ORIGINAL_OWNER}/{ORIGINAL_REPOSITORY}.git' && exit 1; fi; }; f"
 	# https://help.github.com/articles/syncing-a-fork/
 	sync-fork = !"git fetch upstream && git checkout $(git default-branch) && git merge upstream/$(git default-branch) && git push && git pull --prune && git remote prune upstream"
 
@@ -108,15 +110,10 @@
 	linenumber = dim
 
 [color "diff"]
-	meta = cyan
-	frag = magenta
+	meta = cyan bold
+	frag = cyan
 	old = red bold
 	new = green bold
-
-[pager]
-	diff = diff-highlight | less
-	show = diff-highlight | less
-	log = diff-highlight | less
 
 [commit]
 	verbose = true
@@ -136,5 +133,6 @@
 
 [protocol]
 	version = 2
+
 [blame]
 	coloring = highlightRecent

@@ -1,10 +1,14 @@
-#!/bin/sh
-set -eu
+#!/bin/bash
+set -euo pipefail
 
-readonly PLUGINS=$(find "${HOME}/.oh-my-zsh/custom/plugins" -type d -depth 1 | grep -v example)
-
-for plugin in $PLUGINS; do
-  (cd "${plugin}" && echo "Updating ${plugin} ..." && git pull --no-verbose)
+plugins=$(find "${HOME}/.oh-my-zsh/custom/plugins" -type d -depth 1 | grep -v example)
+for plugin in $plugins; do
+  (cd "${plugin}" && echo "Updating plugin '$(basename "${plugin}")'..." && git pull --no-verbose)
 done
 
-echo "The update is done. Please restart Zsh."
+themes=$(find "${HOME}/.oh-my-zsh/custom/themes" -type d -depth 1 | grep -v example)
+for theme in $themes; do
+  (cd "${theme}" && echo "Updating theme '$(basename "${theme}")'..." && git pull --no-verbose)
+done
+
+echo "The update of Oh-My-Zsh completed. Please restart the current session."

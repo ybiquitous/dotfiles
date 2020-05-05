@@ -38,11 +38,7 @@ fi
 npm -g update
 npm -g outdated || echo '' # ignore exit code
 
-gem update --system --no-document
-gem update --no-document
-gem cleanup
-
-gibo update
-"${BASEDIR}/install/gibo.sh"
-
+"${BASEDIR}/update/rbenv.sh"
+"${BASEDIR}/update/gem.sh"
+"${BASEDIR}/update/gibo.sh"
 "${BASEDIR}/update/oh-my-zsh.sh"
