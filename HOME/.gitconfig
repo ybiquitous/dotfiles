@@ -136,3 +136,6 @@
 
 [blame]
 	coloring = highlightRecent
+
+[credential]
+	helper = osxkeychain
