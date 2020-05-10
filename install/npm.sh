@@ -6,6 +6,7 @@ readonly NPM_INSTALL="npm install --global --no-progress"
 $NPM_INSTALL npm@latest
 
 $NPM_INSTALL eslint
+$NPM_INSTALL np
 $NPM_INSTALL ntl
 $NPM_INSTALL prettier
 $NPM_INSTALL stylelint
