@@ -12,7 +12,6 @@ $install ntl
 $install prettier
 $install stylelint
 $install stylelint-config-recommended
-$install tern
 $install typescript-language-server
 $install yarn
 
