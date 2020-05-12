@@ -42,7 +42,7 @@
 	# Commit
 	wip = commit --no-verify --message 'chore: WIP'
 
-# Tag
+	# Tag
 	delete-tag = !"f() { git push --delete $(git origin) $1 && git tag --delete $1; }; f"
 
 	# Info
@@ -80,6 +80,9 @@
 	# Push
 	publish = !"git push --set-upstream $(git origin) $(git branch-name)"
 	force-push = push --force-with-lease
+
+	# Pull
+	sync = !"f() { git switch \"$(git default-branch)\" && git pull --prune; }; f"
 
 	# Clean
 	cleanest = clean --force -dx
