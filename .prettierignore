@@ -3,3 +3,4 @@
 .prettierignore
 .zshrc
 .gitconfig
+.aspell.*

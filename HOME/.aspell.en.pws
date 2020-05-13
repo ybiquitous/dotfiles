@@ -1,4 +1,4 @@
-personal_ws-1.1 en 46 
+personal_ws-1.1 en 55 
 Backend
 Cheatsheet
 FlySpell
@@ -17,11 +17,14 @@ catpost
 changelog
 cheatsheet
 config
+css
 customizable
 dir
 emacs
 eslint
+formatter
 goodcheck
+html
 http
 https
 languagetool
@@ -30,6 +33,8 @@ macOS
 multiline
 mysql
 npm
+npx
+nvm
 openssl
 pandoc
 parens
@@ -39,9 +44,13 @@ rubygems
 setaria
 sideci
 sider
+stylelint
 testability
 tokenization
 tokenize
 tokenized
+tsx
+ubuntu
+unix
 yaml
 yml
