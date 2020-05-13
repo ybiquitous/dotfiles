@@ -82,7 +82,7 @@
 	force-push = push --force-with-lease
 
 	# Pull
-	sync = !"f() { git switch \"$(git default-branch)\" && git pull --prune; }; f"
+	sync = !"f() { git switch --quiet \"$(git default-branch)\" && git pull --prune --no-progress; }; f"
 
 	# Clean
 	cleanest = clean --force -dx
