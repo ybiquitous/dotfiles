@@ -136,3 +136,8 @@ fi
 
 # Set empty title
 echo -ne "\e]1; \a"
+
+# https://cli.github.com/
+if ! type gh > /dev/null; then
+  eval $(gh completion --shell zsh)
+fi
