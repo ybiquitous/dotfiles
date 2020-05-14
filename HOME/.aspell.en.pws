@@ -1,18 +1,23 @@
-personal_ws-1.1 en 55 
+personal_ws-1.1 en 69 
 Backend
 Cheatsheet
 FlySpell
 Frontend
+Gemfile
 Goodcheck
 LaTeX
 LanguageTool
+MeowCop
 Procfile
 Quickstart
+RuboCop
 RubyMine
 Sider
 TODO
 YAML
+allowfullscreen
 aspell
+boolean
 catpost
 changelog
 cheatsheet
@@ -23,10 +28,12 @@ dir
 emacs
 eslint
 formatter
+frameborder
 goodcheck
 html
 http
 https
+iframe
 languagetool
 linter
 macOS
@@ -38,12 +45,19 @@ nvm
 openssl
 pandoc
 parens
+phinder
+php
+pluggable
 pwd
 repo
+rspec
+rubocop
 rubygems
+ruleset
 setaria
 sideci
 sider
+src
 stylelint
 testability
 tokenization
