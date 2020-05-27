@@ -53,7 +53,7 @@
 	precommit = diff --staged
 	staged-files = diff --staged --name-only
 	summary = status --short --untracked-files
-	origin = !"git remote | head -1"
+	origin = !"git remote show | grep -v fork | head -1"
 	hash = !"f() { git log -${1:-1} --format='%h' | tail -1 | tr -d '\n'; }; f"
 	diff-ignore-spaces = diff --ignore-space-change
 
