@@ -38,6 +38,7 @@
 	# https://stackoverflow.com/questions/28666357/git-how-to-get-default-branch
 	default-branch = !"git symbolic-ref --short refs/remotes/origin/HEAD | sed 's|^origin/||'"
 	delete-unmerged-branches = !"git branch --no-merged | grep -v $(git default-branch) | xargs -p -I {} git branch --delete --force {}"
+	delete-merged-branches = !"git branch --merged | grep -v $(git default-branch) | xargs -p -I {} git branch --delete {}"
 
 	# Commit
 	wip = commit --no-verify --message 'chore: WIP'
