@@ -17,6 +17,7 @@ $gem_install pry-doc
 $gem_install querly
 $gem_install rinku
 $gem_install rubocop
+$gem_install screengif
 $gem_install stackprof
 
 gem list
