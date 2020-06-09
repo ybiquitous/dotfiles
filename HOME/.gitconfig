@@ -128,6 +128,9 @@
 	indentHeuristic = true
 	algorithm = patience
 
+[pull]
+	rebase = true
+
 [rebase]
 	autosquash = true
 
