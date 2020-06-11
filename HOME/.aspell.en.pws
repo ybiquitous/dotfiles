@@ -1,6 +1,7 @@
-personal_ws-1.1 en 69 
+personal_ws-1.1 en 71 
 Backend
 Cheatsheet
+Dependabot
 FlySpell
 Frontend
 Gemfile
@@ -49,6 +50,7 @@ phinder
 php
 pluggable
 pwd
+readme
 repo
 rspec
 rubocop
