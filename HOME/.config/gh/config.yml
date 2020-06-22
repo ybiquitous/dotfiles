@@ -1,0 +1,4 @@
+aliases:
+  rv: repo view --web
+  pv: pr view --web
+  pc: pr create --web
