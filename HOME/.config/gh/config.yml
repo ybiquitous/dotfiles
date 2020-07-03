@@ -1,4 +1,4 @@
 aliases:
-  rv: repo view --web
-  pv: pr view --web
+  r: repo view --web
+  p: pr view --web
   pc: pr create --web
