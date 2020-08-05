@@ -31,7 +31,8 @@
 	# Branch
 	branch-name = rev-parse --abbrev-ref HEAD
 	delete-branch = branch --delete
-	master = checkout master
+	master = switch master
+	main = switch main
 	new-branch = checkout -b
 	rename-branch = branch --move
 	prune-branches = !"git remote prune $(git origin)"
