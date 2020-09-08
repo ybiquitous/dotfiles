@@ -5,7 +5,6 @@ readonly install="npm install --global --no-progress"
 
 $install npm@latest
 
-$install eslint
 $install javascript-typescript-langserver
 $install np
 $install ntl
