@@ -12,8 +12,6 @@ $gem_install escape_utils
 $gem_install goodcheck
 $gem_install html-pipeline
 $gem_install method_source
-$gem_install pry
-$gem_install pry-doc
 $gem_install querly
 $gem_install rinku
 $gem_install rubocop
