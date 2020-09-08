@@ -43,7 +43,6 @@
         2,
         "always",
         [
-          "azure",
           "aspell",
           "bash",
           "brew",
