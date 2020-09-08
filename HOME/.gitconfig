@@ -2,11 +2,12 @@
 	excludesfile = ~/.gitignore_global
 	editor = emacsclient
 	pager = delta
+	commentChar = ~
 
 [user]
 	name = Masafumi Koba
 	email = 473530+ybiquitous@users.noreply.github.com
-	signingkey = F114ED7E7743451E
+	signingkey = 47E05B381BF77D33
 
 # Inspired by
 # - https://github.com/GitAlias/gitalias
@@ -17,7 +18,7 @@
 	a = add
 	b = branch --all
 	bb = branch --all -vv
-	bd = branch --delete
+	bd = branch --delete --force
 	c = commit
 	ca = commit --all
 	d = diff
@@ -30,19 +31,21 @@
 	# Branch
 	branch-name = rev-parse --abbrev-ref HEAD
 	delete-branch = branch --delete
-	master = checkout master
+	master = switch master
+	main = switch main
 	new-branch = checkout -b
 	rename-branch = branch --move
-	switch = checkout
 	prune-branches = !"git remote prune $(git origin)"
 	# https://stackoverflow.com/questions/28666357/git-how-to-get-default-branch
 	default-branch = !"git symbolic-ref --short refs/remotes/origin/HEAD | sed 's|^origin/||'"
-	delete-unmerged-branches = !"git branch --no-merged | grep -v $(git default-branch) | xargs -p -I {} git branch --delete --force {}"
+	change-default-branch = !"f() { git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/$1; }; f"
+	delete-working-branches = !"git branch --no-merged | grep -v $(git default-branch) | xargs -p -I {} git branch --delete --force {}"
+	delete-merged-branches = !"git branch --merged | grep -v $(git default-branch) | xargs -I {} git branch --delete {}"
 
 	# Commit
 	wip = commit --no-verify --message 'chore: WIP'
 
-# Tag
+	# Tag
 	delete-tag = !"f() { git push --delete $(git origin) $1 && git tag --delete $1; }; f"
 
 	# Info
@@ -53,7 +56,7 @@
 	precommit = diff --staged
 	staged-files = diff --staged --name-only
 	summary = status --short --untracked-files
-	origin = !"git remote | head -1"
+	origin = !"git remote show | grep -v fork | head -1"
 	hash = !"f() { git log -${1:-1} --format='%h' | tail -1 | tr -d '\n'; }; f"
 	diff-ignore-spaces = diff --ignore-space-change
 
@@ -78,8 +81,11 @@
 	rewrite = !"f() { git rebase --interactive \"HEAD~$1\"; }; f"
 
 	# Push
-	publish = !"git push --set-upstream $(git origin) $(git branch-name)"
-	force-push = push --force-with-lease
+	publish = !"git push --no-progress --set-upstream $(git origin) $(git branch-name)"
+	force-push = push --no-progress --force-with-lease
+
+	# Pull
+	sync = !"f() { git switch --quiet \"$(git default-branch)\" && git pull --prune --no-progress && git delete-merged-branches; }; f"
 
 	# Clean
 	cleanest = clean --force -dx
@@ -88,7 +94,7 @@
 	# https://help.github.com/articles/configuring-a-remote-for-a-fork/
 	set-upstream = !"f() { if [ -n \"$1\" ]; then git remote add upstream $1; else echo 'usage: git set-upstream https://github.com/{ORIGINAL_OWNER}/{ORIGINAL_REPOSITORY}.git' && exit 1; fi; }; f"
 	# https://help.github.com/articles/syncing-a-fork/
-	sync-fork = !"git fetch upstream && git checkout $(git default-branch) && git merge upstream/$(git default-branch) && git push && git pull --prune && git remote prune upstream"
+	sync-fork = !"git fetch upstream && git merge \"upstream/$(git default-branch)\" && git push && git sync && git remote prune upstream"
 
 	# Plural
 	aliases = !"git config --get-regexp '^alias\\.' | cut -c 7- | sed 's/ / = /' | sort"
@@ -124,6 +130,9 @@
 	indentHeuristic = true
 	algorithm = patience
 
+[pull]
+	rebase = true
+
 [rebase]
 	autosquash = true
 
@@ -136,3 +145,6 @@
 
 [blame]
 	coloring = highlightRecent
+
+[credential]
+	helper = osxkeychain

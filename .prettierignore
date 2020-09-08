@@ -2,3 +2,6 @@
 .aliases
 .prettierignore
 .zshrc
+.gitconfig
+.aspell.*
+com.googlecode.iterm2.plist

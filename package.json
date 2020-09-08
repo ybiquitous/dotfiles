@@ -8,7 +8,7 @@
     "lint": "npm-run-all --print-label --parallel lint:*",
     "lint:md": "remark . --frail",
     "lint:md:fix": "remark . --output",
-    "lint:js": "eslint --ignore-path .gitignore --ext .js,.jsx,.mjs,.ts,.tsx .",
+    "lint:js": "eslint .",
     "lint:js:fix": "npm run lint:js -- --fix",
     "prettier": "prettier --ignore-path .gitignore .",
     "prettier:write": "npm run prettier -- --write",
@@ -16,8 +16,8 @@
     "format": "npm-run-all --print-label --parallel lint:*:fix prettier:write"
   },
   "devDependencies": {
-    "eslint-config-ybiquitous": "^10.0.0",
-    "ybiq": "^11.0.0"
+    "eslint-config-ybiquitous": "^11.0.0",
+    "ybiq": "^11.2.0"
   },
   "husky": {
     "hooks": {
@@ -27,7 +27,7 @@
   },
   "lint-staged": {
     "*.{sh,bash}": "shellcheck",
-    "*.{js,jsx,mjs,ts,tsx}": "eslint --fix --no-ignore",
+    "*.{js,jsx,mjs,ts,tsx}": "eslint --fix",
     "*": "prettier --write",
     "!(CHANGELOG).md": "remark --frail"
   },
@@ -66,6 +66,7 @@
     }
   },
   "eslintConfig": {
+    "root": true,
     "extends": [
       "ybiquitous/node"
     ]

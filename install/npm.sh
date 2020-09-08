@@ -1,16 +1,18 @@
 #!/bin/bash
 set -euo pipefail
 
-readonly NPM_INSTALL="npm install --global --no-progress"
+readonly install="npm install --global --no-progress"
 
-$NPM_INSTALL npm@latest
+$install npm@latest
 
-$NPM_INSTALL eslint
-$NPM_INSTALL ntl
-$NPM_INSTALL prettier
-$NPM_INSTALL stylelint
-$NPM_INSTALL stylelint-config-recommended
-$NPM_INSTALL tern
-$NPM_INSTALL yarn
+$install eslint
+$install javascript-typescript-langserver
+$install np
+$install ntl
+$install prettier
+$install stylelint
+$install stylelint-config-recommended
+$install typescript-language-server
+$install yarn
 
 npm list --global --depth=0
