@@ -10,8 +10,6 @@ $install javascript-typescript-langserver
 $install np
 $install ntl
 $install prettier
-$install stylelint
-$install stylelint-config-recommended
 $install typescript-language-server
 $install yarn
 
