@@ -122,7 +122,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Custom
 eval "$(direnv hook zsh)"
-export VISUAL=emacsclient
+export VISUAL='emacsclient --no-wait'
 export EDITOR=$VISUAL
 export GPG_TTY=$(tty)
 
