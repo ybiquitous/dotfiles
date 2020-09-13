@@ -1,4 +1,4 @@
-alias edit=$EDITOR
+alias e=$EDITOR
 alias gitsync='hub sync'
 alias http-server='python3 -m http.server'
 alias ruby-grep='querly find'
