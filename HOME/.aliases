@@ -1,4 +1,4 @@
-alias e=$EDITOR
+alias e='emacsclient --no-wait'
 alias gitsync='hub sync'
 alias http-server='python3 -m http.server'
 alias ruby-grep='querly find'
