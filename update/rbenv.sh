@@ -1,8 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-cd "${HOME}/.rbenv"
-git pull
+echo "Updating rbenv and ruby-build..."
 
-cd plugins/ruby-build
-git pull
+rbenv_root="${HOME}/.rbenv"
+git -C "${rbenv_root}" pull
+git -C "${rbenv_root}"/plugins/ruby-build pull
