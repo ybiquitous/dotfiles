@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-gem update --system --no-document
-gem update --no-document
+gem update --system
+gem update
 gem cleanup
 gem outdated
