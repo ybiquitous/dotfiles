@@ -6,7 +6,6 @@ readonly install="npm install --global --no-progress"
 $install npm@latest
 
 $install javascript-typescript-langserver
-$install np
 $install ntl
 $install prettier
 $install typescript-language-server
