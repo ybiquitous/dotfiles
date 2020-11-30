@@ -5,3 +5,4 @@ alias ruby-grep='querly find'
 alias gen-copy-password='gtr -dc "0-9a-zA-Z" < /dev/urandom | head -c'
 alias less=bat
 alias be='bundle exec'
+alias date-iso8601='date "+%Y-%m-%dT%H:%M:%S%z"'
