@@ -6,8 +6,7 @@ readonly BASEDIR="${HOME}/dotfiles"
 if [ -n "$(command -v brew)" ]; then
   brew update
   brew upgrade
-  brew cask upgrade
-  brew doctor || echo "'brew doctor' exited with $?, but don't stop this process."
+  brew doctor --verbose || echo "'brew doctor' exited with $?, but don't stop this process."
   brew cleanup
 fi
 
