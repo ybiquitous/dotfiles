@@ -22,7 +22,6 @@ fi
 
 # remove all packages
 brew list -1 | xargs brew uninstall
-brew cask list -1 | xargs brew cask uninstall
 brew cleanup
 
 brew install aspell
