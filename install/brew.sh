@@ -57,14 +57,14 @@ brew install shellcheck
 brew install tree
 brew install watch
 brew install github/gh/gh
-brew cask install emacs
-brew cask install google-japanese-ime
-brew cask install imageoptim
-brew cask install iterm2
-brew cask install ngrok
-brew cask install wkhtmltopdf
+brew install --cask emacs
+brew install --cask google-japanese-ime
+brew install --cask imageoptim
+brew install --cask iterm2
+brew install --cask ngrok
+brew install --cask wkhtmltopdf
 brew tap homebrew/cask-fonts
-brew cask install font-jetbrains-mono
+brew install --cask font-jetbrains-mono
 brew cleanup
 
 # HACK: `wkhtmltopdf` fails `brew doctor`, which is a known and unresolved issue.
