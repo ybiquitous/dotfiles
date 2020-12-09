@@ -70,5 +70,4 @@ brew cleanup
 
 # HACK: `wkhtmltopdf` fails `brew doctor`, which is a known and unresolved issue.
 #       See https://github.com/Homebrew/homebrew-cask/issues/24720
-brew doctor || echo "'brew doctor' exited with $?, but don't stop this process."
-brew cask doctor
+brew doctor --verbose || echo "'brew doctor' exited with $?, but don't stop this process."
