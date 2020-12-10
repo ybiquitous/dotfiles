@@ -23,9 +23,9 @@ rbenv rehash
 # Verify
 curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
 
-# Install the latest Ruby
-ruby_version=$(rbenv install --list | grep -E '^2.7.' | tail -1)
-rbenv install "$ruby_version"
+# Install
+ruby_version=$(cat "${HOME}/dotfiles/.ruby-version")
+rbenv install "$ruby_version" --skip-existing
 rbenv global "$ruby_version"
 rbenv versions
 ruby -v
