@@ -44,7 +44,6 @@ brew install git
 brew install git-delta
 brew install gnupg
 brew install hadolint
-brew install hub
 brew install imagemagick
 brew install jq
 brew install less
