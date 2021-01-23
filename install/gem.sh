@@ -12,7 +12,6 @@ gem install \
     method_source \
     querly \
     rinku \
-    screengif \
     stackprof
 gem clean
 gem list
