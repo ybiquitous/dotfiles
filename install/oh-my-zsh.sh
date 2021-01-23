@@ -3,27 +3,36 @@ set -euo pipefail
 
 dest="${HOME}/.oh-my-zsh"
 
+git_clone () {
+  git clone --depth=1 --quiet "$@"
+}
+
+echo '> Installing Oh My Zsh...'
 rm -rf "${dest}"
+git_clone https://github.com/ohmyzsh/ohmyzsh.git "${dest}"
 
-git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git "${dest}"
-
+echo
+echo '> Installing custom plugins...'
 (
-  cd "${dest}"/custom/plugins
-  git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git
-  git clone --depth=1 https://github.com/zsh-users/zsh-completions.git
-  git clone --depth=1 https://github.com/lukechilds/zsh-nvm.git
+  cd "${dest}/custom/plugins"
+  git_clone https://github.com/zsh-users/zsh-autosuggestions.git
+  git_clone https://github.com/zsh-users/zsh-completions.git
+  git_clone https://github.com/lukechilds/zsh-nvm.git
 )
 
+echo
+echo '> Installing custom themes...'
 (
-  cd "${dest}"/custom/themes
-  git clone --depth=1 https://github.com/denysdovhan/spaceship-prompt.git
+  cd "${dest}/custom/themes"
+  git_clone https://github.com/denysdovhan/spaceship-prompt.git
   ln -sv spaceship-prompt/spaceship.zsh-theme spaceship.zsh-theme
 )
 
 echo
-echo '--- diff begin ---'
+echo '### DIFF BEGIN - .zshrc ###'
 diff --unified "${dest}"/templates/zshrc.zsh-template "${HOME}"/.zshrc || true
-echo '--- diff end ---'
-
+echo '### DIFF END - .zshrc ###'
 echo
-echo 'Successfully installed Oh-My-Zsh! Please restart the current session.'
+echo 'Successfully installed Oh My Zsh!'
+
+exec zsh
