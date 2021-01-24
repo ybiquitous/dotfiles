@@ -17,6 +17,10 @@ git clone https://github.com/rbenv/ruby-build.git "${dest}"/plugins/ruby-build
 
 # Setup shell
 export PATH=${dest}:${PATH}
+if ! type rbenv &>/dev/null ; then
+  echo "rbenv is not in PATH. Try reopening the terminal."
+  exit 1
+fi
 eval "$(rbenv init -v)"
 rbenv rehash
 
