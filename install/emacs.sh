@@ -16,5 +16,8 @@ else
 ;; (add-to-list 'default-frame-alist '(left . 500))
 ;; (add-to-list 'default-frame-alist '(width . 100))
 ;; (add-to-list 'default-frame-alist '(height . 35))
+
+;; (set-face-font 'default "JetBrains Mono 14")
 EOF
+  echo "'${init_env}' is created."
 fi
