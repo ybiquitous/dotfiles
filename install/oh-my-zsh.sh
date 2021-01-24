@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-dest="${HOME}/.oh-my-zsh"
+readonly dest="${HOME}/.oh-my-zsh"
 
 git_clone () {
   git clone --depth=1 --quiet "$@"
