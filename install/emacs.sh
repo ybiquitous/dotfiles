@@ -2,16 +2,16 @@
 set -euo pipefail
 
 # download
-readonly EMACS_DIR="${HOME}/.emacs.d"
-rm -rf "$EMACS_DIR"
-git clone https://github.com/ybiquitous/.emacs.d.git "$EMACS_DIR"
+readonly dest="${HOME}/.emacs.d"
+rm -rf "${dest}"
+git clone https://github.com/ybiquitous/.emacs.d.git "${dest}"
 
 # customize
-readonly CONFIG_FILE="${HOME}/.emacs-env.el"
-if [[ -f $CONFIG_FILE ]]; then
-  echo "'${CONFIG_FILE}' already exists."
+readonly init_env="${HOME}/.emacs-env.el"
+if [[ -f $init_env ]]; then
+  echo "'${init_env}' already exists."
 else
-  cat <<EOF > "${CONFIG_FILE}"
+  cat <<EOF > "${init_env}"
 ;; (add-to-list 'default-frame-alist '(top . 0))
 ;; (add-to-list 'default-frame-alist '(left . 500))
 ;; (add-to-list 'default-frame-alist '(width . 100))
