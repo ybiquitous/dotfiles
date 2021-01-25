@@ -5,7 +5,7 @@ readonly BASEDIR="${HOME}/dotfiles"
 
 "${BASEDIR}/update/brew.sh"
 
-if [ -n "$(command -v apt-get)" ]; then
+if type apt-get &>/dev/null ; then
   sudo apt-get update
   sudo apt-get upgrade
   sudo apt-get autoremove

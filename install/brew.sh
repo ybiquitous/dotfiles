@@ -6,7 +6,7 @@ if [ "$(uname -s)" != 'Darwin' ]; then
   exit
 fi
 
-if [ -z "$(command -v xcode-select)" ]; then
+if ! type xcode-select &>/dev/null ; then
   cat <<'EOT'
 Please install Xcode from App Store, then run the following command:
 

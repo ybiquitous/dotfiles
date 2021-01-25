@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-if [ -z "$(command -v apt-get)" ]; then
+if ! type apt-get &>/dev/null ; then
   echo '"apt-get" command is not found. skip.'
   exit
 fi
