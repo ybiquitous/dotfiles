@@ -9,6 +9,6 @@ if [ -n "$NVM_DIR" ]; then
     git checkout "$(git describe --abbrev=0 --tags --match "v[0-9]*" "$(git rev-list --tags --max-count=1)")"
   ) && \. "${NVM_DIR}/nvm.sh"
 
-  nvm install --lts --latest-npm --default
+  nvm install --lts --latest-npm
   node --version
 fi
