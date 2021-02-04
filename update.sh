@@ -22,13 +22,6 @@ if [ -n "$NVM_DIR" ]; then
   ) && \. "${NVM_DIR}/nvm.sh"
 fi
 
-if [ -d "$HOME/.yarn-completion" ]; then
-  (
-    cd "${HOME}/.yarn-completion"
-    git pull
-  )
-fi
-
 npm -g update
 npm -g outdated || echo '' # ignore exit code
 
