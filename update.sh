@@ -4,14 +4,7 @@ set -euo pipefail
 readonly BASEDIR="${HOME}/dotfiles"
 
 "${BASEDIR}/update/brew.sh"
-
-if type apt-get &>/dev/null ; then
-  sudo apt-get update
-  sudo apt-get upgrade
-  sudo apt-get autoremove
-  sudo apt-get autoclean
-  sudo apt-get clean
-fi
+"${BASEDIR}/update/apt.sh"
 
 if [ -n "$NVM_DIR" ]; then
   # shellcheck disable=SC1090
