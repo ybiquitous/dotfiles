@@ -12,10 +12,9 @@ rm -rf "$NVM_DIR"
   git checkout "$(git describe --abbrev=0 --tags --match "v[0-9]*" "$(git rev-list --tags --max-count=1)")"
 ) && \. "${NVM_DIR}/nvm.sh"
 
-nvm install --lts
-nvm alias default node
+nvm install --lts --latest-npm --default
 nvm list
-node -v
+node --version
 
 # Install npm packages
 "${HOME}"/dotfiles/install/npm.sh
