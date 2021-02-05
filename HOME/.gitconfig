@@ -124,7 +124,7 @@
 	new = green bold
 
 [commit]
-	verbose = true
+	verbose = false
 	gpgSign = true
 
 [diff]
