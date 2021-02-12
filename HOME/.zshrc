@@ -120,9 +120,6 @@ export LANG=en_US.UTF-8
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Custom
-if type direnv &>/dev/null; then
-  eval "$(direnv hook zsh)"
-fi
 export VISUAL=emacsclient
 export EDITOR=$VISUAL
 export GPG_TTY=$(tty)
@@ -148,4 +145,9 @@ fi
 # https://cli.github.com/
 if type gh &>/dev/null; then
   eval "$(gh completion --shell zsh)"
+fi
+
+# https://direnv.net/docs/hook.html
+if type direnv &>/dev/null; then
+  eval "$(direnv hook zsh)"
 fi
