@@ -120,7 +120,7 @@ export LANG=en_US.UTF-8
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Custom
-if type direnv &>/dev/null ; then
+if type direnv &>/dev/null; then
   eval "$(direnv hook zsh)"
 fi
 export VISUAL=emacsclient
@@ -138,7 +138,14 @@ fi
 # Set empty title
 echo -ne "\e]1; \a"
 
+# https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:${FPATH}
+  autoload -Uz compinit
+  compinit
+fi
+
 # https://cli.github.com/
-if type gh &>/dev/null ; then
+if type gh &>/dev/null; then
   eval "$(gh completion --shell zsh)"
 fi
