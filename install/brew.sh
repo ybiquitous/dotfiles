@@ -39,6 +39,7 @@ brew install docker-completion
 brew install editorconfig
 brew install forego
 brew install fswatch
+brew install gh
 brew install gibo
 brew install git
 brew install git-delta
@@ -55,7 +56,6 @@ brew install redis
 brew install shellcheck
 brew install tree
 brew install watch
-brew install github/gh/gh
 brew install --cask emacs
 brew install --cask google-japanese-ime
 brew install --cask imageoptim
