@@ -3,6 +3,7 @@ alias http-server='python3 -m http.server'
 alias date-iso8601='date "+%Y-%m-%dT%H:%M:%S%z"'
 alias gem-view='f() { gem info --remote $1 | grep --only-matching --extended-regexp --max-count=1 "https?://.+" | xargs open }; f'
 alias rubygems='f() { open "https://rubygems.org/gems/$1" }; f'
+alias npmjs='f() { open "https://www.npmjs.com/package/$1" }; f'
 
 if type querly &>/dev/null ; then
   alias ruby-grep='querly find'
