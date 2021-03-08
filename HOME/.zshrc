@@ -73,6 +73,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+UNBUNDLED_COMMANDS=(irb)
 NVM_AUTO_USE=true
 plugins=(
   bundler
