@@ -5,6 +5,11 @@ alias gem-view='f() { gem info --remote $1 | grep --only-matching --extended-reg
 alias rubygems='f() { open "https://rubygems.org/gems/$1" }; f'
 alias npmjs='f() { open "https://www.npmjs.com/package/$1" }; f'
 
-if type querly &>/dev/null ; then
+if type querly &>/dev/null; then
   alias ruby-grep='querly find'
+fi
+
+if type jq &>/dev/null; then
+  alias bump-npm-deps='jq --raw-output ".dependencies | keys[]" package.json | xargs -I{} npm install {}'
+  alias bump-npm-deps-dev='jq --raw-output ".devDependencies | keys[]" package.json | xargs -I{} npm install {}'
 fi
