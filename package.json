@@ -5,7 +5,7 @@
   "author": "ybiquitous",
   "repository": "ybiquitous/dotfiles",
   "scripts": {
-    "lint": "npm-run-all --print-label --parallel lint:*",
+    "lint": "npm-run-all --print-label --parallel lint:* prettier:check",
     "lint:md": "remark . --frail",
     "lint:md:fix": "remark . --output",
     "lint:js": "eslint .",
@@ -13,17 +13,12 @@
     "prettier": "prettier --ignore-path .gitignore .",
     "prettier:write": "npm run prettier -- --write",
     "prettier:check": "npm run prettier -- --check",
-    "format": "npm-run-all --print-label --parallel lint:*:fix prettier:write"
+    "format": "npm-run-all --print-label --parallel lint:*:fix prettier:write",
+    "clean": "git clean -dx --force --exclude=node_modules --exclude=.husky",
+    "prepare": "husky install"
   },
   "devDependencies": {
-    "eslint-config-ybiquitous": "^12.0.0",
-    "ybiq": "^11.4.4"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
+    "ybiq": "^12.0.2"
   },
   "lint-staged": {
     "*.{sh,bash}": "shellcheck",
@@ -39,6 +34,11 @@
       "@commitlint/config-conventional"
     ],
     "rules": {
+      "body-max-line-length": [
+        1,
+        "always",
+        100
+      ],
       "scope-enum": [
         2,
         "always",
@@ -66,7 +66,7 @@
   "eslintConfig": {
     "root": true,
     "extends": [
-      "ybiquitous/node"
+      "eslint:recommended"
     ]
   },
   "standard-version": {
