@@ -13,3 +13,7 @@ if type jq &>/dev/null; then
   alias bump-npm-deps='jq --raw-output ".dependencies | keys[]" package.json | xargs -I{} npm install {}'
   alias bump-npm-deps-dev='jq --raw-output ".devDependencies | keys[]" package.json | xargs -I{} npm install {}'
 fi
+
+if type docker &>/dev/null; then
+  alias dockrun='docker run --rm --interactive --tty --volume=${PWD}:/work --workdir=/work'
+fi

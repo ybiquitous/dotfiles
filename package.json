@@ -49,6 +49,7 @@
           "brew",
           "commitlint",
           "deps",
+          "docker",
           "emacs",
           "git",
           "heroku",
