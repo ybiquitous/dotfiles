@@ -1,7 +1,7 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = emacsclient
-	pager = delta
+	pager = delta --line-numbers
 	commentChar = ~
 
 [user]
