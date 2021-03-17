@@ -80,6 +80,7 @@ plugins=(
   common-aliases
   dash
   emoji
+  fzf
   history
   history-substring-search
   npm

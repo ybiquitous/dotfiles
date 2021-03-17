@@ -39,6 +39,7 @@ brew install docker-completion
 brew install editorconfig
 brew install forego
 brew install fswatch
+brew install fzf
 brew install gh
 brew install gibo
 brew install git
