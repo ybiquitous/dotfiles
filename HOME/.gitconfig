@@ -43,7 +43,7 @@
 	delete-merged-branches = !"git branch --merged | grep -v $(git default-branch) | xargs -I {} git branch --delete {}"
 
 	# Commit
-	wip = commit --no-verify --message 'chore: WIP'
+	wip = commit --no-verify --message 'chore: wip'
 
 	# Tag
 	delete-tag = !"f() { git push --delete $(git origin) $1 && git tag --delete $1; }; f"
