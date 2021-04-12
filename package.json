@@ -18,6 +18,7 @@
     "prepare": "husky install"
   },
   "devDependencies": {
+    "remark-preset-ybiquitous": "^0.0.3",
     "ybiq": "^12.0.2"
   },
   "lint-staged": {
@@ -75,17 +76,7 @@
   },
   "remarkConfig": {
     "plugins": [
-      "preset-lint-recommended",
-      "lint-no-heading-punctuation",
-      [
-        "lint-list-item-bullet-indent",
-        false
-      ],
-      [
-        "lint-list-item-indent",
-        false
-      ],
-      "validate-links"
+      "remark-preset-ybiquitous"
     ]
   }
 }
