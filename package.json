@@ -26,9 +26,6 @@
     "*": "prettier --write",
     "!(CHANGELOG).md": "remark --frail"
   },
-  "prettier": {
-    "trailingComma": "es5"
-  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
