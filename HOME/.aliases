@@ -6,6 +6,10 @@ alias rubygems='f() { open "https://rubygems.org/gems/$1" }; f'
 alias npmjs='f() { open "https://www.npmjs.com/package/$1" }; f'
 alias ne='npm exec --yes=false --'
 
+if type tree &>/dev/null; then
+  alias tree='tree -aCF'
+fi
+
 if type querly &>/dev/null; then
   alias ruby-grep='querly find'
 fi
