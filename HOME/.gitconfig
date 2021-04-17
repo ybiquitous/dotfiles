@@ -43,6 +43,7 @@
 	delete-merged-branches = !"git branch --merged | grep -v $(git default-branch) | xargs -I {} git branch --delete {}"
 
 	# Commit
+	merge-quick = merge --no-edit
 	wip = commit --no-verify --message 'chore: wip'
 
 	# Tag
