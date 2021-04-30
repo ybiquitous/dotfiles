@@ -14,3 +14,4 @@ aliases:
   pc: pr create --web
   ps: pr list
   d: pr diff
+  i: issue view --web
