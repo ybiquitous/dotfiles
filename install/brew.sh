@@ -62,11 +62,7 @@ brew install --cask google-japanese-ime
 brew install --cask imageoptim
 brew install --cask iterm2
 brew install --cask ngrok
-brew install --cask wkhtmltopdf
 brew tap homebrew/cask-fonts
 brew install --cask font-jetbrains-mono
 brew cleanup
-
-# HACK: `wkhtmltopdf` fails `brew doctor`, which is a known and unresolved issue.
-#       See https://github.com/Homebrew/homebrew-cask/issues/24720
-brew doctor --verbose || echo "'brew doctor' exited with $?, but don't stop this process."
+brew doctor
