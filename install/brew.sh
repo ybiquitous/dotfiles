@@ -61,7 +61,6 @@ brew install --cask emacs
 brew install --cask google-japanese-ime
 brew install --cask imageoptim
 brew install --cask iterm2
-brew install --cask ngrok
 brew tap homebrew/cask-fonts
 brew install --cask font-jetbrains-mono
 brew cleanup
