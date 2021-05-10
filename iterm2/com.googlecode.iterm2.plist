@@ -582,6 +582,15 @@
 				<key>Red Component</key>
 				<real>0.70980000495910645</real>
 			</dict>
+			<key>Semantic History</key>
+			<dict>
+				<key>action</key>
+				<string>command</string>
+				<key>editor</key>
+				<string>org.gnu.Emacs</string>
+				<key>text</key>
+				<string>/usr/local/bin/emacsclient +'\2' '\1' --no-wait</string>
+			</dict>
 			<key>Send Code When Idle</key>
 			<false/>
 			<key>Shortcut</key>
