@@ -55,6 +55,7 @@
           "js",
           "readme",
           "ruby",
+          "shell",
           "travis",
           "yarn",
           "zsh"
