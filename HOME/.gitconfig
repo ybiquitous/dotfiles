@@ -16,8 +16,8 @@
 
 	# Shortcut (most frequent commands)
 	a = add
-	b = branch --all
-	bb = branch --all -vv
+	b = branch --list --sort='-committerdate' --format='%(HEAD) %(align:60)%(color:bold green)%(refname:short)%(color:reset)%(end)%09%(committerdate:relative)'
+	bb = b --all --sort='refname'
 	bd = branch --delete --force
 	c = commit
 	ca = commit --all
