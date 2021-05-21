@@ -25,7 +25,6 @@ brew list -1 | xargs brew uninstall
 brew cleanup
 
 brew install aspell
-brew install awscli
 brew install bash-completion
 brew install bat
 brew install bison
