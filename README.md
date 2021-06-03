@@ -1,6 +1,6 @@
 # dotfiles
 
-@ybiquitous’s dotfiles.
+[@ybiquitous)[https://github.com/ybiquitous]’s dotfiles.
 
 ## Install
 
