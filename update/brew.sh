@@ -6,5 +6,5 @@ if type brew &>/dev/null ; then
   brew upgrade
   brew doctor --verbose || echo "'brew doctor' exited with $?, but don't stop this process."
   brew cleanup
-  brew services restart --all
+  echo 'Run manually: brew services restart --all'
 fi
