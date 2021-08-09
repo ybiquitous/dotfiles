@@ -11,5 +11,6 @@ if [ -n "$NVM_DIR" ]; then
 
   nvm install node --latest-npm
   nvm alias default node
+  nvm use default
   node --version
 fi
