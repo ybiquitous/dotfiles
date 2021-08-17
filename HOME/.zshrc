@@ -73,6 +73,10 @@ DISABLE_AUTO_TITLE="true"
 # Add wisely, as too many plugins slow down shell startup.
 UNBUNDLED_COMMANDS=(irb)
 NVM_AUTO_USE=true
+HOMEBREW_BIN=/opt/homebrew/bin/brew
+if [ -f "$HOMEBREW_BIN" ]; then
+  FZF_BASE="$($HOMEBREW_BIN --prefix)/opt/fzf"
+fi
 plugins=(
   bundler
   common-aliases
@@ -136,8 +140,8 @@ fi
 echo -ne "\e]1; \a"
 
 # Homebrew
-if [ "$(uname -s)" = 'Darwin' ]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+if [ -f "$HOMEBREW_BIN" ]; then
+  eval "$($HOMEBREW_BIN shellenv)"
 
   # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
