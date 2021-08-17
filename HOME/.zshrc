@@ -135,9 +135,12 @@ fi
 # Set empty title
 echo -ne "\e]1; \a"
 
-# https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:${FPATH}
+# Homebrew
+if [ "$(uname -s)" = 'Darwin' ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+
+  # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
   autoload -Uz compinit
   compinit
 fi
