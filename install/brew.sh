@@ -48,14 +48,10 @@ brew install git
 brew install git-delta
 brew install gnupg
 brew install hadolint
-brew install imagemagick
 brew install jq
 brew install less
-brew install mysql
 brew install pinentry-mac
-brew install postgresql
 brew install pyenv
-brew install redis
 brew install shellcheck
 brew install tree
 brew install watch
