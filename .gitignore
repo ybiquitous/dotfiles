@@ -70,3 +70,4 @@ typings/
 
 ### Custom
 .tern-port
+HOME/.config/gh/hosts.yml
