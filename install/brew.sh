@@ -20,6 +20,9 @@ fi
 # https://brew.sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+# set PATH
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # remove all packages
 brew list -1 | xargs brew uninstall
 brew cleanup
