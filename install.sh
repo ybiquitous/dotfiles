@@ -10,7 +10,7 @@ fi
 
 cd "$BASEDIR"
 
-# copy files to home directory
+# copy files to ~/
 find "${BASEDIR}/HOME" -maxdepth 1 -type f | while IFS= read -r file; do
   target_file="${HOME}/$(basename "$file")"
   if [ -f "$target_file" ] && [ ! -L "$target_file" ]; then
@@ -21,13 +21,16 @@ find "${BASEDIR}/HOME" -maxdepth 1 -type f | while IFS= read -r file; do
   ln -svf "$file" "$target_file"
 done
 
-# prepare ~/bin directory
+# copy files to ~/bin/
 mkdir -pv "${HOME}/bin"
-
-# copy files to ~/bin
 find "${BASEDIR}/HOME/bin" -maxdepth 1 -type f | while IFS= read -r file; do
-  target_file="${HOME}/bin/$(basename "$file")"
-  ln -svf "$file" "$target_file"
+  ln -svf "$file" "${HOME}/bin/$(basename "$file")"
+done
+
+# copy directories to ~/.config/
+mkdir -pv "${HOME}/.config"
+find "${BASEDIR}/HOME/.config" -maxdepth 1 -type d ! -path "${BASEDIR}/HOME/.config" | while IFS= read -r dir; do
+  ln -svf "$dir" "${HOME}/.config/$(basename "$dir")"
 done
 
 ./install/apt.sh
