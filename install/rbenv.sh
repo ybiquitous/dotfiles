@@ -25,10 +25,10 @@ eval "$(rbenv init -v)"
 rbenv rehash
 
 # Verify
-curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
+curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-doctor | bash
 
 # Install
-ruby_version=$(cat "${HOME}/dotfiles/.ruby-version")
+ruby_version=$(< "${HOME}/dotfiles/.ruby-version")
 rbenv install "$ruby_version" --skip-existing
 rbenv global "$ruby_version"
 rbenv versions
