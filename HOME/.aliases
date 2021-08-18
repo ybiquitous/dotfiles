@@ -15,7 +15,8 @@ if type gem &>/dev/null; then
 fi
 
 if type npm &>/dev/null; then
-  alias ne='npm exec --yes=false --'
+  alias prettier='npm exec -- prettier --write'
+  alias yarn='npm exec -- yarn'
 fi
 
 if type tree &>/dev/null; then
