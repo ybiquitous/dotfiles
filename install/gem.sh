@@ -5,14 +5,8 @@ gem update --system
 gem update
 
 gem install \
-    commonmarker \
-    escape_utils \
     goodcheck \
-    html-pipeline \
-    method_source \
-    querly \
-    rinku \
-    stackprof
+    querly
 gem clean
 gem list
 

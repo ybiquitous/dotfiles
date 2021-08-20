@@ -33,6 +33,7 @@ brew install bat
 brew install bison
 brew install bundler-completion
 brew install cmake
+brew install cmark-gfm
 brew install colordiff
 brew install composer
 brew install coreutils
