@@ -33,6 +33,7 @@
 	delete-branch = branch --delete
 	master = switch master
 	main = switch main
+	develop = switch develop
 	new-branch = checkout -b
 	rename-branch = branch --move
 	prune-branches = !"git remote prune $(git origin)"
