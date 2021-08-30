@@ -16,6 +16,7 @@ fi
 
 if type npm &>/dev/null; then
   alias prettier='npm exec -- prettier --write'
+  alias upgradeps='npm exec -- upgradeps'
   alias yarn='npm exec -- yarn'
   alias zx='npm exec -- zx'
 fi
