@@ -28,6 +28,9 @@
 	ls = ls-files
 	s = status
 
+	# Clone
+	fast-clone = clone --filter=blob:none
+
 	# Branch
 	branch-name = rev-parse --abbrev-ref HEAD
 	delete-branch = branch --delete
