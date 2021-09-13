@@ -37,3 +37,7 @@ fi
 if type docker &>/dev/null; then
   alias dockrun='docker run --rm --interactive --tty --volume=${PWD}:/work --workdir=/work'
 fi
+
+if type rdbg &>/dev/null; then
+  alias ruby-debug=rdbg
+fi
