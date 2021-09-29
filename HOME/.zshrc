@@ -85,7 +85,6 @@ plugins=(
   fzf
   history
   history-substring-search
-  npm
   rbenv
   web-search
   zsh-autosuggestions
@@ -157,4 +156,9 @@ fi
 # https://direnv.net/docs/hook.html
 if type direnv &>/dev/null; then
   eval "$(direnv hook zsh)"
+fi
+
+# https://docs.npmjs.com/cli/v7/commands/npm-completion
+if type npm &>/dev/null; then
+  eval "$(npm completion)"
 fi
