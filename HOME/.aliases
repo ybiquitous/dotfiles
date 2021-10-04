@@ -14,6 +14,11 @@ if type gem &>/dev/null; then
   alias gem-view='f() { gem info --remote $1 | grep --only-matching --extended-regexp --max-count=1 "https?://.+" | xargs open }; f'
 fi
 
+if type bundler &>/dev/null; then
+  # https://bundler.io/blog/2019/05/14/solutions-for-cant-find-gem-bundler-with-executable-bundle.html
+  alias bundler-exact-install='gem install bundler -v "$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)"'
+fi
+
 if type npm &>/dev/null; then
   alias prettier='npm exec -- prettier --write'
   alias upgradeps='npm exec -- upgradeps'
