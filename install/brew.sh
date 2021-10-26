@@ -52,7 +52,6 @@ brew install hadolint
 brew install jq
 brew install less
 brew install pinentry-mac
-brew install pyenv
 brew install shellcheck
 brew install tree
 brew install watch
