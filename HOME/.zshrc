@@ -79,7 +79,6 @@ if [ -f "$HOMEBREW_BIN" ]; then
 fi
 plugins=(
   bundler
-  common-aliases
   dash
   emoji
   fzf
@@ -127,14 +126,6 @@ export VISUAL=emacsclient
 export EDITOR=$VISUAL
 export GPG_TTY=$(tty)
 
-if [[ -f ~/.aliases ]]; then
-  source ~/.aliases
-fi
-
-if [[ -f ~/.zshrc.env ]]; then
-  source ~/.zshrc.env
-fi
-
 # Set empty title
 echo -ne "\e]1; \a"
 
@@ -161,4 +152,12 @@ fi
 # https://docs.npmjs.com/cli/v7/commands/npm-completion
 if type npm &>/dev/null; then
   eval "$(npm completion)"
+fi
+
+if [[ -f ~/.aliases ]]; then
+  source ~/.aliases
+fi
+
+if [[ -f ~/.zshrc.env ]]; then
+  source ~/.zshrc.env
 fi

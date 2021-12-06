@@ -40,6 +40,8 @@ brew install coreutils
 brew install direnv
 brew install docker-completion
 brew install editorconfig
+brew install exa
+brew install fd
 brew install forego
 brew install fswatch
 brew install fzf
@@ -52,6 +54,7 @@ brew install hadolint
 brew install jq
 brew install less
 brew install pinentry-mac
+brew install ripgrep
 brew install shellcheck
 brew install tree
 brew install watch
