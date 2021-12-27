@@ -17,8 +17,8 @@ if type exa &>/dev/null; then
   alias ll='exa --long --all --git'
 fi
 
-if type python3 &>/dev/null; then
-  alias http-server='python3 -m http.server'
+if type ruby &>/dev/null; then
+  alias http-server='ruby -run -e httpd'
 fi
 
 if type gem &>/dev/null; then
