@@ -8,11 +8,13 @@ prompt: enabled
 pager: !!null delta --line-numbers
 # Aliases allow you to create nicknames for gh commands
 aliases:
-  co: pr checkout
   b: browse
   r: repo view
-  p: pr view --web
+  p: pr view
   pc: pr create --web
   ps: pr list
-  d: pr diff
-  i: issue view --web
+  pulls: pr list
+  pd: pr diff
+  i: issue view
+  issues: issue list
+  aliases: alias list
