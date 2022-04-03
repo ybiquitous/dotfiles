@@ -18,3 +18,4 @@ aliases:
   i: issue view
   issues: issue list
   aliases: alias list
+  s: status
