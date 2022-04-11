@@ -32,6 +32,10 @@ fi
 if type bundler &>/dev/null; then
   # https://bundler.io/blog/2019/05/14/solutions-for-cant-find-gem-bundler-with-executable-bundle.html
   alias bundler-exact-install='gem install bundler -v "$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)"'
+
+  if type fswatch &>/dev/null; then
+    alias rspec-watch='f() { fswatch -0 spec/**/*_spec.rb | xargs -0 -I {} bundle exec rspec {} }; f'
+  fi
 fi
 
 if type npm &>/dev/null; then
