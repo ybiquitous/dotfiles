@@ -18,7 +18,7 @@ if type exa &>/dev/null; then
 fi
 
 if type rg &>/dev/null; then
-  alias rg='rg --no-heading'
+  alias rg='rg --no-heading --hidden'
 fi
 
 if type ruby &>/dev/null; then
