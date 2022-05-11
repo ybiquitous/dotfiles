@@ -5,15 +5,15 @@
   "author": "ybiquitous",
   "repository": "ybiquitous/dotfiles",
   "scripts": {
-    "lint": "npm-run-all --print-label --parallel lint:* prettier:check",
+    "lint": "npm-run-all --print-label --parallel lint:*",
     "lint:md": "remark . --frail",
     "lint:md:fix": "remark . --output",
-    "lint:js": "eslint --cache .",
+    "lint:js": "eslint --cache --ext=js,jsx,cjs,mjs,ts,tsx .",
     "lint:js:fix": "npm run lint:js -- --fix",
     "prettier": "prettier --ignore-path .gitignore .",
     "prettier:write": "npm run prettier -- --write",
     "prettier:check": "npm run prettier -- --check",
-    "format": "npm-run-all --print-label --parallel lint:*:fix prettier:write",
+    "format": "npm-run-all --print-label --parallel lint:*:fix",
     "clean": "git clean -dx --force --exclude=node_modules --exclude=.husky",
     "prepare": "husky install"
   },
@@ -23,7 +23,7 @@
   },
   "lint-staged": {
     "*.{sh,bash}": "shellcheck",
-    "*.{js,jsx,mjs,ts,tsx}": "eslint --cache --fix",
+    "*.{js,jsx,cjs,mjs,ts,tsx}": "eslint --cache --fix",
     "!(*.snap)": "prettier --write",
     "!(CHANGELOG).md": "remark --frail"
   },
