@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "remark-preset-ybiquitous": "^0.2.0",
-    "ybiq": "^14.0.0"
+    "ybiq": "^15.0.0"
   },
   "lint-staged": {
     "*.{sh,bash}": "shellcheck",
