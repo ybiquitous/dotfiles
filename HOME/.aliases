@@ -39,6 +39,7 @@ if type bundler &>/dev/null; then
 fi
 
 if type npm &>/dev/null; then
+  alias postcss='npm exec --package=postcss-cli -- postcss'
   alias prettier='npm exec -- prettier --write'
   alias upgradeps='npm exec -- upgradeps'
   alias yarn='npm exec -- yarn'
