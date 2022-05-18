@@ -18,6 +18,7 @@ echo '> Installing custom plugins...'
   git_clone https://github.com/zsh-users/zsh-autosuggestions.git
   git_clone https://github.com/zsh-users/zsh-completions.git
   git_clone https://github.com/lukechilds/zsh-nvm.git
+  git_clone https://github.com/wfxr/forgit.git
 )
 
 echo

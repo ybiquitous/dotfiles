@@ -74,6 +74,7 @@ DISABLE_AUTO_TITLE="true"
 UNBUNDLED_COMMANDS=(irb)
 NVM_AUTO_USE=true
 HOMEBREW_BIN=/opt/homebrew/bin/brew
+FORGIT_NO_ALIASES=true
 if [ -f "$HOMEBREW_BIN" ]; then
   FZF_BASE="$($HOMEBREW_BIN --prefix)/opt/fzf"
 fi
@@ -89,6 +90,7 @@ plugins=(
   zsh-autosuggestions
   zsh-completions
   zsh-nvm
+  forgit
 )
 bindkey -M emacs '^P' history-substring-search-up
 bindkey -M emacs '^N' history-substring-search-down
@@ -152,6 +154,11 @@ fi
 # https://docs.npmjs.com/cli/v7/commands/npm-completion
 if type npm &>/dev/null; then
   eval "$(npm completion)"
+fi
+
+# https://github.com/wfxr/forgit
+if [ -n "${FORGIT_INSTALL_DIR}" ]; then
+  export PATH="${PATH}:${FORGIT_INSTALL_DIR}/bin"
 fi
 
 if [[ -f ~/.aliases ]]; then
