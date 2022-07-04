@@ -18,7 +18,7 @@
     "prepare": "husky install"
   },
   "devDependencies": {
-    "remark-preset-ybiquitous": "^0.2.0",
+    "remark-preset-ybiquitous": "^0.3.0",
     "ybiq": "^15.0.0"
   },
   "lint-staged": {
