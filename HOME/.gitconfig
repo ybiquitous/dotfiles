@@ -89,7 +89,6 @@
 	rewrite = !"f() { git rebase --interactive \"HEAD~$1\"; }; f"
 
 	# Push
-	publish = !"git push --no-progress --set-upstream $(git origin) $(git branch-name)"
 	force-push = push --no-progress --force-with-lease
 
 	# Pull
@@ -163,3 +162,6 @@
 
 [include]
 	path = .gitconfig.local
+
+[push]
+	autoSetupRemote = true
