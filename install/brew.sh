@@ -55,6 +55,8 @@ brew install jq
 brew install less
 brew install pinentry-mac
 brew install ripgrep
+brew install rust-analyzer
+brew install rustup-init
 brew install shellcheck
 brew install tree
 brew install watch
