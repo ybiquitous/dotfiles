@@ -52,7 +52,7 @@ if type npm &>/dev/null; then
 fi
 
 if type tree &>/dev/null; then
-  alias tree='tree -aCF'
+  alias tree='tree -aCF -I .git'
 fi
 
 if type querly &>/dev/null; then
