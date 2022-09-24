@@ -73,7 +73,7 @@ if type rdbg &>/dev/null; then
 fi
 
 if type bat &>/dev/null; then
-  alias help='f() { $1 --help | bat --language cmd-help --style plain }; f'
+  alias help='f() { (test $# -ne 0) && ($* --help | bat --language cmd-help --style plain) }; f'
 fi
 
 if type most &>/dev/null; then
