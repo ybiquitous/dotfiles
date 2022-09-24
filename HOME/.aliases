@@ -72,8 +72,9 @@ if type rdbg &>/dev/null; then
   alias ruby-debug=rdbg
 fi
 
+# See https://github.com/sharkdp/bat#highlighting---help-messages
 if type bat &>/dev/null; then
-  alias help='f() { (test $# -ne 0) && ($* --help | bat --language cmd-help --style plain) }; f'
+  alias help='f() { (test $# -ne 0) && ("$@" --help 2>&1 | bat --language cmd-help --style plain) }; f'
 fi
 
 if type most &>/dev/null; then
