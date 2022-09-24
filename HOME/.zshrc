@@ -145,6 +145,11 @@ if [ -n "${FORGIT_INSTALL_DIR}" ]; then
   export PATH="${PATH}:${FORGIT_INSTALL_DIR}/bin"
 fi
 
+# Add MANPATH for Rust. See https://github.com/rust-lang/rustup/issues/1729
+if type rustup &>/dev/null; then
+  export MANPATH="$(rustup show home)/toolchains/$(rustup default | grep -E '^\S+' --only-matching)/share/man:${MANPATH}"
+fi
+
 if [[ -f ~/.aliases ]]; then
   source ~/.aliases
 fi
