@@ -74,6 +74,7 @@ DISABLE_AUTO_TITLE="true"
 UNBUNDLED_COMMANDS=(irb)
 NVM_AUTO_USE=true
 FORGIT_NO_ALIASES=true
+if [ -f "${HOME}/.cargo/env" ]; then source "${HOME}/.cargo/env"; fi
 plugins=(
   brew # must be first because it loads various commands
   bundler
@@ -85,6 +86,7 @@ plugins=(
   history-substring-search
   npm
   rbenv
+  rust
   web-search
 
   # custom
