@@ -73,5 +73,5 @@ if type rdbg &>/dev/null; then
 fi
 
 if type bat &>/dev/null; then
-  alias help='f() { $1 --help | bat --language cmd-help }; f'
+  alias help='f() { $1 --help | bat --language cmd-help --style plain }; f'
 fi
