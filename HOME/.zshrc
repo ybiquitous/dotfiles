@@ -73,20 +73,21 @@ DISABLE_AUTO_TITLE="true"
 # Add wisely, as too many plugins slow down shell startup.
 UNBUNDLED_COMMANDS=(irb)
 NVM_AUTO_USE=true
-HOMEBREW_BIN=/opt/homebrew/bin/brew
 FORGIT_NO_ALIASES=true
-if [ -f "$HOMEBREW_BIN" ]; then
-  FZF_BASE="$($HOMEBREW_BIN --prefix)/opt/fzf"
-fi
 plugins=(
+  brew # must be first because it loads various commands
   bundler
   dash
+  direnv
   emoji
   fzf
   history
   history-substring-search
+  npm
   rbenv
   web-search
+
+  # custom
   zsh-autosuggestions
   zsh-completions
   zsh-nvm
@@ -131,29 +132,10 @@ export GPG_TTY=$(tty)
 # Set empty title
 echo -ne "\e]1; \a"
 
-# Homebrew
-if [ -f "$HOMEBREW_BIN" ]; then
-  eval "$($HOMEBREW_BIN shellenv)"
-
-  # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-  autoload -Uz compinit
+# TODO: When the PR <https://github.com/ohmyzsh/ohmyzsh/pull/11152> is merged, the following code will be unnecessary.
+if [ -d "${HOMEBREW_PREFIX}/share/zsh/site-functions" ]; then
+  fpath+=("${HOMEBREW_PREFIX}/share/zsh/site-functions")
   compinit
-fi
-
-# https://cli.github.com/
-if type gh &>/dev/null; then
-  eval "$(gh completion --shell zsh)"
-fi
-
-# https://direnv.net/docs/hook.html
-if type direnv &>/dev/null; then
-  eval "$(direnv hook zsh)"
-fi
-
-# https://docs.npmjs.com/cli/v7/commands/npm-completion
-if type npm &>/dev/null; then
-  eval "$(npm completion)"
 fi
 
 # https://github.com/wfxr/forgit
