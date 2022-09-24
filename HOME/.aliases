@@ -71,3 +71,7 @@ fi
 if type rdbg &>/dev/null; then
   alias ruby-debug=rdbg
 fi
+
+if type bat &>/dev/null; then
+  alias help='f() { $1 --help | bat --language cmd-help }; f'
+fi
