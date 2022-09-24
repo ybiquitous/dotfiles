@@ -75,3 +75,7 @@ fi
 if type bat &>/dev/null; then
   alias help='f() { $1 --help | bat --language cmd-help --style plain }; f'
 fi
+
+if type most &>/dev/null; then
+  alias man='man -P most'
+fi
