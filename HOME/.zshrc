@@ -11,7 +11,7 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="spaceship"
 SPACESHIP_CHAR_SYMBOL='$ '
 SPACESHIP_TIME_SHOW=true
-SPACESHIP_TIME_FORMAT='%D{%H:%M}'
+SPACESHIP_TIME_FORMAT='%D{%H:%M%p}'
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
