@@ -5,15 +5,17 @@
   "author": "ybiquitous",
   "repository": "ybiquitous/dotfiles",
   "scripts": {
-    "lint": "npm-run-all --print-label --parallel lint:*",
+    "test": "npm run lint",
+    "lint": "npm-run-all --print-label --silent --parallel lint:*",
+    "lint:commit": "commitlint --from HEAD~10",
     "lint:md": "remark . --frail",
     "lint:md:fix": "remark . --output",
     "lint:js": "eslint --cache --ext=js,jsx,cjs,mjs,ts,tsx --no-error-on-unmatched-pattern .",
     "lint:js:fix": "npm run lint:js -- --fix",
     "lint:styles": "npm run prettier -- --check",
     "lint:styles:fix": "npm run prettier -- --write",
-    "prettier": "prettier --ignore-path .gitignore .",
-    "format": "npm-run-all --print-label --parallel lint:*:fix",
+    "prettier": "prettier --cache --ignore-path .gitignore .",
+    "format": "npm-run-all --print-label --silent --parallel lint:*:fix",
     "clean": "git clean -dx --force --exclude=node_modules --exclude=.husky",
     "prepare": "husky install"
   },
@@ -24,7 +26,7 @@
   "lint-staged": {
     "*.{sh,bash}": "shellcheck",
     "*.{js,jsx,cjs,mjs,ts,tsx}": "eslint --cache --fix",
-    "!(*.snap)": "prettier --write",
+    "!(*.snap)": "prettier --cache --write",
     "!(CHANGELOG).md": "remark --frail"
   },
   "commitlint": {
