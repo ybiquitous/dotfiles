@@ -42,6 +42,7 @@ if type npm &>/dev/null; then
   alias babel='npm exec --package=@babel/cli -- babel'
   alias eslint='npm exec -- eslint'
   alias jest='npm exec -- jest'
+  alias jest-debug='node --inspect-brk ./node_modules/.bin/jest --runInBand'
   alias jest-watch='npm exec -- jest --watch'
   alias postcss='npm exec --package=postcss-cli -- postcss'
   alias prettier='npm exec -- prettier --write'
