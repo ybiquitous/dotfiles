@@ -10,6 +10,7 @@ pager: !!null delta --line-numbers
 aliases:
   open: browse
   prs: pr list
+  prsme: pr list --author '@me'
   prv: pr view --web
   prd: pr diff
   issues: issue list
