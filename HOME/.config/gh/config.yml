@@ -14,4 +14,5 @@ aliases:
   prv: pr view --web
   prd: pr diff
   issues: issue list
+  issuesme: issue list --assignee '@me'
   aliases: alias list
