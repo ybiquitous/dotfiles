@@ -67,6 +67,7 @@ brew install --cask google-japanese-ime
 brew install --cask imageoptim
 brew install --cask iterm2
 brew tap homebrew/cask-fonts
+brew install --cask font-fira-code
 brew install --cask font-jetbrains-mono
 brew cleanup
 brew doctor
