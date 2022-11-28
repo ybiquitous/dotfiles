@@ -75,7 +75,7 @@ DISABLE_AUTO_TITLE="true"
 # Add wisely, as too many plugins slow down shell startup.
 UNBUNDLED_COMMANDS=(irb)
 NVM_AUTO_USE=true
-FORGIT_NO_ALIASES=true
+export FORGIT_NO_ALIASES=true
 if [ -f "${HOME}/.cargo/env" ]; then source "${HOME}/.cargo/env"; fi
 plugins=(
   brew # must be first because it loads various commands
@@ -143,8 +143,8 @@ if [ -d "${HOMEBREW_PREFIX}/share/zsh/site-functions" ]; then
 fi
 
 # https://github.com/wfxr/forgit
-if [ -n "${FORGIT_INSTALL_DIR}" ]; then
-  export PATH="${PATH}:${FORGIT_INSTALL_DIR}/bin"
+if [ -n "${FORGIT}" ]; then
+  export PATH="${PATH}:$(dirname ${FORGIT})"
 fi
 
 # Add MANPATH for Rust. See https://github.com/rust-lang/rustup/issues/1729
