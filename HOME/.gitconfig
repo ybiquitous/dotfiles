@@ -165,3 +165,4 @@
 
 [push]
 	autoSetupRemote = true
+	useForceIfIncludes = true
