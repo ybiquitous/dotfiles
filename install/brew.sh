@@ -54,6 +54,7 @@ brew install gnupg
 brew install hadolint
 brew install jq
 brew install less
+brew install libyaml
 brew install most
 brew install pinentry-mac
 brew install ripgrep
