@@ -4,9 +4,7 @@ set -euo pipefail
 gem update --system
 gem update
 
-gem install \
-    goodcheck \
-    querly
+# gem install <gem>...
 gem clean
 gem list
 
