@@ -36,9 +36,9 @@ done
 ./install/apt.sh
 ./install/brew.sh
 ./install/oh-my-zsh.sh
-./install/rbenv.sh
-./install/nvm.sh
-./install/gibo.sh
 ./install/emacs.sh
+./install/gibo.sh
+./install/nvm.sh
+./install/rbenv.sh
 
 echo 'Installation completed. Please reopen shell.'
