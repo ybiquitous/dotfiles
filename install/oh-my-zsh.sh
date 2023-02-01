@@ -33,6 +33,7 @@ echo
 echo '### DIFF BEGIN - .zshrc ###'
 diff --unified "${dest}"/templates/zshrc.zsh-template "${HOME}"/.zshrc || true
 echo '### DIFF END - .zshrc ###'
+
 echo
 echo 'Successfully installed Oh My Zsh!'
 
