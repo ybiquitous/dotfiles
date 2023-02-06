@@ -35,7 +35,6 @@ brew install bundler-completion
 brew install cmake
 brew install cmark-gfm
 brew install colordiff
-brew install composer
 brew install coreutils
 brew install direnv
 brew install docker-completion
