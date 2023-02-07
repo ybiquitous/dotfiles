@@ -74,7 +74,8 @@ DISABLE_AUTO_TITLE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 UNBUNDLED_COMMANDS=(irb)
-NVM_AUTO_USE=true
+zstyle ':omz:plugins:nvm' autoload yes
+zstyle ':omz:plugins:nvm' silent-autoload yes
 export FORGIT_NO_ALIASES=true
 if [ -f "${HOME}/.cargo/env" ]; then source "${HOME}/.cargo/env"; fi
 plugins=(
@@ -87,6 +88,7 @@ plugins=(
   history
   history-substring-search
   npm
+  nvm
   rbenv
   rust
   web-search
@@ -94,7 +96,6 @@ plugins=(
   # custom
   zsh-autosuggestions
   zsh-completions
-  zsh-nvm
   forgit
 )
 bindkey -M emacs '^P' history-substring-search-up
