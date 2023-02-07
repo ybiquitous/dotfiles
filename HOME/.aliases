@@ -39,15 +39,15 @@ if type bundler &>/dev/null; then
 fi
 
 if type npm &>/dev/null; then
-  alias babel='npm exec --package=@babel/cli -- babel'
-  alias eslint='npm exec -- eslint'
-  alias jest='npm exec -- jest'
+  alias babel='npm exec --no --package=@babel/cli -- babel'
+  alias eslint='npm exec --no -- eslint'
+  alias jest='npm exec --no -- jest'
+  alias jest-watch='npm exec --no -- jest --watch'
   alias jest-debug='node --inspect-brk ./node_modules/.bin/jest --runInBand'
-  alias jest-watch='npm exec -- jest --watch'
-  alias postcss='npm exec --package=postcss-cli -- postcss'
-  alias prettier='npm exec -- prettier --write'
+  alias postcss='npm exec --no --package=postcss-cli -- postcss'
+  alias prettier='npm exec --no -- prettier --write'
   alias upgradeps='npm exec -- upgradeps'
-  alias stylelint='npm exec -- stylelint'
+  alias stylelint='npm exec --no -- stylelint'
   alias yarn='npm exec -- yarn'
   alias zx='npm exec -- zx'
 fi
