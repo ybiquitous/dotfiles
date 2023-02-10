@@ -81,9 +81,7 @@ export FORGIT_NO_ALIASES=true
 if [ -f "${HOME}/.cargo/env" ]; then source "${HOME}/.cargo/env"; fi
 plugins=(
   bundler
-  dash
   direnv
-  emoji
   fzf
   history
   history-substring-search
