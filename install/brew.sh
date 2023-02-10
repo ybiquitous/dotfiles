@@ -27,6 +27,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 brew list -1 | xargs brew uninstall
 brew cleanup
 
+brew install actionlint
 brew install aspell
 brew install bash-completion
 brew install bat
