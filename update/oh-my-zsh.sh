@@ -6,7 +6,7 @@ for plugin in $plugins; do
   (
     cd "${plugin}"
     echo
-    echo "> Updating plugin '$(basename "${plugin}")'..."
+    echo "> Updating plugin \"$(basename "${plugin}")\"..."
     git pull --no-verbose
   )
 done
@@ -16,10 +16,10 @@ for theme in $themes; do
   (
     cd "${theme}"
     echo
-    echo "> Updating theme '$(basename "${theme}")'..."
+    echo "> Updating theme \"$(basename "${theme}")\"..."
     git pull --no-verbose
   )
 done
 
 echo
-echo 'Run "omz update" to complete updating Oh My Zsh.'
+echo 'Run "omz update" to complete updating Oh My Zsh'
