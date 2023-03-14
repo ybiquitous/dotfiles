@@ -141,6 +141,11 @@ if [ -d "${HOMEBREW_PREFIX}/share/zsh/site-functions" ]; then
   compinit
 fi
 
+# Git contrib
+if [ -d "${HOMEBREW_PREFIX}/share/git-core/contrib" ]; then
+  export PATH="${PATH}:${HOMEBREW_PREFIX}/share/git-core/contrib/git-jump"
+fi
+
 # https://github.com/wfxr/forgit
 if [ -n "${FORGIT}" ]; then
   export PATH="${PATH}:$(dirname ${FORGIT})"
