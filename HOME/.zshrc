@@ -127,6 +127,9 @@ export LANG=en_US.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Less
+export LESS='--RAW-CONTROL-CHARS --LONG-PROMPT --LINE-NUMBERS'
+
 # Custom
 export VISUAL=emacsclient
 export EDITOR=$VISUAL
