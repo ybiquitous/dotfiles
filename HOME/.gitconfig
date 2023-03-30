@@ -91,7 +91,7 @@
 	force-push = push --no-progress --force-with-lease
 
 	# Pull
-	sync = !"f() { git switch --quiet \"$(git default-branch)\" && git pull --prune --no-progress && git delete-merged-branches; }; f"
+	sync = !"f() { git switch --quiet \"$(git default-branch)\" && git pull --prune --no-progress --tags --force && git delete-merged-branches; }; f"
 
 	# Clean
 	cleanest = clean --force -dx
