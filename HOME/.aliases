@@ -34,7 +34,7 @@ if type bundler &>/dev/null; then
   alias bundler-exact-install='gem install bundler -v "$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)"'
 
   if type fswatch &>/dev/null; then
-    alias rspec-watch='f() { fswatch -0 spec/**/*_spec.rb | xargs -0 -I {} bundle exec rspec {} }; f'
+    alias rspec-watch='f() { fswatch -0 -l 0.2 -r -i "_spec\.rb$" "${1:-spec/}" | xargs -0 -n 1 -I % bundle exec rspec "%" }; f'
   fi
 fi
 
