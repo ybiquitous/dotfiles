@@ -132,9 +132,6 @@ export VISUAL=emacsclient
 export EDITOR=$VISUAL
 export GPG_TTY=$(tty)
 
-# Set empty title
-echo -ne "\e]1; \a"
-
 # TODO: When the PR <https://github.com/ohmyzsh/ohmyzsh/pull/11152> is merged, the following code will be unnecessary.
 if [ -d "${HOMEBREW_PREFIX}/share/zsh/site-functions" ]; then
   fpath+=("${HOMEBREW_PREFIX}/share/zsh/site-functions")
