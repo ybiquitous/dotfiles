@@ -80,6 +80,7 @@ zstyle ':omz:plugins:nvm' silent-autoload yes
 export FORGIT_NO_ALIASES=true
 if [ -f "${HOME}/.cargo/env" ]; then source "${HOME}/.cargo/env"; fi
 plugins=(
+  brew
   bundler
   direnv
   fzf
@@ -102,6 +103,7 @@ bindkey -M emacs '^N' history-substring-search-down
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+compinit # re-enable completions from plugins
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -131,12 +133,6 @@ export LANG=en_US.UTF-8
 export VISUAL=emacsclient
 export EDITOR=$VISUAL
 export GPG_TTY=$(tty)
-
-# TODO: When the PR <https://github.com/ohmyzsh/ohmyzsh/pull/11152> is merged, the following code will be unnecessary.
-if [ -d "${HOMEBREW_PREFIX}/share/zsh/site-functions" ]; then
-  fpath+=("${HOMEBREW_PREFIX}/share/zsh/site-functions")
-  compinit
-fi
 
 # Git contrib
 if [ -d "${HOMEBREW_PREFIX}/share/git-core/contrib" ]; then
