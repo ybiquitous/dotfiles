@@ -22,4 +22,4 @@ for theme in $themes; do
 done
 
 echo
-echo 'Run "omz update" to complete updating Oh My Zsh'
+echo 'Run "omz update && omz reload" to complete updating Oh My Zsh'
