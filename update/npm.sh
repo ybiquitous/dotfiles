@@ -11,3 +11,5 @@ echo
 echo 'global npm packages successfully updated'
 
 npm -g outdated || echo '' # ignore exit code
+
+npm ci
