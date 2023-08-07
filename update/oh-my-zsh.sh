@@ -6,7 +6,7 @@ for plugin in $plugins; do
   (
     cd "${plugin}"
     echo
-    echo "> Updating plugin \"$(basename "${plugin}")\"..."
+    printf '> Updating plugin \x1b[1m%s\x1b[0m...\n' "$(basename "${plugin}")"
     git pull --no-verbose
   )
 done
@@ -16,10 +16,10 @@ for theme in $themes; do
   (
     cd "${theme}"
     echo
-    echo "> Updating theme \"$(basename "${theme}")\"..."
+    printf '> Updating theme \x1b[1m%s\x1b[0m...\n' "$(basename "${theme}")"
     git pull --no-verbose
   )
 done
 
 echo
-echo 'Run "omz update && omz reload" to complete updating Oh My Zsh'
+printf 'To complete updating Oh My Zsh, run: \x1b[1;33m%s\x1b[0m\n' 'omz update && omz reload'
