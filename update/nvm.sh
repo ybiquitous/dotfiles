@@ -11,8 +11,9 @@ if [ -n "$NVM_DIR" ]; then
   # shellcheck source=/dev/null
   \. "${NVM_DIR}/nvm.sh"
 
-  nvm install node --latest-npm
+  nvm install node --no-progress --latest-npm --reinstall-packages-from="$(nvm current)"
   nvm alias default node
   nvm use default
-  node --version
+  nvm ls
+  echo "Newly installed Node.js $(node --version) 🎉"
 fi
