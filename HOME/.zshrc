@@ -144,6 +144,11 @@ if [ -n "${FORGIT}" ]; then
   export PATH="${PATH}:$(dirname ${FORGIT})"
 fi
 
+# Go
+if [ -d "${HOME}/go" ]; then
+  export PATH="${HOME}/go/bin:${PATH}"
+fi
+
 # Add MANPATH for Rust. See https://github.com/rust-lang/rustup/issues/1729
 if type rustup &>/dev/null; then
   export MANPATH="$(rustup show home)/toolchains/$(rustup default | grep -E '^\S+' --only-matching)/share/man:${MANPATH}"
