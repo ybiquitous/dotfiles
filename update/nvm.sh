@@ -17,10 +17,11 @@ if [ -n "$NVM_DIR" ]; then
   nvm use default
 
   new_version=$(nvm current)
-  if [ "$current_version" -ne "$new_version" ]; then
+  if [ "$current_version" != "$new_version" ]; then
     nvm reinstall-packages "$new_version"
   fi
 
   nvm ls
-  echo "Newly installed Node.js $(node --version) 🎉"
+  echo ''
+  printf 'Newly installed Node.js \x1b[1m%s\x1b[0m 🎉\n' "$(node --version)"
 fi
