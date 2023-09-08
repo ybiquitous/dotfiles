@@ -18,7 +18,7 @@ if [ -n "$NVM_DIR" ]; then
 
   new_version=$(nvm current)
   if [ "$current_version" != "$new_version" ]; then
-    nvm reinstall-packages "$new_version"
+    nvm reinstall-packages "$current_version"
   fi
 
   nvm ls
