@@ -139,6 +139,11 @@ if [ -d "${HOMEBREW_PREFIX}/share/git-core/contrib" ]; then
   export PATH="${PATH}:${HOMEBREW_PREFIX}/share/git-core/contrib/git-jump"
 fi
 
+# curl
+if [ -d "${HOMEBREW_PREFIX}/opt/curl" ]; then
+  export PATH="${HOMEBREW_PREFIX}/opt/curl/bin:${PATH}"
+fi
+
 # https://github.com/wfxr/forgit
 if [ -n "${FORGIT}" ]; then
   export PATH="${PATH}:$(dirname ${FORGIT})"

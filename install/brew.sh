@@ -37,6 +37,7 @@ brew install cmake
 brew install cmark-gfm
 brew install colordiff
 brew install coreutils
+brew install curl
 brew install direnv
 brew install docker-completion
 brew install dust
