@@ -49,6 +49,7 @@
 	# Commit
 	merge-quick = merge --no-edit
 	wip = commit --no-verify --message 'chore: wip'
+	empty = commit --allow-empty --message 'chore: empty'
 
 	# Tag
 	delete-tag = !"f() { git push --delete $(git origin) $1 && git tag --delete $1; }; f"
