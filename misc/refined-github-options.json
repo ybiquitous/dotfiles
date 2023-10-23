@@ -53,7 +53,7 @@
   "feature:extend-conversation-status-filters": false,
   "feature:extend-diff-expander": false,
   "feature:file-age-color": false,
-  "feature:fit-textareas": false,
+  "feature:fit-textareas": true,
   "feature:github-actions-indicators": false,
   "feature:global-conversation-list-filters": false,
   "feature:hidden-review-comments-indicator": false,
