@@ -23,6 +23,7 @@
   "feature:clean-repo-tabs": false,
   "feature:clean-rich-text-editor": false,
   "feature:clear-pr-merge-commit-message": false,
+  "feature:close-as-unplanned": false,
   "feature:close-out-of-view-modals": false,
   "feature:closing-remarks": false,
   "feature:collapsible-content-button": false,
