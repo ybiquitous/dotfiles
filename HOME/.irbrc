@@ -1,1 +1,2 @@
-require 'katakata_irb'
+# -*- mode: ruby -*-
+IRB.conf[:COMPLETOR] = :type
