@@ -8,5 +8,10 @@ gem update
 gem clean
 gem list
 
-bundle config --global path 'vendor/bundle'
+bundle config set --global path 'vendor/bundle'
+
+if type brew &>/dev/null; then
+  bundle config set --global build.pg "--with-pg-config=${HOMEBREW_PREFIX}/opt/libpq/bin/pg_config"
+fi
+
 bundle config
