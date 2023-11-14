@@ -47,7 +47,7 @@ if type npm &>/dev/null; then
   alias eslint='npm exec --no -- eslint'
   alias jest='npm exec --no -- jest'
   alias jest-watch='npm exec --no -- jest --watch'
-  alias jest-debug='node --inspect-brk ./node_modules/.bin/jest --runInBand'
+  alias jest-debug='NODE_OPTIONS="--inspect-brk ${NODE_OPTIONS}" ./node_modules/.bin/jest --runInBand'
   alias postcss='npm exec --no --package=postcss-cli -- postcss'
   alias prettier='npm exec --no -- prettier --write'
   alias upgradeps='npm exec -- upgradeps'
