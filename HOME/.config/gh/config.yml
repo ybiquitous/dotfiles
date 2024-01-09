@@ -16,3 +16,4 @@ aliases:
   issues: issue list
   issuesme: issue list --assignee '@me'
   aliases: alias list
+version: "1"
