@@ -1,4 +1,4 @@
-personal_ws-1.1 en 89 
+personal_ws-1.1 en 90 
 Backend
 Cheatsheet
 Dependabot
@@ -86,5 +86,6 @@ toolchain
 tsx
 ubuntu
 unix
+whitespace
 yaml
 yml
