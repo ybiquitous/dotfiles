@@ -15,6 +15,7 @@ alias less='less --LONG-PROMPT --LINE-NUMBERS'
 
 alias rubygems='f() { open "https://rubygems.org/gems/$1" }; f'
 alias npmjs='f() { open "https://www.npmjs.com/package/$1" }; f'
+alias open-firefox='open -a Firefox'
 
 if type exa &>/dev/null; then
   alias ll='exa --long --all --git'
