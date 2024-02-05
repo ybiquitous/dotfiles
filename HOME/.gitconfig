@@ -21,6 +21,7 @@
 	c = commit
 	ca = commit --all
 	d = forgit diff
+	ds = forgit diff --staged
 	g = grep
 	gg = grep-group
 	l = forgit log
