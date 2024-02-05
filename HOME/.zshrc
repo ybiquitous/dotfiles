@@ -75,7 +75,7 @@ DISABLE_AUTO_TITLE="true"
 # Add wisely, as too many plugins slow down shell startup.
 if [ -f '/opt/homebrew/bin/brew' ]; then eval "$(/opt/homebrew/bin/brew shellenv)"; fi
 UNBUNDLED_COMMANDS=(irb)
-zstyle ':omz:plugins:nvm' autoload yes
+zstyle ':omz:plugins:nvm' autoload no
 zstyle ':omz:plugins:nvm' silent-autoload yes
 export FORGIT_NO_ALIASES=true
 if [ -f "${HOME}/.cargo/env" ]; then source "${HOME}/.cargo/env"; fi
