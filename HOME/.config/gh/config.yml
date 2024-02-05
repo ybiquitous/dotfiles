@@ -16,4 +16,5 @@ aliases:
   issues: issue list
   issuesme: issue list --assignee '@me'
   aliases: alias list
+  prtitle: pr view --json title --jq .title
 version: "1"
