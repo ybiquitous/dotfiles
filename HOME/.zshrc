@@ -145,8 +145,8 @@ if [ -d "${HOMEBREW_PREFIX}/opt/curl" ]; then
 fi
 
 # https://github.com/wfxr/forgit
-if [ -n "${FORGIT}" ]; then
-  export PATH="${PATH}:$(dirname ${FORGIT})"
+if [ -d "${FORGIT_INSTALL_DIR}" ]; then
+  export PATH="${PATH}:${FORGIT_INSTALL_DIR}/bin"
 fi
 
 # Go
