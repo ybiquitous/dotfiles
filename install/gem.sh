@@ -5,6 +5,7 @@ gem update --system
 gem update
 
 # gem install <gem>...
+gem install repl_type_completor
 gem clean
 gem list
 
