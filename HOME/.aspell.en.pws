@@ -1,4 +1,4 @@
-personal_ws-1.1 en 92 
+personal_ws-1.1 en 93 
 Backend
 Cheatsheet
 Dependabot
@@ -51,6 +51,7 @@ http
 https
 iframe
 json
+keymap
 languagetool
 linter
 macOS
