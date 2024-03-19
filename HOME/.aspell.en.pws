@@ -1,4 +1,4 @@
-personal_ws-1.1 en 93 
+personal_ws-1.1 en 94
 Backend
 Cheatsheet
 Dependabot
@@ -27,6 +27,7 @@ catpost
 changelog
 cheatsheet
 combinator
+combinators
 config
 css
 customizable
@@ -42,6 +43,7 @@ enqueued
 enqueueing
 enqueues
 eslint
+expectedly
 formatter
 frameborder
 frontmatter
