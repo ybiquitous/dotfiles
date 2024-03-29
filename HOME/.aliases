@@ -55,6 +55,7 @@ if type npm &>/dev/null; then
   alias prettier='npm exec --no -- prettier --write'
   alias upgradeps='npm exec -- upgradeps'
   alias stylelint='npm exec --no -- stylelint'
+  alias vsce='npm exec --package=@vscode/vsce@latest -- vsce'
   alias yarn='npm exec -- yarn'
   alias zx='npm exec -- zx'
 fi
