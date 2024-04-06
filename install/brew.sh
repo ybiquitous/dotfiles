@@ -44,6 +44,7 @@ brew install dust
 brew install editorconfig
 brew install exa
 brew install fd
+brew install ffmpeg
 brew install forego
 brew install fswatch
 brew install fzf
@@ -64,6 +65,7 @@ brew install rustup-init
 brew install shellcheck
 brew install tree
 brew install watch
+brew install yt-dlp
 brew install --cask dash
 brew install --cask emacs
 brew install --cask google-japanese-ime
@@ -71,6 +73,7 @@ brew install --cask imageoptim
 brew install --cask iterm2
 brew install --cask karabiner-elements
 brew install --cask keycastr
+brew install --cask musescore
 brew tap homebrew/cask-fonts
 brew install --cask font-fira-code
 brew install --cask font-jetbrains-mono
