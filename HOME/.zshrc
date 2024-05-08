@@ -159,6 +159,10 @@ if type rustup &>/dev/null; then
   export MANPATH="$(rustup show home)/toolchains/$(rustup default | grep -E '^\S+' --only-matching)/share/man:${MANPATH}"
 fi
 
+if type terraform &>/dev/null; then
+  complete -o nospace -C "$(which terraform)" terraform
+fi
+
 if [[ -f ~/.aliases ]]; then
   source ~/.aliases
 fi

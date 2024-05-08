@@ -62,6 +62,7 @@
           "ruby",
           "rust",
           "shell",
+          "terraform",
           "travis",
           "yarn",
           "zsh"
