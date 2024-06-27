@@ -86,6 +86,7 @@ plugins=(
   fzf
   history
   history-substring-search
+  jenv
   npm
   nvm
   rbenv

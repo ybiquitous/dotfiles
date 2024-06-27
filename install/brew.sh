@@ -54,6 +54,7 @@ brew install git
 brew install git-delta
 brew install gnupg
 brew install hadolint
+brew install jenv
 brew install jq
 brew install less
 brew install libyaml
