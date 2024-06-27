@@ -17,7 +17,7 @@
     "prettier": "prettier --cache --ignore-path .gitignore .",
     "format": "npm-run-all --print-label --silent --parallel lint:*:fix",
     "clean": "git clean -dx --force --exclude=node_modules --exclude=.husky",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "devDependencies": {
     "remark-preset-ybiquitous": "^0.4.0",
@@ -26,7 +26,7 @@
   "lint-staged": {
     "*.{sh,bash}": "shellcheck",
     "*.{js,jsx,cjs,mjs,ts,tsx}": "eslint --cache --fix",
-    "!(*.snap)": "prettier --cache --write",
+    "!(**/*.snap|.husky/**)": "prettier --cache --write",
     "!(CHANGELOG).md": "remark --frail"
   },
   "commitlint": {
@@ -37,7 +37,7 @@
       "body-max-line-length": [
         1,
         "always",
-        100
+        300
       ],
       "scope-enum": [
         2,
