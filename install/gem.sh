@@ -5,7 +5,7 @@ gem update --system
 gem update
 
 # gem install <gem>...
-gem install repl_type_completor
+gem install repl_type_completor ruby-lsp
 gem clean
 gem list
 
