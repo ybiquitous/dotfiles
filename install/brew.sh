@@ -42,7 +42,6 @@ brew install direnv
 brew install docker-completion
 brew install dust
 brew install editorconfig
-brew install exa
 brew install fd
 brew install ffmpeg
 brew install forego
