@@ -41,5 +41,6 @@ done
 ./install/gibo.sh
 ./install/nvm.sh
 ./install/rbenv.sh
+./install/github.sh
 
 echo 'Installation completed. Please reopen shell.'
