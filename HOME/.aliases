@@ -69,7 +69,7 @@ if type jq &>/dev/null; then
   alias bump-npm-deps-dev='jq --raw-output ".devDependencies | keys[]" package.json | xargs -I{} npm install {}'
 fi
 
-if type docker &>/dev/null; then
+if type docker &>/dev/null || type podman &>/dev/null; then
   alias dockrun='docker run --rm --interactive --tty --volume=${PWD}:/work --workdir=/work --network=host'
 
   # https://github.com/rails/docked
