@@ -29,6 +29,7 @@ brew cleanup
 
 brew install actionlint
 brew install aspell
+brew install atuin
 brew install bash-completion
 brew install bat
 brew install bison

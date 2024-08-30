@@ -160,8 +160,14 @@ if type rustup &>/dev/null; then
   export MANPATH="$(rustup show home)/toolchains/$(rustup default | grep -E '^\S+' --only-matching)/share/man:${MANPATH}"
 fi
 
+# Terraform
 if type terraform &>/dev/null; then
   complete -o nospace -C "$(which terraform)" terraform
+fi
+
+# Atuin
+if type atuin &>/dev/null; then
+  eval "$(atuin init zsh)"
 fi
 
 if [[ -f ~/.aliases ]]; then
