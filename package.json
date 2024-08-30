@@ -17,7 +17,8 @@
     "prettier": "prettier --cache --ignore-path .gitignore .",
     "format": "npm-run-all --print-label --silent --parallel lint:*:fix",
     "clean": "git clean -dx --force --exclude=node_modules --exclude=.husky",
-    "prepare": "husky"
+    "prepare": "husky",
+    "commit-scope": "npm pkg get \"commitlint.rules.scope-enum[2]\""
   },
   "devDependencies": {
     "remark-preset-ybiquitous": "^0.4.0",
