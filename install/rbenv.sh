@@ -13,10 +13,14 @@ src/configure
 make -C src
 
 # Install ruby-build plugin
-git clone https://github.com/rbenv/ruby-build.git "${dest}"/plugins/ruby-build
+git clone https://github.com/rbenv/ruby-build.git "${dest}/plugins/ruby-build"
+
+# Install ruby-default-gems plugin
+git clone https://github.com/rbenv/rbenv-default-gems.git "${dest}/plugins/rbenv-default-gems"
+ln -svf "${HOME}/dotfiles/install/default-gems" "${dest}"
 
 # Setup shell
-export PATH=${dest}:${PATH}
+export PATH="${dest}:${PATH}"
 if ! type rbenv &>/dev/null ; then
   echo "rbenv is not in PATH. Try reopening the terminal."
   exit 1
@@ -29,10 +33,10 @@ curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-doctor | 
 
 # Install
 ruby_version=$(< "${HOME}/dotfiles/.ruby-version")
-rbenv install "$ruby_version" --skip-existing
-rbenv global "$ruby_version"
+rbenv install "${ruby_version}" --skip-existing
+rbenv global "${ruby_version}"
 rbenv versions
 ruby -v
 
-# Install gems
-"${HOME}"/dotfiles/install/gem.sh
+# Set up gems
+"${HOME}/dotfiles/install/gem.sh"
