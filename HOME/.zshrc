@@ -140,6 +140,12 @@ if [ -d "${HOMEBREW_PREFIX}/share/git-core/contrib" ]; then
   export PATH="${PATH}:${HOMEBREW_PREFIX}/share/git-core/contrib/git-jump"
 fi
 
+# GitHub CLI
+if type gh &>/dev/null; then
+  eval "$(gh completion --shell zsh)"
+  eval "$(gh copilot alias -- zsh)"
+fi
+
 # curl
 if [ -d "${HOMEBREW_PREFIX}/opt/curl" ]; then
   export PATH="${HOMEBREW_PREFIX}/opt/curl/bin:${PATH}"
