@@ -3,13 +3,18 @@ set -euo pipefail
 
 npm -g install npm
 echo
-echo "npm \"$(npm --version)\" successfully installed"
+echo "✅ Successfully installed npm \"$(npm --version)\" "
 
 npm -g update
 npm -g ls
 echo
-echo 'global npm packages successfully updated'
+echo '✅ Successfully updated global npm packages'
 
 npm -g outdated || echo '' # ignore exit code
 
-npm ci
+(
+  cd "$(dirname "${BASH_SOURCE[0]}")/.."
+  npm ci
+  echo
+  echo "✅ Successfully updated local npm packages in ${PWD}"
+)
