@@ -2,9 +2,15 @@
 set -euo pipefail
 
 if type gh &>/dev/null; then
-  gh extension install github/gh-copilot
-  gh copilot --version
+  # Create a extension list and install all the extensions
+  extensions=(
+    github/gh-copilot
+    dlvhdr/gh-dash
+    seachicken/gh-poi
+  )
+  for extension in "${extensions[@]}"; do
+    gh extension install "${extension}"
+  done
 
-  gh extension install dlvhdr/gh-dash
-  gh dash --version
+  gh extension list
 fi
