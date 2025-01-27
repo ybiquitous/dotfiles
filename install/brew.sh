@@ -46,6 +46,7 @@ brew install editorconfig
 brew install fd
 brew install ffmpeg
 brew install forego
+brew install forgit
 brew install fswatch
 brew install fzf
 brew install gh

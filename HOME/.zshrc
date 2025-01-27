@@ -96,7 +96,6 @@ plugins=(
   # custom
   zsh-autosuggestions
   zsh-completions
-  forgit
 )
 bindkey -M emacs '^P' history-substring-search-up
 bindkey -M emacs '^N' history-substring-search-down
@@ -149,11 +148,6 @@ fi
 # curl
 if [ -d "${HOMEBREW_PREFIX}/opt/curl" ]; then
   export PATH="${HOMEBREW_PREFIX}/opt/curl/bin:${PATH}"
-fi
-
-# https://github.com/wfxr/forgit
-if [ -d "${FORGIT_INSTALL_DIR}" ]; then
-  export PATH="${PATH}:${FORGIT_INSTALL_DIR}/bin"
 fi
 
 # Go
