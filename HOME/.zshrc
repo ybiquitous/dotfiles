@@ -102,6 +102,13 @@ bindkey -M emacs '^N' history-substring-search-down
 
 source $ZSH/oh-my-zsh.sh
 
+
+# TODO: Remove this after merging https://github.com/ohmyzsh/ohmyzsh/pull/12891
+if type rbenv &>/dev/null; then
+  fpath+=("$(rbenv root)/completions")
+  compinit
+fi
+
 # User configuration
 compinit # re-enable completions from plugins
 
