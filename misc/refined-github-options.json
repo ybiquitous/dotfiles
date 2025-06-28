@@ -61,7 +61,7 @@
   "feature:github-actions-indicators": false,
   "feature:global-conversation-list-filters": false,
   "feature:hidden-review-comments-indicator": false,
-  "feature:hide-diff-signs": true,
+  "feature:hide-diff-signs": false,
   "feature:hide-inactive-deployments": false,
   "feature:hide-issue-list-autocomplete": false,
   "feature:hide-low-quality-comments": false,
