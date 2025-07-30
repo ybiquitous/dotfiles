@@ -5,7 +5,6 @@ if type gh &>/dev/null; then
   # Create a extension list and install all the extensions
   extensions=(
     github/gh-copilot
-    dlvhdr/gh-dash
     seachicken/gh-poi
   )
   for extension in "${extensions[@]}"; do
