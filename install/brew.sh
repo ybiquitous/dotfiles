@@ -66,6 +66,7 @@ brew install ripgrep
 brew install rust-analyzer
 brew install rustup-init
 brew install shellcheck
+brew install starship
 brew install tlrc
 brew install tree
 brew install watch

@@ -23,8 +23,7 @@ echo
 echo '> Installing custom themes...'
 (
   cd "${dest}/custom/themes"
-  git_clone https://github.com/denysdovhan/spaceship-prompt.git
-  ln -sv spaceship-prompt/spaceship.zsh-theme spaceship.zsh-theme
+  # Add themes if you want...
 )
 
 echo
