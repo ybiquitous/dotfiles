@@ -59,6 +59,7 @@ brew install jenv
 brew install jq
 brew install less
 brew install libyaml
+brew install lsd
 brew install most
 brew install pinentry-mac
 brew install ripgrep

@@ -23,6 +23,10 @@ if type rg &>/dev/null; then
   alias rg='rg --no-heading --hidden'
 fi
 
+if type lsd &>/dev/null; then
+  alias lsd='lsd --long --git'
+fi
+
 if type ruby &>/dev/null; then
   # https://github.com/ruby/un
   alias http-server='ruby -run -e httpd'
