@@ -2,8 +2,5 @@ display: all
 
 hyperlink: auto
 
-icons:
-  when: never
-
 ignore-globs:
   - .git
