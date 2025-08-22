@@ -1,22 +1,22 @@
 #!/bin/bash
 set -euo pipefail
 
-plugins=$(find "${HOME}/.oh-my-zsh/custom/plugins" -type d -depth 1 | grep -v example)
+plugins=$(find "${HOME}/.oh-my-zsh/custom/plugins" -name 'example' -prune -or -type d -depth 1 -print)
 for plugin in $plugins; do
   (
     cd "${plugin}"
     echo
-    printf '> Updating plugin \x1b[1m%s\x1b[0m...\n' "$(basename "${plugin}")"
+    printf '> Updating Oh My Zsh custom plugin \x1b[1m%s\x1b[0m...\n' "$(basename "${plugin}")"
     git pull --no-verbose
   )
 done
 
-themes=$(find "${HOME}/.oh-my-zsh/custom/themes" -type d -depth 1 | grep -v example)
+themes=$(find "${HOME}/.oh-my-zsh/custom/themes" -name 'example' -prune -or -type d -depth 1 -print)
 for theme in $themes; do
   (
     cd "${theme}"
     echo
-    printf '> Updating theme \x1b[1m%s\x1b[0m...\n' "$(basename "${theme}")"
+    printf '> Updating Oh My Zsh custom theme \x1b[1m%s\x1b[0m...\n' "$(basename "${theme}")"
     git pull --no-verbose
   )
 done
