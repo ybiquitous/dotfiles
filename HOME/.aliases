@@ -25,6 +25,7 @@ fi
 
 if type lsd &>/dev/null; then
   alias lsd='lsd --long --git'
+  alias ll='lsd'
 fi
 
 if type ruby &>/dev/null; then
