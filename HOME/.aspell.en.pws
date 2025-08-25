@@ -1,4 +1,4 @@
-personal_ws-1.1 en 112 
+personal_ws-1.1 en 113 
 Backend
 Cheatsheet
 Dependabot
@@ -75,6 +75,7 @@ namespace
 npm
 npx
 nvm
+observability
 oneshot
 openssl
 pandoc
