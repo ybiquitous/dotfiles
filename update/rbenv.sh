@@ -1,7 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-echo "Updating rbenv and ruby-build..."
+echo
+echo "🔄 Updating rbenv and ruby-build..."
 
 rbenv_root="$(rbenv root)"
 git -C "${rbenv_root}" pull --quiet
@@ -14,5 +15,4 @@ rbenv global "${ruby_version}"
 rbenv versions
 
 echo
-echo "Default Ruby version set by rbenv:"
-ruby -v
+echo -e "✅ Done. Default Ruby version: \033[1m$(ruby -v)\033[0m"
