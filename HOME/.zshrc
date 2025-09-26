@@ -147,7 +147,6 @@ fi
 # GitHub CLI
 if type gh &>/dev/null; then
   eval "$(gh completion --shell zsh)"
-  eval "$(gh copilot alias -- zsh)"
 fi
 
 # curl
