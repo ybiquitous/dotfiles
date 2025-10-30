@@ -40,8 +40,16 @@
 	new-branch = checkout -b
 	rename-branch = branch --move
 	prune-branches = !"git remote prune $(git origin)"
-	# https://stackoverflow.com/questions/28666357/git-how-to-get-default-branch
-	default-branch = !"git symbolic-ref --short refs/remotes/origin/HEAD | sed 's|^origin/||'"
+	default-branch = !"f() { \
+		result=$(git symbolic-ref --short refs/remotes/origin/HEAD 2>&1); \
+		if [ $? -ne 0 ]; then \
+			echo ${result} >&2; \
+			echo 'To resolve the error, try running: git remote set-head origin --auto' >&2; \
+			return 1; \
+		else \
+			echo ${result} | sed 's#^origin/##'; \
+		fi; \
+	}; f"
 	change-default-branch = !"f() { git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/$1; }; f"
 	delete-working-branches = !"git branch --no-merged | grep -v $(git default-branch) | xargs -p -I {} git branch --delete --force {}"
 	delete-merged-branches = !"git branch --merged | grep -v $(git default-branch) | xargs -I {} git branch --delete {}"
