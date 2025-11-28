@@ -53,6 +53,7 @@ brew install gh
 brew install gibo
 brew install git
 brew install git-delta
+brew install gnu-time
 brew install gnupg
 brew install hadolint
 brew install jenv
