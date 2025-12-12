@@ -98,15 +98,6 @@ if type most &>/dev/null; then
   alias man='man -P most'
 fi
 
-if type yt-dlp &>/dev/null; then
-  alias youtube-as='yt-dlp --extract-audio'
-  alias youtube-as-mp3='yt-dlp --extract-audio --audio-format=mp3'
-fi
-
-if type mscore &>/dev/null; then
-  alias musical-score='f() { mscore "${1}" --export-to "${1}.pdf" && echo "Exported to: ${1}.pdf" }; f'
-fi
-
 # GNU Time. Homebrew can install `gtime`. Ref https://formulae.brew.sh/formula/gnu-time
 if type gtime &>/dev/null; then
   alias time='gtime --portability'

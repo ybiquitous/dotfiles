@@ -71,7 +71,6 @@ brew install starship
 brew install tlrc
 brew install tree
 brew install watch
-brew install yt-dlp
 brew install --cask dash
 brew install --cask emacs
 brew install --cask google-japanese-ime
