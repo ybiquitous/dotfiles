@@ -30,7 +30,12 @@ done
 # copy directories to ~/.config/
 mkdir -pv "${HOME}/.config"
 find "${BASEDIR}/HOME/.config" -maxdepth 1 -type d ! -path "${BASEDIR}/HOME/.config" | while IFS= read -r dir; do
-  ln -svf "$dir" "${HOME}/.config/$(basename "$dir")"
+  target_dir="${HOME}/.config/$(basename "$dir")"
+  if [ -e "$target_dir" ]; then
+    echo "(skip) ${target_dir} already exists."
+  else
+    ln -svf "$dir" "${HOME}/.config/$(basename "$dir")"
+  fi
 done
 
 ./install/apt.sh
