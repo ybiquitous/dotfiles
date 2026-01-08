@@ -1,0 +1,6 @@
+# https://ghostty.org/docs/config
+
+keybind = ctrl+m=text:\r
+keybind = ctrl+i=text:\t
+theme = Dark Pastel
+font-family = Fira Code Medium

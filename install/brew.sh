@@ -73,6 +73,7 @@ brew install tree
 brew install watch
 brew install --cask dash
 brew install --cask emacs
+brew install --cask ghostty
 brew install --cask google-japanese-ime
 brew install --cask imageoptim
 brew install --cask iterm2
