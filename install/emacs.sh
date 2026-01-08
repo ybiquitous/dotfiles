@@ -17,8 +17,8 @@ else
 ;; (add-to-list 'default-frame-alist '(width . 100))
 ;; (add-to-list 'default-frame-alist '(height . 35))
 
-;; (set-face-font 'default "Fira Code 14")
-;; (set-face-font 'mode-line "Fira Code 12")
+;; (set-face-font 'default "Fira Code 12")
+;; (set-face-font 'mode-line "Fira Code 10")
 
 EOF
   echo "'${init_env}' is created."
