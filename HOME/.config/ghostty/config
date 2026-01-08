@@ -3,5 +3,6 @@
 keybind = ctrl+m=text:\r
 keybind = ctrl+i=text:\t
 theme = Dark Pastel
+split-divider-color = "#555555"
 font-family = Fira Code Medium
 font-size = 14
