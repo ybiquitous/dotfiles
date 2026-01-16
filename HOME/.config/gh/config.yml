@@ -9,6 +9,9 @@ pager: !!null delta --line-numbers
 # Aliases allow you to create nicknames for gh commands
 aliases:
   open: browse
+  open-actions: browse --actions
+  open-releases: browse --releases
+  open-settings: browse --settings
   prs: pr list
   prsme: pr list --author '@me'
   prv: pr view --web
