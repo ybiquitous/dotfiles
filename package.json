@@ -28,7 +28,7 @@
   "lint-staged": {
     "*.{sh,bash}": "shellcheck",
     "*.{js,jsx,cjs,mjs,ts,tsx}": "eslint --cache --fix",
-    "!(**/*.snap)": "prettier --cache --write",
+    "!(**/*.snap|.githooks/**)": "prettier --cache --write",
     "!(CHANGELOG).md": "remark --frail"
   },
   "commitlint": {
