@@ -17,8 +17,8 @@
     "lint:styles:fix": "npm run prettier -- --write",
     "prettier": "prettier --cache .",
     "format": "ybiq run --npm lint:js:fix lint:md:fix lint:styles:fix",
-    "clean": "git clean -dx --force --exclude=node_modules --exclude=.husky",
-    "prepare": "husky",
+    "clean": "git clean -dx --force --exclude=node_modules",
+    "prepare": "git config --local core.hooksPath .githooks",
     "commit-scope": "npm pkg get \"commitlint.rules.scope-enum[2]\""
   },
   "devDependencies": {
@@ -28,7 +28,7 @@
   "lint-staged": {
     "*.{sh,bash}": "shellcheck",
     "*.{js,jsx,cjs,mjs,ts,tsx}": "eslint --cache --fix",
-    "!(**/*.snap|.husky/**)": "prettier --cache --write",
+    "!(**/*.snap|.githooks/**)": "prettier --cache --write",
     "!(CHANGELOG).md": "remark --frail"
   },
   "commitlint": {
