@@ -81,12 +81,6 @@
 	grep-group = grep --heading --break --show-function
 	grep-word = grep --word-regexp
 
-	# Config
-	edit-config = config --edit
-	edit-config-global = edit-config --global
-	list-config = config --list
-	list-config-global = list-config --global
-
 	# Undo
 	amend = commit --amend
 	discard = checkout --
@@ -114,7 +108,7 @@
 	sync-fork = !"git fetch upstream && git merge \"upstream/$(git default-branch)\" && git push && git sync && git remote prune upstream"
 
 	# Plural
-	aliases = !"git config --get-regexp '^alias\\.' | cut -c 7- | sed 's/ / = /' | sort"
+	aliases = config get --all --show-names --regexp '^alias\\.'
 	contributors = shortlog --summary --numbered --no-merges
 	remotes = remote --verbose
 	stashes = stash list

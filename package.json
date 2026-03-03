@@ -18,7 +18,7 @@
     "prettier": "prettier --cache .",
     "format": "ybiq run --npm lint:js:fix lint:md:fix lint:styles:fix",
     "clean": "git clean -dx --force --exclude=node_modules",
-    "prepare": "git config --local core.hooksPath .githooks",
+    "prepare": "git config set --local core.hooksPath .githooks",
     "commit-scope": "npm pkg get \"commitlint.rules.scope-enum[2]\""
   },
   "devDependencies": {
