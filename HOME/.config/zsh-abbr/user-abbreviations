@@ -1,0 +1,40 @@
+# -*- mode: shell-script -*-
+
+abbr "e"="emacsclient --no-wait"
+abbr "d"="date '+%Y-%m-%dT%H:%M:%S%z'"
+abbr "g"="grep"
+abbr "h"="history"
+
+abbr "cp"="cp -i"
+abbr "mv"="mv -i"
+abbr "rm"="rm -i"
+
+abbr "less"="less --LONG-PROMPT --LINE-NUMBERS"
+
+abbr "tree"="tree -aCF -I .git"
+
+nabbr "rubygems"="open 'https://rubygems.org/gems/%'"
+abbr "npmjs"="open 'https://www.npmjs.com/package/%'"
+
+abbr "firefox"="open -a Firefox"
+
+abbr "image-optim"="open -a ImageOptim"
+
+# git
+abbr "ga"="git add"
+abbr "gc"="git commit"
+abbr "gg"="git grep"
+abbr "gp"="git push"
+
+# rg
+abbr "rg"="rg --no-heading --hidden"
+
+# lsd
+abbr "lsd"="lsd --long --git"
+abbr "ll"="lsd --long --git"
+
+# https://github.com/ruby/un
+abbr "web"="ruby -run -e httpd"
+
+# GNU Time. Homebrew can install `gtime`. Ref https://formulae.brew.sh/formula/gnu-time
+abbr "time"="gtime --portability"

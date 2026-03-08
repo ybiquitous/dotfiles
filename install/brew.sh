@@ -71,6 +71,7 @@ brew install starship
 brew install tlrc
 brew install tree
 brew install watch
+brew install olets/tap/zsh-abbr
 brew install --cask dash
 brew install --cask emacs
 brew install --cask ghostty
