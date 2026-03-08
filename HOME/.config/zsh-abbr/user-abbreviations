@@ -21,6 +21,8 @@ abbr "firefox"="open -a Firefox"
 abbr "image-optim"="open -a ImageOptim"
 
 # git
+abbr "ga"="git add"
+abbr "gc"="git commit"
 abbr "gg"="git grep"
 
 # rg
