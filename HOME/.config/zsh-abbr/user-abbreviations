@@ -24,6 +24,7 @@ abbr "image-optim"="open -a ImageOptim"
 abbr "ga"="git add"
 abbr "gc"="git commit"
 abbr "gg"="git grep"
+abbr "gp"="git push"
 
 # rg
 abbr "rg"="rg --no-heading --hidden"
