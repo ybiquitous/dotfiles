@@ -6,6 +6,11 @@ if [ "$(uname -s)" != 'Darwin' ]; then
   exit
 fi
 
+if type brew &>/dev/null ; then
+  echo 'Homebrew is already installed.'
+  exit 1
+fi
+
 if ! type xcode-select &>/dev/null ; then
   cat <<'EOT'
 Please install Xcode from App Store, then run the following command:
