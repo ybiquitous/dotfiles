@@ -13,7 +13,7 @@ abbr "less"="less --LONG-PROMPT --LINE-NUMBERS"
 
 abbr "tree"="tree -aCF -I .git"
 
-nabbr "rubygems"="open 'https://rubygems.org/gems/%'"
+abbr "rubygems"="open 'https://rubygems.org/gems/%'"
 abbr "npmjs"="open 'https://www.npmjs.com/package/%'"
 
 abbr "firefox"="open -a Firefox"
