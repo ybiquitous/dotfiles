@@ -105,7 +105,12 @@ source $ZSH/oh-my-zsh.sh
 # TODO: Remove this after merging https://github.com/ohmyzsh/ohmyzsh/pull/12891
 if type rbenv &>/dev/null; then
   fpath+=("$(rbenv root)/completions")
-  compinit
+fi
+
+if type podman &>/dev/null; then
+  if [[ ! -f "${ZSH_CACHE_DIR}/completions/_podman" ]]; then
+    podman completion zsh --file "${ZSH_CACHE_DIR}/completions/_podman"
+  fi
 fi
 
 # User configuration
