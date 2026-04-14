@@ -72,6 +72,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # Add wisely, as too many plugins slow down shell startup.
 if [ -f '/opt/homebrew/bin/brew' ]; then eval "$(/opt/homebrew/bin/brew shellenv)"; fi
 UNBUNDLED_COMMANDS=(irb)
+zstyle ':omz:plugins:nvm' lazy yes
 zstyle ':omz:plugins:nvm' autoload no
 zstyle ':omz:plugins:nvm' silent-autoload yes
 export FORGIT_NO_ALIASES=true
