@@ -73,8 +73,8 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 if [ -f '/opt/homebrew/bin/brew' ]; then eval "$(/opt/homebrew/bin/brew shellenv)"; fi
 UNBUNDLED_COMMANDS=(irb)
 
-# NOTE: Claude Code needs eager nvm load so npm/node are on PATH.
-if [[ -z "${CLAUDECODE}" ]]; then
+# NOTE: Claude Code and Emacs need eager nvm load so npm/node are on PATH.
+if [[ -z "${CLAUDECODE}" && -z "${INSIDE_EMACS}" ]]; then
   zstyle ':omz:plugins:nvm' lazy yes
 fi
 zstyle ':omz:plugins:nvm' autoload yes
