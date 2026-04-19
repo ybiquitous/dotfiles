@@ -2,7 +2,7 @@
 set -euo pipefail
 
 if type gh &>/dev/null; then
-  # Create a extension list and install all the extensions
+  # Extensions
   extensions=(
     seachicken/gh-poi
   )
@@ -11,4 +11,14 @@ if type gh &>/dev/null; then
   done
 
   gh extension list
+
+  # Skills (Claude Code)
+  skills=(
+    "JuliusBrussee/caveman caveman"
+    "JuliusBrussee/caveman caveman-commit"
+  )
+  for skill in "${skills[@]}"; do
+    # shellcheck disable=SC2086
+    gh skill install ${skill} --agent claude-code --scope user --force
+  done
 fi
