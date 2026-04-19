@@ -1,36 +1,5 @@
 # -*- mode: shell-script -*-
 
-# alias rm='rm -i'
-# alias cp='cp -i'
-# alias mv='mv -i'
-
-# https://unix.stackexchange.com/a/125386
-# alias mkcdir='f() { mkdir -p -- "$1" && cd -- "$1" }; f'
-
-# alias e='emacsclient --no-wait'
-# alias date-iso8601='date "+%Y-%m-%dT%H:%M:%S%z"'
-# alias less='less --LONG-PROMPT --LINE-NUMBERS'
-
-# alias rubygems='f() { open "https://rubygems.org/gems/$1" }; f'
-# alias npmjs='f() { open "https://www.npmjs.com/package/$1" }; f'
-
-# alias open-firefox='open -a Firefox'
-# alias open-image-optim='open -a ImageOptim'
-
-# if type rg &>/dev/null; then
-#   alias rg='rg --no-heading --hidden'
-# fi
-
-# if type lsd &>/dev/null; then
-#   alias lsd='lsd --long --git'
-#   alias ll='lsd'
-# fi
-
-# if type ruby &>/dev/null; then
-#   # https://github.com/ruby/un
-#   alias http-server='ruby -run -e httpd'
-# fi
-
 if type gem &>/dev/null; then
   alias gem-view='f() { gem info --remote $1 | grep --only-matching --extended-regexp --max-count=1 "https?://.+" | xargs open }; f'
 fi
@@ -44,56 +13,7 @@ if type bundler &>/dev/null; then
   fi
 fi
 
-if type npm &>/dev/null; then
-  # alias babel='npm exec --no --package=@babel/cli -- babel'
-  # alias eslint='npm exec --no -- eslint'
-  # alias jest='npm exec --no -- jest'
-  # alias jest-watch='npm exec --no -- jest --watch'
-  # alias jest-debug='NODE_OPTIONS="--inspect-brk ${NODE_OPTIONS}" ./node_modules/.bin/jest --runInBand'
-  # alias postcss='npm exec --no --package=postcss-cli -- postcss'
-  # alias prettier='npm exec --no -- prettier --write'
-  # alias upgradeps='npm exec -- upgradeps'
-  # alias stylelint='npm exec --no -- stylelint'
-  # alias vsce='npm exec --package=@vscode/vsce@latest -- vsce'
-  # alias yarn='npm exec -- yarn'
-  # alias zx='npm exec -- zx'
-fi
-
-# if type tree &>/dev/null; then
-#   alias tree='tree -aCF -I .git'
-# fi
-
-# if type querly &>/dev/null; then
-#   alias ruby-grep='querly find'
-# fi
-
-# if type jq &>/dev/null; then
-#   alias bump-npm-deps='jq --raw-output ".dependencies | keys[]" package.json | xargs -I{} npm install {}'
-#   alias bump-npm-deps-dev='jq --raw-output ".devDependencies | keys[]" package.json | xargs -I{} npm install {}'
-# fi
-
-# if type podman &>/dev/null; then
-#   alias docker='podman'
-# fi
-
-# if type docker &>/dev/null || type podman &>/dev/null; then
-#   alias dockrun='docker run --rm --interactive --tty --volume=${PWD}:/work --workdir=/work --network=host'
-# fi
-
-# if type rdbg &>/dev/null; then
-#   alias ruby-debug=rdbg
-# fi
-
 # See https://github.com/sharkdp/bat#highlighting---help-messages
 if type bat &>/dev/null; then
   alias help='f() { (test $# -ne 0) && ("$@" --help 2>&1 | bat --language cmd-help --style plain) }; f'
 fi
-
-# if type most &>/dev/null; then
-#   alias man='man -P most'
-# fi
-
-# GNU Time. Homebrew can install `gtime`. Ref https://formulae.brew.sh/formula/gnu-time
-# if type gtime &>/dev/null; then
-#   alias time='gtime --portability'
-# fi
