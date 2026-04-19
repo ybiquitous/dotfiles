@@ -14,8 +14,6 @@ if type gh &>/dev/null; then
 
   # Skills (Claude Code)
   skills=(
-    "JuliusBrussee/caveman caveman"
-    "JuliusBrussee/caveman caveman-commit"
   )
   for skill in "${skills[@]}"; do
     # shellcheck disable=SC2086
