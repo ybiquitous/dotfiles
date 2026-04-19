@@ -38,3 +38,10 @@ abbr "web"="ruby -run -e httpd"
 
 # GNU Time. Homebrew can install `gtime`. Ref https://formulae.brew.sh/formula/gnu-time
 abbr "time"="gtime --portability"
+
+# Docker
+abbr "docker"="podman"
+abbr "dockrun"="podman run --rm --interactive --tty --volume=${PWD}:/work --workdir=/work --network=host"
+
+# most
+abbr "man"="man -P most"

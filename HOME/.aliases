@@ -45,18 +45,18 @@ if type bundler &>/dev/null; then
 fi
 
 if type npm &>/dev/null; then
-  alias babel='npm exec --no --package=@babel/cli -- babel'
-  alias eslint='npm exec --no -- eslint'
-  alias jest='npm exec --no -- jest'
-  alias jest-watch='npm exec --no -- jest --watch'
-  alias jest-debug='NODE_OPTIONS="--inspect-brk ${NODE_OPTIONS}" ./node_modules/.bin/jest --runInBand'
-  alias postcss='npm exec --no --package=postcss-cli -- postcss'
-  alias prettier='npm exec --no -- prettier --write'
-  alias upgradeps='npm exec -- upgradeps'
-  alias stylelint='npm exec --no -- stylelint'
-  alias vsce='npm exec --package=@vscode/vsce@latest -- vsce'
-  alias yarn='npm exec -- yarn'
-  alias zx='npm exec -- zx'
+  # alias babel='npm exec --no --package=@babel/cli -- babel'
+  # alias eslint='npm exec --no -- eslint'
+  # alias jest='npm exec --no -- jest'
+  # alias jest-watch='npm exec --no -- jest --watch'
+  # alias jest-debug='NODE_OPTIONS="--inspect-brk ${NODE_OPTIONS}" ./node_modules/.bin/jest --runInBand'
+  # alias postcss='npm exec --no --package=postcss-cli -- postcss'
+  # alias prettier='npm exec --no -- prettier --write'
+  # alias upgradeps='npm exec -- upgradeps'
+  # alias stylelint='npm exec --no -- stylelint'
+  # alias vsce='npm exec --package=@vscode/vsce@latest -- vsce'
+  # alias yarn='npm exec -- yarn'
+  # alias zx='npm exec -- zx'
 fi
 
 # if type tree &>/dev/null; then
@@ -72,17 +72,17 @@ fi
 #   alias bump-npm-deps-dev='jq --raw-output ".devDependencies | keys[]" package.json | xargs -I{} npm install {}'
 # fi
 
-if type podman &>/dev/null; then
-  alias docker='podman'
-fi
+# if type podman &>/dev/null; then
+#   alias docker='podman'
+# fi
 
-if type docker &>/dev/null || type podman &>/dev/null; then
-  alias dockrun='docker run --rm --interactive --tty --volume=${PWD}:/work --workdir=/work --network=host'
-fi
+# if type docker &>/dev/null || type podman &>/dev/null; then
+#   alias dockrun='docker run --rm --interactive --tty --volume=${PWD}:/work --workdir=/work --network=host'
+# fi
 
-if type rdbg &>/dev/null; then
-  alias ruby-debug=rdbg
-fi
+# if type rdbg &>/dev/null; then
+#   alias ruby-debug=rdbg
+# fi
 
 # See https://github.com/sharkdp/bat#highlighting---help-messages
 if type bat &>/dev/null; then
