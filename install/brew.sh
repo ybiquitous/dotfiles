@@ -81,7 +81,6 @@ brew install --cask emacs
 brew install --cask ghostty
 brew install --cask google-japanese-ime
 brew install --cask imageoptim
-brew install --cask iterm2
 brew install --cask karabiner-elements
 brew install --cask keycastr
 brew install --cask musescore
