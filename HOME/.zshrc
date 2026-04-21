@@ -82,8 +82,11 @@ zstyle ':omz:plugins:nvm' silent-autoload yes
 
 export FORGIT_NO_ALIASES=true
 if [ -f "${HOME}/.cargo/env" ]; then source "${HOME}/.cargo/env"; fi
+
+# zsh-abbr
 ABBR_SET_EXPANSION_CURSOR=1
 ABBR_LINE_CURSOR_MARKER='$'
+
 plugins=(
   brew
   bundler
