@@ -103,8 +103,6 @@ plugins=(
   zsh-autosuggestions
   zsh-completions
 )
-bindkey -M emacs '^P' history-substring-search-up
-bindkey -M emacs '^N' history-substring-search-down
 
 source $ZSH/oh-my-zsh.sh
 
@@ -184,9 +182,12 @@ if type terraform &>/dev/null; then
   complete -o nospace -C "$(which terraform)" terraform
 fi
 
-# Atuin
+# Atuin - shell history management
 if type atuin &>/dev/null; then
+  export ATUIN_NOBIND="true"
   eval "$(atuin init zsh)"
+  bindkey -M emacs '^P' atuin-up-search
+  bindkey -M emacs '^N' atuin-down-search
 fi
 
 if [[ -f ~/.aliases ]]; then
