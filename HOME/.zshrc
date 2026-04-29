@@ -96,7 +96,6 @@ plugins=(
   history
   history-substring-search
   jenv
-  npm
   nvm
   rbenv
   rust
@@ -113,10 +112,14 @@ bindkey -M emacs '^N' history-substring-search-down
 
 source $ZSH/oh-my-zsh.sh
 
-
 # TODO: Remove this after merging https://github.com/ohmyzsh/ohmyzsh/pull/12891
 if type rbenv &>/dev/null; then
   fpath+=("$(rbenv root)/completions")
+fi
+
+# npm
+if type npm &>/dev/null; then
+  source <(npm completion)
 fi
 
 if type podman &>/dev/null; then
