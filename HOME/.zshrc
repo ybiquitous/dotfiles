@@ -89,7 +89,6 @@ ABBR_LINE_CURSOR_MARKER='$'
 
 plugins=(
   brew
-  bundler
   direnv
   fzf
   gh
