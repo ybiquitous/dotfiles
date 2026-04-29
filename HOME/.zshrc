@@ -94,7 +94,6 @@ plugins=(
   rbenv
   rust
   starship
-  web-search
 
   # custom
   zsh-autosuggestions
