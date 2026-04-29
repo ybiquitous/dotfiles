@@ -13,12 +13,15 @@ abbr "less"="less --LONG-PROMPT --LINE-NUMBERS"
 
 abbr "tree"="tree -aCF -I .git"
 
-abbr "rubygems"="open 'https://rubygems.org/gems/$'"
 abbr "npmjs"="open 'https://www.npmjs.com/package/$'"
 
 abbr "firefox"="open -a Firefox"
 
 abbr "image-optim"="open -a ImageOptim"
+
+# ruby
+abbr "be"="bundle exec"
+abbr "rubygems"="open 'https://rubygems.org/gems/$'"
 
 # git
 abbr "ga"="git add"
