@@ -92,8 +92,6 @@ plugins=(
   direnv
   fzf
   gh
-  history
-  history-substring-search
   jenv
   nvm
   rbenv
