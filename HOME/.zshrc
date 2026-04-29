@@ -181,7 +181,6 @@ if type atuin &>/dev/null; then
   export ATUIN_NOBIND="true"
   eval "$(atuin init zsh)"
   bindkey -M emacs '^P' atuin-up-search
-  bindkey -M emacs '^N' atuin-down-search
 fi
 
 if [[ -f ~/.aliases ]]; then
