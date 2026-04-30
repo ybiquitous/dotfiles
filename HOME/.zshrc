@@ -120,7 +120,6 @@ if type podman &>/dev/null; then
 fi
 
 # User configuration
-compinit # re-enable completions from plugins
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
