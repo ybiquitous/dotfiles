@@ -105,9 +105,14 @@ if type rbenv &>/dev/null; then
   fpath+=("$(rbenv root)/completions")
 fi
 
+mkdir -p "${ZSH_CACHE_DIR}/completions"
+
 # npm
 if type npm &>/dev/null; then
-  source <(npm completion)
+  if [[ ! -f "${ZSH_CACHE_DIR}/completions/_npm" ]]; then
+    npm completion > "${ZSH_CACHE_DIR}/completions/_npm"
+  fi
+  source "${ZSH_CACHE_DIR}/completions/_npm"
 fi
 
 if type podman &>/dev/null; then
