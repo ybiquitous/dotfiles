@@ -61,7 +61,6 @@ brew install git-delta
 brew install gnu-time
 brew install gnupg
 brew install hadolint
-brew install jenv
 brew install jq
 brew install less
 brew install libyaml

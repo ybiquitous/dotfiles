@@ -86,7 +86,6 @@ plugins=(
   direnv
   fzf
   gh
-  jenv
   nvm
   rbenv
   rust
