@@ -13,7 +13,7 @@ abbr "less"="less --LONG-PROMPT --LINE-NUMBERS"
 
 abbr "tree"="tree -aCF -I .git"
 
-abbr "npmjs"="open 'https://www.npmjs.com/package/$'"
+abbr "npmjs"="open 'https://www.npmjs.com/package/@'"
 
 abbr "firefox"="open -a Firefox"
 
@@ -21,7 +21,7 @@ abbr "image-optim"="open -a ImageOptim"
 
 # ruby
 abbr "be"="bundle exec"
-abbr "rubygems"="open 'https://rubygems.org/gems/$'"
+abbr "rubygems"="open 'https://rubygems.org/gems/@'"
 
 # git
 abbr "ga"="git add"
@@ -44,7 +44,7 @@ abbr "time"="gtime --portability"
 
 # Docker
 abbr "docker"="podman"
-abbr "dockrun"="podman run --rm --interactive --tty --volume=${PWD}:/work --workdir=/work --network=host"
+abbr "dockrun"='podman run --rm --interactive --tty --volume=${PWD}:/work --workdir=/work --network=host'
 
 # most
 abbr "man"="man -P most"

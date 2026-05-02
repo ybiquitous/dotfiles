@@ -85,7 +85,7 @@ if [ -f "${HOME}/.cargo/env" ]; then source "${HOME}/.cargo/env"; fi
 
 # zsh-abbr
 ABBR_SET_EXPANSION_CURSOR=1
-ABBR_LINE_CURSOR_MARKER='$'
+ABBR_LINE_CURSOR_MARKER='@'
 
 plugins=(
   direnv
