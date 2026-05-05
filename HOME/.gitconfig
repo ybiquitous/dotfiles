@@ -8,38 +8,11 @@
 	name = Masafumi Koba
 	email = 473530+ybiquitous@users.noreply.github.com
 
-# Inspired by
-# - https://github.com/GitAlias/gitalias
-# - http://gggritso.com/human-git-aliases
 [alias]
-
-	# Shortcut (most frequent commands)
-	a = forgit add
-	b = branch --list --sort='-committerdate' --format='%(HEAD) %(align:60)%(color:bold green)%(refname:short)%(color:reset)%(end)%09%(committerdate:relative)'
-	bb = b --all --sort='refname'
-	bd = forgit branch_delete
-	c = commit
-	ca = commit --all
-	d = forgit diff
-	ds = forgit diff --staged
-	g = grep
-	gg = grep-group
-	l = forgit log
-	ls = ls-files
-	s = status
-
 	# Clone
 	fast-clone = clone --filter=blob:none
 
 	# Branch
-	branch-name = rev-parse --abbrev-ref HEAD
-	delete-branch = branch --delete
-	master = switch master
-	main = switch main
-	develop = switch develop
-	new-branch = checkout -b
-	rename-branch = branch --move
-	prune-branches = !"git remote prune $(git origin)"
 	default-branch = !"f() { \
 		result=$(git symbolic-ref --short refs/remotes/origin/HEAD 2>&1); \
 		if [ $? -ne 0 ]; then \
@@ -50,70 +23,22 @@
 			echo ${result} | sed 's#^origin/##'; \
 		fi; \
 	}; f"
-	change-default-branch = !"f() { git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/$1; }; f"
-	delete-working-branches = !"git branch --no-merged | grep -v $(git default-branch) | xargs -p -I {} git branch --delete --force {}"
-	delete-merged-branches = !"git branch --merged | grep -v $(git default-branch) | xargs -I {} git branch --delete {}"
-	select = forgit checkout_branch
-
-	# Commit
-	merge-quick = merge --no-edit
-	wip = commit --no-verify --message 'chore: wip'
-	empty = commit --allow-empty --message 'chore: empty'
 
 	# Tag
 	delete-tag = !"f() { git push --delete $(git origin) $1 && git tag --delete $1; }; f"
 
 	# Info
-	detail = show --pretty=full --show-signature
-	detail-stat = detail --stat
-	graph = log --graph
-	oneline = log --oneline
-	precommit = diff --staged
-	precommit-stat = diff --staged --stat
-	staged-files = diff --staged --name-only
-	summary = status --short --untracked-files
-	origin = !"git remote show | grep -v fork | head -1"
-	hash = !"f() { git log -${1:-1} --format='%h' | tail -1 | tr -d '\n'; }; f"
-	diff-ignore-spaces = diff --ignore-space-change
-	diff-stat = diff --stat
-
-	# Grep
-	grep-group = grep --heading --break --show-function
-	grep-word = grep --word-regexp
-
-	# Undo
-	amend = commit --amend
-	discard = checkout --
-	fixup = commit --fixup HEAD
-	uncommit = reset --soft HEAD~1
-	unstage = restore --staged
-	unstage-and-discard = !"f() { git unstage $* && git discard $*; }; f"
-	unstash = stash pop
-	rewrite = !"f() { git rebase --interactive \"HEAD~$1\"; }; f"
-
-	# Push
-	force-push = push --no-progress --force-with-lease
+	origin = !"git remote | awk '$1 != \"fork\" {print; exit}'"
 
 	# Pull
-	sync = !"f() { git switch --quiet \"$(git default-branch)\" && git pull --prune --no-progress --tags --force && git delete-merged-branches; }; f"
+	sync = !"f() { \
+		git switch --quiet \"$(git default-branch)\" && \
+		git pull --prune --no-progress --tags --force && \
+		git branch --merged | grep -v $(git default-branch) | xargs -I {} git branch --delete {}; \
+	}; f"
 
-	# Clean
-	cleanest = clean --force -dx
-	cleaning = forgit clean
-
-	# Sync fork
-	# https://help.github.com/articles/configuring-a-remote-for-a-fork/
-	set-upstream = !"f() { if [ -n \"$1\" ]; then git remote add upstream $1; else echo 'usage: git set-upstream https://github.com/{ORIGINAL_OWNER}/{ORIGINAL_REPOSITORY}.git' && exit 1; fi; }; f"
-	# https://help.github.com/articles/syncing-a-fork/
-	sync-fork = !"git fetch upstream && git merge \"upstream/$(git default-branch)\" && git push && git sync && git remote prune upstream"
-
-	# Plural
+	# Alias
 	aliases = config get --all --show-names --regexp '^alias\\.'
-	contributors = shortlog --summary --numbered --no-merges
-	remotes = remote --verbose
-	stashes = stash list
-	tags = tag
-	tags-remote = ls-remote --tag
 
 [format]
 	pretty = %C(auto)%h %Creset%<(72,trunc)%s %Cgreen%<(16,trunc)%aN%Creset %ar%C(auto)%d
