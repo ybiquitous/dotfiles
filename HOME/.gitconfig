@@ -8,11 +8,7 @@
 	name = Masafumi Koba
 	email = 473530+ybiquitous@users.noreply.github.com
 
-# Inspired by
-# - https://github.com/GitAlias/gitalias
-# - http://gggritso.com/human-git-aliases
 [alias]
-
 	# Clone
 	fast-clone = clone --filter=blob:none
 
@@ -33,21 +29,9 @@
 
 	# Info
 	origin = !"git remote | awk '$1 != \"fork\" {print; exit}'"
-	diff-ignore-spaces = diff --ignore-space-change
-	diff-stat = diff --stat
 
 	# Undo
-	amend = commit --amend
-	discard = checkout --
-	fixup = commit --fixup HEAD
-	uncommit = reset --soft HEAD~1
-	unstage = restore --staged
-	unstage-and-discard = !"f() { git unstage $* && git discard $*; }; f"
-	unstash = stash pop
 	rewrite = !"f() { git rebase --interactive \"HEAD~$1\"; }; f"
-
-	# Push
-	force-push = push --no-progress --force-with-lease
 
 	# Pull
 	sync = !"f() { \
@@ -70,7 +54,6 @@
 	aliases = config get --all --show-names --regexp '^alias\\.'
 	contributors = shortlog --summary --numbered --no-merges
 	remotes = remote --verbose
-	stashes = stash list
 	tags = tag
 	tags-remote = ls-remote --tag
 
