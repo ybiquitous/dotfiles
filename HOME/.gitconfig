@@ -13,33 +13,10 @@
 # - http://gggritso.com/human-git-aliases
 [alias]
 
-	# Shortcut (most frequent commands)
-	a = forgit add
-	b = branch --list --sort='-committerdate' --format='%(HEAD) %(align:60)%(color:bold green)%(refname:short)%(color:reset)%(end)%09%(committerdate:relative)'
-	bb = b --all --sort='refname'
-	bd = forgit branch_delete
-	c = commit
-	ca = commit --all
-	d = forgit diff
-	ds = forgit diff --staged
-	g = grep
-	gg = grep-group
-	l = forgit log
-	ls = ls-files
-	s = status
-
 	# Clone
 	fast-clone = clone --filter=blob:none
 
 	# Branch
-	branch-name = rev-parse --abbrev-ref HEAD
-	delete-branch = branch --delete
-	master = switch master
-	main = switch main
-	develop = switch develop
-	new-branch = checkout -b
-	rename-branch = branch --move
-	prune-branches = !"git remote prune $(git origin)"
 	default-branch = !"f() { \
 		result=$(git symbolic-ref --short refs/remotes/origin/HEAD 2>&1); \
 		if [ $? -ne 0 ]; then \
@@ -50,15 +27,6 @@
 			echo ${result} | sed 's#^origin/##'; \
 		fi; \
 	}; f"
-	change-default-branch = !"f() { git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/$1; }; f"
-	delete-working-branches = !"git branch --no-merged | grep -v $(git default-branch) | xargs -p -I {} git branch --delete --force {}"
-	delete-merged-branches = !"git branch --merged | grep -v $(git default-branch) | xargs -I {} git branch --delete {}"
-	select = forgit checkout_branch
-
-	# Commit
-	merge-quick = merge --no-edit
-	wip = commit --no-verify --message 'chore: wip'
-	empty = commit --allow-empty --message 'chore: empty'
 
 	# Tag
 	delete-tag = !"f() { git push --delete $(git origin) $1 && git tag --delete $1; }; f"
@@ -77,10 +45,6 @@
 	diff-ignore-spaces = diff --ignore-space-change
 	diff-stat = diff --stat
 
-	# Grep
-	grep-group = grep --heading --break --show-function
-	grep-word = grep --word-regexp
-
 	# Undo
 	amend = commit --amend
 	discard = checkout --
@@ -95,7 +59,11 @@
 	force-push = push --no-progress --force-with-lease
 
 	# Pull
-	sync = !"f() { git switch --quiet \"$(git default-branch)\" && git pull --prune --no-progress --tags --force && git delete-merged-branches; }; f"
+	sync = !"f() { \
+		git switch --quiet \"$(git default-branch)\" && \
+		git pull --prune --no-progress --tags --force && \
+		git branch --merged | grep -v $(git default-branch) | xargs -I {} git branch --delete {}; \
+	}; f"
 
 	# Clean
 	cleanest = clean --force -dx

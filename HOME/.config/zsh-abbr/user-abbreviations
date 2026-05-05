@@ -24,10 +24,22 @@ abbr "be"="bundle exec"
 abbr "rubygems"="open 'https://rubygems.org/gems/@'"
 
 # git
-abbr "ga"="git add"
+abbr "ga"="git forgit add"
+abbr "gb"="git forgit checkout_branch"
+abbr "gbd"="git forgit branch_delete"
+abbr "gbl"="git branch --all --format='%(HEAD) %(align:60)%(color:bold green)%(refname:short)%(color:reset)%(end)%09%(committerdate:relative)'"
+abbr "gbn"="git switch --create"
+abbr "gbr"="git branch --move"
 abbr "gc"="git commit"
+abbr "gce"="git commit --allow-empty --message 'chore: empty'"
+abbr "gd"="git forgit diff HEAD"
 abbr "gg"="git grep"
+abbr "gl"="git forgit log"
+abbr "glf"="git ls-files"
+abbr "gm"="git merge --no-edit"
 abbr "gp"="git push"
+abbr "gs"="git status"
+abbr "gwip"="git commit --no-verify --message 'chore: wip'"
 
 # rg
 abbr "rg"="rg --no-heading --hidden"
