@@ -30,9 +30,6 @@
 	# Info
 	origin = !"git remote | awk '$1 != \"fork\" {print; exit}'"
 
-	# Undo
-	rewrite = !"f() { git rebase --interactive \"HEAD~$1\"; }; f"
-
 	# Pull
 	sync = !"f() { \
 		git switch --quiet \"$(git default-branch)\" && \
@@ -40,22 +37,8 @@
 		git branch --merged | grep -v $(git default-branch) | xargs -I {} git branch --delete {}; \
 	}; f"
 
-	# Clean
-	cleanest = clean --force -dx
-	cleaning = forgit clean
-
-	# Sync fork
-	# https://help.github.com/articles/configuring-a-remote-for-a-fork/
-	set-upstream = !"f() { if [ -n \"$1\" ]; then git remote add upstream $1; else echo 'usage: git set-upstream https://github.com/{ORIGINAL_OWNER}/{ORIGINAL_REPOSITORY}.git' && exit 1; fi; }; f"
-	# https://help.github.com/articles/syncing-a-fork/
-	sync-fork = !"git fetch upstream && git merge \"upstream/$(git default-branch)\" && git push && git sync && git remote prune upstream"
-
-	# Plural
+	# Alias
 	aliases = config get --all --show-names --regexp '^alias\\.'
-	contributors = shortlog --summary --numbered --no-merges
-	remotes = remote --verbose
-	tags = tag
-	tags-remote = ls-remote --tag
 
 [format]
 	pretty = %C(auto)%h %Creset%<(72,trunc)%s %Cgreen%<(16,trunc)%aN%Creset %ar%C(auto)%d
