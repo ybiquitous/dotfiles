@@ -39,6 +39,9 @@ abbr "glf"="git ls-files"
 abbr "gm"="git merge --no-edit"
 abbr "gp"="git push"
 abbr "gs"="git status"
+abbr "gsha"="git rev-parse --short HEAD"
+abbr "gshow"="git show --pretty=full --show-signature"
+abbr "gss"="git status --short --untracked-files"
 abbr "gwip"="git commit --no-verify --message 'chore: wip'"
 
 # rg
