@@ -82,6 +82,7 @@ zstyle ':omz:plugins:nvm' silent-autoload yes
 
 export FORGIT_NO_ALIASES=true
 export FORGIT_FZF_DEFAULT_OPTS='--bind=ctrl-a:toggle-all'
+
 if [ -f "${HOME}/.cargo/env" ]; then source "${HOME}/.cargo/env"; fi
 
 # zsh-abbr
