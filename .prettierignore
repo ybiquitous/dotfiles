@@ -1,4 +1,5 @@
 *.sh
+*.toml
 .aliases
 .prettierignore
 .zshrc
