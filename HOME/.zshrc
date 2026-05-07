@@ -108,6 +108,10 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
+# TODO: Remove the zsh-abbr workaround after fix, ref: https://github.com/olets/zsh-abbr/issues/210
+autoload -Uz _abbr
+compdef _abbr abbr
+
 mkdir -p "${ZSH_CACHE_DIR}/completions"
 
 # npm
