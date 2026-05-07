@@ -99,7 +99,6 @@ plugins=(
   # custom
   zsh-abbr
   zsh-autosuggestions
-  zsh-completions
 )
 
 source $ZSH/oh-my-zsh.sh
