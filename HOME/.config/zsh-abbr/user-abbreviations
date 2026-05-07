@@ -24,8 +24,8 @@ abbr "be"="bundle exec"
 abbr "rubygems"="open 'https://rubygems.org/gems/@'"
 
 # git
+abbr "abbr-git"="abbr list-commands | grep -E 'git [^\"]+'"
 abbr "ga"="git forgit add"
-abbr "gabbr"="abbr list-commands | grep -v 'gabbr' | grep -E 'git [^\"]+'"
 abbr "gb"="git forgit switch_branch"
 abbr "gbd"="git forgit branch_delete"
 abbr "gbl"="git branch --all --format='%(HEAD) %(align:60)%(color:bold green)%(refname:short)%(color:reset)%(end)%09%(committerdate:relative)'"
