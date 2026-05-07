@@ -100,15 +100,14 @@ plugins=(
   # custom
   zsh-abbr
   zsh-autosuggestions
-  zsh-completions
 )
 
-source $ZSH/oh-my-zsh.sh
-
 # TODO: Remove this after merging https://github.com/ohmyzsh/ohmyzsh/pull/12891
-if type rbenv &>/dev/null; then
-  fpath+=("$(rbenv root)/completions")
+if [[ -d "${HOME}/.rbenv/completions" ]]; then
+  fpath=("${HOME}/.rbenv/completions" $fpath)
 fi
+
+source $ZSH/oh-my-zsh.sh
 
 mkdir -p "${ZSH_CACHE_DIR}/completions"
 

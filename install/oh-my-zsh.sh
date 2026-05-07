@@ -16,7 +16,6 @@ echo '> Installing custom plugins...'
 (
   cd "${dest}/custom/plugins"
   git_clone https://github.com/zsh-users/zsh-autosuggestions.git
-  git_clone https://github.com/zsh-users/zsh-completions.git
   git_clone https://github.com/olets/zsh-abbr.git
 )
 
