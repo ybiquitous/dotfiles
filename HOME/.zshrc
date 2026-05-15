@@ -70,7 +70,6 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-if [ -f '/opt/homebrew/bin/brew' ]; then eval "$(/opt/homebrew/bin/brew shellenv)"; fi
 UNBUNDLED_COMMANDS=(irb)
 
 # NOTE: Claude Code and Emacs need eager nvm load so npm/node are on PATH.
@@ -99,6 +98,11 @@ plugins=(
 # TODO: Remove this after merging https://github.com/ohmyzsh/ohmyzsh/pull/12891
 if [[ -d "${HOME}/.rbenv/completions" ]]; then
   fpath=("${HOME}/.rbenv/completions" $fpath)
+fi
+
+# Homebrew - must run before oh-my-zsh.sh because shellenv sets fpath for completions
+if [ -f '/opt/homebrew/bin/brew' ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 source $ZSH/oh-my-zsh.sh
