@@ -95,8 +95,8 @@ if [[ -d "${HOME}/.rbenv/completions" ]]; then
   fpath=("${HOME}/.rbenv/completions" $fpath)
 fi
 
-# Homebrew - must run before oh-my-zsh.sh because shellenv sets fpath for completions
-if [ -f '/opt/homebrew/bin/brew' ]; then
+# Homebrew - must run before oh-my-zsh.sh because shellenv sets PATH/FPATH etc.
+if [[ -f '/opt/homebrew/bin/brew' ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
