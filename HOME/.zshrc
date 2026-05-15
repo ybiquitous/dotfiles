@@ -163,7 +163,9 @@ fi
 
 # gh
 if type gh &>/dev/null; then
-  eval "$(gh completion -s zsh)"
+  if [[ ! -f "${HOMEBREW_PREFIX}/share/zsh/site-functions/_gh" ]]; then
+    eval "$(gh completion -s zsh)"
+  fi
 fi
 
 # Rust
