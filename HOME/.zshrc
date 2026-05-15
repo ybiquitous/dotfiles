@@ -156,26 +156,19 @@ if [[ -d "${HOME}/.rbenv" ]]; then
   eval "$(rbenv init - zsh)"
 fi
 
-# starship
+# Starship
 if type starship &>/dev/null; then
   eval "$(starship init zsh)"
 fi
 
-# gh
+# GitHub CLI
 if type gh &>/dev/null; then
   if [[ ! -f "${HOMEBREW_PREFIX}/share/zsh/site-functions/_gh" ]]; then
     eval "$(gh completion -s zsh)"
   fi
 fi
 
-# Rust
-if [ -f "${HOME}/.cargo/env" ]; then
-  source "${HOME}/.cargo/env"
-fi
-
-# Completions
-mkdir -p "${ZSH_CACHE_DIR}/completions"
-
+# npm
 if type npm &>/dev/null; then
   if [[ ! -f "${ZSH_CACHE_DIR}/completions/_npm" ]]; then
     npm completion > "${ZSH_CACHE_DIR}/completions/_npm"
@@ -205,6 +198,10 @@ if [ -d "${HOME}/go" ]; then
   export PATH="${HOME}/go/bin:${PATH}"
 fi
 
+# Rust
+if [ -f "${HOME}/.cargo/env" ]; then
+  source "${HOME}/.cargo/env"
+fi
 # Add MANPATH for Rust. See https://github.com/rust-lang/rustup/issues/1729
 if type rustup &>/dev/null; then
   export MANPATH="$(rustup show home)/toolchains/$(rustup default | grep -E '^\S+' --only-matching)/share/man:${MANPATH}"
