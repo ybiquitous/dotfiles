@@ -89,13 +89,7 @@ ABBR_SET_EXPANSION_CURSOR=1
 ABBR_LINE_CURSOR_MARKER='@'
 
 plugins=(
-  direnv
-  fzf
-  gh
-  nvm
-  rbenv
-  rust
-  starship
+  nvm  # Kept for convenient lazy load and auto-use (.nvmrc detection)
 
   # custom
   zsh-abbr
@@ -112,22 +106,6 @@ source $ZSH/oh-my-zsh.sh
 # TODO: Remove the zsh-abbr workaround after fix, ref: https://github.com/olets/zsh-abbr/issues/210
 autoload -Uz _abbr
 compdef _abbr abbr
-
-mkdir -p "${ZSH_CACHE_DIR}/completions"
-
-# npm
-if type npm &>/dev/null; then
-  if [[ ! -f "${ZSH_CACHE_DIR}/completions/_npm" ]]; then
-    npm completion > "${ZSH_CACHE_DIR}/completions/_npm"
-  fi
-  source "${ZSH_CACHE_DIR}/completions/_npm"
-fi
-
-if type podman &>/dev/null; then
-  if [[ ! -f "${ZSH_CACHE_DIR}/completions/_podman" ]]; then
-    podman completion zsh --file "${ZSH_CACHE_DIR}/completions/_podman"
-  fi
-fi
 
 # User configuration
 
@@ -162,6 +140,48 @@ export LANG=en_US.UTF-8
 export VISUAL=emacsclient
 export EDITOR=$VISUAL
 export GPG_TTY=$(tty)
+
+# direnv
+if type direnv &>/dev/null; then
+  eval "$(direnv hook zsh)"
+fi
+
+# fzf
+if type fzf &>/dev/null; then
+  eval "$(fzf --zsh)"
+fi
+
+# rbenv
+if [[ -d "${HOME}/.rbenv" ]]; then
+  export PATH="${HOME}/.rbenv/bin:${PATH}"
+  eval "$(rbenv init - zsh)"
+fi
+
+# starship
+if type starship &>/dev/null; then
+  eval "$(starship init zsh)"
+fi
+
+# gh
+if type gh &>/dev/null; then
+  eval "$(gh completion -s zsh)"
+fi
+
+# Completions
+mkdir -p "${ZSH_CACHE_DIR}/completions"
+
+if type npm &>/dev/null; then
+  if [[ ! -f "${ZSH_CACHE_DIR}/completions/_npm" ]]; then
+    npm completion > "${ZSH_CACHE_DIR}/completions/_npm"
+  fi
+  source "${ZSH_CACHE_DIR}/completions/_npm"
+fi
+
+if type podman &>/dev/null; then
+  if [[ ! -f "${ZSH_CACHE_DIR}/completions/_podman" ]]; then
+    podman completion zsh --file "${ZSH_CACHE_DIR}/completions/_podman"
+  fi
+fi
 
 # Git contrib
 if [ -d "${HOMEBREW_PREFIX}/share/git-core/contrib" ]; then
