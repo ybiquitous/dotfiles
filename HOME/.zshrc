@@ -78,8 +78,6 @@ fi
 zstyle ':omz:plugins:nvm' autoload yes
 zstyle ':omz:plugins:nvm' silent-autoload yes
 
-export FORGIT_NO_ALIASES=true
-
 # zsh-abbr
 ABBR_SET_EXPANSION_CURSOR=1
 ABBR_LINE_CURSOR_MARKER='@'
