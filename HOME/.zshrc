@@ -70,8 +70,6 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-if [ -f '/opt/homebrew/bin/brew' ]; then eval "$(/opt/homebrew/bin/brew shellenv)"; fi
-UNBUNDLED_COMMANDS=(irb)
 
 # NOTE: Claude Code and Emacs need eager nvm load so npm/node are on PATH.
 if [[ -z "${CLAUDECODE}" && -z "${INSIDE_EMACS}" ]]; then
@@ -80,22 +78,12 @@ fi
 zstyle ':omz:plugins:nvm' autoload yes
 zstyle ':omz:plugins:nvm' silent-autoload yes
 
-export FORGIT_NO_ALIASES=true
-
-if [ -f "${HOME}/.cargo/env" ]; then source "${HOME}/.cargo/env"; fi
-
 # zsh-abbr
 ABBR_SET_EXPANSION_CURSOR=1
 ABBR_LINE_CURSOR_MARKER='@'
 
 plugins=(
-  direnv
-  fzf
-  gh
-  nvm
-  rbenv
-  rust
-  starship
+  nvm  # Kept for convenient lazy load and auto-use (.nvmrc detection)
 
   # custom
   zsh-abbr
@@ -107,27 +95,16 @@ if [[ -d "${HOME}/.rbenv/completions" ]]; then
   fpath=("${HOME}/.rbenv/completions" $fpath)
 fi
 
+# Homebrew - must run before oh-my-zsh.sh because shellenv sets PATH/FPATH etc.
+if [[ -f '/opt/homebrew/bin/brew' ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 source $ZSH/oh-my-zsh.sh
 
 # TODO: Remove the zsh-abbr workaround after fix, ref: https://github.com/olets/zsh-abbr/issues/210
 autoload -Uz _abbr
 compdef _abbr abbr
-
-mkdir -p "${ZSH_CACHE_DIR}/completions"
-
-# npm
-if type npm &>/dev/null; then
-  if [[ ! -f "${ZSH_CACHE_DIR}/completions/_npm" ]]; then
-    npm completion > "${ZSH_CACHE_DIR}/completions/_npm"
-  fi
-  source "${ZSH_CACHE_DIR}/completions/_npm"
-fi
-
-if type podman &>/dev/null; then
-  if [[ ! -f "${ZSH_CACHE_DIR}/completions/_podman" ]]; then
-    podman completion zsh --file "${ZSH_CACHE_DIR}/completions/_podman"
-  fi
-fi
 
 # User configuration
 
@@ -163,6 +140,49 @@ export VISUAL=emacsclient
 export EDITOR=$VISUAL
 export GPG_TTY=$(tty)
 
+# direnv
+if type direnv &>/dev/null; then
+  eval "$(direnv hook zsh)"
+fi
+
+# fzf
+if type fzf &>/dev/null; then
+  eval "$(fzf --zsh)"
+fi
+
+# rbenv
+if [[ -d "${HOME}/.rbenv" ]]; then
+  export PATH="${HOME}/.rbenv/bin:${PATH}"
+  eval "$(rbenv init - zsh)"
+fi
+
+# Starship
+if type starship &>/dev/null; then
+  eval "$(starship init zsh)"
+fi
+
+# GitHub CLI
+if type gh &>/dev/null; then
+  if [[ ! -f "${HOMEBREW_PREFIX}/share/zsh/site-functions/_gh" ]]; then
+    eval "$(gh completion -s zsh)"
+  fi
+fi
+
+# npm
+if type npm &>/dev/null; then
+  if [[ ! -f "${ZSH_CACHE_DIR}/completions/_npm" ]]; then
+    npm completion > "${ZSH_CACHE_DIR}/completions/_npm"
+  fi
+  source "${ZSH_CACHE_DIR}/completions/_npm"
+fi
+
+# Podman
+if type podman &>/dev/null; then
+  if [[ ! -f "${HOMEBREW_PREFIX}/share/zsh/site-functions/_podman" ]]; then
+    podman completion zsh --file "${ZSH_CACHE_DIR}/completions/_podman"
+  fi
+fi
+
 # Git contrib
 if [ -d "${HOMEBREW_PREFIX}/share/git-core/contrib" ]; then
   export PATH="${PATH}:${HOMEBREW_PREFIX}/share/git-core/contrib/git-jump"
@@ -178,6 +198,10 @@ if [ -d "${HOME}/go" ]; then
   export PATH="${HOME}/go/bin:${PATH}"
 fi
 
+# Rust
+if [ -f "${HOME}/.cargo/env" ]; then
+  source "${HOME}/.cargo/env"
+fi
 # Add MANPATH for Rust. See https://github.com/rust-lang/rustup/issues/1729
 if type rustup &>/dev/null; then
   export MANPATH="$(rustup show home)/toolchains/$(rustup default | grep -E '^\S+' --only-matching)/share/man:${MANPATH}"
