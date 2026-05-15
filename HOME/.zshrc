@@ -70,7 +70,6 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-UNBUNDLED_COMMANDS=(irb)
 
 # NOTE: Claude Code and Emacs need eager nvm load so npm/node are on PATH.
 if [[ -z "${CLAUDECODE}" && -z "${INSIDE_EMACS}" ]]; then
