@@ -183,8 +183,9 @@ if type npm &>/dev/null; then
   source "${ZSH_CACHE_DIR}/completions/_npm"
 fi
 
+# Podman
 if type podman &>/dev/null; then
-  if [[ ! -f "${ZSH_CACHE_DIR}/completions/_podman" ]]; then
+  if [[ ! -f "${HOMEBREW_PREFIX}/share/zsh/site-functions/_podman" ]]; then
     podman completion zsh --file "${ZSH_CACHE_DIR}/completions/_podman"
   fi
 fi
