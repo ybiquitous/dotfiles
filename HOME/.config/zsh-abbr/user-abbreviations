@@ -53,6 +53,14 @@ abbr "gundo"="git reset HEAD~1"
 abbr "gv"="git show --pretty=full --show-signature"
 abbr "gwip"="git commit --no-verify --message 'chore: wip'"
 
+# gh
+abbr "ghb"="gh browse"
+abbr "ghprc"="gh pr create"
+abbr "ghprl"="gh pr list"
+abbr "ghprv"="gh pr view"
+abbr "ghprd"="gh pr diff"
+abbr "ghisl"="gh issue list"
+
 # rg
 abbr "rg"="rg --no-heading --hidden"
 

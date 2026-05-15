@@ -6,18 +6,4 @@ editor:
 prompt: enabled
 # A pager program to send command output to, e.g. "less". Set the value to "cat" to disable the pager.
 pager: !!null delta --line-numbers
-# Aliases allow you to create nicknames for gh commands
-aliases:
-  open: browse
-  open-actions: browse --actions
-  open-releases: browse --releases
-  open-settings: browse --settings
-  prs: pr list
-  prsme: pr list --author '@me'
-  prv: pr view --web
-  prd: pr diff
-  issues: issue list
-  issuesme: issue list --assignee '@me'
-  aliases: alias list
-  prtitle: pr view --json title --jq .title
 version: "1"
