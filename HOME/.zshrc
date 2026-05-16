@@ -87,7 +87,6 @@ plugins=(
 
   # custom
   zsh-abbr
-  zsh-autosuggestions
 )
 
 # TODO: Remove this after merging https://github.com/ohmyzsh/ohmyzsh/pull/12891
@@ -217,6 +216,11 @@ if type atuin &>/dev/null; then
   export ATUIN_NOBIND="true"
   eval "$(atuin init zsh)"
   bindkey -M emacs '^P' atuin-up-search
+fi
+
+# zsh-autosuggestions
+if [[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+  source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
 if [[ -f ~/.aliases ]]; then
