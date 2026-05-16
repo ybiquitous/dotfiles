@@ -82,11 +82,6 @@ plugins=(
   nvm  # Kept for convenient lazy load and auto-use (.nvmrc detection)
 )
 
-# TODO: Remove this after merging https://github.com/ohmyzsh/ohmyzsh/pull/12891
-if [[ -d "${HOME}/.rbenv/completions" ]]; then
-  fpath=("${HOME}/.rbenv/completions" $fpath)
-fi
-
 # Homebrew - must run before oh-my-zsh.sh because shellenv sets PATH/FPATH etc.
 if [[ -f '/opt/homebrew/bin/brew' ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -140,6 +135,7 @@ fi
 
 # rbenv
 if [[ -d "${HOME}/.rbenv" ]]; then
+  fpath=("${HOME}/.rbenv/completions" $fpath)
   export PATH="${HOME}/.rbenv/bin:${PATH}"
   eval "$(rbenv init - zsh)"
 fi
