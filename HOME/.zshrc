@@ -78,15 +78,8 @@ fi
 zstyle ':omz:plugins:nvm' autoload yes
 zstyle ':omz:plugins:nvm' silent-autoload yes
 
-# zsh-abbr
-ABBR_SET_EXPANSION_CURSOR=1
-ABBR_LINE_CURSOR_MARKER='@'
-
 plugins=(
   nvm  # Kept for convenient lazy load and auto-use (.nvmrc detection)
-
-  # custom
-  zsh-abbr
 )
 
 # TODO: Remove this after merging https://github.com/ohmyzsh/ohmyzsh/pull/12891
@@ -100,10 +93,6 @@ if [[ -f '/opt/homebrew/bin/brew' ]]; then
 fi
 
 source $ZSH/oh-my-zsh.sh
-
-# TODO: Remove the zsh-abbr workaround after fix, ref: https://github.com/olets/zsh-abbr/issues/210
-autoload -Uz _abbr
-compdef _abbr abbr
 
 # User configuration
 
@@ -218,9 +207,20 @@ if type atuin &>/dev/null; then
   bindkey -M emacs '^P' atuin-up-search
 fi
 
+# zsh-abbr
+if [[ -f ~/.zsh/zsh-abbr/zsh-abbr.plugin.zsh ]]; then
+  ABBR_SET_EXPANSION_CURSOR=1
+  ABBR_LINE_CURSOR_MARKER='@'
+  source ~/.zsh/zsh-abbr/zsh-abbr.plugin.zsh
+
+  # TODO: Remove after fix, ref: https://github.com/olets/zsh-abbr/issues/210
+  autoload -Uz _abbr
+  compdef _abbr abbr
+fi
+
 # zsh-autosuggestions
-if [[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-  source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]]; then
+  source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 fi
 
 if [[ -f ~/.aliases ]]; then

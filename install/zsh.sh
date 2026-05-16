@@ -5,6 +5,18 @@ git_clone () {
   git clone --depth=1 --quiet --recurse-submodules "$@"
 }
 
+install_plugin() {
+  local name="$1"
+  local url="$2"
+
+  if [[ -d "${zsh_dir}/${name}" ]]; then
+    echo "${name} already installed."
+  else
+    git_clone "${url}" "${zsh_dir}/${name}"
+    echo "${name} installed."
+  fi
+}
+
 readonly env="${HOME}/.zshrc.env"
 if [[ -f $env ]]; then
   echo "'${env}' already exists."
@@ -23,9 +35,5 @@ echo '> Installing zsh plugins...'
 readonly zsh_dir="${HOME}/.zsh"
 mkdir -p "${zsh_dir}"
 
-if [[ -d "${zsh_dir}/zsh-autosuggestions" ]]; then
-  echo "zsh-autosuggestions already installed."
-else
-  git_clone https://github.com/zsh-users/zsh-autosuggestions.git "${zsh_dir}/zsh-autosuggestions"
-  echo "zsh-autosuggestions installed."
-fi
+install_plugin zsh-abbr https://github.com/olets/zsh-abbr.git
+install_plugin zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions.git

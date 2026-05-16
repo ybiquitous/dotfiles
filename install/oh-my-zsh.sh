@@ -15,7 +15,7 @@ echo
 echo '> Installing custom plugins...'
 (
   cd "${dest}/custom/plugins"
-  git_clone https://github.com/olets/zsh-abbr.git
+  # No custom plugins installed via oh-my-zsh
 )
 
 echo
