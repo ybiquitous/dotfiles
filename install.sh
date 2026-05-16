@@ -44,7 +44,7 @@ done
 ./install/oh-my-zsh.sh
 ./install/emacs.sh
 ./install/gibo.sh
-./install/nvm.sh
+./install/fnm.sh
 ./install/rbenv.sh
 ./install/github.sh
 
