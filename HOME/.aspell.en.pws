@@ -1,4 +1,4 @@
-personal_ws-1.1 en 113 
+personal_ws-1.1 en 114 
 Backend
 Cheatsheet
 Dependabot
@@ -48,6 +48,7 @@ enqueueing
 enqueues
 eslint
 expectedly
+fnm
 formatter
 formatters
 frameborder
