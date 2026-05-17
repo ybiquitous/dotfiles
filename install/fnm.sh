@@ -6,7 +6,7 @@ if ! type fnm &>/dev/null; then
   exit 1
 fi
 
-fnm install --latest
+fnm install --latest --use
 fnm default latest
 fnm list
 node --version
