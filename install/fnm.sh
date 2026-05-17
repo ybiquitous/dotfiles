@@ -2,7 +2,7 @@
 set -euo pipefail
 
 if ! type fnm &>/dev/null; then
-  echo "fnm not found. Install with: brew install fnm"
+  echo "fnm not found. See https://github.com/Schniz/fnm"
   exit 1
 fi
 
