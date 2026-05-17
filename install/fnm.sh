@@ -7,7 +7,7 @@ if ! type fnm &>/dev/null; then
 fi
 
 fnm install --latest
-fnm default "$(fnm current)"
+fnm default latest
 fnm list
 node --version
 
