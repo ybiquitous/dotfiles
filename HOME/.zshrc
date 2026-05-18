@@ -14,7 +14,7 @@ fi
 
 # Completion cache directory
 export ZSH_CACHE_DIR="${HOME}/.cache/zsh"
-[[ -d "${ZSH_CACHE_DIR}/completions" ]] || mkdir -p "${ZSH_CACHE_DIR}/completions"
+mkdir -p "${ZSH_CACHE_DIR}/completions"
 fpath=("${ZSH_CACHE_DIR}/completions" $fpath)
 
 autoload -Uz compinit && compinit -u
