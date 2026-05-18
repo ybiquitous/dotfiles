@@ -50,6 +50,7 @@ brew install dust
 brew install editorconfig
 brew install fd
 brew install ffmpeg
+brew install fnm
 brew install forego
 brew install forgit
 brew install fswatch

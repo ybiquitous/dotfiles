@@ -5,7 +5,7 @@ readonly BASEDIR="${HOME}/dotfiles"
 
 "${BASEDIR}/update/brew.sh"
 "${BASEDIR}/update/apt.sh"
-"${BASEDIR}/update/nvm.sh"
+"${BASEDIR}/update/fnm.sh"
 "${BASEDIR}/update/npm.sh"
 "${BASEDIR}/update/rbenv.sh"
 "${BASEDIR}/update/gem.sh"

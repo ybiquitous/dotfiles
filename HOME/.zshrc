@@ -71,16 +71,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-# NOTE: Claude Code and Emacs need eager nvm load so npm/node are on PATH.
-if [[ -z "${CLAUDECODE}" && -z "${INSIDE_EMACS}" ]]; then
-  zstyle ':omz:plugins:nvm' lazy yes
-fi
-zstyle ':omz:plugins:nvm' autoload yes
-zstyle ':omz:plugins:nvm' silent-autoload yes
-
-plugins=(
-  nvm  # Kept for convenient lazy load and auto-use (.nvmrc detection)
-)
+plugins=()
 
 # Homebrew - must run before oh-my-zsh.sh because shellenv sets PATH/FPATH etc.
 if [[ -f '/opt/homebrew/bin/brew' ]]; then
@@ -131,6 +122,15 @@ fi
 # fzf
 if type fzf &>/dev/null; then
   eval "$(fzf --zsh)"
+fi
+
+# fnm (Fast Node Manager)
+if type fnm &>/dev/null; then
+  eval "$(fnm env --use-on-cd)"
+
+  if [[ ! -f "${HOMEBREW_PREFIX}/share/zsh/site-functions/_fnm" ]]; then
+    eval "$(fnm completions --shell zsh)"
+  fi
 fi
 
 # rbenv
