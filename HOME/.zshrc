@@ -127,6 +127,10 @@ fi
 # fnm (Fast Node Manager)
 if type fnm &>/dev/null; then
   eval "$(fnm env --use-on-cd)"
+
+  if [[ ! -f "${HOMEBREW_PREFIX}/share/zsh/site-functions/_fnm" ]]; then
+    eval "$(fnm completions --shell zsh)"
+  fi
 fi
 
 # rbenv
