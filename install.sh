@@ -41,7 +41,6 @@ done
 ./install/apt.sh
 ./install/brew.sh
 ./install/zsh.sh
-./install/oh-my-zsh.sh
 ./install/emacs.sh
 ./install/gibo.sh
 ./install/fnm.sh
