@@ -9,14 +9,5 @@ if type gh &>/dev/null; then
   for extension in "${extensions[@]}"; do
     gh extension install "${extension}"
   done
-
   gh extension list
-
-  # Skills (Claude Code)
-  skills=(
-  )
-  for skill in "${skills[@]}"; do
-    # shellcheck disable=SC2086
-    gh skill install ${skill} --agent claude-code --scope user --force
-  done
 fi
