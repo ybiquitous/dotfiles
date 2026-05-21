@@ -40,8 +40,8 @@ brew install bat
 brew install bison
 brew install bundler-completion
 brew install cmake
-brew install cmark-gfm
 brew install colordiff
+brew install comrak
 brew install coreutils
 brew install curl
 brew install direnv
