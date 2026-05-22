@@ -46,5 +46,6 @@ done
 ./install/fnm.sh
 ./install/rbenv.sh
 ./install/github.sh
+./install/skills.sh
 
 echo 'Installation completed. Please reopen shell.'
