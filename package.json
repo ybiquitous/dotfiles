@@ -45,6 +45,7 @@
         2,
         "always",
         [
+          "ai",
           "aspell",
           "apt",
           "bash",

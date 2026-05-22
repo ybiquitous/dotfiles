@@ -8,7 +8,8 @@ $install \
   @actions/languageserver@latest \
   @github/copilot-language-server@latest \
   typescript-language-server@latest \
-  vscode-json-languageserver@latest
+  vscode-json-languageserver@latest \
+  skills@latest
 
 echo
 echo "Showing installed npm packages..."
