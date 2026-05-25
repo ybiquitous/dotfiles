@@ -9,7 +9,7 @@ abbr "cp"="cp -i"
 abbr "mv"="mv -i"
 abbr "rm"="rm -i"
 
-abbr "less"="less --LONG-PROMPT --LINE-NUMBERS"
+abbr "less"="less --LONG-PROMPT --LINE-NUMBERS --RAW-CONTROL-CHARS"
 
 abbr "tree"="tree -aCF -I .git"
 
