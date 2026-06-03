@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+bundle config set --global auto_install 'true'
+bundle config set --global cooldown '3'
+bundle config set --global lockfile_checksums 'true'
+bundle config set --global path 'vendor/bundle'
+
+if type brew &>/dev/null; then
+  bundle config set --global build.mysql2 "--with-mysql-dir=${HOMEBREW_PREFIX}/opt/mysql"
+  bundle config set --global build.pg "--with-pg-config=${HOMEBREW_PREFIX}/opt/libpq/bin/pg_config"
+fi
+
+bundle config list
