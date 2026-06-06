@@ -21,7 +21,7 @@ autoload -Uz compinit && compinit -u
 
 # User configuration
 export LANG=en_US.UTF-8
-export LESS='--LINE-NUMBERS --LONG-PROMPT --RAW-CONTROL-CHARS'
+export LESS='--LINE-NUMBERS --LONG-PROMPT --RAW-CONTROL-CHARS --quit-if-one-screen'
 export VISUAL=emacsclient
 export EDITOR="${VISUAL}"
 export GPG_TTY="$(tty)"
