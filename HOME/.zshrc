@@ -124,6 +124,11 @@ if [[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]]; then
   source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 fi
 
+# required by mermaid-cli
+if [[ -f "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" ]]; then
+  export PUPPETEER_EXECUTABLE_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+fi
+
 if [[ -f ~/.aliases ]]; then
   source ~/.aliases
 fi
