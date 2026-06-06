@@ -33,6 +33,14 @@ if type bat &>/dev/null; then
   export BAT_PAGER='less --line-numbers --LONG-PROMPT --RAW-CONTROL-CHARS --quit-if-one-screen --quit-on-intr'
 fi
 
+# Ruby
+if type ruby &>/dev/null; then
+  export RI='--format=markdown'
+  if type bat &>/dev/null; then
+    export RI_PAGER='bat --language=markdown'
+  fi
+fi
+
 # direnv
 if type direnv &>/dev/null; then
   eval "$(direnv hook zsh)"
