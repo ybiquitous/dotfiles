@@ -26,6 +26,13 @@ export VISUAL=emacsclient
 export EDITOR="${VISUAL}"
 export GPG_TTY="$(tty)"
 
+# bat
+if type bat &>/dev/null; then
+  # `bat` uses `less` as a default pager. This setting prevents duplication, such as line numbers.
+  # See also: https://github.com/sharkdp/bat/blob/af1f53d/README.md#using-less-as-a-pager
+  export BAT_PAGER='less --line-numbers --LONG-PROMPT --RAW-CONTROL-CHARS --quit-if-one-screen --quit-on-intr'
+fi
+
 # direnv
 if type direnv &>/dev/null; then
   eval "$(direnv hook zsh)"
