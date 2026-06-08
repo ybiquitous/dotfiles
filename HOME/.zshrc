@@ -37,7 +37,7 @@ fi
 if type ruby &>/dev/null; then
   export RI='--format=markdown'
   if type bat &>/dev/null; then
-    export RI_PAGER='bat --language=markdown'
+    export RI_PAGER='bat --language=markdown --style=plain'
   fi
 fi
 
