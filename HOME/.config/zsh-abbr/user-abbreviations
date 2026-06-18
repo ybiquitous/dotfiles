@@ -75,6 +75,3 @@ abbr "time"="gtime --portability"
 # Docker
 abbr "docker"="podman"
 abbr "dockrun"='podman run --rm --interactive --tty --volume=${PWD}:/work --workdir=/work --network=host'
-
-# most
-abbr "man"="man -P most"

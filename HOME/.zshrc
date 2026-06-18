@@ -26,6 +26,11 @@ export VISUAL=emacsclient
 export EDITOR="${VISUAL}"
 export GPG_TTY="$(tty)"
 
+# most
+if type most &>/dev/null; then
+  export MANPAGER='most'
+fi
+
 # bat
 if type bat &>/dev/null; then
   # `bat` uses `less` as a default pager. This setting prevents duplication, such as line numbers.
