@@ -35,8 +35,8 @@ fi
 
 # delta
 if type delta &>/dev/null; then
-	# `delta` uses `less` as a default pager. This setting prevents duplication, such as line numbers.
-	export DELTA_PAGER='less --line-numbers --quit-if-one-screen'
+  # `delta` uses `less` as a default pager. This setting prevents duplication, such as line numbers.
+  export DELTA_PAGER='less --line-numbers --quit-if-one-screen'
 fi
 
 # Ruby
