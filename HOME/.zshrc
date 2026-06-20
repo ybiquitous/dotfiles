@@ -49,6 +49,7 @@ fi
 
 # Ruby
 if type ruby &>/dev/null; then
+  export GEM_EDITOR='emacsclient --no-wait'
   export RI='--format=markdown'
   if type bat &>/dev/null; then
     export RI_PAGER='bat --language=markdown --style=plain'
