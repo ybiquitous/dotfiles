@@ -1,5 +1,8 @@
 export PATH="${HOME}/bin:${HOME}/.local/bin:/usr/local/bin:${PATH}"
 
+# Zsh settings
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
 # Homebrew - must run before compinit because shellenv sets PATH/FPATH etc.
 if [[ -f '/opt/homebrew/bin/brew' ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
