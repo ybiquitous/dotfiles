@@ -1,7 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-readonly IGNORE_FILES=$(gibo dump macOS Emacs)
+IGNORE_FILES=$(gibo dump macOS Emacs)
+readonly IGNORE_FILES
 readonly GITIGNORE_GLOBAL="${HOME}/.gitignore_global"
 
 cat <<EOF >"${GITIGNORE_GLOBAL}.new"
@@ -22,6 +23,9 @@ ${IGNORE_FILES}
 # Bundler
 vendor/bundle/.bin/
 vendor/bundle/ruby/
+
+# Claude Code
+.claude/settings.local.json
 EOF
 
 if [[ ! -f ${GITIGNORE_GLOBAL} ]]; then
