@@ -26,6 +26,9 @@ vendor/bundle/ruby/
 
 # Claude Code
 .claude/settings.local.json
+
+# Serena
+.serena
 EOF
 
 if [[ ! -f ${GITIGNORE_GLOBAL} ]]; then
