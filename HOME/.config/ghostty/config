@@ -6,3 +6,14 @@ theme = Dark Pastel
 split-divider-color = "#555555"
 font-family = Fira Code Medium
 font-size = 14
+
+# Pin Japanese glyphs to Hiragino Sans to avoid Ghostty/macOS CoreText's
+# non-deterministic auto-fallback (CTFontCreateForString), which can mis-route
+# CJK codepoints and cause misplaced glyphs like top-floating 。/、
+# https://github.com/ghostty-org/ghostty/discussions/12173
+# https://github.com/ghostty-org/ghostty/discussions/9410
+font-codepoint-map = U+3000-U+303F=Hiragino Sans
+font-codepoint-map = U+3040-U+309F=Hiragino Sans
+font-codepoint-map = U+30A0-U+30FF=Hiragino Sans
+font-codepoint-map = U+FF00-U+FFEF=Hiragino Sans
+font-codepoint-map = U+4E00-U+9FFF=Hiragino Sans
