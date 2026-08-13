@@ -10,3 +10,7 @@ gem outdated
 echo ''
 echo '> Setting up Bundler...'
 "${HOME}/bin/setup_bundler"
+
+echo ''
+echo '> Updating bundler-audit database...'
+bundler-audit update
