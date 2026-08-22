@@ -94,3 +94,6 @@
 [push]
 	autoSetupRemote = true
 	useForceIfIncludes = true
+
+[remote]
+	pushDefault = origin
