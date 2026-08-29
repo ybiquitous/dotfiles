@@ -32,9 +32,15 @@
 
 	# Pull
 	sync = !"f() { \
-		git switch --quiet \"$(git default-branch)\" && \
+		default=$(git default-branch) && \
+		git switch --quiet \"${default}\" && \
 		git pull --prune --no-progress --tags --force && \
-		git branch --merged | grep -v $(git default-branch) | xargs -I {} git branch --delete {}; \
+		git branch --format='%(refname:short)' --merged \"${default}\" | \
+			grep -vx \"${default}\" | \
+			xargs -r -n1 git branch -d; \
+		git for-each-ref --format='%(refname:short) %(upstream:track)' refs/heads | \
+			awk -v d=\"${default}\" '$1 != d && $2 == \"[gone]\" {print $1}' | \
+			xargs -r -n1 git branch -D; \
 	}; f"
 
 	# Alias
