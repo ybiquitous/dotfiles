@@ -1,3 +1,0 @@
-#!/bin/sh
-export LANG=C
-script -a ~/`date +%Y%m%d_%H%M%S`.log
