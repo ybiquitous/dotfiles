@@ -3,7 +3,7 @@ set -euo pipefail
 
 if type brew &>/dev/null ; then
   brew update
-  brew upgrade
+  brew upgrade --yes
   brew doctor --verbose || (
     exit_code=$?
     echo
