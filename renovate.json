@@ -1,9 +1,11 @@
 {
-  "extends": [
-    "config:base",
-    ":maintainLockFilesMonthly",
-    ":automergeMinor",
-    ":disableDependencyDashboard"
-  ],
-  "rangeStrategy": "in-range-only"
+  "extends": ["config:base", ":maintainLockFilesMonthly", ":disableDependencyDashboard"],
+  "enabledManagers": ["ruby-version", "npm"],
+  "packageRules": [
+    {
+      "matchManagers": ["npm"],
+      "matchUpdateTypes": ["major", "minor", "patch", "pin", "digest"],
+      "enabled": false
+    }
+  ]
 }
