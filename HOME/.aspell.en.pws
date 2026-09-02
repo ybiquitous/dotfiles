@@ -1,4 +1,4 @@
-personal_ws-1.1 en 118 
+personal_ws-1.1 en 119 
 Backend
 Cheatsheet
 Dependabot
@@ -69,6 +69,7 @@ lookahead
 macOS
 matcher
 matchers
+memoization
 memoize
 memoized
 middleware
