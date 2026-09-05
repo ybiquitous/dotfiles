@@ -14,13 +14,17 @@
 
 	# Branch
 	default-branch = !"f() { \
-		result=$(git symbolic-ref --short refs/remotes/origin/HEAD 2>&1); \
-		if [ $? -ne 0 ]; then \
-			echo ${result} >&2; \
-			echo 'To resolve the error, try running: git remote set-head origin --auto' >&2; \
-			return 1; \
-		else \
+		result=$(git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null); \
+		if [ -n \"${result}\" ]; then \
 			echo ${result} | sed 's#^origin/##'; \
+			return 0; \
+		fi; \
+		branch=$(git ls-remote --symref origin HEAD | awk '/^ref:/ { sub(\"refs/heads/\", \"\", $2); print $2 }'); \
+		if [ -n \"${branch}\" ]; then \
+			echo \"${branch}\"; \
+		else \
+			echo 'Could not determine default branch from origin' >&2; \
+			return 1; \
 		fi; \
 	}; f"
 
