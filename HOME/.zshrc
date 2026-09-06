@@ -51,7 +51,7 @@ fi
 if type ruby &>/dev/null; then
   export GEM_EDITOR='emacsclient --no-wait'
   export BUNDLER_EDITOR="${GEM_EDITOR}"
-  export RI='--format=markdown'
+  export RI='--format=markdown --width=100'
   if type bat &>/dev/null; then
     export RI_PAGER='bat --language=markdown --style=plain'
   fi
