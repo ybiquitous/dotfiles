@@ -1,8 +1,15 @@
 # Guidelines
 
+## About me
+
+- Software engineer, non-native English speaker. I write commit messages, PRs,
+  docs, code comments, and chat. Not papers or fiction.
+
 ## General
 
-- Use clear, plain English for non-natives.
+- Use clear, plain English.
+- Cut text that adds no information: praise, preamble, recap of what was just said.
+- No emoji, em dashes, or inflated words ("leverage", "robust", "seamless").
 
 ## Git
 
