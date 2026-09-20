@@ -7,7 +7,6 @@ packages=(
 
   # 3rd-party
   @actions/languageserver@latest
-  @github/copilot-language-server@latest
   @mermaid-js/mermaid-cli@latest
   skills@latest
   typescript-language-server@latest
