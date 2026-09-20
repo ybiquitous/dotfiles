@@ -74,7 +74,6 @@ brew install shellcheck
 brew install starship
 brew install tree
 brew install watch
-brew install --cask claude
 brew install --cask dash
 brew install --cask emacs-app
 brew install --cask ghostty
