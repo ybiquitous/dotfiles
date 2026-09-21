@@ -140,6 +140,11 @@ if type atuin &>/dev/null; then
   bindkey -M emacs '^P' atuin-up-search
 fi
 
+# OpenCode
+if type opencode &>/dev/null; then
+  eval "$(opencode completion)"
+fi
+
 # zsh-abbr
 if [[ -f ~/.zsh/zsh-abbr/zsh-abbr.plugin.zsh ]]; then
   ABBR_SET_EXPANSION_CURSOR=1

@@ -66,6 +66,7 @@ brew install less
 brew install libyaml
 brew install lsd
 brew install most
+brew install opencode
 brew install pinentry-mac
 brew install ripgrep
 brew install rust-analyzer
