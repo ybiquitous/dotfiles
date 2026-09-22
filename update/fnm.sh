@@ -11,8 +11,14 @@ if type fnm &>/dev/null; then
     mapfile -t global_packages < <(npm list --global --depth=0 --json --silent | jq -r '.dependencies | keys[] | select(. != "npm")')
   fi
 
-  fnm install --latest --use
-  fnm default latest
+  fnm install --latest
+  system_node="$(find /opt /usr -type f -name 'node' -path '*/bin/node' -perm +111 2>/dev/null || true)"
+  if [[ -n "${system_node}" ]]; then
+    fnm default system
+  else
+    fnm default latest
+  fi
+  fnm use default
 
   new_version="$(fnm current)"
   if [[ "${current_version}" != "${new_version}" ]]; then
@@ -30,5 +36,7 @@ if type fnm &>/dev/null; then
   echo ''
   printf '✅ The default Node.js version is installed: \x1b[36m%s\x1b[0m\n' "$(node --version)"
   printf 'To apply it, run: \x1b[36m%s\x1b[0m\n' "fnm use default"
-  printf 'To remove the old version, run: \x1b[36m%s\x1b[0m\n' "fnm uninstall ${current_version}"
+  if [[ "${current_version}" != "system" ]]; then
+    printf 'To remove the old version, run: \x1b[36m%s\x1b[0m\n' "fnm uninstall ${current_version}"
+  fi
 fi
