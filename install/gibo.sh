@@ -29,6 +29,9 @@ vendor/bundle/ruby/
 
 # Serena
 .serena
+
+# OpenCode
+opencode.json
 EOF
 
 if [[ ! -f ${GITIGNORE_GLOBAL} ]]; then
