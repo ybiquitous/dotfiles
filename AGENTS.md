@@ -16,7 +16,7 @@
 - Never run `git push` (unless allowed).
 - Never commit to the default branch (unless allowed).
 - Use short sentences in commit messages.
-- Avoid punctuation in the commit message subject.
+- Avoid punctuation in the commit message subject, except for `:` and `!`.
 - Wrap code identifiers in backticks in commit messages.
 - Wrap code blocks in commit messages with triple backticks.
 
