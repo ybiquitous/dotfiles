@@ -36,15 +36,15 @@
 
 	# Pull
 	sync = !"f() { \
-		default=$(git default-branch) && \
+		default=$(git default-branch) || return 1; \
 		git switch --quiet \"${default}\" && \
-		git pull --prune --no-progress --tags --force && \
+		git pull --prune --no-progress --force && \
 		git branch --format='%(refname:short)' --merged \"${default}\" | \
 			grep -vx \"${default}\" | \
-			xargs -r -n1 git branch -d; \
+			xargs -r -n1 git branch --delete --force; \
 		git for-each-ref --format='%(refname:short) %(upstream:track)' refs/heads | \
 			awk -v d=\"${default}\" '$1 != d && $2 == \"[gone]\" {print $1}' | \
-			xargs -r -n1 git branch -D; \
+			xargs -r -n1 git branch --delete --force; \
 	}; f"
 
 	# Alias
