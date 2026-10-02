@@ -10,6 +10,7 @@
 - Use clear, plain English.
 - Cut text that adds no information: praise, preamble, recap of what was just said.
 - No emoji, em dashes, or inflated words ("leverage", "robust", "seamless").
+- Start each prose sentence on a new source line, prefer wrapping after punctuation, and preserve existing formatting.
 
 ## Git
 
