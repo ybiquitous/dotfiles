@@ -142,7 +142,7 @@ fi
 
 # OpenCode
 if type opencode &>/dev/null; then
-  eval "$(opencode completion)"
+  eval "$(opencode --completions zsh)"
 fi
 
 # zsh-abbr
