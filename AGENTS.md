@@ -30,3 +30,7 @@
 
 - Run `ruby -wc` after editing Ruby files.
 - Use `ri` to look into Ruby classes or methods when working with Ruby.
+
+## Shell
+
+- Run `shellcheck` after editing shell files.
