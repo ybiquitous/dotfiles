@@ -4,15 +4,14 @@ export PATH="${HOME}/bin:${HOME}/.local/bin:/usr/local/bin:${PATH}"
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # Homebrew - must run before compinit because shellenv sets PATH/FPATH etc.
-if [[ -f '/opt/homebrew/bin/brew' ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+if type brew &>/dev/null; then
+  source <(brew shellenv)
 fi
 
 # rbenv
 if [[ -d "${HOME}/.rbenv" ]]; then
-  export PATH="${HOME}/.rbenv/bin:${PATH}"
   fpath=("${HOME}/.rbenv/completions" $fpath)
-  eval "$(rbenv init - zsh)"
+  source <(${HOME}/.rbenv/bin/rbenv init - zsh)
 fi
 
 # Completion cache directory
@@ -60,22 +59,22 @@ fi
 
 # direnv
 if type direnv &>/dev/null; then
-  eval "$(direnv hook zsh)"
+  source <(direnv hook zsh)
 fi
 
 # fzf
 if type fzf &>/dev/null; then
-  eval "$(fzf --zsh)"
+  source <(fzf --zsh)
 fi
 
 # fnm (Fast Node Manager)
 if type fnm &>/dev/null; then
-  eval "$(fnm env --use-on-cd)"
+  source <(fnm env --use-on-cd --shell zsh)
 fi
 
 # Starship
 if type starship &>/dev/null; then
-  eval "$(starship init zsh)"
+  source <(starship init zsh)
 fi
 
 # npm
@@ -117,7 +116,7 @@ fi
 # Atuin - shell history management
 if type atuin &>/dev/null; then
   export ATUIN_NOBIND="true"
-  eval "$(atuin init zsh)"
+  source <(atuin init zsh)
   bindkey -M emacs '^P' atuin-up-search
 fi
 
