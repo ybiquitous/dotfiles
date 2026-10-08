@@ -71,22 +71,11 @@ fi
 # fnm (Fast Node Manager)
 if type fnm &>/dev/null; then
   eval "$(fnm env --use-on-cd)"
-
-  if [[ ! -f "${HOMEBREW_PREFIX}/share/zsh/site-functions/_fnm" ]]; then
-    eval "$(fnm completions --shell zsh)"
-  fi
 fi
 
 # Starship
 if type starship &>/dev/null; then
   eval "$(starship init zsh)"
-fi
-
-# GitHub CLI
-if type gh &>/dev/null; then
-  if [[ ! -f "${HOMEBREW_PREFIX}/share/zsh/site-functions/_gh" ]]; then
-    eval "$(gh completion -s zsh)"
-  fi
 fi
 
 # npm
@@ -98,13 +87,6 @@ if type npm &>/dev/null; then
   # NOTE: `source` is required. `npm completion` outputs a registration script (`complete`/`compdef`/`compctl`),
   # which `compinit` does not execute when auto-loading from `fpath`.
   source "${ZSH_CACHE_DIR}/completions/_npm"
-fi
-
-# Podman
-if type podman &>/dev/null; then
-  if [[ ! -f "${HOMEBREW_PREFIX}/share/zsh/site-functions/_podman" ]]; then
-    podman completion zsh --file "${ZSH_CACHE_DIR}/completions/_podman"
-  fi
 fi
 
 # Git contrib
@@ -142,11 +124,6 @@ if type atuin &>/dev/null; then
   export ATUIN_NOBIND="true"
   eval "$(atuin init zsh)"
   bindkey -M emacs '^P' atuin-up-search
-fi
-
-# OpenCode
-if type opencode &>/dev/null; then
-  eval "$(opencode --completions zsh)"
 fi
 
 # zsh-abbr
