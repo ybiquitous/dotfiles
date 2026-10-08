@@ -89,11 +89,6 @@ if type npm &>/dev/null; then
   source "${ZSH_CACHE_DIR}/completions/_npm"
 fi
 
-# Git contrib
-if [ -d "${HOMEBREW_PREFIX}/share/git-core/contrib" ]; then
-  export PATH="${PATH}:${HOMEBREW_PREFIX}/share/git-core/contrib/git-jump"
-fi
-
 # curl
 if [ -d "${HOMEBREW_PREFIX}/opt/curl" ]; then
   export PATH="${HOMEBREW_PREFIX}/opt/curl/bin:${PATH}"
