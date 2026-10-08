@@ -94,6 +94,9 @@ if type npm &>/dev/null; then
   if [[ ! -f "${ZSH_CACHE_DIR}/completions/_npm" ]]; then
     npm completion > "${ZSH_CACHE_DIR}/completions/_npm"
   fi
+
+  # NOTE: `source` is required. `npm completion` outputs a registration script (`complete`/`compdef`/`compctl`),
+  # which `compinit` does not execute when auto-loading from `fpath`.
   source "${ZSH_CACHE_DIR}/completions/_npm"
 fi
 
