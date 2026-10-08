@@ -94,7 +94,6 @@ if type npm &>/dev/null; then
   if [[ ! -f "${ZSH_CACHE_DIR}/completions/_npm" ]]; then
     npm completion > "${ZSH_CACHE_DIR}/completions/_npm"
   fi
-  source "${ZSH_CACHE_DIR}/completions/_npm"
 fi
 
 # Podman
