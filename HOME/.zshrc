@@ -20,7 +20,8 @@ export ZSH_CACHE_DIR="${HOME}/.cache/zsh"
 mkdir -p "${ZSH_CACHE_DIR}/completions"
 fpath=("${ZSH_CACHE_DIR}/completions" $fpath)
 
-autoload -Uz compinit && compinit -u
+autoload -Uz compinit
+compinit -u -d "${ZSH_CACHE_DIR}/zcompdump-${ZSH_VERSION}"
 
 # User configuration
 export LANG=en_US.UTF-8
