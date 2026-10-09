@@ -42,6 +42,7 @@ brew install bundler-completion
 brew install cmake
 brew install colordiff
 brew install comrak
+brew install container
 brew install coreutils
 brew install curl
 brew install direnv
