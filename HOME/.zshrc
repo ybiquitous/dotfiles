@@ -3,9 +3,9 @@ export PATH="${HOME}/bin:${HOME}/.local/bin:/usr/local/bin:${PATH}"
 # Zsh settings
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-# Homebrew - must run before compinit because shellenv sets PATH/FPATH etc.
-if type brew &>/dev/null; then
-  source <(brew shellenv)
+# Homebrew - must run before `compinit` because `brew shellenv` sets PATH/FPATH etc.
+if [[ -z "${HOMEBREW_PREFIX}" && -x /opt/homebrew/bin/brew ]]; then
+  source <(/opt/homebrew/bin/brew shellenv)
 fi
 
 # rbenv
