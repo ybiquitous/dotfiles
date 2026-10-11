@@ -9,6 +9,7 @@ abbr "cp"="cp -i"
 abbr "mv"="mv -i"
 abbr "rm"="rm -i"
 
+abbr "pgrep"="pgrep -il"
 abbr "tree"="tree -aCF -I .git"
 
 abbr "npmjs"="open 'https://www.npmjs.com/package/@'"
