@@ -1,7 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-IGNORE_FILES=$(gibo dump macOS Emacs)
+readonly BOILERPLATES=(macOS Emacs Tags)
+IGNORE_FILES=$(gibo dump "${BOILERPLATES[@]}")
 readonly IGNORE_FILES
 readonly GITIGNORE_GLOBAL="${HOME}/.gitignore_global"
 
