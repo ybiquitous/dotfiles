@@ -2,8 +2,7 @@
 
 ## About me
 
-- Software engineer, non-native English speaker. I write commit messages, PRs,
-  docs, code comments, and chat. Not papers or fiction.
+- Software engineer, non-native English speaker. I write commit messages, PRs, docs, code comments, and chat. Not papers or fiction.
 
 ## General
 
@@ -33,4 +32,5 @@
 
 ## Shell
 
+- Use Homebrew's Bash instead of macOS's Bash when it is installed.
 - Run `shellcheck` after editing shell files.
