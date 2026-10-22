@@ -1,0 +1,6 @@
+{
+  "$schema": "https://opencode.ai/v2/cli.json",
+  "keybinds": {
+    "input.backspace": "backspace,shift+backspace,ctrl+h"
+  }
+}

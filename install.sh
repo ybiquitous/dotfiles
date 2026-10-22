@@ -29,7 +29,10 @@ done
 
 # copy directories to ~/.config/
 mkdir -pv "${HOME}/.config"
-find "${BASEDIR}/HOME/.config" -maxdepth 1 -type d ! -path "${BASEDIR}/HOME/.config" | while IFS= read -r dir; do
+
+# OpenCode's config directory is populated file by file in install/opencode.sh,
+# because it contains local files (e.g., node_modules, service.json).
+find "${BASEDIR}/HOME/.config" -maxdepth 1 -type d ! -path "${BASEDIR}/HOME/.config" ! -name 'opencode' | while IFS= read -r dir; do
   target_dir="${HOME}/.config/$(basename "$dir")"
   if [ -e "$target_dir" ]; then
     echo "(skip) ${target_dir} already exists."
@@ -46,6 +49,7 @@ done
 ./install/fnm.sh
 ./install/rbenv.sh
 ./install/github.sh
+./install/opencode.sh
 ./install/skills.sh
 
 echo 'Installation completed. Please reopen shell.'
