@@ -11,6 +11,10 @@
 - No emoji, em dashes, or inflated words ("leverage", "robust", "seamless").
 - Wrap prose near 120 characters at word boundaries. Avoid very short lines and preserve headings, lists, and code blocks.
 
+## Testing
+
+- Do not use mocks without a clear rationale.
+
 ## Git
 
 - Never run `git push` (unless allowed).
