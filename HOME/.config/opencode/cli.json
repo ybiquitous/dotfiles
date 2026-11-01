@@ -7,7 +7,7 @@
     "sidebar": "hide"
   },
   "theme": {
-    "name": "github",
-    "mode": "system"
+    "name": "system",
+    "mode": "dark"
   }
 }
