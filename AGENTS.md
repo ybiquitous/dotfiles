@@ -13,7 +13,7 @@
 
 ## Testing
 
-- Do not use mocks without a clear rationale.
+- Do not overuse test doubles without a clear rationale.
 
 ## Git
 
