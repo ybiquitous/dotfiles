@@ -38,6 +38,7 @@
 	sync = !"f() { \
 		default=$(git default-branch) || return 1; \
 		git switch --quiet \"${default}\" && \
+		git fetch --tags --no-progress --force && \
 		git pull --prune --no-progress --force && \
 		git branch --format='%(refname:short)' --merged \"${default}\" | \
 			grep -vx \"${default}\" | \
