@@ -5,6 +5,7 @@ bundle config set --global auto_install 'true'
 bundle config set --global cooldown '3'
 bundle config set --global lockfile_checksums 'true'
 bundle config set --global path 'vendor/bundle'
+bundle config set --global credential_store 'true'
 
 if type brew &>/dev/null; then
   bundle config set --global build.mysql2 "--with-mysql-dir=${HOMEBREW_PREFIX}/opt/mysql"
