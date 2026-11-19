@@ -9,18 +9,21 @@
 - Use clear, plain English.
 - Cut text that adds no information: praise, preamble, recap of what was just said.
 - No emoji, em dashes, or inflated words ("leverage", "robust", "seamless").
-- Wrap prose near 120 characters at word boundaries. Avoid very short lines and preserve headings, lists, and code blocks.
+- Prefer bullet points over long paragraphs.
+- Keep one sentence per line, as much as possible.
+- Avoid lines longer than 200 characters, and preserve headings, lists, and code blocks.
 
 ## Testing
 
-- Do not overuse test doubles without a clear rationale.
+- Use test doubles only for external boundaries (network, time, filesystem), or when a real object is impractical.
 
 ## Git
 
-- Never run `git push` (unless allowed).
-- Never commit to the default branch (unless allowed).
-- Use short sentences in commit messages.
-- Avoid punctuation in the commit message subject, except for `:` and `!`.
+- Do not push, unless the user asks.
+- Do not commit on the default branch unless the user asks. Otherwise, create a branch first.
+- Do not rewrite history that is already pushed.
+- Do not end a commit subject with a period.
+- Prefer short sentences in a commit message body.
 - Wrap code identifiers in backticks in commit messages.
 - Wrap code blocks in commit messages with triple backticks.
 
@@ -36,5 +39,5 @@
 
 ## Shell
 
-- Use Homebrew's Bash instead of macOS's Bash when it is installed.
+- Prefer Homebrew's Bash when installed.
 - Run `shellcheck` after editing shell files.
