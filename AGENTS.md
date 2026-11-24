@@ -23,6 +23,7 @@
 - Do not commit on the default branch unless the user asks. Otherwise, create a branch first.
 - Do not rewrite history that is already pushed.
 - Do not end a commit subject with a period.
+- Explain why the change is needed in a commit message body, not only what changed.
 - Prefer short sentences in a commit message body.
 - Wrap code identifiers in backticks in commit messages.
 - Wrap code blocks in commit messages with triple backticks.
