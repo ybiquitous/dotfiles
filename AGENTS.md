@@ -42,4 +42,4 @@
 
 - Prefer Homebrew's Bash when installed.
 - Run `shellcheck` after editing shell files.
-- Use `~/tmp` for temporary files and scratch directories instead of `/tmp` or the system temporary directory.
+- Use `./tmp` in the project root or `~/tmp` for temporary files instead of `/tmp` or the system temporary directory.
