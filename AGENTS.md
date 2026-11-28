@@ -8,7 +8,7 @@
 
 - Use clear, plain English.
 - Cut text that adds no information: praise, preamble, recap of what was just said.
-- No emoji, em dashes, or inflated words ("leverage", "robust", "seamless").
+- No emoji, em dashes, or inflated words, such as "leverage", "robust", or "seamless".
 - Prefer bullet points over long paragraphs.
 - Keep one sentence per line, as much as possible.
 - Avoid lines longer than 200 characters, and preserve headings, lists, and code blocks.
